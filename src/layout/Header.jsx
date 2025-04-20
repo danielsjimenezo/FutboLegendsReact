@@ -5,7 +5,13 @@ import { useState, useRef } from "react";
 /*
     git init
     git remote add origin https://github.com/danielsjimenezo/FutboLegendsReact
-    git atatus
+    git add .
+    git commit -m "first commit"
+
+    git pull origin main --allow-unrelated-histories --no-rebase
+    git push origin main
+
+    git rm README.md
 */
 
 function Header() {
