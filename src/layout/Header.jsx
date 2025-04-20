@@ -1,5 +1,6 @@
 import "./Header.css";
 import HeaderSearch from "./HeaderSearch.jsx";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -7,10 +8,10 @@ function Header() {
       <HeaderSearch />
       <div id="nav">
         <button className="topButtons" id="recordButtonn">
-          <a href="./index.html">Record Book</a>
+          <Link to="/">Record Book</Link>
         </button>
         <button className="topButtons" id="compareButtonn">
-          <a href="./compare.html">Compare Players</a>
+          <Link to="/compare">Compare Players</Link>
         </button>
       </div>
 

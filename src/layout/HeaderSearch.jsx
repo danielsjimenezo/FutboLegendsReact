@@ -1,6 +1,7 @@
 import { usePlayerContext } from "../context/PlayerContext.jsx";
 import { useState, useRef } from "react";
 import useClickOutside from "../utilities/useClickOutside.jsx";
+import { Link } from "react-router-dom";
 
 function HeaderSearch() {
   const { players, playersLoadingState } = usePlayerContext();
@@ -12,7 +13,6 @@ function HeaderSearch() {
   const searchContainerRef = useRef(null);
 
   useClickOutside(searchContainerRef, () => {
-    console.log("CLICKED OUTSIDE");
     setSearching(false);
     setSearchedPlayers([]);
   });
@@ -60,12 +60,12 @@ function HeaderSearch() {
       )}
       <section id="searchResults">
         {searchedPlayers.map((player) => {
-          const playerHref = "/player/" + player.Player.replaceAll(" ", "_");
+          const playerHref = "/profile/" + player.Player.replaceAll(" ", "_");
           const imgSrc = `/images/Players/${player.Player}.jpg`;
 
           return (
             <div className="player-result" key={player.Player}>
-              <a className="searchResultBox" href={playerHref}>
+              <Link className="searchResultBox" to={playerHref}>
                 <img
                   src={imgSrc}
                   alt={player.Player}
@@ -74,7 +74,7 @@ function HeaderSearch() {
                 <div className="player-result-info">
                   <p>{player.Player}</p>
                 </div>
-              </a>
+              </Link>
             </div>
           );
         })}

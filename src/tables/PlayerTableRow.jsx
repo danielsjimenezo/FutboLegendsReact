@@ -1,51 +1,54 @@
-/*
-    git add .
-    git commit -m "fixed header"
-    git push origin main
-*/
+import { useNavigate } from "react-router-dom";
 
 function PlayerTableRow({ player, rank }) {
+  const navigate = useNavigate()
+
     const profilePicSrc = `/images/Players/${player.Player}.jpg`;
     const flagSrc = `/images/Flags/${player.birthCountry}.png`;
-    const playerHref = ``
+    const playerHref = `/profile/${player.Player.replaceAll(' ','_')}`
+
+  const handleTrClick = () => {
+    navigate(playerHref)
+  }
 
   return (
-    <tr>
+    <tr onClick={handleTrClick} onKeyUp={e => {
+      if (e.key === 'Enter') handleTrClick()
+    }} tabIndex={0}>
       <td>
-        ${rank}.
+        {rank}.
       </td>
       <td>
-        <div class="name-td">
+        <div className="name-td">
           <img 
-            src="${profilePicSrc}" 
-            alt="Photo of ${player.Player}" 
-            class={`${player.Active === "TRUE" ? "active" : "inactive"}`} 
-            loading="lazy">
-          <a href="/profile.html?name=${player.Player.replaceAll(" ", "_")}">
-            ${player.Player}
-          </a>
+            src={profilePicSrc}
+            alt={`Photo of ${player.Player}`} 
+            className={`picture ${player.Active === "TRUE" ? "active" : "inactive"}`} 
+            loading="lazy"
+          />
+          {player.Player}
         </div>
       </td>
       <td>
-        ${player.Position}
+        {player.Position}
       </td>
       <td>
-          <img src="${flagSrc}" alt="Photo of ${player.birthCountry}" class="flag" loading="lazy">
+          <img src={flagSrc} alt={`Flag of ${player.birthCountry}`} className="flag" loading="lazy" />
       </td>
       <td>
-        ${player.GamesPlayed}
+        {player.GamesPlayed}
       </td>
       <td>
-        ${player.Goals}
+        {player.Goals}
       </td>
       <td>
-        ${player.Assists}
+        {player.Assists}
       </td>
       <td>
-        ${player.GoalContributions}
+        {player.GoalContributions}
       </td>
       <td>
-        ${player.Efficiency}
+        {player.Efficiency}
       </td>
     </tr>
   )

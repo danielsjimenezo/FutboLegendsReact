@@ -1,7 +1,15 @@
 import { usePlayerContext } from "../context/PlayerContext.jsx";
+import PlayerTableRow from "./PlayerTableRow.jsx";
+import PlayerTablePaginationControls from "./PlayerTablePaginationControls.jsx";
 
 function PlayerTable() {
-  const { players } = usePlayerContext();
+  const { 
+    displayedPlayers, 
+    playersLoadingState,
+    playersPageNumber,
+    PER_PAGE
+  } = usePlayerContext();
+
   return (
     <section className="table-container">
       <table id="table">
@@ -18,16 +26,32 @@ function PlayerTable() {
             <th>G+A/Game</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {playersLoadingState === 'loading' ? (
+            <>
+              <tr colSpan="100">
+                <th>
+                  Loading...
+                </th>
+              </tr>
+            </>
+          ):playersLoadingState === 'error' ? (
+            <>
+              <tr colSpan="100">
+                <th>Something went wrong</th>
+              </tr>
+            </>
+          ):(
+            displayedPlayers.map((player, i) => {
+              const rank = (i + 1) + ((playersPageNumber-1) * PER_PAGE)
+              return (
+                <PlayerTableRow key={player.Player} player={player} rank={rank} />
+              )
+            })
+          )}
+        </tbody>
       </table>
-      <div id="paginationButtons">
-        <button className="tableBtns prev" id="prev">
-          Previous
-        </button>
-        <button className="tableBtns next" id="next">
-          Next
-        </button>
-      </div>
+      <PlayerTablePaginationControls />
     </section>
   );
 }

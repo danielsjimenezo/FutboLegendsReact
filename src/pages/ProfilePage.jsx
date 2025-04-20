@@ -1,5 +1,115 @@
+import { useParams } from "react-router-dom"
+import { usePlayerContext } from "../context/PlayerContext.jsx"
+import PlayerBadge from "../misc/PlayerBadge.jsx"
+import GoalTypeChart1 from "../charts/GoalTypeChart1.jsx"
+import GoalTypeChart2 from "../charts/GoalTypeChart2.jsx"
+
 function ProfilePage() {
-  return <></>;
+  const { players, playersLoadingState } = usePlayerContext()
+  const { id } = useParams()
+  const player = players.find(p => p.Player === id.replaceAll('_', ' '))
+
+  if (playersLoadingState === 'loading') {
+    return (
+      <>
+        <p>Loading player data...</p>
+      </>
+    )
+  }
+
+  if (playersLoadingState === 'error') {
+    return (
+      <>
+        <p>Something went wrong.</p>
+      </>
+    )
+  }
+
+  if (!player) {
+    return (
+      <>
+        <p>Player not found</p>
+      </>
+    )
+  }
+
+  return (
+    <section className="content-containerr container">
+      <div className="side-menu">
+        <div className="playerProfile">
+          <div className="playerPic">
+            <img src={`/images/Players/${player.Player}.jpg`} alt={`Photo of ${player.Player}`} className="playerPics" />
+          </div>
+          <div className="playerDesc">
+            <span className="descr">Position(s):</span>
+            {player.Position}
+            <br />
+            <span className="descr">Date of Brith:</span>
+            <br />
+            <span className="descr">Height:</span>
+          </div>
+        </div>
+        <div className="playerTableStats">
+          <section className="table-container">
+            <table id="table">
+              <thead>
+                <tr className="header-roww">
+                  <th>Team</th>
+                  <th>MP</th>
+                  <th>G</th>
+                  <th>A</th>
+                  <th>G+A</th>
+                  <th>G+A/MP</th>
+                </tr>
+              </thead>
+              <tbody id="team-stats"></tbody>
+            </table>
+          </section>
+        </div>
+      </div>
+      <div className="mainSection">
+
+        <div className="profileCharts">
+          <div className="circleChart1">
+            <GoalTypeChart1 id="circleChart1" player={player} />
+          </div>
+          <div className="circleChart2">
+            <GoalTypeChart2 id="circleChart2" player={player} />
+          </div>
+        </div> {/* END OF .profileCharts */}
+
+        <div className="profileStats">
+          <PlayerBadge
+            title="Games Played"
+            value={player.GamesPlayed}
+            rank={player.gamesPlayedRank}
+          />
+          <PlayerBadge
+            title="Goals Scored"
+            value={player.Goals}
+            rank={player.goalsRank}
+          />
+          <PlayerBadge
+            title="Assists Made"
+            value={player.Assists}
+            rank={player.assistsRank}
+          />
+          <PlayerBadge
+            title="Goals + Assists"
+            value={player.GoalContributions}
+            rank={player.contributionsRank}
+          />
+          <PlayerBadge
+            title="G + A / GAmes"
+            value={player.Efficiency}
+            rank={player.contributionsPerGameRank}
+            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
+          />
+        </div> {/* END OF .profileStats */}
+
+      </div> {/* END OF .mainSection */}
+    </section>
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage
