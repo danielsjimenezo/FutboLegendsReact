@@ -1,0 +1,592 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-blue: #001327;
+  --green: #62b3ad;
+  --pink: #ff4f8b;
+}
+
+body {
+  background-color: var(--dark-blue);
+  color: white;
+  font-family: Poppins;
+}
+
+p {
+  text-align: center;
+}
+
+.container {
+  width: 1100px;
+  margin: auto;
+  max-width: 100%;
+}
+
+header {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 1rem;
+}
+
+#nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header button {
+  padding: 10px 20px;
+  border-radius: 100px;
+  color: white;
+  font-family: Poppins;
+  font-weight: normal;
+}
+
+/* 
+    Selector hierarchy
+      tagname -> #id -> .class
+ */
+
+header .topButtons {
+  background-color: transparent;
+  border: 0;
+}
+
+header .topButtons:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.topButtons.selected {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mainChart {
+  width: 100%;
+  /* Keep the width responsive */ /* Increase the height as desired */
+  cursor: pointer;
+}
+
+.table-container {
+  margin-top: 1rem;
+}
+
+#table {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+
+#tablee {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+
+.header-row {
+  border-bottom: 0.2px solid rgb(255, 255, 255, 0.4);
+}
+
+.header-roww {
+  font-size: 12px;
+  border-bottom: 0.2px solid rgb(255, 255, 255, 0.4);
+}
+
+th {
+  font-weight: 450;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+/* table th:hover {
+  background-color: transparent;
+} */
+
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: 300;
+}
+
+table tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+table tbody td:first-child {
+  text-align: right;
+}
+
+.picture {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.name-td {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.left {
+  text-align: left;
+}
+
+.flag {
+  height: 30px;
+  width: 50px;
+  object-fit: cover;
+}
+
+table tr > td:first-child {
+  padding-right: 40px;
+}
+
+#filters {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+#filter-menu-wrapper {
+  position: relative;
+}
+
+.filter-menu {
+  min-width: 150px;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+/* #filter-menu {
+  position: absolute;
+  background-color: #001327;
+  top: 100%;
+  right: 0;
+  text-align: right;
+  transition: all 250ms;
+} */
+
+/* #filter-menu button {
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-bottom: 0;
+  text-align: right;
+  border-radius: 0;
+  width: 100%;
+  cursor: pointer;
+  transition: all 250ms;
+} */
+
+#filter-menu > button:last-child {
+  border-bottom: 1px solid white;
+}
+
+#filter-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 250ms;
+}
+
+#filter-button {
+  background-color: transparent;
+  border-radius: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  cursor: pointer;
+}
+
+.topFilters {
+  height: 25px;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 90%;
+  left: 0;
+  text-align: left;
+  font-weight: 150;
+  background-color: rgba(104, 89, 150, 0.28);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  font-size: 12px;
+
+  & button {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+#globe-filter {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+#globe-filter-menu-wrapper {
+  position: relative;
+  justify-self: flex-end;
+  z-index: 5;
+}
+
+/* #globe-filter-menu {
+  position: absolute;
+  background-color: #001327;
+  top: 100%;
+  right: 0;
+  text-align: right;
+  transition: all 250ms;
+} */
+
+/* #globe-filter-menu button {
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-bottom: 0;
+  text-align: right;
+  border-radius: 0;
+  width: 100%;
+  cursor: pointer;
+  transition: all 250ms;
+} */
+
+#globe-filter-menu > button:last-child {
+  border-bottom: 1px solid white;
+}
+
+#globe-filter-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 250ms;
+}
+
+#moreButton {
+  text-align: center;
+}
+
+#show-more-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+}
+
+#show-more-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#filter-form {
+  border: 1px solid white;
+}
+
+#paginationButtons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  margin-bottom: 2rem;
+  column-gap: 1rem;
+}
+
+.tableBtns {
+  background-color: transparent;
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
+#prev {
+  margin-right: 0.25rem;
+}
+
+.tableBtns:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+/*
+  for profile.html
+*/
+
+.content-containerr {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3rem;
+}
+
+.selected {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.side-menu {
+  display: flex;
+  flex-flow: column;
+  width: 30%;
+}
+
+.playerProfile {
+  display: flex;
+  flex-flow: column;
+  border: 5px solid #145b56;
+  border-radius: 5%;
+  align-items: center;
+  background-color: rgb(104, 89, 150, 0.28);
+}
+
+.playerPic {
+  display: flex;
+  border-radius: 5%;
+  margin-top: 1.5rem;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  height: 15rem;
+  width: 15rem;
+}
+
+.playerPics {
+  height: 15rem;
+  width: 15rem;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+.playerDesc {
+  height: 4rem;
+  width: 15rem;
+  font-size: 12px;
+}
+
+.descr {
+  color: var(--green);
+}
+
+.playerTableStats {
+  height: 18rem;
+}
+
+.mainSection {
+  display: flex;
+  flex-flow: column;
+  height: 40rem;
+  margin-left: 3rem;
+  width: 70%;
+  margin-bottom: 2rem;
+}
+
+.profileCharts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.barChart {
+  border-right: 1px solid white;
+  width: 100%;
+}
+
+.profileStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 2rem;
+  column-gap: 1rem;
+  justify-content: center;
+  height: 30rem;
+  margin-top: 2rem;
+}
+
+.statsBadgeContainer {
+  text-align: center;
+}
+
+.statsBadgeTitle {
+  margin-bottom: 1rem;
+}
+
+.statsBadgeCircleBig1 {
+  position: relative;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  background: linear-gradient(135deg, #af95fc, #685996);
+}
+
+.statsBadgeCircleBig2 {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  background: linear-gradient(135deg, rgb(255, 79, 139, 0.1), var(--pink));
+}
+
+.statsBadgeCircleSmall {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #001327;
+  color: white;
+}
+
+.statsBadgeValue {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.team-logo {
+  height: 30px;
+}
+
+.totalsRowProfile {
+  background-color: rgb(43, 193, 183, 0.14);
+  color: var(--green);
+}
+
+.totalsRowProfile td:last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.picture.active {
+  border: 3px solid var(--green);
+}
+
+.picture.inactive {
+  border: 1px solid var(--pink);
+}
+
+#searchFunc {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#searchResults {
+  position: absolute;
+  top: 90%;
+  left: 0;
+  text-align: left;
+  font-weight: 150;
+  background-color: rgba(104, 89, 150, 0.28);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.searchResultBox {
+  display: flex;
+  padding: 1rem;
+  color: white;
+  align-items: center;
+}
+
+.player-result {
+  display: flex;
+  align-items: center;
+}
+
+.player-result-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.player-result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container-compare {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.badgeRank {
+  position: absolute;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  bottom: 0px;
+  left: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  translate: -50% 25%;
+  color: #001327;
+  font-weight: 500;
+}
+
+.badgeRank img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -40%;
+  z-index: -1;
+  height: 75px;
+}
+
+@media (max-width: 1000px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
