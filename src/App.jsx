@@ -13,7 +13,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
+
           <Route path="/compare" element={<ComparePage />} />
+          <Route path="/compare/:id1" element={<ComparePage />} />
+          <Route path="/compare/:id1/:id2" element={<ComparePage />} />
+          
           <Route path="/rankings" element={<RankingsPage />} />
         </Routes>
       </main>

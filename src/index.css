@@ -12,6 +12,12 @@ body {
   background-color: var(--dark-blue);
   color: white;
   font-family: Poppins;
+  max-width: 100dvw;
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
 }
 
 p {
@@ -173,42 +179,6 @@ table tr > td:first-child {
   gap: 15px;
 }
 
-#filter-menu-wrapper {
-  position: relative;
-}
-
-.filter-menu {
-  min-width: 150px;
-  max-height: 400px;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-/* #filter-menu {
-  position: absolute;
-  background-color: #001327;
-  top: 100%;
-  right: 0;
-  text-align: right;
-  transition: all 250ms;
-} */
-
-/* #filter-menu button {
-  padding: 8px;
-  background-color: transparent;
-  border: 1px solid white;
-  border-bottom: 0;
-  text-align: right;
-  border-radius: 0;
-  width: 100%;
-  cursor: pointer;
-  transition: all 250ms;
-} */
-
-#filter-menu > button:last-child {
-  border-bottom: 1px solid white;
-}
-
 #filter-menu button:hover {
   background-color: rgba(255, 255, 255, 0.1);
   transition: all 250ms;
@@ -225,13 +195,6 @@ table tr > td:first-child {
   display: none;
 }
 
-img {
-  cursor: pointer;
-}
-
-.topFilters {
-  height: 25px;
-}
 
 .search-dropdown {
   position: absolute;
@@ -257,47 +220,6 @@ img {
   }
 }
 
-#globe-filter {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-}
-
-#globe-filter-menu-wrapper {
-  position: relative;
-  justify-self: flex-end;
-  z-index: 5;
-}
-
-/* #globe-filter-menu {
-  position: absolute;
-  background-color: #001327;
-  top: 100%;
-  right: 0;
-  text-align: right;
-  transition: all 250ms;
-} */
-
-/* #globe-filter-menu button {
-  padding: 8px;
-  background-color: transparent;
-  border: 1px solid white;
-  border-bottom: 0;
-  text-align: right;
-  border-radius: 0;
-  width: 100%;
-  cursor: pointer;
-  transition: all 250ms;
-} */
-
-#globe-filter-menu > button:last-child {
-  border-bottom: 1px solid white;
-}
-
-#globe-filter-menu button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: all 250ms;
-}
 
 #moreButton {
   text-align: center;
@@ -358,9 +280,6 @@ img {
   margin-top: 3rem;
 }
 
-.selected {
-  background-color: rgba(255, 255, 255, 0.1);
-}
 
 .side-menu {
   display: flex;
@@ -519,7 +438,7 @@ img {
 
 #searchResults {
   position: absolute;
-  top: 90%;
+  top: 100%;
   left: 0;
   text-align: left;
   font-weight: 150;
@@ -527,6 +446,9 @@ img {
   backdrop-filter: blur(25px);
   border-radius: 20px;
   font-size: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .searchResultBox {
@@ -534,6 +456,11 @@ img {
   padding: 1rem;
   color: white;
   align-items: center;
+  width: 100%;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 }
 
 .player-result {
