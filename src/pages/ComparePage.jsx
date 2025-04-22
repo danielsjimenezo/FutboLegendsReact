@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { usePlayerContext } from "../context/PlayerContext.jsx"
 import PlayerSearch from '../misc/PlayerSearch.jsx'
 import ComparePicture from "../misc/ComparePicture.jsx"
+import CompareStats from "../misc/CompareStats.jsx"
 
 function ComparePage() {
 
@@ -37,9 +38,7 @@ function ComparePage() {
         <PlayerSearch alwaysOpen={true} url={(player) => getCompareUrl(player, 0)}/>
         <PlayerSearch alwaysOpen={true} url={(player) => getCompareUrl(player, 1)}/>
       </div>
-      <div id="compare-stats">
-
-      </div>
+      <CompareStats player1={player1} player2={player2} />
     </section>
   )
 }

@@ -14,6 +14,7 @@ export const PlayerContextProvider = ({ children }) => {
   const [players, setPlayers] = useState([]);
   const [playersLoadingState, setPlayersLoadingState] = useState("loading");
   const [playersPageNumber, setPlayersPageNumber] = useState(1)
+  const [playerSort, setPlayerSort] = useState('contributions')
   const [countryFilter, setCountryFilter] = useState('all')
   const [positionFilter, setPositionFilter] = useState('all')
 
@@ -27,6 +28,7 @@ export const PlayerContextProvider = ({ children }) => {
   const getFilteredPlayers = () => {
     let result = [...players]
 
+    /// HANDLE FILTERS
     if (countryFilter !== 'all') {
       result = result.filter(p => p.birthCountry === countryFilter)
     }
@@ -34,6 +36,19 @@ export const PlayerContextProvider = ({ children }) => {
     if (positionFilter !== 'all') {
       result = result.filter(p => p.Position === positionFilter)
     }
+
+    /// HANDLE SORT
+    result.sort((a, b) => {
+      switch(playerSort) {
+        case 'contributions':
+          return (b.Goals + b.Assists) - (a.Goals + a.Assists)
+        case 'goals':
+        case 'assists':
+        case 'efficiency':
+          const key = playerSort[0].toUpperCase() + playerSort.slice(1)
+          return b[key] - a[key]
+      }
+    })
 
     return result
   }
@@ -45,6 +60,7 @@ export const PlayerContextProvider = ({ children }) => {
   }
 
   const displayedPlayers = getDisplayedPlayers()
+  console.log("displayed players:", displayedPlayers)
 
   const filteredPageCount = Math.ceil(filteredPlayers.length/PER_PAGE)
 
@@ -54,6 +70,10 @@ export const PlayerContextProvider = ({ children }) => {
   }, [players])
   const positions = useMemo(() => {
       return ([...new Set(players.map(p => p.Position))]).toSorted().filter(c => c)
+  }, [players])
+
+  const maxValues = useMemo(() => {
+    return getMaxValues(players)
   }, [players])
 
   ///// FETCHING DATA /////
@@ -110,10 +130,41 @@ export const PlayerContextProvider = ({ children }) => {
         playersPageNumber,
         PER_PAGE,
         filteredPageCount,
-        actions
+        actions,
+        maxValues,
+        playerSort,
+        setPlayerSort
       }}
     >
       {children}
     </PlayerContext.Provider>
   );
 };
+
+//////////// Utility
+
+function getMaxValues(allPlayers) {
+    const maxValues = {}
+
+    const allGamesPlayed = allPlayers.map((p) => toNumber(p.GamesPlayed))
+    maxValues.GamesPlayed = Math.max(...allGamesPlayed)
+
+    const allGoals = allPlayers.map((p) => toNumber(p.Goals))
+    maxValues.Goals = Math.max(...allGoals)
+
+    const allAssists = allPlayers.map((p) => toNumber(p.Assists))
+    maxValues.Assists = Math.max(...allAssists)
+
+    const allContributions = allPlayers.map((p) => toNumber(p.GoalContributions))
+    maxValues.GoalContributions = Math.max(...allContributions)
+
+    const allEfficiencies = allPlayers.map((p) => toNumber(p.Efficiency))
+    maxValues.Efficiency = Math.max(...allEfficiencies)
+
+    return maxValues
+}
+
+function toNumber(val) {
+  if (typeof val === "number") return val;
+  return Number(val.replaceAll(",", "")) || 0;
+}

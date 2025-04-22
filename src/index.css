@@ -11,9 +11,12 @@
 body {
   background-color: var(--dark-blue);
   color: white;
-  font-family: Poppins;
   max-width: 100dvw;
   overflow-x: hidden;
+}
+
+body, button, input, select, option, textarea {
+  font-family: Poppins;
 }
 
 button {
@@ -79,27 +82,112 @@ a {
 
 .charts-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   justify-content: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
-.mainChart {
-  width: 100%;
+.homepage-chart {
+  width: 800px;
+  max-width: 100%;
+  margin: auto;
+  position: relative;
   /* Keep the width responsive */ /* Increase the height as desired */
-  cursor: pointer;
+}
+
+.homepage-chart > .selector-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  & > button {
+    background: none;
+    border: 0;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    & img {
+      width: 50px;
+    }
+  }
+
+  & .menu {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 140px;
+    border-radius: 1rem;
+    z-index: 1000;
+    background-color: var(--dark-blue);
+    overflow: hidden;
+    max-height: 0px;
+    transition: 0.25ms;
+
+    &.shown {
+      max-height: 500px;
+    }
+
+    & > button {
+      width: 100%;
+      font-size: 1.25rem;
+      padding: .6rem;
+      background-color: rgb(255, 255, 255, 0.1);
+      color: white;
+      border: 0;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+
 }
 
 .table-container {
   margin-top: 1rem;
 }
 
-#table {
+#main-table {
   width: 100%;
   margin-top: 1rem;
   font-size: 12px;
   border-collapse: collapse;
+}
+
+#main-table tr th {
+  text-align: center;
+  position: relative;
+  padding: 0;
+}
+
+#main-table tr th button {
+  font-weight: 500;
+  background: none;
+  border: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
+  padding: 0.75rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &:has(img) {
+    text-decoration: underline;
+  }
+
+  & img {
+    width: 15px;
+  }
 }
 
 #tablee {
@@ -135,7 +223,7 @@ td {
   font-weight: 300;
 }
 
-table tr:hover {
+table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.1);
   cursor: pointer;
   border-radius: 20px;

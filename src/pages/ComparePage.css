@@ -30,6 +30,12 @@
   overflow: hidden;
 }
 
+.compare-picture:has(p) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .compare-picture > img {
   width: 100%;
   height: 100%;

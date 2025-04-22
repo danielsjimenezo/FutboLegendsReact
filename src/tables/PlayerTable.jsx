@@ -7,12 +7,14 @@ function PlayerTable() {
     displayedPlayers, 
     playersLoadingState,
     playersPageNumber,
-    PER_PAGE
+    PER_PAGE,
+    playerSort,
+    setPlayerSort
   } = usePlayerContext();
 
   return (
     <section className="table-container">
-      <table id="table">
+      <table id="main-table">
         <thead>
           <tr className="header-row">
             <th></th>
@@ -20,10 +22,38 @@ function PlayerTable() {
             <th>Position</th>
             <th>Country</th>
             <th>Games</th>
-            <th>Goals</th>
-            <th>Assists</th>
-            <th>G+A</th>
-            <th>G+A/Game</th>
+            <th>
+              <button onClick={() => setPlayerSort('goals')}>
+                {playerSort === 'goals' && (
+                  <img src="/images/Icons/darr.png" alt="down arrow" />
+                )}
+                Goals
+              </button>
+            </th>
+            <th>
+              <button onClick={() => setPlayerSort('assists')}>
+                {playerSort === 'assists' && (
+                  <img src="/images/Icons/darr.png" alt="down arrow" />
+                )}
+                Assists
+              </button>
+            </th>
+            <th>
+              <button onClick={() => setPlayerSort('contributions')}>
+                {playerSort === 'contributions' && (
+                  <img src="/images/Icons/darr.png" alt="down arrow" />
+                )}
+                G+A
+              </button>
+            </th>
+            <th>
+              <button onClick={() => setPlayerSort('efficiency')}>
+                {playerSort === 'efficiency' && (
+                  <img src="/images/Icons/darr.png" alt="down arrow" />
+                )}
+                G+A/Game
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>

@@ -3,6 +3,7 @@ import { usePlayerContext } from "../context/PlayerContext.jsx"
 import PlayerBadge from "../misc/PlayerBadge.jsx"
 import GoalTypeChart1 from "../charts/GoalTypeChart1.jsx"
 import GoalTypeChart2 from "../charts/GoalTypeChart2.jsx"
+import TeamDataTable from "../tables/TeamDataTable.jsx"
 
 function ProfilePage() {
   const { players, playersLoadingState } = usePlayerContext()
@@ -49,23 +50,7 @@ function ProfilePage() {
             <span className="descr">Height:</span>
           </div>
         </div>
-        <div className="playerTableStats">
-          <section className="table-container">
-            <table id="table">
-              <thead>
-                <tr className="header-roww">
-                  <th>Team</th>
-                  <th>MP</th>
-                  <th>G</th>
-                  <th>A</th>
-                  <th>G+A</th>
-                  <th>G+A/MP</th>
-                </tr>
-              </thead>
-              <tbody id="team-stats"></tbody>
-            </table>
-          </section>
-        </div>
+        <TeamDataTable player={player} />
       </div>
       <div className="mainSection">
 

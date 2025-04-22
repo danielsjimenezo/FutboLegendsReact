@@ -7,16 +7,25 @@ function Chart({
     className = ""
 }) {
     const canvasRef = useRef(null)
+    const chartRef = useRef(null)
 
-    useEffect(() => {
-        if (!canvasRef.current) return;
+    const activateCanvas = () => {
         try {
-            new ChartJS(canvasRef.current, options)
-            
-        } catch {
-            
+            chartRef.current = new ChartJS(canvasRef.current, options)
+        } catch (error) {
+            chartRef.current.clear()
+            chartRef.current.destroy()
+            chartRef.current = new ChartJS(canvasRef.current, options)
         }
-    }, [canvasRef])
+    }
+
+    if (canvasRef.current) {
+        activateCanvas()
+    }
+
+    useEffect(()=>{
+        activateCanvas()
+    }, [])
 
     return (
         <canvas id={id} className={className} ref={canvasRef}></canvas>

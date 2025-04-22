@@ -9,12 +9,16 @@ function Header() {
     <header>
       <PlayerSearch />
       <div id="nav">
-        <button className="topButtons" id="recordButtonn">
-          <Link to="/">Record Book</Link>
-        </button>
-        <button className="topButtons" id="compareButtonn">
-          <Link to="/compare">Compare Players</Link>
-        </button>
+        <Link to="/">
+          <button className="topButtons" id="recordButtonn">
+            Record Book
+          </button>
+        </Link>
+        <Link to="/compare">
+          <button className="topButtons" id="compareButtonn">
+            Compare Players
+          </button>
+        </Link>
       </div>
 
       <div id="filters">
