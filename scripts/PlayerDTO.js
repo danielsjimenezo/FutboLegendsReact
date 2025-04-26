@@ -60,7 +60,7 @@ function appendTeamData(dto) {
     dto.teamTotals.efficiency += (parseInt(team.goals + team.assists) / parseInt(team.games))
   })
 
-  dto.teamTotals.efficiency /= dto.teams.length
+  dto.teamTotals.efficiency = dto.teamTotals.contributions / dto.teamTotals.games
 
 }
 

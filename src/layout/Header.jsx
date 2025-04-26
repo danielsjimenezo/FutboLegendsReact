@@ -6,7 +6,7 @@ import DropdownFilter from "./DropdownFilter.jsx";
 function Header() {
 
   return (
-    <header>
+    <header className="container">
       <PlayerSearch />
       <div id="nav">
         <Link to="/">

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { fetchData } from "../utilities/utilities.js";
+import { countries } from "../utilities/countries.js";
 
 const PER_PAGE = 15;
 
@@ -15,6 +16,7 @@ export const PlayerContextProvider = ({ children }) => {
   const [playersLoadingState, setPlayersLoadingState] = useState("loading");
   const [playersPageNumber, setPlayersPageNumber] = useState(1)
   const [playerSort, setPlayerSort] = useState('contributions')
+  const [secondChart, setSecondChart] = useState('goals')
   const [countryFilter, setCountryFilter] = useState('all')
   const [positionFilter, setPositionFilter] = useState('all')
 
@@ -133,7 +135,9 @@ export const PlayerContextProvider = ({ children }) => {
         actions,
         maxValues,
         playerSort,
-        setPlayerSort
+        setPlayerSort,
+        secondChart,
+        setSecondChart
       }}
     >
       {children}

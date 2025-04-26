@@ -1,7 +1,7 @@
 import Chart from './Chart.jsx'
 import { usePlayerContext } from '../context/PlayerContext.jsx';
 
-const ASPECT_RATIO = 1 / 0.45;
+import { HOME_PAGE_CHART_ASPECT_RATIO } from '../utilities/utilities.js';
 
 function createGradient(color1, color2, x1 = 0, y1 = 0, x2 = 300, y2 = 0) {
   return (ctx) => {
@@ -79,7 +79,7 @@ function ContributionsChart() {
                             ticks: { color: "white" },
                         },
                     },
-                    aspectRatio: ASPECT_RATIO,
+                    aspectRatio: HOME_PAGE_CHART_ASPECT_RATIO,
                 },
             }} />
         </>

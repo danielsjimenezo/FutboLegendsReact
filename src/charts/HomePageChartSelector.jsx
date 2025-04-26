@@ -20,16 +20,15 @@ const LABELS = {
     efficiency: "Goals + Assists per Game"
 }
 
-function HomePageChartSelector() {
+function HomePageChartSelector({ chartKey, setter }) {
 
-    const { playerSort } = usePlayerContext()
-    const SelectedChartComponent = CHARTS[playerSort]
+    const SelectedChartComponent = CHARTS[chartKey]
 
     return (
         <div className="homepage-chart">
-            <p>{LABELS[playerSort]}</p>
+            <p>{LABELS[chartKey]}</p>
             <SelectedChartComponent />
-            <HomePageChartSelectorMenu LABELS={LABELS} />
+            <HomePageChartSelectorMenu LABELS={LABELS} chartKey={chartKey} setter={setter} />
         </div>
     )
 }

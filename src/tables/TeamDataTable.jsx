@@ -38,7 +38,7 @@ function TeamDataTable({ player }) {
                             <td>{player.teamTotals.goals}</td>
                             <td>{player.teamTotals.assists}</td>
                             <td>{player.teamTotals.contributions}</td>
-                            <td>{player.teamTotals.efficiencty}</td>
+                            <td>{(player.teamTotals.efficiency||0).toFixed(2)}</td>
                         </tr>
                     </tfoot>
                 </table>

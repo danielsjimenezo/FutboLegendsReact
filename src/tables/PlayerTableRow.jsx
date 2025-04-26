@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import FlagIcon from "../misc/FlagIcon.jsx";
 
 function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate()
 
     const profilePicSrc = `/images/Players/${player.Player}.jpg`;
-    const flagSrc = `/images/Flags/${player.birthCountry}.png`;
     const playerHref = `/profile/${player.Player.replaceAll(' ','_')}`
 
   const handleTrClick = () => {
@@ -15,7 +15,7 @@ function PlayerTableRow({ player, rank }) {
     <tr onClick={handleTrClick} onKeyUp={e => {
       if (e.key === 'Enter') handleTrClick()
     }} tabIndex={0}>
-      <td>
+      <td className="rank">
         {rank}.
       </td>
       <td>
@@ -26,14 +26,14 @@ function PlayerTableRow({ player, rank }) {
             className={`picture ${player.Active === "TRUE" ? "active" : "inactive"}`} 
             loading="lazy"
           />
-          {player.Player}
+          <p>{player.Player}</p>
         </div>
       </td>
       <td>
         {player.Position}
       </td>
       <td>
-          <img src={flagSrc} alt={`Flag of ${player.birthCountry}`} className="flag" loading="lazy" />
+          <FlagIcon countryName={player.birthCountry} />
       </td>
       <td>
         {player.GamesPlayed}

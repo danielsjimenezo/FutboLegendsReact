@@ -1,3 +1,4 @@
+import './PlayerTable.css'
 import { usePlayerContext } from "../context/PlayerContext.jsx";
 import PlayerTableRow from "./PlayerTableRow.jsx";
 import PlayerTablePaginationControls from "./PlayerTablePaginationControls.jsx";
@@ -17,41 +18,41 @@ function PlayerTable() {
       <table id="main-table">
         <thead>
           <tr className="header-row">
-            <th></th>
+            <th className='rank'></th>
             <th className="left">Name</th>
             <th>Position</th>
             <th>Country</th>
             <th>Games</th>
             <th>
               <button onClick={() => setPlayerSort('goals')}>
-                {playerSort === 'goals' && (
-                  <img src="/images/Icons/darr.png" alt="down arrow" />
-                )}
                 Goals
+                {playerSort === 'goals' && (
+                  <img src="/images/Icons/darr.png" className="sort-arrow" alt="down arrow" />
+                )}
               </button>
             </th>
             <th>
               <button onClick={() => setPlayerSort('assists')}>
-                {playerSort === 'assists' && (
-                  <img src="/images/Icons/darr.png" alt="down arrow" />
-                )}
                 Assists
+                {playerSort === 'assists' && (
+                  <img src="/images/Icons/darr.png" className="sort-arrow" alt="down arrow" />
+                )}
               </button>
             </th>
             <th>
               <button onClick={() => setPlayerSort('contributions')}>
-                {playerSort === 'contributions' && (
-                  <img src="/images/Icons/darr.png" alt="down arrow" />
-                )}
                 G+A
+                {playerSort === 'contributions' && (
+                  <img src="/images/Icons/darr.png" className="sort-arrow" alt="down arrow" />
+                )}
               </button>
             </th>
             <th>
               <button onClick={() => setPlayerSort('efficiency')}>
-                {playerSort === 'efficiency' && (
-                  <img src="/images/Icons/darr.png" alt="down arrow" />
-                )}
                 G+A/Game
+                {playerSort === 'efficiency' && (
+                  <img src="/images/Icons/darr.png" className="sort-arrow" alt="down arrow" />
+                )}
               </button>
             </th>
           </tr>

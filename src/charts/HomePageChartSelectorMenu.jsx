@@ -1,12 +1,10 @@
 import { useState, useRef } from "react"
 import useClickOutside from "../utilities/useClickOutside.jsx"
-import { usePlayerContext } from "../context/PlayerContext.jsx"
 
-function HomePageChartSelectorMenu({ LABELS }) {
+function HomePageChartSelectorMenu({ LABELS, setter }) {
     const [menuShown, setMenuShown] = useState(false)
     const containerRef = useRef(null)
 
-    const { setPlayerSort } = usePlayerContext()
 
     useClickOutside(containerRef, () => {
         setMenuShown(false)
@@ -21,7 +19,7 @@ function HomePageChartSelectorMenu({ LABELS }) {
                 {Object.entries(LABELS).map(([sortType, label]) => {
                     return (
                         <button key={sortType} onClick={() => {
-                            setPlayerSort(sortType)
+                            setter(sortType)
                             setMenuShown(false)
                         }}>
                             {label}
