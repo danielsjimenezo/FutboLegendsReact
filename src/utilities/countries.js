@@ -1,15 +1,54 @@
+const flagIcons = [
+  "Algeria.png",
+  "Argentina.png",
+  "Belgium.png",
+  "Bosnia.png",
+  "Brazil.png",
+  "Bulgaria.png",
+  "Cameroon.png",
+  "Chile.png",
+  "Colombia.png",
+  "Croatia.png",
+  "Egypt.png",
+  "England.png",
+  "France.png",
+  "Gabon.png",
+  "Germany.png",
+  "Hungary.png",
+  "Ireland.png",
+  "Italy.png",
+  "Ivory Coast.png",
+  "Mexico.png",
+  "Netherlands.png",
+  "Nigeria.png",
+  "Norway.png",
+  "Peru.png",
+  "Poland.png",
+  "Portugal.png",
+  "Senegal.png",
+  "Serbia.png",
+  "South Korea.png",
+  "Spain.png",
+  "Sweden.png",
+  "Togo.png",
+  "Trinidad and Tobago.png",
+  "Ukraine.png",
+  "Uruguay.png",
+  "USA.png",
+  "Venezuela.png"
+]
+
 export const getFlagUrl = (countryName) => {
   
-  return `/images/Flags/${countryName}.png`
+  if (flagIcons.includes(`${countryName}.png`)) {
+    return `/images/Flags/${countryName}.png`
+  }
 
   countryName = countryName.toLowerCase()
-
-
-
-  // return countries.find(c => {
-  //   const name2 = c.name.toLowerCase().replaceAll('-',' ')
-  //   return countryName === name2
-  // })?.flag
+  return countries.find(c => {
+    const name2 = c.name.toLowerCase().replaceAll('-',' ')
+    return countryName === name2
+  })?.flag
 
 }
 
