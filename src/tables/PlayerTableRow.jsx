@@ -2,56 +2,51 @@ import { useNavigate } from "react-router-dom";
 import FlagIcon from "../misc/FlagIcon.jsx";
 
 function PlayerTableRow({ player, rank }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const profilePicSrc = `/images/Players/${player.Player}.jpg`;
-    const playerHref = `/profile/${player.Player.replaceAll(' ','_')}`
+  const profilePicSrc = `/images/Players/${player.Player}.jpg`;
+  const playerHref = `/profile/${player.Player.replaceAll(" ", "_")}`;
 
   const handleTrClick = () => {
-    navigate(playerHref)
-  }
+    navigate(playerHref);
+  };
 
   return (
-    <tr onClick={handleTrClick} onKeyUp={e => {
-      if (e.key === 'Enter') handleTrClick()
-    }} tabIndex={0}>
-      <td className="rank">
-        {rank}.
-      </td>
+    <tr
+      onClick={handleTrClick}
+      onKeyUp={(e) => {
+        if (e.key === "Enter") handleTrClick();
+      }}
+      tabIndex={0}
+    >
+      <td className="rank">{rank}.</td>
       <td>
         <div className="name-td">
-          <img 
+          <img
             src={profilePicSrc}
-            alt={`Photo of ${player.Player}`} 
-            className={`picture ${player.Active === "TRUE" ? "active" : "inactive"}`} 
+            alt={`Photo of ${player.Player}`}
+            className={`picture ${
+              player.Active === "TRUE" ? "active" : "inactive"
+            }`}
             loading="lazy"
           />
           <p>{player.Player}</p>
         </div>
       </td>
+      <td>{player.Position}</td>
       <td>
-        {player.Position}
+        <FlagIcon countryName={player.birthCountry} />
       </td>
-      <td>
-          <FlagIcon countryName={player.birthCountry} />
-      </td>
-      <td>
-        {player.GamesPlayed}
-      </td>
-      <td>
-        {player.Goals}
-      </td>
-      <td>
-        {player.Assists}
-      </td>
-      <td>
-        {player.GoalContributions}
-      </td>
-      <td>
-        {player.Efficiency}
-      </td>
+      <td>{player.GamesPlayed}</td>
+      <td>{player.Goals}</td>
+      <td>{player.Assists}</td>
+      <td>{player.GoalContributions}</td>
+      <td>{player.Efficiency}</td>
+      <td>{player["Balon d'Or (1st place)"] || 0}</td>
+      <td>{player["Balon d'Or (2nd place)"] || 0}</td>
+      <td>{player["Balon d'Or (3rd place)"] || 0}</td>
     </tr>
-  )
+  );
 }
 
 export default PlayerTableRow;

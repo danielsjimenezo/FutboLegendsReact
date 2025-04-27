@@ -8,7 +8,9 @@ import RankingsPage from "./pages/RankingsPage.jsx";
 function App() {
   return (
     <>
-      <Header />
+      <div className="header-container">
+        <Header />
+      </div>
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -17,7 +19,7 @@ function App() {
           <Route path="/compare" element={<ComparePage />} />
           <Route path="/compare/:id1" element={<ComparePage />} />
           <Route path="/compare/:id1/:id2" element={<ComparePage />} />
-          
+
           <Route path="/rankings" element={<RankingsPage />} />
         </Routes>
       </main>

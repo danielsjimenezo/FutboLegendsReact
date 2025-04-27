@@ -6,7 +6,7 @@
   --dark-blue: #001327;
   --green: #62b3ad;
   --pink: #ff4f8b;
-  --purple: #AF95FC;
+  --purple: #af95fc;
 }
 
 body {
@@ -16,7 +16,12 @@ body {
   overflow-x: hidden;
 }
 
-body, button, input, select, option, textarea {
+body,
+button,
+input,
+select,
+option,
+textarea {
   font-family: Poppins;
 }
 
@@ -25,12 +30,10 @@ button {
 }
 
 .container {
-  width: 1100px;
+  width: 1400px;
   margin: auto;
   max-width: 100%;
 }
-
-
 
 #nav {
   display: flex;
@@ -79,13 +82,15 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
+
+  width: 1100px;
+  margin: 1.5rem auto 2rem auto;
+  max-width: 100%;
 }
 
 .homepage-chart {
   width: 100%;
-  
+
   margin: auto;
   position: relative;
   /* Keep the width responsive */ /* Increase the height as desired */
@@ -95,13 +100,9 @@ a {
   padding-left: 130px;
 }
 
-
-
 .table-container {
   margin-top: 1rem;
 }
-
-
 
 #tablee {
   width: 100%;
@@ -111,12 +112,12 @@ a {
 }
 
 .header-row {
-  border-bottom: 0.2px solid rgb(255, 255, 255, 0.4);
+  border-bottom: 1px solid white;
 }
 
 .header-roww {
   font-size: 12px;
-  border-bottom: 0.2px solid rgb(255, 255, 255, 0.4);
+  border-bottom: 1px solid white;
 }
 
 th {
@@ -153,7 +154,6 @@ table tbody td:first-child {
   border-radius: 50%;
 }
 
-
 .name-td {
   width: 100%;
   display: flex;
@@ -177,7 +177,6 @@ table tbody td:first-child {
   object-fit: cover;
 }
 
-
 .sort-arrow {
   width: 10px;
 }
@@ -188,8 +187,6 @@ table tbody td:first-child {
   align-items: center;
   gap: 15px;
 }
-
-
 
 #filter-menu button:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -202,11 +199,9 @@ table tbody td:first-child {
   cursor: pointer;
 }
 
-
 .hidden {
   display: none;
 }
-
 
 .search-dropdown {
   position: absolute;
@@ -231,7 +226,6 @@ table tbody td:first-child {
     }
   }
 }
-
 
 #moreButton {
   text-align: center;
@@ -260,6 +254,7 @@ table tbody td:first-child {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: transparent;
   margin-bottom: 2rem;
   column-gap: 1rem;
@@ -268,9 +263,9 @@ table tbody td:first-child {
 .tableBtns {
   background-color: transparent;
   color: white;
-  padding: 0.5rem;
+  padding: 0.5rem 1.5rem;
   border: 1px solid white;
-  border-radius: 15px;
+  border-radius: 3rem;
 }
 
 #prev {
@@ -291,7 +286,6 @@ table tbody td:first-child {
   flex-direction: row;
   margin-top: 3rem;
 }
-
 
 .side-menu {
   display: flex;
@@ -472,7 +466,7 @@ table tbody td:first-child {
   width: 100%;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
