@@ -6,6 +6,7 @@
   --dark-blue: #001327;
   --green: #62b3ad;
   --pink: #ff4f8b;
+  --purple: #AF95FC;
 }
 
 body {
@@ -78,8 +79,8 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .homepage-chart {
@@ -94,56 +95,7 @@ a {
   padding-left: 130px;
 }
 
-.homepage-chart > .selector-container {
-  position: absolute;
-  top: 8px;
-  right: 0;
 
-  & > button {
-    background: none;
-    border: 0;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    & img {
-      width: 35px;
-    }
-  }
-
-  & .menu {
-    position: absolute;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    min-width: 140px;
-    border-radius: 1rem 0 1rem 1rem;
-    z-index: 1000;
-    background-color: var(--dark-blue);
-    overflow: hidden;
-    max-height: 0px;
-    transition: 0.25ms;
-
-    &.shown {
-      max-height: 500px;
-    }
-
-    & > button {
-      width: 100%;
-      font-size: 1.25rem;
-      padding: .6rem;
-      background-color: rgb(255, 255, 255, 0.1);
-      color: white;
-      border: 0;
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-      }
-    }
-  }
-
-}
 
 .table-container {
   margin-top: 1rem;
@@ -237,17 +189,19 @@ table tbody td:first-child {
   gap: 15px;
 }
 
+
+
 #filter-menu button:hover {
   background-color: rgba(255, 255, 255, 0.1);
   transition: all 250ms;
 }
-
 #filter-button {
   background-color: transparent;
   border-radius: 0;
   border: 0;
   cursor: pointer;
 }
+
 
 .hidden {
   display: none;
@@ -485,7 +439,7 @@ table tbody td:first-child {
 }
 
 .picture.inactive {
-  border: 1px solid var(--pink);
+  border: 3px solid var(--pink);
 }
 
 #searchFunc {
@@ -500,6 +454,7 @@ table tbody td:first-child {
   left: 0;
   text-align: left;
   font-weight: 150;
+  z-index: 1000;
   background-color: rgba(104, 89, 150, 0.28);
   backdrop-filter: blur(25px);
   border-radius: 20px;

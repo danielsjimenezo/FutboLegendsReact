@@ -15,7 +15,7 @@ function HomePageChartSelectorMenu({ LABELS, setter }) {
             <button onClick={() => setMenuShown(!menuShown)}>
                 <img src="/images/Icons/hdots.svg" alt="" />
             </button>
-            <div className={`menu ${menuShown ? 'shown' : ''}`}>
+            <div className={`menu filter-menu ${menuShown ? 'shown' : ''}`}>
                 {Object.entries(LABELS).map(([sortType, label]) => {
                     return (
                         <button key={sortType} onClick={() => {

@@ -5,6 +5,7 @@ import AssistsChart from "./AssistsChart.jsx";
 import ContributionsChart from "./ContributionsChart.jsx";
 import EfficiencyChart from "./EfficiencyChart.jsx";
 import HomePageChartSelectorMenu from "./HomePageChartSelectorMenu.jsx";
+import './HomePageChartSelector.css'
 
 const CHARTS = {
     goals: GoalsChart,

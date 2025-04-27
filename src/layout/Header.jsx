@@ -2,35 +2,59 @@ import "./Header.css";
 import PlayerSearch from "../misc/PlayerSearch.jsx";
 import { Link } from "react-router-dom";
 import DropdownFilter from "./DropdownFilter.jsx";
+import { useLocation } from "react-router-dom";
+import { getFlagUrl } from "../utilities/countries.js";
 
 function Header() {
+  
+  const location = useLocation()
+  console.log("pathname:", location.pathname)
 
   return (
     <header className="container">
       <PlayerSearch />
-      <div id="nav">
-        <Link to="/">
+      <nav id="nav">
+        <Link to="/" className={`${location.pathname === "/" ? "active": ""}`}>
           <button className="topButtons" id="recordButtonn">
-            Record Book
+            <span>Record Book</span>
           </button>
         </Link>
-        <Link to="/compare">
+        <Link to="/compare" className={`${location.pathname.startsWith('/compare') ? "active": ""}`}>
           <button className="topButtons" id="compareButtonn">
-            Compare Players
+            <span>Compare Players</span>
           </button>
         </Link>
-      </div>
+      </nav>
 
       <div id="filters">
 
         <DropdownFilter
-          icon="global_icon"
+          icon={(value) => {
+            if (!value || value.text == 'all') {
+              return `/images/Icons/global_icon.png`
+            } else {
+              return getFlagUrl(value.text)
+            }
+          }}
           filterKey="countries"
+          label={(value) => {
+            if (value.text == "all") {
+              return "WORLD"
+            } else {
+              return value.text.toUpperCase().slice(0, 3)
+            }
+          }}
         />
 
         <DropdownFilter
-          icon="Funnel"
-          filterKey="positions"        
+          filterKey="positions"
+          label={(value) => {
+            if (value.text == 'all') {
+              return "ALL POS"
+            } else {
+              return value.text.toUpperCase()
+            }
+          }}        
         />
 
       </div>

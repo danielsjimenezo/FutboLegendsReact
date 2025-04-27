@@ -1,4 +1,4 @@
-export const HOME_PAGE_CHART_ASPECT_RATIO = 1 / 0.6
+export const HOME_PAGE_CHART_ASPECT_RATIO = 1 / 0.55
 
 export async function fetchData() {
   const res = await fetch("/Data/data.json");

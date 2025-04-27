@@ -1,4 +1,4 @@
-import './DropdownFilter.css'
+
 import { useState, useRef } from "react"
 import { usePlayerContext } from "../context/PlayerContext.jsx"
 import useClickOutside from '../utilities/useClickOutside.jsx'
@@ -6,7 +6,8 @@ import useClickOutside from '../utilities/useClickOutside.jsx'
 function DropdownFilter({
     id,
     icon,
-    filterKey
+    filterKey,
+    label = () => {}
 }) {
 
     const { 
@@ -52,7 +53,8 @@ function DropdownFilter({
     return (
         <div id={id} className="filter-wrapper" ref={wrapperRef}>
             <button className="filter-button" onClick={toggleShown}>
-                <img src={`/images/Icons/${icon}.png`} alt={icon} />
+                {icon && <img src={icon(menuItems[selected])} />}
+                <span>{label(menuItems[selected] || {text: 'all'})}</span>
             </button>
             <div className={`filter-menu ${shown ? "shown":""}`}>
                 <button 

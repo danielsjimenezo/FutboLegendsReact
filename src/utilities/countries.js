@@ -1,10 +1,15 @@
 export const getFlagUrl = (countryName) => {
   
+  return `/images/Flags/${countryName}.png`
+
   countryName = countryName.toLowerCase()
-  return countries.find(c => {
-    const name2 = c.name.toLowerCase().replaceAll('-',' ')
-    return countryName === name2
-  })?.flag
+
+
+
+  // return countries.find(c => {
+  //   const name2 = c.name.toLowerCase().replaceAll('-',' ')
+  //   return countryName === name2
+  // })?.flag
 
 }
 

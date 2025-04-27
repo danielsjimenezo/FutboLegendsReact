@@ -25,3 +25,13 @@ header {
 ::placeholder {
   color: white;
 }
+
+
+#nav a span {
+  border-bottom: 3px solid transparent;
+  padding-bottom: .25rem;
+}
+
+#nav a.active span {
+  border-color: white;
+}
