@@ -6,42 +6,53 @@ import { useLocation } from "react-router-dom";
 import { getFlagUrl } from "../utilities/countries.js";
 
 function Header() {
-  
-  const location = useLocation()
-  console.log("pathname:", location.pathname)
+  const location = useLocation();
+  console.log("pathname:", location.pathname);
 
   return (
     <header className="container">
       <PlayerSearch />
       <nav id="nav">
-        <Link to="/" className={`${location.pathname === "/" ? "active": ""}`}>
+        <Link to="/" className={`${location.pathname === "/" ? "active" : ""}`}>
           <button className="topButtons" id="recordButtonn">
             <span>Record Book</span>
           </button>
         </Link>
-        <Link to="/compare" className={`${location.pathname.startsWith('/compare') ? "active": ""}`}>
+        <Link
+          to="/compare"
+          className={`${
+            location.pathname.startsWith("/compare") ? "active" : ""
+          }`}
+        >
           <button className="topButtons" id="compareButtonn">
             <span>Compare Players</span>
+          </button>
+        </Link>
+        <Link
+          to="/rankings"
+          className={`${location.pathname === "/rankings" ? "active" : ""}`}
+        >
+          <button className="topButtons" id="compareButtonn">
+            <span>Rankings</span>
           </button>
         </Link>
       </nav>
 
       <div id="filters">
-
         <DropdownFilter
           icon={(value) => {
-            if (!value || value.text == 'all') {
-              return `/images/Icons/global_icon.png`
+            if (!value || value.text == "all") {
+              return `/images/Icons/global_icon.png`;
             } else {
-              return getFlagUrl(value.text)
+              return getFlagUrl(value.text);
             }
           }}
           filterKey="countries"
           label={(value) => {
             if (value.text == "all") {
-              return "WORLD"
+              return "WORLD";
             } else {
-              return value.text.toUpperCase().slice(0, 3)
+              return value.text.toUpperCase().slice(0, 3);
             }
           }}
         />
@@ -49,14 +60,13 @@ function Header() {
         <DropdownFilter
           filterKey="positions"
           label={(value) => {
-            if (value.text == 'all') {
-              return "ALL POS"
+            if (value.text == "all") {
+              return "ALL POS";
             } else {
-              return value.text.toUpperCase()
+              return value.text.toUpperCase();
             }
-          }}        
+          }}
         />
-
       </div>
     </header>
   );
