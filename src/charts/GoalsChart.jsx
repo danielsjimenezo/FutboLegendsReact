@@ -1,72 +1,69 @@
-import Chart from './Chart.jsx'
-import { usePlayerContext } from '../context/PlayerContext.jsx'
+import Chart from "./Chart.jsx";
+import { usePlayerContext } from "../context/PlayerContext.jsx";
 
-import { HOME_PAGE_CHART_ASPECT_RATIO } from '../utilities/utilities.js'
+import {
+  HOME_PAGE_CHART_ASPECT_RATIO,
+  createGradient,
+} from "../utilities/utilities.js";
 
-function createGradient(color1, color2, x1 = 0, y1 = 0, x2 = 300, y2 = 0) {
-    return (ctx) => {
-        const canvas = ctx.chart.ctx
-        const gradient = canvas.createLinearGradient(x1, y1, x2, y2)
+function GoalsChart({ readAllPlayers }) {
+  const { displayedPlayers, players, PER_PAGE } = usePlayerContext();
+  const playerArr = readAllPlayers ? players : displayedPlayers;
 
-        gradient.addColorStop(0, color1)
-        gradient.addColorStop(1, color2)
-
-        return gradient
-    }
-}
-
-function GoalsChart() {
-
-    const { displayedPlayers } = usePlayerContext()
-
-    const sorted = displayedPlayers.toSorted((a, b) => {
-        return b.Goals - a.Goals
+  const sorted = playerArr
+    .toSorted((a, b) => {
+      return b.Goals - a.Goals;
     })
+    .slice(0, PER_PAGE);
 
-    const names = sorted.map(p => p.Player)
-    const goalData = sorted.map(p => p.Goals)
+  const names = sorted.map((p) => p.Player);
+  const goalData = sorted.map((p) => p.Goals);
 
-    return (
-        <>
-            <Chart options={{
-                type: "bar",
-                data: {
-                    labels: names,
-                    datasets: [
-                        {
-                            backgroundColor: createGradient("transparent", "#FF4F8B"),
-                            data: goalData,
-                            borderRadius: {
-                                topRight: 10,
-                                bottomRight: 10,
-                            },
-                            base: 0,
-                            label: "Goals",
-                        },
-                    ],
+  return (
+    <>
+      <Chart
+        options={{
+          type: "bar",
+          data: {
+            labels: names,
+            datasets: [
+              {
+                backgroundColor: createGradient("transparent", "#FF4F8B"),
+                data: goalData,
+                borderRadius: {
+                  topRight: 10,
+                  bottomRight: 10,
                 },
-                options: {
-                    indexAxis: "y",
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            ticks: { color: "white" },
-                        },
-                        y: {
-                            beginAtZero: true,
-                            ticks: { color: "white" },
-                        },
-                    },
-                    aspectRatio: HOME_PAGE_CHART_ASPECT_RATIO,
-                },
-            }} />
-        </>
-    )
+                base: 0,
+                label:
+                  "Goals" +
+                  (readAllPlayers ? " (all players)" : " (this page)"),
+              },
+            ],
+          },
+          options: {
+            indexAxis: "y",
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                ticks: { color: "white" },
+              },
+              y: {
+                beginAtZero: true,
+                ticks: { color: "white" },
+              },
+            },
+            aspectRatio: HOME_PAGE_CHART_ASPECT_RATIO,
+          },
+        }}
+      />
+    </>
+  );
 }
 
-export default GoalsChart
+export default GoalsChart;

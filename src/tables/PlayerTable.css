@@ -45,10 +45,10 @@
   & img {
     width: 9px;
     image-rendering: crisp-edges;
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-55%);
+    /* position: absolute; */
+    /* left: 100%; */
+    /* top: 50%; */
+    /* transform: translateY(-55%); */
   }
 }
 
@@ -56,9 +56,19 @@
   display: grid;
   align-items: center;
   width: 100%;
-  grid-template-columns: 2fr 4fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: 2fr 4fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
 }
 
 #main-table thead button {
   padding: 0.2rem 1rem;
+}
+
+.nowrap,
+.nowrap button {
+  white-space: nowrap;
+}
+
+#main-table tbody td:nth-child(11),
+#main-table tbody td:nth-child(12) {
+  white-space: nowrap;
 }

@@ -42,11 +42,17 @@ function PlayerTableRow({ player, rank }) {
       <td>{player.Assists}</td>
       <td>{player.GoalContributions}</td>
       <td>{player.Efficiency}</td>
-      <td>{player["Balon d'Or (1st place)"] || 0}</td>
-      <td>{player["Balon d'Or (2nd place)"] || 0}</td>
-      <td>{player["Balon d'Or (3rd place)"] || 0}</td>
+      <td>{player["Balon (1st)"] || 0}</td>
+      <td>{player["Balon (2nd)"] || 0}</td>
+      {/* <td>{player["Balon (3rd)"] || 0}</td> */}
     </tr>
   );
 }
 
 export default PlayerTableRow;
+
+/*
+  git add .
+  git commit -m ""
+  git push origin daniel
+*/
