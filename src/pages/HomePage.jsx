@@ -27,6 +27,7 @@ function HomePage() {
               secondChart === playerSort ? getDifferentChart() : secondChart
             }
             setter={setSecondChart}
+            readAllPlayers={true}
           />
         </section>
 

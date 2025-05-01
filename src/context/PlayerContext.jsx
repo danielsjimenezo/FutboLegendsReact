@@ -14,69 +14,88 @@ export const PlayerContextProvider = ({ children }) => {
   ///// STATE /////
   const [players, setPlayers] = useState([]);
   const [playersLoadingState, setPlayersLoadingState] = useState("loading");
-  const [playersPageNumber, setPlayersPageNumber] = useState(1)
-  const [playerSort, setPlayerSort] = useState('contributions')
-  const [secondChart, setSecondChart] = useState('goals')
-  const [countryFilter, setCountryFilter] = useState('all')
-  const [positionFilter, setPositionFilter] = useState('all')
-
+  const [playersPageNumber, setPlayersPageNumber] = useState(1);
+  const [playerSort, setPlayerSort] = useState("contributions");
+  const [secondChart, setSecondChart] = useState("goals");
+  const [countryFilter, setCountryFilter] = useState("all");
+  const [positionFilter, setPositionFilter] = useState("all");
+  const [shownColumns, setShownColumns] = useState({
+    games: true,
+    goals: true,
+    assists: true,
+    contributions: true,
+    efficiency: true,
+    balon1: false,
+    balon2: false,
+    balon3: false,
+  });
 
   ///// DERIVED VALUES /////
   const [startIndex, endIndex] = [
-    (playersPageNumber-1) * PER_PAGE,
-    playersPageNumber * PER_PAGE
-  ]
+    (playersPageNumber - 1) * PER_PAGE,
+    playersPageNumber * PER_PAGE,
+  ];
 
   const getFilteredPlayers = () => {
-    let result = [...players]
+    let result = [...players];
 
     /// HANDLE FILTERS
-    if (countryFilter !== 'all') {
-      result = result.filter(p => p.birthCountry === countryFilter)
+    if (countryFilter !== "all") {
+      result = result.filter((p) => p.birthCountry === countryFilter);
     }
 
-    if (positionFilter !== 'all') {
-      result = result.filter(p => p.Position === positionFilter)
+    if (positionFilter !== "all") {
+      result = result.filter((p) => p.Position === positionFilter);
     }
 
     /// HANDLE SORT
     result.sort((a, b) => {
-      switch(playerSort) {
-        case 'contributions':
-          return (b.Goals + b.Assists) - (a.Goals + a.Assists)
-        case 'goals':
-        case 'assists':
-        case 'efficiency':
-          const key = playerSort[0].toUpperCase() + playerSort.slice(1)
-          return b[key] - a[key]
+      switch (playerSort) {
+        case "contributions":
+          return b.Goals + b.Assists - (a.Goals + a.Assists);
+        case "games":
+          return b.GamesPlayed - a.GamesPlayed;
+        case "balon1":
+          return b["Balon (1st)"] - a["Balon (1st)"];
+        case "balon2":
+          return b["Balon (2nd)"] - a["Balon (2nd)"];
+        case "goals":
+        case "assists":
+        case "efficiency":
+          const key = playerSort[0].toUpperCase() + playerSort.slice(1);
+          return b[key] - a[key];
       }
-    })
+    });
 
-    return result
-  }
+    return result;
+  };
 
-  const filteredPlayers = getFilteredPlayers()
+  const filteredPlayers = getFilteredPlayers();
 
   const getDisplayedPlayers = () => {
-    return filteredPlayers.slice(startIndex, endIndex)
-  }
+    return filteredPlayers.slice(startIndex, endIndex);
+  };
 
-  const displayedPlayers = getDisplayedPlayers()
-  console.log("displayed players:", displayedPlayers)
+  const displayedPlayers = getDisplayedPlayers();
+  console.log("displayed players:", displayedPlayers);
 
-  const filteredPageCount = Math.ceil(filteredPlayers.length/PER_PAGE)
+  const filteredPageCount = Math.ceil(filteredPlayers.length / PER_PAGE);
 
   // filter options
   const countries = useMemo(() => {
-      return ([...new Set(players.map(p => p.birthCountry))]).toSorted().filter(c => c)
-  }, [players])
+    return [...new Set(players.map((p) => p.birthCountry))]
+      .toSorted()
+      .filter((c) => c);
+  }, [players]);
   const positions = useMemo(() => {
-      return ([...new Set(players.map(p => p.Position))]).toSorted().filter(c => c)
-  }, [players])
+    return [...new Set(players.map((p) => p.Position))]
+      .toSorted()
+      .filter((c) => c);
+  }, [players]);
 
   const maxValues = useMemo(() => {
-    return getMaxValues(players)
-  }, [players])
+    return getMaxValues(players);
+  }, [players]);
 
   ///// FETCHING DATA /////
   const loadPlayerData = async () => {
@@ -87,10 +106,10 @@ export const PlayerContextProvider = ({ children }) => {
       return;
     }
 
-    setPlayers(data)
+    setPlayers(data);
     setPlayersLoadingState("success");
   };
-  
+
   // This useEffect means the function will only  be called once
   useEffect(() => {
     loadPlayerData();
@@ -98,28 +117,38 @@ export const PlayerContextProvider = ({ children }) => {
 
   ///// CONTEXT ACTIONS /////
   const actions = {
-    turnPage(delta) { // delta is 1 for forward and -1 for back
+    turnPage(delta) {
+      // delta is 1 for forward and -1 for back
       const newPageNumber = playersPageNumber + delta;
       if (newPageNumber < 1) return;
       if (newPageNumber > filteredPageCount) return;
-      setPlayersPageNumber(newPageNumber)
+      setPlayersPageNumber(newPageNumber);
     },
-    changeFilter(key, value) { // key is "countries" or "positions"
-      setPlayersPageNumber(1)
+    changeFilter(key, value) {
+      // key is "countries" or "positions"
+      setPlayersPageNumber(1);
       switch (key) {
-        case 'countries':
-          setCountryFilter(value)
-          break
-        case 'positions':
-          setPositionFilter(value)
-          break
+        case "countries":
+          setCountryFilter(value);
+          break;
+        case "positions":
+          setPositionFilter(value);
+          break;
       }
     },
     findPlayerById(id) {
-      if (!id) return
-      return players.find(p => id.toString().replaceAll('_',' ') === p.Player)
-    }
-  }
+      if (!id) return;
+      return players.find(
+        (p) => id.toString().replaceAll("_", " ") === p.Player
+      );
+    },
+    toggleShownColumn(name) {
+      setShownColumns({
+        ...shownColumns,
+        [name]: !shownColumns[name],
+      });
+    },
+  };
 
   return (
     <PlayerContext.Provider
@@ -137,7 +166,8 @@ export const PlayerContextProvider = ({ children }) => {
         playerSort,
         setPlayerSort,
         secondChart,
-        setSecondChart
+        setSecondChart,
+        shownColumns,
       }}
     >
       {children}
@@ -148,27 +178,37 @@ export const PlayerContextProvider = ({ children }) => {
 //////////// Utility
 
 function getMaxValues(allPlayers) {
-    const maxValues = {}
+  const maxValues = {};
 
-    const allGamesPlayed = allPlayers.map((p) => toNumber(p.GamesPlayed))
-    maxValues.GamesPlayed = Math.max(...allGamesPlayed)
+  const allGamesPlayed = allPlayers.map((p) => toNumber(p.GamesPlayed));
+  maxValues.GamesPlayed = Math.max(...allGamesPlayed);
 
-    const allGoals = allPlayers.map((p) => toNumber(p.Goals))
-    maxValues.Goals = Math.max(...allGoals)
+  const allGoals = allPlayers.map((p) => toNumber(p.Goals));
+  maxValues.Goals = Math.max(...allGoals);
 
-    const allAssists = allPlayers.map((p) => toNumber(p.Assists))
-    maxValues.Assists = Math.max(...allAssists)
+  const allAssists = allPlayers.map((p) => toNumber(p.Assists));
+  maxValues.Assists = Math.max(...allAssists);
 
-    const allContributions = allPlayers.map((p) => toNumber(p.GoalContributions))
-    maxValues.GoalContributions = Math.max(...allContributions)
+  const allContributions = allPlayers.map((p) => toNumber(p.GoalContributions));
+  maxValues.GoalContributions = Math.max(...allContributions);
 
-    const allEfficiencies = allPlayers.map((p) => toNumber(p.Efficiency))
-    maxValues.Efficiency = Math.max(...allEfficiencies)
+  const allEfficiencies = allPlayers.map((p) => toNumber(p.Efficiency));
+  maxValues.Efficiency = Math.max(...allEfficiencies);
 
-    return maxValues
+  const allBalon1 = allPlayers.map((p) => toNumber(p["Balon (1st)"]));
+  const allBalon2 = allPlayers.map((p) => toNumber(p["Balon (2nd)"]));
+  const allBalon3 = allPlayers.map((p) => toNumber(p["Balon (3rd)"]));
+
+  maxValues.Balon = [
+    Math.max(...allBalon1),
+    Math.max(...allBalon2),
+    Math.max(...allBalon3),
+  ];
+
+  return maxValues;
 }
 
-function toNumber(val) {
+function toNumber(val = "") {
   if (typeof val === "number") return val;
   return Number(val.replaceAll(",", "")) || 0;
 }

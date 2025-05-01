@@ -6,18 +6,16 @@ import {
   createGradient,
 } from "../utilities/utilities.js";
 
-function AssistsChart({ readAllPlayers }) {
-  const { displayedPlayers, players, PER_PAGE } = usePlayerContext();
+function HomePageChart({ key, label, readAllPlayers = false }) {
+  const { displayedPlayers, players } = usePlayerContext();
   const playerArr = readAllPlayers ? players : displayedPlayers;
 
-  const sorted = playerArr
-    .toSorted((a, b) => {
-      return b.Assists - a.Assists;
-    })
-    .slice(0, PER_PAGE);
+  const sorted = playerArr.toSorted((a, b) => {
+    return b[key] - a[key];
+  });
 
   const names = sorted.map((p) => p.Player);
-  const assistData = sorted.map((p) => p.Assists || null);
+  const data = sorted.map((p) => p[key]);
 
   return (
     <>
@@ -28,16 +26,14 @@ function AssistsChart({ readAllPlayers }) {
             labels: names,
             datasets: [
               {
-                backgroundColor: createGradient("transparent", "#AF95FC"),
-                data: assistData,
+                backgroundColor: createGradient("transparent", "#FF4F8B"),
+                data: data,
                 borderRadius: {
                   topRight: 10,
                   bottomRight: 10,
                 },
                 base: 0,
-                label:
-                  "Assists" +
-                  (readAllPlayers ? " (all players)" : " (this page)"),
+                label: label,
               },
             ],
           },
@@ -66,4 +62,4 @@ function AssistsChart({ readAllPlayers }) {
   );
 }
 
-export default AssistsChart;
+export default HomePageChart;

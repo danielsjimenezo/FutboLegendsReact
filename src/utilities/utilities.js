@@ -1,4 +1,4 @@
-export const HOME_PAGE_CHART_ASPECT_RATIO = 1 / 0.55
+export const HOME_PAGE_CHART_ASPECT_RATIO = 1 / 0.55;
 
 export async function fetchData() {
   const res = await fetch("/Data/data.json");
@@ -25,4 +25,21 @@ export function onClickOutside(element, callback) {
   });
 
   clickOutsideListeners.set(element, true);
+}
+
+export function createGradient(color1, color2, val, max) {
+  return (ctx) => {
+    const x1 = 0;
+    let x2 = 300;
+    let y1 = 0;
+    let y2 = 0;
+
+    const canvas = ctx.chart.ctx;
+    const gradient = canvas.createLinearGradient(x1, y1, x2, y2);
+
+    gradient.addColorStop(0, color1);
+    gradient.addColorStop(1, color2);
+
+    return gradient;
+  };
 }
