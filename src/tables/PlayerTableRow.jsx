@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import FlagIcon from "../misc/FlagIcon.jsx";
+import { usePlayerContext } from "../context/PlayerContext.jsx";
 
 function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate();
 
   const profilePicSrc = `/images/Players/${player.Player}.jpg`;
   const playerHref = `/profile/${player.Player.replaceAll(" ", "_")}`;
+  const { shownColumns } = usePlayerContext()
 
   const handleTrClick = () => {
     navigate(playerHref);
@@ -37,14 +39,14 @@ function PlayerTableRow({ player, rank }) {
       <td>
         <FlagIcon countryName={player.birthCountry} />
       </td>
-      <td>{player.GamesPlayed}</td>
-      <td>{player.Goals}</td>
-      <td>{player.Assists}</td>
-      <td>{player.GoalContributions}</td>
-      <td>{player.Efficiency}</td>
-      <td>{player["Balon (1st)"] || 0}</td>
-      <td>{player["Balon (2nd)"] || 0}</td>
-      {/* <td>{player["Balon (3rd)"] || 0}</td> */}
+      {shownColumns.Games && <td>{player.GamesPlayed}</td>}
+      {shownColumns.Goals && <td>{player.Goals}</td>}
+      {shownColumns.Assists && <td>{player.Assists}</td>}
+      {shownColumns.Contributions && <td>{player.GoalContributions}</td>}
+      {shownColumns.Efficiency && <td>{player.Efficiency}</td>}
+      {shownColumns["Balón d'Or (1st)"] && <td>{player["Balon (1st)"] || 0}</td>}
+      {shownColumns["Balón d'Or (2nd)"] && <td>{player["Balon (2nd)"] || 0}</td>}
+      {shownColumns["Balón d'Or (3rd)"] && <td>{player["Balon (3rd)"] || 0}</td>}
     </tr>
   );
 }

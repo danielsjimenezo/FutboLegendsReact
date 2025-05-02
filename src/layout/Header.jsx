@@ -2,6 +2,7 @@ import "./Header.css";
 import PlayerSearch from "../misc/PlayerSearch.jsx";
 import { Link } from "react-router-dom";
 import DropdownFilter from "./DropdownFilter.jsx";
+import ShownColumnFilter from "./ShownColumnFilter.jsx";
 import { useLocation } from "react-router-dom";
 import { getFlagUrl } from "../utilities/countries.js";
 
@@ -67,6 +68,9 @@ function Header() {
             }
           }}
         />
+
+        <ShownColumnFilter />
+
       </div>
     </header>
   );

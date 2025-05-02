@@ -5,7 +5,10 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import ComparePage from "./pages/ComparePage.jsx";
 import RankingsPage from "./pages/RankingsPage.jsx";
 
+import { useFutbolStore } from "./context/store.jsx";
+
 function App() {
+ 
   return (
     <>
       <div className="header-container">
@@ -28,3 +31,4 @@ function App() {
 }
 
 export default App;
+

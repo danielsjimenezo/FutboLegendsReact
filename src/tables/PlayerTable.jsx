@@ -11,6 +11,7 @@ function PlayerTable() {
     PER_PAGE,
     playerSort,
     setPlayerSort,
+    shownColumns
   } = usePlayerContext();
 
   return (
@@ -22,7 +23,7 @@ function PlayerTable() {
             <th className="left">Name</th>
             <th>Position</th>
             <th>Country</th>
-            <th>
+            {shownColumns.Games && <th>
               <button onClick={() => setPlayerSort("games")}>
                 Games
                 {playerSort === "games" && (
@@ -33,8 +34,8 @@ function PlayerTable() {
                   />
                 )}
               </button>
-            </th>
-            <th>
+            </th>}
+            {shownColumns.Goals && <th>
               <button onClick={() => setPlayerSort("goals")}>
                 Goals
                 {playerSort === "goals" && (
@@ -45,8 +46,8 @@ function PlayerTable() {
                   />
                 )}
               </button>
-            </th>
-            <th>
+            </th>}
+            {shownColumns.Assists && <th>
               <button onClick={() => setPlayerSort("assists")}>
                 Assists
                 {playerSort === "assists" && (
@@ -57,8 +58,8 @@ function PlayerTable() {
                   />
                 )}
               </button>
-            </th>
-            <th>
+            </th>}
+            {shownColumns.Contributions && <th>
               <button onClick={() => setPlayerSort("contributions")}>
                 G+A
                 {playerSort === "contributions" && (
@@ -69,8 +70,8 @@ function PlayerTable() {
                   />
                 )}
               </button>
-            </th>
-            <th>
+            </th>}
+            {shownColumns.Efficiency && <th>
               <button onClick={() => setPlayerSort("efficiency")}>
                 G+A/Game
                 {playerSort === "efficiency" && (
@@ -81,8 +82,8 @@ function PlayerTable() {
                   />
                 )}
               </button>
-            </th>
-            <th>
+            </th>}
+            {shownColumns["Balón d'Or (1st)"] && <th>
               <button
                 className="nowrap"
                 onClick={() => setPlayerSort("balon1")}
@@ -96,8 +97,8 @@ function PlayerTable() {
                   />
                 )}
               </button>
-            </th>
-            <th>
+            </th>}
+            {shownColumns["Balón d'Or (2nd)"] && <th>
               <button
                 className="nowrap"
                 onClick={() => setPlayerSort("balon2")}
@@ -111,10 +112,22 @@ function PlayerTable() {
                   />
                 )}
               </button>
-            </th>
-            {/* <th className="nowrap">
-              <button>Balón (3rd)</button>
-            </th> */}
+            </th>}
+            {shownColumns["Balón d'Or (3rd)"] && <th>
+              <button
+                className="nowrap"
+                onClick={() => setPlayerSort("balon3")}
+              >
+                Balón (2nd)
+                {playerSort === "balon3" && (
+                  <img
+                    src="/images/Icons/darr.png"
+                    className="sort-arrow"
+                    alt="down arrow"
+                  />
+                )}
+              </button>
+            </th>}
           </tr>
         </thead>
         <tbody>

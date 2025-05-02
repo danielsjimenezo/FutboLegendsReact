@@ -1,4 +1,5 @@
 import Chart from "./Chart.jsx"
+import { GOAL_TYPE_CHART_ASPECT_RATIO } from "../utilities/utilities.js"
 
 function GoalTypeChart1({ player, id }) {
     const goalTypeData = [
@@ -19,15 +20,17 @@ function GoalTypeChart1({ player, id }) {
                         data: goalTypeData,
                         borderRadius: {
                             topRight: 50,
-                            topLeft: 50,
+                            bottomRight: 50,
                         },
+                        barThickness: 20,
                         base: 0,
                         label: "Goals",
                     },
                 ],
             },
             options: {
-                aspectRatio: 1 / 1.05,
+                aspectRatio: GOAL_TYPE_CHART_ASPECT_RATIO,
+                indexAxis: "y",
                 plugins: {
                     legend: {
                         display: false,

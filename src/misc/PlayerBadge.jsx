@@ -9,7 +9,7 @@ function PlayerBadge({
     return (
         <div className="statsBadgeContainer">
             <div className="statsBadgeTitle">{title}</div>
-            <div className="statsBadgeCircleBig1" style={{
+            <div className="statsBadgeCircle" style={{
                 backgroundImage: `linear-gradient(${deg}deg, ${colors.join(', ')})`
             }}>
                 <div className="statsBadgeCircleSmall">

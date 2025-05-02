@@ -53,10 +53,7 @@
 }
 
 #main-table tr {
-  display: grid;
-  align-items: center;
-  width: 100%;
-  grid-template-columns: 2fr 4fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+
 }
 
 #main-table thead button {

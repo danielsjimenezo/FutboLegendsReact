@@ -1,3 +1,4 @@
+import "./ProfilePage.css"
 import { useParams } from "react-router-dom"
 import { usePlayerContext } from "../context/PlayerContext.jsx"
 import PlayerBadge from "../misc/PlayerBadge.jsx"
@@ -34,10 +35,11 @@ function ProfilePage() {
     )
   }
 
+
   return (
-    <section className="content-containerr container">
-      <div className="side-menu">
+    <section className="profile-container container">
         <div className="playerProfile">
+          <h1>{player.Player}</h1>
           <div className="playerPic">
             <img src={`/images/Players/${player.Player}.jpg`} alt={`Photo of ${player.Player}`} className="playerPics" />
           </div>
@@ -50,10 +52,6 @@ function ProfilePage() {
             <span className="descr">Height:</span>
           </div>
         </div>
-        <TeamDataTable player={player} />
-      </div>
-      <div className="mainSection">
-
         <div className="profileCharts">
           <div className="circleChart1">
             <GoalTypeChart1 id="circleChart1" player={player} />
@@ -62,6 +60,8 @@ function ProfilePage() {
             <GoalTypeChart2 id="circleChart2" player={player} />
           </div>
         </div> {/* END OF .profileCharts */}
+        <TeamDataTable player={player} />
+
 
         <div className="profileStats">
           <PlayerBadge
@@ -85,14 +85,31 @@ function ProfilePage() {
             rank={player.contributionsRank}
           />
           <PlayerBadge
-            title="G + A / GAmes"
+            title="G + A / Games"
             value={player.Efficiency}
             rank={player.contributionsPerGameRank}
             colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
           />
-        </div> {/* END OF .profileStats */}
+          <PlayerBadge
+            title="Undefined stat"
+            value={1}
+            rank={1}
+            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
+          />
+          <PlayerBadge
+            title="Undefined stat"
+            value={1}
+            rank={1}
+            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
+          />
+          <PlayerBadge
+            title="Undefined stat"
+            value={1}
+            rank={1}
+            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
+          />
+        </div> 
 
-      </div> {/* END OF .mainSection */}
     </section>
   )
 }

@@ -4,7 +4,7 @@ function TeamDataTable({ player }) {
   return (
     <div className="playerTableStats">
       <section className="table-container">
-        <table id="table">
+        <table className="team-data-table">
           <thead>
             <tr className="header-roww">
               <th>Team</th>
@@ -22,7 +22,7 @@ function TeamDataTable({ player }) {
                 (team.goals + team.assists) / team.games;
               return (
                 <tr key={team.name}>
-                  <td>
+                  <td className="team-logo-td">
                     <img
                       src={teamLogoSrc}
                       alt={`Logo of ${team.name}`}

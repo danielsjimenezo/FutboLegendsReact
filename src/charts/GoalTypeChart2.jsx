@@ -1,41 +1,45 @@
 import Chart from "./Chart.jsx"
+import { GOAL_TYPE_CHART_ASPECT_RATIO } from "../utilities/utilities.js"
 
 function GoalTypeChart2({ player, id }) {
     const goalTypeData = [
         player.LeftFoot,
         player.RightFoot,
         player.Headers,
-        player.Other,
+        // player.Other,
     ]
 
     return (
         <Chart id={id} options={{
-            type: "bar",
+            type: "doughnut",
             data: {
-                labels: ["Left Foot", "Right Foot", "Headers", "Other"],
+                labels: [
+                    "Left Foot", 
+                    "Right Foot", 
+                    "Headers",
+                    // "Other"
+                ],
                 datasets: [
                     {
-                        backgroundColor: ["#2BC1B7"],
+                        backgroundColor: ["#FF4F8B", "#af95fc", "#62b3ad"],
+                        borderWidth: 0, // Removes white borders
                         data: goalTypeData,
-                        borderRadius: {
-                            topRight: 50,
-                            topLeft: 50,
-                        },
-                        base: 0,
-                        label: "Goals",
-                    },
-                ],
+                        label: "Goals"
+                    }
+                ]
             },
             options: {
-                aspectRatio: 1 / 1.05,
-                indexAxis: "y",
+                aspectRatio: GOAL_TYPE_CHART_ASPECT_RATIO,
                 plugins: {
                     legend: {
-                        display: false,
-                    },
-                },
-            },
-        }} />
+                        display: true,
+                        position: "right"
+                    }
+                }
+            }
+        }
+
+        } />
     )
 }
 

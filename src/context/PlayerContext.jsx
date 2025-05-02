@@ -20,14 +20,14 @@ export const PlayerContextProvider = ({ children }) => {
   const [countryFilter, setCountryFilter] = useState("all");
   const [positionFilter, setPositionFilter] = useState("all");
   const [shownColumns, setShownColumns] = useState({
-    games: true,
-    goals: true,
-    assists: true,
-    contributions: true,
-    efficiency: true,
-    balon1: false,
-    balon2: false,
-    balon3: false,
+    "Games": true,
+    "Goals": true,
+    "Assists": true,
+    "Contributions": true,
+    "Efficiency": true,
+    "Balón d'Or (1st)": false,
+    "Balón d'Or (2nd)": false,
+    "Balón d'Or (3rd)": false,
   });
 
   ///// DERIVED VALUES /////

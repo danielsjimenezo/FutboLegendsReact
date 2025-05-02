@@ -20,10 +20,12 @@ function ShownColumnFilter({}) {
     setShown(!shown);
   };
 
-  const handleChoose = (choice, i) => {};
+  const handleChoose = (choice, i) => {
+    actions.toggleShownColumn(choice.text)
+  };
 
   return (
-    <div id={id} className="filter-wrapper" ref={wrapperRef}>
+    <div id="shown-column-filter" className="filter-wrapper" ref={wrapperRef}>
       <button className="filter-button" onClick={toggleShown}>
         <span>Columns</span>
       </button>

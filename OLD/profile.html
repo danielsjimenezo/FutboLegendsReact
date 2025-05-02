@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+    <script src="./Javascript/Pages/profile.js" type="module" defer></script>
+    <link rel="stylesheet" href="Style/style.css" />
+    <title>Futbol Legends</title>
+    <link rel="shortcut icon" href="./Images/soccer.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="container"></header>
+
+    <section class="content-container container">
+      <div class="side-menu">
+        <div class="playerProfile">
+          <div class="playerPic"></div>
+          <div class="playerDesc"></div>
+        </div>
+        <div class="playerTableStats">
+          <section class="table-container">
+            <table id="tablee">
+              <thead>
+                <tr class="header-roww">
+                  <th>Team</th>
+                  <th>MP</th>
+                  <th>G</th>
+                  <th>A</th>
+                  <th>G+A</th>
+                  <th>G+A/MP</th>
+                </tr>
+              </thead>
+              <tbody id="team-stats"></tbody>
+            </table>
+          </section>
+        </div>
+      </div>
+      <div class="mainSection">
+        <div class="profileCharts">
+          <div class="circleChart1">
+            <canvas id="circleChart1"></canvas>
+          </div>
+          <div class="circleChart2">
+            <canvas id="circleChart2"></canvas>
+          </div>
+        </div>
+        <div class="profileStats">
+          <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">Games Played</div>
+            <div class="statsBadgeCircleBig1">
+              <div class="statsBadgeCircleSmall">
+                <div class="gamesPlayed statsBadgeValue"></div>
+              </div>
+              <div class="badgeRank" id="gamesPlayedRank">
+                <span></span>
+                <img src="Images/Icons/Prize.png" />
+              </div>
+            </div>
+          </div>
+          <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">Goals Scored</div>
+            <div class="statsBadgeCircleBig1">
+              <div class="statsBadgeCircleSmall">
+                <div class="goalsScored statsBadgeValue"></div>
+              </div>
+              <div class="badgeRank" id="goalsRank">
+                <span></span>
+                <img src="Images/Icons/Prize.png" />
+              </div>
+            </div>
+          </div>
+          <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">Assists Made</div>
+            <div class="statsBadgeCircleBig1">
+              <div class="statsBadgeCircleSmall">
+                <div class="assistsMade statsBadgeValue"></div>
+              </div>
+              <div class="badgeRank" id="assistsRank">
+                <span></span>
+                <img src="Images/Icons/Prize.png" />
+              </div>
+            </div>
+          </div>
+          <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">Goals + Assists</div>
+            <div class="statsBadgeCircleBig1">
+              <div class="statsBadgeCircleSmall">
+                <div class="goalContributionsMade statsBadgeValue"></div>
+              </div>
+              <div class="badgeRank" id="contributionsRank">
+                <span></span>
+                <img src="Images/Icons/Prize.png" />
+              </div>
+            </div>
+          </div>
+          <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">G + A / Games</div>
+            <div class="statsBadgeCircleBig2">
+              <div class="statsBadgeCircleSmall">
+                <div class="goalContributionsPerGame statsBadgeValue"></div>
+              </div>
+              <div class="badgeRank" id="contributionsPerGameRank">
+                <span></span>
+                <img src="Images/Icons/Prize.png" />
+              </div>
+            </div>
+          </div>
+          <!-- <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">G + A / 90 Mins</div>
+            <div class="statsBadgeCircleBig2">
+              <div class="statsBadgeCircleSmall">
+                <div class="goalContributionsPer90 statsBadgeValue"></div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">Assists Made</div>
+            <div class="statsBadgeCircleBig2">
+              <div class="statsBadgeCircleSmall"></div>
+            </div>
+          </div> -->
+          <!-- <div class="statsBadgeContainer">
+            <div class="statsBadgeTitle">Goal Contributions</div>
+            <div class="statsBadgeCircleBig2">
+              <div class="statsBadgeCircleSmall"></div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
