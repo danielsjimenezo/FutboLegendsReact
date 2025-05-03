@@ -30,7 +30,7 @@ const LABELS = {
   balon2: "Balón D'or (2nd)",
 };
 
-function HomePageChartSelector({ chartKey, setter, readAllPlayers = false }) {
+function HomePageChartSelector({ chartKey, setter, readAllPlayers = false, id }) {
   const SelectedChartComponent = CHARTS[chartKey];
 
   if (!SelectedChartComponent) {
@@ -47,6 +47,7 @@ function HomePageChartSelector({ chartKey, setter, readAllPlayers = false }) {
         LABELS={LABELS}
         chartKey={chartKey}
         setter={setter}
+        id={id}
       />
     </div>
   );

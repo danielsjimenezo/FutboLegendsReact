@@ -19,16 +19,7 @@ export const PlayerContextProvider = ({ children }) => {
   const [secondChart, setSecondChart] = useState("goals");
   const [countryFilter, setCountryFilter] = useState("all");
   const [positionFilter, setPositionFilter] = useState("all");
-  const [shownColumns, setShownColumns] = useState({
-    "Games": true,
-    "Goals": true,
-    "Assists": true,
-    "Contributions": true,
-    "Efficiency": true,
-    "Balón d'Or (1st)": false,
-    "Balón d'Or (2nd)": false,
-    "Balón d'Or (3rd)": false,
-  });
+  const [shownColumns, setShownColumns] = useState(['games', 'goals', 'assists', 'contributions', 'efficiency']);
 
   ///// DERIVED VALUES /////
   const [startIndex, endIndex] = [
@@ -77,7 +68,7 @@ export const PlayerContextProvider = ({ children }) => {
   };
 
   const displayedPlayers = getDisplayedPlayers();
-  console.log("displayed players:", displayedPlayers);
+  // console.log("displayed players:", displayedPlayers);
 
   const filteredPageCount = Math.ceil(filteredPlayers.length / PER_PAGE);
 
@@ -96,6 +87,10 @@ export const PlayerContextProvider = ({ children }) => {
   const maxValues = useMemo(() => {
     return getMaxValues(players);
   }, [players]);
+
+  const displayedCharts = (()=>{
+    
+  })();
 
   ///// FETCHING DATA /////
   const loadPlayerData = async () => {
@@ -142,11 +137,15 @@ export const PlayerContextProvider = ({ children }) => {
         (p) => id.toString().replaceAll("_", " ") === p.Player
       );
     },
-    toggleShownColumn(name) {
-      setShownColumns({
-        ...shownColumns,
-        [name]: !shownColumns[name],
-      });
+    toggleShownColumn(sort) {
+      const newColumns = [...shownColumns]
+      const i = newColumns.indexOf(sort)
+      if (i === -1) {
+        newColumns.push(sort)
+      } else {
+        newColumns.splice(i, 1)
+      }
+      setShownColumns(newColumns)
     },
   };
 

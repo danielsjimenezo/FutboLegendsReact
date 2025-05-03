@@ -2,6 +2,16 @@ import { useState, useRef } from "react";
 import { usePlayerContext } from "../context/PlayerContext.jsx";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 
+const menuItems = [
+  ['Games', 'games'],
+  ['Goals', 'goals'],
+  ['Assists', 'assists'],
+  ['G+A', 'contributions'],
+  ['G+A/game', 'efficiency'],
+  ['Balón (1)', 'balon1'],
+  ['Balón (2)', 'balon2'],
+  ['Balón (3)', 'balon3']
+]
 function ShownColumnFilter({}) {
   const { shownColumns, actions } = usePlayerContext();
 
@@ -12,16 +22,13 @@ function ShownColumnFilter({}) {
     setShown(false);
   });
 
-  const menuItems = Object.keys(shownColumns).map((name) => {
-    return { text: name };
-  });
 
   const toggleShown = () => {
     setShown(!shown);
   };
 
-  const handleChoose = (choice, i) => {
-    actions.toggleShownColumn(choice.text)
+  const handleChoose = (choice) => {
+    actions.toggleShownColumn(choice)
   };
 
   return (
@@ -30,11 +37,11 @@ function ShownColumnFilter({}) {
         <span>Columns</span>
       </button>
       <div className={`filter-menu ${shown ? "shown" : ""}`}>
-        {menuItems.map((item, i) => {
+        {menuItems.map(([label, sort], i) => {
           return (
-            <button key={item.text} onClick={() => handleChoose(item, i)}>
-              {item.text}
-              <input type="checkbox" checked={shownColumns[item.text]} />
+            <button key={label} onClick={() => handleChoose(sort)}>
+              {label}
+              <input type="checkbox" checked={shownColumns.includes(sort)} readOnly/>
             </button>
           );
         })}

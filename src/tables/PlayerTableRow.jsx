@@ -39,14 +39,14 @@ function PlayerTableRow({ player, rank }) {
       <td>
         <FlagIcon countryName={player.birthCountry} />
       </td>
-      {shownColumns.Games && <td>{player.GamesPlayed}</td>}
-      {shownColumns.Goals && <td>{player.Goals}</td>}
-      {shownColumns.Assists && <td>{player.Assists}</td>}
-      {shownColumns.Contributions && <td>{player.GoalContributions}</td>}
-      {shownColumns.Efficiency && <td>{player.Efficiency}</td>}
-      {shownColumns["Balón d'Or (1st)"] && <td>{player["Balon (1st)"] || 0}</td>}
-      {shownColumns["Balón d'Or (2nd)"] && <td>{player["Balon (2nd)"] || 0}</td>}
-      {shownColumns["Balón d'Or (3rd)"] && <td>{player["Balon (3rd)"] || 0}</td>}
+      {shownColumns.includes('games') && <td>{player.GamesPlayed || "N/A"}</td>}
+      {shownColumns.includes('goals') && <td>{player.Goals || "N/A"}</td>}
+      {shownColumns.includes('assists') && <td>{player.Assists || "N/A"}</td>}
+      {shownColumns.includes('contributions') && <td>{player.GoalContributions || "N/A"}</td>}
+      {shownColumns.includes('efficiency') && <td>{player.Efficiency || "N/A"}</td>}
+      {shownColumns.includes('balon1') && <td>{player["Balon (1st)"] || 0}</td>}
+      {shownColumns.includes('balon2') && <td>{player["Balon (2nd)"] || 0}</td>}
+      {shownColumns.includes('balon3') && <td>{player["Balon (3rd)"] || 0}</td>}
     </tr>
   );
 }

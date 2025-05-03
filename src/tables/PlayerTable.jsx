@@ -1,7 +1,19 @@
 import "./PlayerTable.css";
 import { usePlayerContext } from "../context/PlayerContext.jsx";
+import PlayerTableTH from "./PlayerTableTH.jsx";
 import PlayerTableRow from "./PlayerTableRow.jsx";
 import PlayerTablePaginationControls from "./PlayerTablePaginationControls.jsx";
+
+const headings = [
+  ['Games', 'games'],
+  ['Goals', 'goals'],
+  ['Assists', 'assists'],
+  ['G+A', 'contributions'],
+  ['G+A/game', 'efficiency'],
+  ['Balón (1)', 'balon1'],
+  ['Balón (2)', 'balon2'],
+  ['Balón (3)', 'balon3']
+]
 
 function PlayerTable() {
   const {
@@ -23,111 +35,11 @@ function PlayerTable() {
             <th className="left">Name</th>
             <th>Position</th>
             <th>Country</th>
-            {shownColumns.Games && <th>
-              <button onClick={() => setPlayerSort("games")}>
-                Games
-                {playerSort === "games" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
-            {shownColumns.Goals && <th>
-              <button onClick={() => setPlayerSort("goals")}>
-                Goals
-                {playerSort === "goals" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
-            {shownColumns.Assists && <th>
-              <button onClick={() => setPlayerSort("assists")}>
-                Assists
-                {playerSort === "assists" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
-            {shownColumns.Contributions && <th>
-              <button onClick={() => setPlayerSort("contributions")}>
-                G+A
-                {playerSort === "contributions" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
-            {shownColumns.Efficiency && <th>
-              <button onClick={() => setPlayerSort("efficiency")}>
-                G+A/Game
-                {playerSort === "efficiency" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
-            {shownColumns["Balón d'Or (1st)"] && <th>
-              <button
-                className="nowrap"
-                onClick={() => setPlayerSort("balon1")}
-              >
-                Balón (1st)
-                {playerSort === "balon1" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
-            {shownColumns["Balón d'Or (2nd)"] && <th>
-              <button
-                className="nowrap"
-                onClick={() => setPlayerSort("balon2")}
-              >
-                Balón (2nd)
-                {playerSort === "balon2" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
-            {shownColumns["Balón d'Or (3rd)"] && <th>
-              <button
-                className="nowrap"
-                onClick={() => setPlayerSort("balon3")}
-              >
-                Balón (2nd)
-                {playerSort === "balon3" && (
-                  <img
-                    src="/images/Icons/darr.png"
-                    className="sort-arrow"
-                    alt="down arrow"
-                  />
-                )}
-              </button>
-            </th>}
+            {headings.map(([label, sort]) => <PlayerTableTH 
+              key={sort}
+              sort={sort}
+              label={label}
+            />)}
           </tr>
         </thead>
         <tbody>
