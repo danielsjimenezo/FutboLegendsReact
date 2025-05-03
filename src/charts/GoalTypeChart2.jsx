@@ -33,7 +33,14 @@ function GoalTypeChart2({ player, id }) {
                 plugins: {
                     legend: {
                         display: true,
-                        position: "right"
+                        position: "right",
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            padding: 40,
+                            color: 'white',
+                            boxWidth: 200
+                        }
                     }
                 }
             }

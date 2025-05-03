@@ -8,7 +8,7 @@ import { getFlagUrl } from "../utilities/countries.js";
 
 function Header() {
   const location = useLocation();
-  // console.log("pathname:", location.pathname);
+  // console.log("pathname:", location.pathname, location.pathname === '/');
 
   return (
     <header className="container">
@@ -69,7 +69,9 @@ function Header() {
           }}
         />
 
-        <ShownColumnFilter />
+        {(location.pathname === '/' || location.pathname.startsWith('/compare')) && (
+          <ShownColumnFilter />
+        )}
 
       </div>
     </header>

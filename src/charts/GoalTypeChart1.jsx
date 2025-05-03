@@ -7,13 +7,26 @@ function GoalTypeChart1({ player, id }) {
         player.Penalties,
         player.OutsideBox,
         player.InsideBox,
+        player.CornerKicks,
+        player.Acrobatics,
+        player.Volleys,
+        // player.Backheels
     ]
 
     return (
         <Chart id={id} options={{
             type: "bar",
             data: {
-                labels: ["Free kicks", "Penaties", "Outside box", "Inside box"],
+                labels: [
+                    "Free kicks",
+                    "Penaties",
+                    "Outside box",
+                    "Inside box",
+                    "Corner kicks",
+                    "Acrobatics",
+                    "Volleys",
+                    // "Backheels"
+                ],
                 datasets: [
                     {
                         backgroundColor: ["#FF4F8B"],
@@ -35,7 +48,47 @@ function GoalTypeChart1({ player, id }) {
                     legend: {
                         display: false,
                     },
+                    annotation: {
+                        annotations: {
+                            horizontalLine: {
+                                type: 'line',
+                                yMin: goalTypeData.length - 0.5,
+                                yMax: goalTypeData.length - 0.5,
+                                borderColor: 'white',
+                                borderWidth: 2,
+                                label: {
+                                    content: 'Target',
+                                    enabled: true,
+                                    position: 'start'
+                                }
+                            },
+                            verticalLine: {
+                                type: 'line',
+                                xMin: 3,
+                                xMax: 3,
+                                borderColor: 'white',
+                                borderWidth: 2,
+                                label: {
+                                    content: 'Event',
+                                    enabled: true,
+                                    position: 'top'
+                                }
+                            }
+                        }
+                    }
                 },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'transparent'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'white'
+                        }
+                    },
+                }
             },
         }} />
     )

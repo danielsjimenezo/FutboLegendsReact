@@ -1,5 +1,7 @@
 import { useRef, useEffect } from "react";
 import ChartJS from "chart.js/auto";
+import Annotation from "chartjs-plugin-annotation";
+ChartJS.register(Annotation)
 
 function Chart({ 
     options,

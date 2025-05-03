@@ -5,6 +5,7 @@ import PlayerBadge from "../misc/PlayerBadge.jsx"
 import GoalTypeChart1 from "../charts/GoalTypeChart1.jsx"
 import GoalTypeChart2 from "../charts/GoalTypeChart2.jsx"
 import TeamDataTable from "../tables/TeamDataTable.jsx"
+import TeamDataTableToggle from "../misc/TeamDataTableToggle.jsx"
 
 function ProfilePage() {
   const { players, playersLoadingState } = usePlayerContext()
@@ -54,16 +55,30 @@ function ProfilePage() {
         </div>
         <div className="profileCharts">
           <div className="circleChart1">
-            <GoalTypeChart1 id="circleChart1" player={player} />
+            <h3>Types of Goals</h3>
+            <div className="goal-type-chart-container">
+              <GoalTypeChart1 id="circleChart1" player={player} />
+            </div>
           </div>
           <div className="circleChart2">
-            <GoalTypeChart2 id="circleChart2" player={player} />
+            <h3>Goal Breakdown</h3>
+            <div className="goal-type-chart-container">
+              <GoalTypeChart2 id="circleChart2" player={player} />
+            </div>
           </div>
         </div> {/* END OF .profileCharts */}
+
+
+        <TeamDataTableToggle />
+
+        {/* intentionally empty */}
+        <div></div>
+
         <TeamDataTable player={player} />
 
 
         <div className="profileStats">
+          <h3 id="leaderboard-heading">Leaderboard</h3>
           <PlayerBadge
             title="Games Played"
             value={player.GamesPlayed}
