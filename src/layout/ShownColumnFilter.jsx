@@ -34,7 +34,7 @@ function ShownColumnFilter({}) {
   return (
     <div id="shown-column-filter" className="filter-wrapper" ref={wrapperRef}>
       <button className="filter-button" onClick={toggleShown}>
-        <span>Columns</span>
+        <span>STATS</span>
       </button>
       <div className={`filter-menu ${shown ? "shown" : ""}`}>
         {menuItems.map(([label, sort], i) => {

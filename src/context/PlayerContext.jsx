@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
-import { fetchData } from "../utilities/utilities.js";
+import { fetchData, getArrayFromLocalStorage } from "../utilities/utilities.js";
 import { countries } from "../utilities/countries.js";
 
 const PER_PAGE = 15;
@@ -19,13 +19,27 @@ export const PlayerContextProvider = ({ children }) => {
   const [secondChart, setSecondChart] = useState("goals");
   const [countryFilter, setCountryFilter] = useState("all");
   const [positionFilter, setPositionFilter] = useState("all");
-  const [shownColumns, setShownColumns] = useState(['games', 'goals', 'assists', 'contributions', 'efficiency']);
+
+  const initialColumns = ['games', 'goals', 'assists', 'contributions', 'efficiency']
+  const [shownColumns, setShownColumns] = useState(getArrayFromLocalStorage('futbolegends::shownColumns', initialColumns));
+  useEffect(() => localStorage.setItem('futbolegends::shownColumns', JSON.stringify(shownColumns)), [shownColumns])
+
+  const initialBadges = ['games', 'goals', 'assists', 'contributions', 'efficiency', 'balon1', 'balon2', 'balon3']
+  const [shownBadges, setShownBadges] = useState(getArrayFromLocalStorage('futbolegends::shownBadges', initialBadges));
+  useEffect(() => localStorage.setItem('futbolegends::shownBadges', JSON.stringify(shownBadges)), [shownBadges])
+
 
   ///// DERIVED VALUES /////
   const [startIndex, endIndex] = [
     (playersPageNumber - 1) * PER_PAGE,
     playersPageNumber * PER_PAGE,
   ];
+
+  const homeTableColumnWidth = (() => {
+    const nameAndRankWidthPercent = 0.20
+    const rest = 1 - nameAndRankWidthPercent;
+    return (rest / (shownColumns.length + 2) * 100).toFixed(2) + "%"
+  })();
 
   const getFilteredPlayers = () => {
     let result = [...players];
@@ -147,6 +161,16 @@ export const PlayerContextProvider = ({ children }) => {
       }
       setShownColumns(newColumns)
     },
+    toggleShownBadge(sort) {
+      const newBadges = [...shownBadges]
+      const i = newBadges.indexOf(sort)
+      if (i === -1) {
+        newBadges.push(sort)
+      } else {
+        newBadges.splice(i, 1)
+      }
+      setShownBadges(newBadges)
+    },
   };
 
   return (
@@ -167,6 +191,8 @@ export const PlayerContextProvider = ({ children }) => {
         secondChart,
         setSecondChart,
         shownColumns,
+        homeTableColumnWidth,
+        shownBadges
       }}
     >
       {children}

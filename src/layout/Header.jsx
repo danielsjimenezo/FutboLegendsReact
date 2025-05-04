@@ -16,7 +16,7 @@ function Header() {
       <nav id="nav">
         <Link to="/" className={`${location.pathname === "/" ? "active" : ""}`}>
           <button className="topButtons" id="recordButtonn">
-            <span>Record Book</span>
+            <span>Leaderboard</span>
           </button>
         </Link>
         <Link
@@ -41,6 +41,7 @@ function Header() {
 
       <div id="filters">
         <DropdownFilter
+          id="country-filter"
           icon={(value) => {
             if (!value || value.text == "all") {
               return `/images/Icons/global_icon.png`;
@@ -62,7 +63,7 @@ function Header() {
           filterKey="positions"
           label={(value) => {
             if (value.text == "all") {
-              return "ALL POS";
+              return "POSITIONS";
             } else {
               return value.text.toUpperCase();
             }

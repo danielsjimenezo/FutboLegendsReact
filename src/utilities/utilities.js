@@ -1,5 +1,5 @@
 export const HOME_PAGE_CHART_ASPECT_RATIO = 1 / 0.55;
-export const GOAL_TYPE_CHART_ASPECT_RATIO = 1 / .95;
+export const GOAL_TYPE_CHART_ASPECT_RATIO = 1 / .75;
 
 export async function fetchData() {
   const res = await fetch("/Data/data.json");
@@ -43,4 +43,25 @@ export function createGradient(color1, color2, val, max) {
 
     return gradient;
   };
+}
+
+export function getArrayFromLocalStorage(key, fallback = []) {
+  try {
+    const ls = localStorage.getItem(key)
+    if (!ls) {
+      console.log(`localStorage::${key} was unset`)
+      return fallback
+    }
+
+    const data = JSON.parse(ls)
+    if (!Array.isArray(data)) {
+      console.log(`localStorage::${key} was unset`)
+      return fallback
+    }
+
+    return data
+  } catch {
+    console.log(`localStorage::${key} was unset`)
+    return fallback
+  }
 }

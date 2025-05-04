@@ -6,6 +6,7 @@ export default function toPlayerDTO(player, players) {
   
 
     appendTeamData(dto)
+    appendCompData(dto)
     appendPlayerRankings(dto, players)
     
     delete dto[""]
@@ -61,6 +62,55 @@ function appendTeamData(dto) {
   })
 
   dto.teamTotals.efficiency = dto.teamTotals.contributions / dto.teamTotals.games
+
+}
+
+function appendCompData(dto) {
+  if (typeof dto.Comps !== "string") {
+    dto.Comps = []
+  } else {
+    dto.Comps = dto.Comps.split(',').map(n => n.trim())
+  }
+
+  dto.GoalsByComp = (dto.GoalsByComp||"").split(',').map(v => parseInt(v.trim()) || 0)
+  dto.AssistsByComp = (dto.AssistsByComp||"").split(',').map(v => parseInt(v.trim()) || 0)
+  dto.GamesByComp = (dto.GamesByComp||"").split(',').map(v => parseInt(v.trim()) || 0)
+
+  dto.comps = [];
+
+  (dto.Comps||[]).forEach((team, i) => {
+    const compObj = {
+      name: team,
+      goals: parseInt(dto.GoalsByComp[i]) || 0,
+      games: parseInt(dto.GamesByComp[i]) || 0,
+      assists: parseInt(dto.AssistsByComp[i]) || 0,
+    }
+
+    dto.Comps.push(compObj)
+  })
+
+  delete dto.Comps
+  delete dto.GoalsByComp
+  delete dto.AssistsByComp
+  delete dto.GamesByComp
+
+  dto.compTotals = {
+    games: 0,
+    goals: 0,
+    assists: 0,
+    contributions: 0,
+    efficiency: 0
+  }
+
+  dto.comps.forEach(comp => {
+    dto.compTotals.games += comp.games
+    dto.compTotals.goals += comp.goals
+    dto.compTotals.assists += comp.assists
+    dto.compTotals.contributions += comp.goals + comp.assists
+    dto.compTotals.efficiency += (parseInt(comp.goals + comp.assists) / parseInt(comp.games))
+  })
+
+  dto.compTotals.efficiency = dto.compTotals.contributions / dto.compTotals.games
 
 }
 

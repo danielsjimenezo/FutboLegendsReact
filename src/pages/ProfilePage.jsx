@@ -1,4 +1,5 @@
 import "./ProfilePage.css"
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { usePlayerContext } from "../context/PlayerContext.jsx"
 import PlayerBadge from "../misc/PlayerBadge.jsx"
@@ -6,8 +7,13 @@ import GoalTypeChart1 from "../charts/GoalTypeChart1.jsx"
 import GoalTypeChart2 from "../charts/GoalTypeChart2.jsx"
 import TeamDataTable from "../tables/TeamDataTable.jsx"
 import TeamDataTableToggle from "../misc/TeamDataTableToggle.jsx"
+import CompDataTable from "../tables/CompDataTable.jsx"
+import ProfileBadges from "../misc/ProfileBadges.jsx"
+import ShownBadgesFilter from "../layout/ShownBadgesFilter.jsx"
 
 function ProfilePage() {
+  const [tableShown, setTableShown] = useState('team')
+  const toggleTableShown = () => setTableShown(tableShown === 'team' ? 'comp' : 'team');
   const { players, playersLoadingState } = usePlayerContext()
   const { id } = useParams()
   const player = players.find(p => p.Player === id.replaceAll('_', ' '))
@@ -48,7 +54,7 @@ function ProfilePage() {
             <span className="descr">Position(s):</span>
             {player.Position}
             <br />
-            <span className="descr">Date of Brith:</span>
+            <span className="descr">Date of Birth:</span>
             <br />
             <span className="descr">Height:</span>
           </div>
@@ -69,61 +75,21 @@ function ProfilePage() {
         </div> {/* END OF .profileCharts */}
 
 
-        <TeamDataTableToggle />
+        <TeamDataTableToggle tableShown={tableShown} fn={toggleTableShown} />
 
-        {/* intentionally empty */}
-        <div></div>
+        <h3 id="leaderboard-heading">
+            Leaderboard
+            <ShownBadgesFilter />
+        </h3>
 
-        <TeamDataTable player={player} />
+        {tableShown === 'team' ? (
+          <TeamDataTable player={player} />
+        ): (
+          <CompDataTable player={player} />
+        )}
 
 
-        <div className="profileStats">
-          <h3 id="leaderboard-heading">Leaderboard</h3>
-          <PlayerBadge
-            title="Games Played"
-            value={player.GamesPlayed}
-            rank={player.gamesPlayedRank}
-          />
-          <PlayerBadge
-            title="Goals Scored"
-            value={player.Goals}
-            rank={player.goalsRank}
-          />
-          <PlayerBadge
-            title="Assists Made"
-            value={player.Assists}
-            rank={player.assistsRank}
-          />
-          <PlayerBadge
-            title="Goals + Assists"
-            value={player.GoalContributions}
-            rank={player.contributionsRank}
-          />
-          <PlayerBadge
-            title="G + A / Games"
-            value={player.Efficiency}
-            rank={player.contributionsPerGameRank}
-            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
-          />
-          <PlayerBadge
-            title="Undefined stat"
-            value={1}
-            rank={1}
-            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
-          />
-          <PlayerBadge
-            title="Undefined stat"
-            value={1}
-            rank={1}
-            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
-          />
-          <PlayerBadge
-            title="Undefined stat"
-            value={1}
-            rank={1}
-            colors={['rgb(255, 79, 139, 0.1)', 'var(--pink)']}
-          />
-        </div> 
+        <ProfileBadges player={player} />
 
     </section>
   )

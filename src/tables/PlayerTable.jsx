@@ -21,10 +21,11 @@ function PlayerTable() {
     playersLoadingState,
     playersPageNumber,
     PER_PAGE,
-    playerSort,
-    setPlayerSort,
-    shownColumns
+    homeTableColumnWidth
   } = usePlayerContext();
+
+
+  // console.log("htcw:", homeTableColumnWidth)
 
   return (
     <section className="table-container">
@@ -33,8 +34,8 @@ function PlayerTable() {
           <tr className="header-row">
             <th className="rank"></th>
             <th className="left">Name</th>
-            <th>Position</th>
-            <th>Country</th>
+            <th style={{ width: homeTableColumnWidth }}>Position</th>
+            <th style={{ width: homeTableColumnWidth }}>Country</th>
             {headings.map(([label, sort]) => <PlayerTableTH 
               key={sort}
               sort={sort}

@@ -2,12 +2,12 @@ import { usePlayerContext } from "../context/PlayerContext.jsx"
 
 function PlayerTableTH({ sort, label }) {
 
-    const { playerSort, shownColumns, setPlayerSort } = usePlayerContext()
+    const { playerSort, shownColumns, setPlayerSort, homeTableColumnWidth } = usePlayerContext()
 
     if (!shownColumns.includes(sort)) return <></>
 
     return (
-        <th>
+        <th style={{ width: homeTableColumnWidth }}>
             <button onClick={() => setPlayerSort(sort)}>
                 {label}
                 {playerSort === sort && (

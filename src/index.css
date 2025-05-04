@@ -9,11 +9,27 @@
   --purple: #af95fc;
 }
 
+html, body {
+  min-height: 100dvh;
+  overflow-y: hidden;
+}
+
 body {
   background-color: var(--dark-blue);
   color: white;
   max-width: 100dvw;
   overflow-x: hidden;
+}
+
+#root {
+  height: 100dvh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  overflow-y: auto;
 }
 
 body,
@@ -42,7 +58,7 @@ button {
   align-items: center;
 }
 
-header button {
+header nav button {
   padding: 10px 20px;
   border-radius: 100px;
   color: white;
@@ -104,7 +120,9 @@ a {
   padding-left: 130px;
 }
 
-
+.extra-pt {
+  padding-top: .5rem;
+}
 
 #tablee {
   width: 100%;

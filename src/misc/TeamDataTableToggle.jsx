@@ -1,13 +1,12 @@
 import { useState } from "react"
 
-function TeamDataTableToggle() {
-    const [selected, setSelected] = useState('Teams')
+function TeamDataTableToggle({ tableShown, fn }) {
 
     return (
         <div id="team-table-toggle-container">
             <div id="team-table-toggle">
-                <button onClick={() => setSelected('Teams')} className={selected == 'Teams' ? 'active' : ''}>Teams</button>
-                <button onClick={() => setSelected('Comps')} className={selected != 'Teams' ? 'active' : ''}>Comps</button>
+                <button onClick={fn} className={tableShown == 'team' ? 'active' : ''}>Teams</button>
+                <button onClick={fn} className={tableShown != 'team' ? 'active' : ''}>Comps</button>
             </div>
         </div>
     )
