@@ -3,6 +3,7 @@ import FlagIcon from "../misc/FlagIcon.jsx";
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
+import Tooltip from "../misc/Tooltip.jsx";
 
 
 function PlayerTableRow({ player, rank }) {
@@ -40,7 +41,9 @@ function PlayerTableRow({ player, rank }) {
       </td>
       <td>{player.Position}</td>
       <td>
-        <FlagIcon countryName={player.birthCountry} />
+        <Tooltip message={player.birthCountry} >
+          <FlagIcon countryName={player.birthCountry}/>
+        </Tooltip>
       </td>
       {futbolDataTypes
         .filter((type) => shownColumns.includes(type.id))
