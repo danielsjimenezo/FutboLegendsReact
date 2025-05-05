@@ -14,7 +14,7 @@ const getDifferentChart = (chart1, chart2) => {
 };
 
 function HomePage() {
-  const { playerSort, secondChart, setPlayerSort, setSecondChart } =
+  const { playerSort, secondChart, setPlayerSort, setSecondChart, actions } =
     usePlayerContext();
 
   return (
@@ -23,7 +23,7 @@ function HomePage() {
         <section className="charts-container">
           <HomePageChartSelector
             chartKey={playerSort}
-            setter={setPlayerSort}
+            setter={actions.changeLeftChart}
             id="home-page-chart-selector-left"
           />
           <HomePageChartSelector

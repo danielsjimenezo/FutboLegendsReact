@@ -188,6 +188,38 @@ export const PlayerContextProvider = ({ children }) => {
       }
       setShownBadges(newBadges);
     },
+    changeLeftChart(chartId) {
+      // If the column is already shown, just update the playerSort
+      if (shownColumns.includes(chartId)) {
+        setPlayerSort(chartId);
+        return;
+      }
+
+      // If there are less than five columns showing, it is ok to add one
+      if (shownColumns.length < 5) {
+        setShownColumns([...shownColumns, chartId]);
+        return;
+      }
+
+      // Must determine the "rightmost (last)" futbolType and remove it.
+      const rightmost = futbolDataTypes.find((t) =>
+        shownColumns.includes(t.id)
+      );
+
+      // If not found, something is wrong. I don't think this will happen
+      if (!rightmost) {
+        throw new Error(
+          "rightmost futbolType was not found. shownColumns:",
+          shownColumns
+        );
+      }
+
+      const newColumns = [...shownColumns];
+      newColumns.splice(newColumns.indexOf(rightmost.id), 1);
+      newColumns.push(chartId);
+      setShownColumns(newColumns);
+      setPlayerSort(chartId);
+    },
   };
 
   return (
