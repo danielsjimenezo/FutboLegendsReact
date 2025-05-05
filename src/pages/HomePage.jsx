@@ -14,8 +14,15 @@ const getDifferentChart = (chart1, chart2) => {
 };
 
 function HomePage() {
-  const { playerSort, secondChart, setPlayerSort, setSecondChart } =
+  const { playerSort, secondChart, setPlayerSort, setSecondChart, actions } =
     usePlayerContext();
+
+  const handleSetPlayerSort = (filterOption) => {
+    setPlayerSort(filterOption)
+    if (!shownColumns.includes(filterOption)) {
+      actions.toggleShownColumn(filterOption)
+    }
+  }
 
   return (
     <>
@@ -23,7 +30,7 @@ function HomePage() {
         <section className="charts-container">
           <HomePageChartSelector
             chartKey={playerSort}
-            setter={setPlayerSort}
+            setter={handleSetPlayerSort}
             id="home-page-chart-selector-left"
           />
           <HomePageChartSelector

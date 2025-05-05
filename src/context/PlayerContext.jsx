@@ -121,7 +121,7 @@ export const PlayerContextProvider = ({ children }) => {
     return getMaxValues(players);
   }, [players]);
 
-  const displayedCharts = (() => {})();
+  const displayedCharts = (() => { })();
 
   ///// FETCHING DATA /////
   const loadPlayerData = async () => {
@@ -170,12 +170,20 @@ export const PlayerContextProvider = ({ children }) => {
     },
     toggleShownColumn(sort) {
       const newColumns = [...shownColumns];
-      const i = newColumns.indexOf(sort);
-      if (i === -1) {
-        newColumns.push(sort);
+      const isIncludedColumn = newColumns.includes(sort);
+
+      if (isIncludedColumn) {
+        const index = newColumns.indexOf(sort);
+        newColumns.splice(index, 1);
       } else {
-        newColumns.splice(i, 1);
+
+        if (newColumns.length >= 5) {
+          newColumns.pop();
+        }
+
+        newColumns.push(sort);
       }
+
       setShownColumns(newColumns);
     },
     toggleShownBadge(sort) {
