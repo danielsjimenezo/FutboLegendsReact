@@ -14,9 +14,17 @@ function Header() {
     <header className="container">
       <PlayerSearch />
       <nav id="nav">
+        <Link
+          to="/current"
+          className={`${location.pathname === "/current" ? "active" : ""}`}
+        >
+          <button className="topButtons" id="currentButton">
+            <span>Current</span>
+          </button>
+        </Link>
         <Link to="/" className={`${location.pathname === "/" ? "active" : ""}`}>
           <button className="topButtons" id="recordButtonn">
-            <span>Leaderboard</span>
+            <span>All-time</span>
           </button>
         </Link>
         <Link
@@ -26,7 +34,7 @@ function Header() {
           }`}
         >
           <button className="topButtons" id="compareButtonn">
-            <span>Compare Players</span>
+            <span>Compare</span>
           </button>
         </Link>
         <Link
@@ -70,10 +78,8 @@ function Header() {
           }}
         />
 
-        {(location.pathname === '/' || location.pathname.startsWith('/compare')) && (
-          <ShownColumnFilter />
-        )}
-
+        {(location.pathname === "/" ||
+          location.pathname.startsWith("/compare")) && <ShownColumnFilter />}
       </div>
     </header>
   );

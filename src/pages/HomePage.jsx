@@ -21,7 +21,11 @@ function HomePage() {
     <>
       <section className="content-container container">
         <section className="charts-container">
-          <HomePageChartSelector chartKey={playerSort} setter={setPlayerSort} id="home-page-chart-selector-left" />
+          <HomePageChartSelector
+            chartKey={playerSort}
+            setter={setPlayerSort}
+            id="home-page-chart-selector-left"
+          />
           <HomePageChartSelector
             chartKey={
               secondChart === playerSort ? getDifferentChart() : secondChart

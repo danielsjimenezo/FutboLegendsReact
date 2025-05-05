@@ -30,11 +30,11 @@
 
 .filter-menu {
   position: absolute;
-  top: 100%;
-  right: 0;
+  left: 0;
+  top: calc(100% + 1rem);
+  min-width: 225px;
   text-align: left;
   font-weight: 150;
-  min-width: 150px;
   z-index: 1000;
   background-color: rgba(104, 89, 150, 0.28);
   backdrop-filter: blur(25px);
@@ -62,7 +62,7 @@
     background-color: transparent;
     text-align: right;
     color: white;
-    padding: .5rem 1rem .5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
@@ -76,5 +76,5 @@
 }
 
 #country-filter button {
-  padding-left: .25rem !important;
+  padding-left: 0.25rem !important;
 }

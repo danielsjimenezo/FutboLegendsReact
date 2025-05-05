@@ -3,17 +3,18 @@ import { usePlayerContext } from "../context/PlayerContext.jsx";
 import PlayerTableTH from "./PlayerTableTH.jsx";
 import PlayerTableRow from "./PlayerTableRow.jsx";
 import PlayerTablePaginationControls from "./PlayerTablePaginationControls.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
-const headings = [
-  ['Games', 'games'],
-  ['Goals', 'goals'],
-  ['Assists', 'assists'],
-  ['G+A', 'contributions'],
-  ['G+A/game', 'efficiency'],
-  ['Balón (1)', 'balon1'],
-  ['Balón (2)', 'balon2'],
-  ['Balón (3)', 'balon3']
-]
+// const headings = [
+//   ['Games', 'games'],
+//   ['Goals', 'goals'],
+//   ['Assists', 'assists'],
+//   ['G+A', 'contributions'],
+//   ['G+A/game', 'efficiency'],
+//   ['Balón (1)', 'balon1'],
+//   ['Balón (2)', 'balon2'],
+//   ['Balón (3)', 'balon3']
+// ]
 
 function PlayerTable() {
   const {
@@ -21,9 +22,8 @@ function PlayerTable() {
     playersLoadingState,
     playersPageNumber,
     PER_PAGE,
-    homeTableColumnWidth
+    homeTableColumnWidth,
   } = usePlayerContext();
-
 
   // console.log("htcw:", homeTableColumnWidth)
 
@@ -36,11 +36,13 @@ function PlayerTable() {
             <th className="left">Name</th>
             <th style={{ width: homeTableColumnWidth }}>Position</th>
             <th style={{ width: homeTableColumnWidth }}>Country</th>
-            {headings.map(([label, sort]) => <PlayerTableTH 
-              key={sort}
-              sort={sort}
-              label={label}
-            />)}
+            {futbolDataTypes.map((type) => (
+              <PlayerTableTH
+                key={type.id}
+                sort={type.id}
+                label={type.labelShort}
+              />
+            ))}
           </tr>
         </thead>
         <tbody>

@@ -1,17 +1,8 @@
 import { useState, useRef } from "react";
 import { usePlayerContext } from "../context/PlayerContext.jsx";
 import useClickOutside from "../utilities/useClickOutside.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
-const menuItems = [
-  ['Games', 'games'],
-  ['Goals', 'goals'],
-  ['Assists', 'assists'],
-  ['G+A', 'contributions'],
-  ['G+A/game', 'efficiency'],
-  ['Balón (1)', 'balon1'],
-  ['Balón (2)', 'balon2'],
-  ['Balón (3)', 'balon3']
-]
 function ShownBadgesFilter({}) {
   const { shownBadges, actions } = usePlayerContext();
 
@@ -22,13 +13,12 @@ function ShownBadgesFilter({}) {
     setShown(false);
   });
 
-
   const toggleShown = () => {
     setShown(!shown);
   };
 
   const handleChoose = (choice) => {
-    actions.toggleShownBadge(choice)
+    actions.toggleShownBadge(choice);
   };
 
   return (
@@ -37,11 +27,15 @@ function ShownBadgesFilter({}) {
         <img src="/images/Icons/hdots.svg" alt="3 dots menu" />
       </button>
       <div className={`filter-menu ${shown ? "shown" : ""}`}>
-        {menuItems.map(([label, sort], i) => {
+        {futbolDataTypes.map((type, i) => {
           return (
-            <button key={label} onClick={() => handleChoose(sort)}>
-              {label}
-              <input type="checkbox" checked={shownBadges.includes(sort)} readOnly/>
+            <button key={type.label} onClick={() => handleChoose(type.id)}>
+              {type.label}
+              <input
+                type="checkbox"
+                checked={shownBadges.includes(type.id)}
+                readOnly
+              />
             </button>
           );
         })}

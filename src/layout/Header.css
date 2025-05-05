@@ -32,10 +32,96 @@ header {
 }
 
 #nav a span {
-  border-bottom: 3px solid transparent;
+  border-bottom: 1px solid transparent;
   padding-bottom: 0.25rem;
 }
 
 #nav a.active span {
   border-color: white;
+}
+
+#filters {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+#filter-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 250ms;
+}
+#filter-button {
+  background-color: transparent;
+  border-radius: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.searchFunc {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > .input-wrapper {
+    position: relative;
+
+    & > img {
+      position: absolute;
+      width: 25px;
+      top: 50%;
+      translate: 0 -50%;
+      left: 15px;
+    }
+
+    &:has(img) input {
+      padding-left: 3rem !important;
+    }
+  }
+}
+
+#searchResults {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  text-align: left;
+  font-weight: 150;
+  z-index: 1000;
+  background-color: rgba(104, 89, 150, 0.28);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  font-size: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.searchResultBox {
+  display: flex;
+  padding: 1rem;
+  color: white;
+  align-items: center;
+  width: 100%;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.player-result {
+  display: flex;
+  align-items: center;
+}
+
+.player-result-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.player-result-info {
+  display: flex;
+  flex-direction: column;
 }

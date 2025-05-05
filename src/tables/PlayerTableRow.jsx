@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import FlagIcon from "../misc/FlagIcon.jsx";
 import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate();
 
   const profilePicSrc = `/images/Players/${player.Player}.jpg`;
   const playerHref = `/profile/${player.Player.replaceAll(" ", "_")}`;
-  const { shownColumns } = usePlayerContext()
+  const { shownColumns } = usePlayerContext();
 
   const handleTrClick = () => {
     navigate(playerHref);
@@ -39,14 +40,11 @@ function PlayerTableRow({ player, rank }) {
       <td>
         <FlagIcon countryName={player.birthCountry} />
       </td>
-      {shownColumns.includes('games') && <td>{player.GamesPlayed || "N/A"}</td>}
-      {shownColumns.includes('goals') && <td>{player.Goals || "N/A"}</td>}
-      {shownColumns.includes('assists') && <td>{player.Assists || "N/A"}</td>}
-      {shownColumns.includes('contributions') && <td>{player.GoalContributions || "N/A"}</td>}
-      {shownColumns.includes('efficiency') && <td>{player.Efficiency || "N/A"}</td>}
-      {shownColumns.includes('balon1') && <td>{player["Balon (1st)"] || 0}</td>}
-      {shownColumns.includes('balon2') && <td>{player["Balon (2nd)"] || 0}</td>}
-      {shownColumns.includes('balon3') && <td>{player["Balon (3rd)"] || 0}</td>}
+      {futbolDataTypes
+        .filter((type) => shownColumns.includes(type.id))
+        .map((type) => {
+          return <td key={type.id}>{type.getPlayerValue(player)}</td>;
+        })}
     </tr>
   );
 }

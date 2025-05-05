@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { fetchData, getArrayFromLocalStorage } from "../utilities/utilities.js";
-import { countries } from "../utilities/countries.js";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 const PER_PAGE = 15;
 
@@ -20,14 +20,46 @@ export const PlayerContextProvider = ({ children }) => {
   const [countryFilter, setCountryFilter] = useState("all");
   const [positionFilter, setPositionFilter] = useState("all");
 
-  const initialColumns = ['games', 'goals', 'assists', 'contributions', 'efficiency']
-  const [shownColumns, setShownColumns] = useState(getArrayFromLocalStorage('futbolegends::shownColumns', initialColumns));
-  useEffect(() => localStorage.setItem('futbolegends::shownColumns', JSON.stringify(shownColumns)), [shownColumns])
+  const initialColumns = [
+    "games",
+    "goals",
+    "assists",
+    "contributions",
+    "efficiency",
+  ];
+  const [shownColumns, setShownColumns] = useState(
+    getArrayFromLocalStorage("futbolegends::shownColumns", initialColumns)
+  );
+  useEffect(
+    () =>
+      localStorage.setItem(
+        "futbolegends::shownColumns",
+        JSON.stringify(shownColumns)
+      ),
+    [shownColumns]
+  );
 
-  const initialBadges = ['games', 'goals', 'assists', 'contributions', 'efficiency', 'balon1', 'balon2', 'balon3']
-  const [shownBadges, setShownBadges] = useState(getArrayFromLocalStorage('futbolegends::shownBadges', initialBadges));
-  useEffect(() => localStorage.setItem('futbolegends::shownBadges', JSON.stringify(shownBadges)), [shownBadges])
-
+  const initialBadges = [
+    "games",
+    "goals",
+    "assists",
+    "contributions",
+    "efficiency",
+    "balon1",
+    "balon2",
+    "balon3",
+  ];
+  const [shownBadges, setShownBadges] = useState(
+    getArrayFromLocalStorage("futbolegends::shownBadges", initialBadges)
+  );
+  useEffect(
+    () =>
+      localStorage.setItem(
+        "futbolegends::shownBadges",
+        JSON.stringify(shownBadges)
+      ),
+    [shownBadges]
+  );
 
   ///// DERIVED VALUES /////
   const [startIndex, endIndex] = [
@@ -36,9 +68,9 @@ export const PlayerContextProvider = ({ children }) => {
   ];
 
   const homeTableColumnWidth = (() => {
-    const nameAndRankWidthPercent = 0.20
+    const nameAndRankWidthPercent = 0.2;
     const rest = 1 - nameAndRankWidthPercent;
-    return (rest / (shownColumns.length + 2) * 100).toFixed(2) + "%"
+    return ((rest / (shownColumns.length + 2)) * 100).toFixed(2) + "%";
   })();
 
   const getFilteredPlayers = () => {
@@ -55,21 +87,8 @@ export const PlayerContextProvider = ({ children }) => {
 
     /// HANDLE SORT
     result.sort((a, b) => {
-      switch (playerSort) {
-        case "contributions":
-          return b.Goals + b.Assists - (a.Goals + a.Assists);
-        case "games":
-          return b.GamesPlayed - a.GamesPlayed;
-        case "balon1":
-          return b["Balon (1st)"] - a["Balon (1st)"];
-        case "balon2":
-          return b["Balon (2nd)"] - a["Balon (2nd)"];
-        case "goals":
-        case "assists":
-        case "efficiency":
-          const key = playerSort[0].toUpperCase() + playerSort.slice(1);
-          return b[key] - a[key];
-      }
+      const type = futbolDataTypes.find((t) => t.id === playerSort);
+      return type.sortAlg(a, b);
     });
 
     return result;
@@ -102,9 +121,7 @@ export const PlayerContextProvider = ({ children }) => {
     return getMaxValues(players);
   }, [players]);
 
-  const displayedCharts = (()=>{
-    
-  })();
+  const displayedCharts = (() => {})();
 
   ///// FETCHING DATA /////
   const loadPlayerData = async () => {
@@ -152,24 +169,24 @@ export const PlayerContextProvider = ({ children }) => {
       );
     },
     toggleShownColumn(sort) {
-      const newColumns = [...shownColumns]
-      const i = newColumns.indexOf(sort)
+      const newColumns = [...shownColumns];
+      const i = newColumns.indexOf(sort);
       if (i === -1) {
-        newColumns.push(sort)
+        newColumns.push(sort);
       } else {
-        newColumns.splice(i, 1)
+        newColumns.splice(i, 1);
       }
-      setShownColumns(newColumns)
+      setShownColumns(newColumns);
     },
     toggleShownBadge(sort) {
-      const newBadges = [...shownBadges]
-      const i = newBadges.indexOf(sort)
+      const newBadges = [...shownBadges];
+      const i = newBadges.indexOf(sort);
       if (i === -1) {
-        newBadges.push(sort)
+        newBadges.push(sort);
       } else {
-        newBadges.splice(i, 1)
+        newBadges.splice(i, 1);
       }
-      setShownBadges(newBadges)
+      setShownBadges(newBadges);
     },
   };
 
@@ -192,7 +209,7 @@ export const PlayerContextProvider = ({ children }) => {
         setSecondChart,
         shownColumns,
         homeTableColumnWidth,
-        shownBadges
+        shownBadges,
       }}
     >
       {children}

@@ -1,17 +1,8 @@
 import { useState, useRef } from "react";
 import { usePlayerContext } from "../context/PlayerContext.jsx";
 import useClickOutside from "../utilities/useClickOutside.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
-const menuItems = [
-  ['Games', 'games'],
-  ['Goals', 'goals'],
-  ['Assists', 'assists'],
-  ['G+A', 'contributions'],
-  ['G+A/game', 'efficiency'],
-  ['Balón (1)', 'balon1'],
-  ['Balón (2)', 'balon2'],
-  ['Balón (3)', 'balon3']
-]
 function ShownColumnFilter({}) {
   const { shownColumns, actions } = usePlayerContext();
 
@@ -22,13 +13,12 @@ function ShownColumnFilter({}) {
     setShown(false);
   });
 
-
   const toggleShown = () => {
     setShown(!shown);
   };
 
   const handleChoose = (choice) => {
-    actions.toggleShownColumn(choice)
+    actions.toggleShownColumn(choice);
   };
 
   return (
@@ -37,11 +27,26 @@ function ShownColumnFilter({}) {
         <span>STATS</span>
       </button>
       <div className={`filter-menu ${shown ? "shown" : ""}`}>
-        {menuItems.map(([label, sort], i) => {
+        {futbolDataTypes.map((type, i) => {
+          const disabled =
+            !shownColumns.includes(type.id) && shownColumns.length >= 5;
           return (
-            <button key={label} onClick={() => handleChoose(sort)}>
-              {label}
-              <input type="checkbox" checked={shownColumns.includes(sort)} readOnly/>
+            <button
+              key={type.label}
+              onClick={() => {
+                if (disabled) {
+                  return;
+                }
+                handleChoose(type.id);
+              }}
+            >
+              {type.label}
+              <input
+                type="checkbox"
+                checked={shownColumns.includes(type.id)}
+                disabled={disabled}
+                readOnly
+              />
             </button>
           );
         })}

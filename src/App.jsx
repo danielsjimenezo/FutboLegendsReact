@@ -4,10 +4,9 @@ import HomePage from "./pages/HomePage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ComparePage from "./pages/ComparePage.jsx";
 import RankingsPage from "./pages/RankingsPage.jsx";
-
+import CurrentPage from "./pages/CurrentPage.jsx";
 
 function App() {
- 
   return (
     <>
       <div className="header-container">
@@ -16,6 +15,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/current" element={<CurrentPage />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
 
           <Route path="/compare" element={<ComparePage />} />
@@ -30,4 +30,3 @@ function App() {
 }
 
 export default App;
-

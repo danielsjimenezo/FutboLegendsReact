@@ -26,7 +26,7 @@
     min-width: 250px;
     border-radius: 1rem 1rem 1rem 1rem;
     z-index: 1000;
-    overflow: hidden;
+    /* overflow: hidden; */
     max-height: 0px;
     transition: 0.25ms;
     user-select: none;

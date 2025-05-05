@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 function HomePageChartSelectorMenu({ LABELS, setter, id }) {
   const [menuShown, setMenuShown] = useState(false);
@@ -11,30 +12,28 @@ function HomePageChartSelectorMenu({ LABELS, setter, id }) {
     setMenuShown(false);
   });
 
-
   return (
     <div className="selector-container" ref={containerRef}>
       <button onClick={() => setMenuShown(!menuShown)}>
         <img src="/images/Icons/hdots.svg" alt="" />
       </button>
       <div className={`menu filter-menu ${menuShown ? "shown" : ""}`}>
-        {Object.entries(LABELS)
-          .filter(([sortType, label]) => playerSort !== sortType && secondChart !== sortType)
-          .map(([sortType, label]) => {
-
-          const key = `${id}|${sortType}`
-          return (
-            <button
-              key={key}
-              onClick={() => {
-                setter(sortType);
-                setMenuShown(false);
-              }}
-            >
-              {label}
-            </button>
-          );
-        })}
+        {futbolDataTypes
+          .filter((type) => playerSort !== type.id && secondChart !== type.id)
+          .map((type) => {
+            const key = `${id}|${type.id}`;
+            return (
+              <button
+                key={key}
+                onClick={() => {
+                  setter(type.id);
+                  setMenuShown(false);
+                }}
+              >
+                {type.label}
+              </button>
+            );
+          })}
       </div>
     </div>
   );
