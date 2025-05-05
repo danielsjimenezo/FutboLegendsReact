@@ -1,6 +1,7 @@
 
 import { useState, useRef } from "react"
-import { usePlayerContext } from "../context/PlayerContext.jsx"
+import { useSelector } from "react-redux"
+import { selectPlayerState } from "../context/playerSlice.js"
 import useClickOutside from '../utilities/useClickOutside.jsx'
 
 function DropdownFilter({
@@ -14,7 +15,7 @@ function DropdownFilter({
         countries, 
         positions,
         actions
-    } = usePlayerContext()
+    } = useSelector(selectPlayerState)
     
     const [shown, setShown] = useState(false)
     const [selected, setSelected] = useState(-1)

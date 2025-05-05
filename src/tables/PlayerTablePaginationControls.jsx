@@ -1,11 +1,14 @@
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
+import { turnPage } from "../context/playerSlice.js";
 
 function PlayerTablePaginationControls() {
     const { 
         filteredPageCount,
         playersPageNumber,
-        actions
-    } = usePlayerContext();
+    } = useSelector(selectPlayerState);
+
+    const dispatch = useDispatch()
     
     return (
         <div id="paginationButtons">
@@ -14,7 +17,7 @@ function PlayerTablePaginationControls() {
                     <button
                         className="tableBtns prev"
                         id="prev"
-                        onClick={() => actions.turnPage(-1)}
+                        onClick={() => dispatch(turnPage(-1))}
                     >
                         Previous
                     </button>
@@ -28,7 +31,7 @@ function PlayerTablePaginationControls() {
                     <button
                         className="tableBtns next"
                         id="next"
-                        onClick={() => actions.turnPage(1)}
+                        onClick={() => dispatch(turnPage(1))}
                     >
                         Next
                     </button>

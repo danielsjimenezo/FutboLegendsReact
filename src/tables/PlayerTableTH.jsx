@@ -1,8 +1,9 @@
-import { usePlayerContext } from "../context/PlayerContext.jsx"
+import { useSelector } from "react-redux"
+import { selectPlayerState } from "../context/playerSlice.js"
 
 function PlayerTableTH({ sort, label }) {
 
-    const { playerSort, shownColumns, setPlayerSort, homeTableColumnWidth } = usePlayerContext()
+    const { playerSort, shownColumns, setPlayerSort, homeTableColumnWidth } = useSelector(selectPlayerState)
 
     if (!shownColumns.includes(sort)) return <></>
 

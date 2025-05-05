@@ -1,5 +1,6 @@
 import Chart from "./Chart.jsx";
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
 
 import {
   HOME_PAGE_CHART_ASPECT_RATIO,
@@ -17,7 +18,7 @@ const defaultDataSet = () => {
 };
 
 function FutbolChart({ futbolType, readAllPlayers }) {
-  const { displayedPlayers, players, PER_PAGE } = usePlayerContext();
+  const { displayedPlayers, players, PER_PAGE } = useSelector(selectPlayerState);
   const playerArr = readAllPlayers ? players : displayedPlayers;
 
   const sorted = playerArr.toSorted(futbolType.sortAlg).slice(0, PER_PAGE);

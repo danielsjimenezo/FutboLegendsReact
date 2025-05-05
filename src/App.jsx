@@ -5,8 +5,17 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import ComparePage from "./pages/ComparePage.jsx";
 import RankingsPage from "./pages/RankingsPage.jsx";
 import CurrentPage from "./pages/CurrentPage.jsx";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadPlayerData } from "./context/playerSlice.js";
 
 function App() {
+
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(loadPlayerData())
+  },[])
+
   return (
     <>
       <div className="header-container">

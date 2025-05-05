@@ -1,8 +1,8 @@
 import "./ProfilePage.css"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
-import { usePlayerContext } from "../context/PlayerContext.jsx"
-import PlayerBadge from "../misc/PlayerBadge.jsx"
+import { useSelector } from "react-redux"
+import { selectPlayerState } from "../context/playerSlice.js"
 import GoalTypeChart1 from "../charts/GoalTypeChart1.jsx"
 import GoalTypeChart2 from "../charts/GoalTypeChart2.jsx"
 import TeamDataTable from "../tables/TeamDataTable.jsx"
@@ -14,7 +14,7 @@ import ShownBadgesFilter from "../layout/ShownBadgesFilter.jsx"
 function ProfilePage() {
   const [tableShown, setTableShown] = useState('team')
   const toggleTableShown = () => setTableShown(tableShown === 'team' ? 'comp' : 'team');
-  const { players, playersLoadingState } = usePlayerContext()
+  const { players, playersLoadingState } = useSelector(selectPlayerState)
   const { id } = useParams()
   const player = players.find(p => p.Player === id.replaceAll('_', ' '))
 

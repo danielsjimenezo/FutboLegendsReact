@@ -1,5 +1,4 @@
 function TeamDataTable({ player }) {
-  console.log("PLAYER", player);
 
   return (
     <div className="playerTableStats">
