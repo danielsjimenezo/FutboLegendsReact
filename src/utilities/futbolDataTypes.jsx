@@ -1,3 +1,31 @@
+// @ts-check
+
+/**
+ * @typedef {Record<string, any>} Player
+ * @typedef {["transparent", string, number?, number?, number?, number?]} Gradient
+ */
+
+/**
+  * @typedef ChartConfig
+  * @property {string} label
+  * @property {Gradient} [gradient]
+  * @property {(p: Player) => number} getPlayerValue
+  */
+
+/**
+ * @typedef FutbolDataType
+ * @property {string} id A unique identifier for the data type. Does not appear in the UI.
+ * @property {string} labelLong appears in UI
+ * @property {string} label appears in UI
+ * @property {string} labelShort appears in UI
+ * @property {(p1: Player, p2: Player) => number} sortAlg
+ * @property {(p: Player) => number} getPlayerValue
+ * @property {(p: Player) => number} getPlayerRank
+ * @property {Gradient} [gradient] OPTIONAL
+ * @property {ChartConfig[]} [multiData] OPTIONAL
+ */
+
+/** @type {FutbolDataType[]} */
 export const futbolDataTypes = [
   {
     id: "games",
