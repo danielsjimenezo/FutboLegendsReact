@@ -32,16 +32,72 @@
   background-color: transparent;
 }
 
+/* Add this at the top of your CSS file */
+
+/* Container to constrain width to match header */
+.current-page-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.current-page {
+  width: 100%;
+  /* Use a combination of max-width and padding to control width */
+  max-width: 90%; /* Limit overall width */
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+  /* Increase padding to match icon positions */
+  padding: 1rem 80px; /* Increase this value to match icon positions */
+  font-family: var(
+    --font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+  margin: 0;
+}
+
+/* Remove duplicate declarations */
+@media (max-width: 768px) {
+  .current-page {
+    padding: 1rem 20px; /* Smaller padding on mobile */
+    grid-template-columns: 1fr;
+    max-width: 95%; /* Allow slightly wider content on mobile */
+  }
+
+  .current-page-container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .current-page {
+    grid-template-columns: 1fr;
+  }
+
+  .current-page-container {
+    padding: 0 0.5rem;
+  }
+}
+
 /* Left Section - Leagues */
 /* .leagues-section {
   height: fit-content;
 } */
 
-.leagues-list {
+.leagues-section {
+  border: 1px solid var(--border-color, #af95fc);
+}
+
+.leagues-section .leagues-list {
   list-style-position: inside;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--border-color, #af95fc);
 }
 
 .leagues-list li {
@@ -50,6 +106,7 @@
   transition: background-color 0.2s ease;
   cursor: pointer;
   background-color: transparent;
+  font-size: 0.8rem;
 }
 
 .leagues-list li:hover {
@@ -63,6 +120,7 @@
 /* Center Section - Timeline */
 .timeline-section {
   position: relative;
+  border: 1px solid var(--border-color, #af95fc);
 }
 
 .vertical-timeline {
@@ -80,26 +138,67 @@
   background-color: transparent;
 }
 
-.timeline-item {
-  position: relative;
-  margin: 2rem 0;
-  padding: 0 1rem 0 8rem;
+.vertical-timeline::before {
+  display: none;
 }
 
+/* Adjust the timeline item to have less left padding */
+.timeline-item {
+  position: relative;
+  margin: 3rem 0 2rem 0; /* Increased top margin to make room for date */
+  padding: 0 1rem; /* Remove left padding since date is on top now */
+}
+
+/* Reposition the date to be on top and centered */
 .timeline-date {
   position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--primary-color, #1a73e8);
+  top: -1.5rem; /* Position above the card */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center alignment */
+  background-color: var(--primary-color, #af95fc);
   color: white;
   padding: 0.5rem 0.75rem;
   border-radius: 4px;
   font-size: 0.85rem;
   font-weight: 500;
   text-align: center;
-  width: 5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  width: auto; /* Allow width to adjust to content */
+  min-width: 5rem; /* Minimum width */
+  white-space: nowrap; /* Prevent text wrapping */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 2; /* Ensure it's above the card */
+}
+
+/* Ensure no text wrapping in team names */
+.team span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* First timeline item needs extra top margin */
+.vertical-timeline .timeline-item:first-child {
+  margin-top: 2.5rem;
+}
+
+/* Add a small connecting line from date to card */
+.timeline-date::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 0.5rem;
+  background-color: var(--primary-color, #af95fc);
+}
+
+/* Adjust for mobile */
+@media (max-width: 600px) {
+  .timeline-item {
+    padding: 0 0.5rem;
+    margin: 3rem 0.5rem 1.5rem 0.5rem;
+  }
 }
 
 .match-card {
@@ -181,7 +280,6 @@
   counter-reset: player-counter;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--border-color, #af95fc);
 }
 
 .player-stats-list li {
@@ -191,6 +289,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+  font-size: 0.8rem;
 }
 
 .player-stats-list li:before {
@@ -347,6 +446,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color, #af95fc);
+  font-size: 0.8rem;
 }
 
 .wins-section h2 {
@@ -418,4 +518,76 @@
 .player-stats-list::-webkit-scrollbar,
 .team-stats-list::-webkit-scrollbar {
   display: none;
+}
+
+.stats-section {
+  border: 1px solid var(--border-color, #af95fc);
+}
+
+/* Fallback for missing badges */
+.team-badge-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Update match card with white border */
+.match-card {
+  background-color: rgba(25, 25, 35, 0.4);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Add white border */
+}
+
+/* Update teams container */
+.teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+/* Update team styling to include badge */
+.team {
+  font-weight: 500;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Right align second team with badge on right */
+.team:last-child {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+/* Add team badge styling */
+.team-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Center the competition name with border */
+.competition {
+  color: var(--text-secondary, #70757a);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center; /* Center the text */
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.5rem;
 }

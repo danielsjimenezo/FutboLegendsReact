@@ -1,10 +1,58 @@
-import { useState } from "react";
-// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useState, useRef, useEffect } from "react";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import "./RankingsPage.css";
 
+// Sortable Item Component
+function SortableItem({ id, index, name }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style = transform
+    ? {
+        transform: CSS.Transform.toString(transform),
+        transition,
+      }
+    : {};
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`ranking-item ${isDragging ? "dragging" : ""}`}
+      {...attributes}
+      {...listeners}
+    >
+      <span className="ranking-number">{index + 1}</span>
+      <span className="player-name">{name}</span>
+      <span className="drag-indicator">⋮⋮</span>
+    </div>
+  );
+}
+
 function RankingsPage() {
-  // Sample player data
-  const officialTopPlayers = [
+  // All available players database (expanded for search)
+  const allPlayers = [
     { id: "p1", name: "Lionel Messi" },
     { id: "p2", name: "Cristiano Ronaldo" },
     { id: "p3", name: "Kylian Mbappé" },
@@ -25,79 +73,264 @@ function RankingsPage() {
     { id: "p18", name: "Phil Foden" },
     { id: "p19", name: "Jude Bellingham" },
     { id: "p20", name: "N'Golo Kanté" },
+    { id: "p21", name: "Federico Valverde" },
+    { id: "p22", name: "Jamal Musiala" },
+    { id: "p23", name: "Bukayo Saka" },
+    { id: "p24", name: "Bruno Fernandes" },
+    { id: "p25", name: "Bernardo Silva" },
+    { id: "p26", name: "Rúben Dias" },
+    { id: "p27", name: "João Cancelo" },
+    { id: "p28", name: "Pedri" },
+    { id: "p29", name: "Gavi" },
+    { id: "p30", name: "Alisson Becker" },
   ];
 
-  // Initialize state with players
-  const [myTopPlayers, setMyTopPlayers] = useState([...officialTopPlayers]);
+  // Sample player data for official rankings
+  const officialDefaultPlayers = allPlayers.slice(0, 20);
 
-  // Handle drag end
-  const onDragEnd = (result) => {
-    // Dropped outside the list
-    if (!result.destination) {
-      return;
+  // Initialize MY RANKINGS states
+  const [myTopPlayers, setMyTopPlayers] = useState([...officialDefaultPlayers]);
+  const [mySearchTerm, setMySearchTerm] = useState("");
+  const [mySearchResults, setMySearchResults] = useState([]);
+  const [myReplaceIndex, setMyReplaceIndex] = useState(0);
+  const [showMyResults, setShowMyResults] = useState(false);
+
+  // Initialize OFFICIAL RANKINGS states (completely separate)
+  const [officialTopPlayers, setOfficialTopPlayers] = useState([
+    ...officialDefaultPlayers,
+  ]);
+  const [officialSearchTerm, setOfficialSearchTerm] = useState("");
+  const [officialSearchResults, setOfficialSearchResults] = useState([]);
+  const [officialReplaceIndex, setOfficialReplaceIndex] = useState(0);
+  const [showOfficialResults, setShowOfficialResults] = useState(false);
+
+  // Separate refs for each section
+  const myResultsRef = useRef(null);
+  const officialResultsRef = useRef(null);
+
+  // Set up sensors for drag detection - separate for each section
+  const myDragSensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const officialDragSensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  // MY RANKINGS search functionality
+  const handleMySearch = (e) => {
+    const term = e.target.value;
+    setMySearchTerm(term);
+
+    if (term.length >= 2) {
+      const results = allPlayers.filter((player) =>
+        player.name.toLowerCase().includes(term.toLowerCase())
+      );
+      setMySearchResults(results);
+      setShowMyResults(true);
+    } else {
+      setMySearchResults([]);
+      setShowMyResults(false);
     }
-
-    // Reorder the list
-    const items = Array.from(myTopPlayers);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setMyTopPlayers(items);
   };
+
+  // OFFICIAL RANKINGS search functionality
+  const handleOfficialSearch = (e) => {
+    const term = e.target.value;
+    setOfficialSearchTerm(term);
+
+    if (term.length >= 2) {
+      const results = allPlayers.filter((player) =>
+        player.name.toLowerCase().includes(term.toLowerCase())
+      );
+      setOfficialSearchResults(results);
+      setShowOfficialResults(true);
+    } else {
+      setOfficialSearchResults([]);
+      setShowOfficialResults(false);
+    }
+  };
+
+  // Handle selection from MY search results
+  const handleSelectMyPlayer = (player) => {
+    // Replace player at current index
+    const newPlayers = [...myTopPlayers];
+    newPlayers[myReplaceIndex] = player;
+
+    setMyTopPlayers(newPlayers);
+    setMySearchTerm("");
+    setMySearchResults([]);
+    setShowMyResults(false);
+
+    // Increment index for next selection, cycle back to 0 if at end
+    setMyReplaceIndex((prevIndex) => (prevIndex + 1) % 20);
+  };
+
+  // Handle selection from OFFICIAL search results
+  const handleSelectOfficialPlayer = (player) => {
+    // Replace player at current index
+    const newPlayers = [...officialTopPlayers];
+    newPlayers[officialReplaceIndex] = player;
+
+    setOfficialTopPlayers(newPlayers);
+    setOfficialSearchTerm("");
+    setOfficialSearchResults([]);
+    setShowOfficialResults(false);
+
+    // Increment index for next selection, cycle back to 0 if at end
+    setOfficialReplaceIndex((prevIndex) => (prevIndex + 1) % 20);
+  };
+
+  // Handle drag end for MY RANKINGS
+  const handleMyDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (active && over && active.id !== over.id) {
+      setMyTopPlayers((items) => {
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
+  // Handle drag end for OFFICIAL RANKINGS
+  const handleOfficialDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (active && over && active.id !== over.id) {
+      setOfficialTopPlayers((items) => {
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
+  // Close search results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        myResultsRef.current &&
+        !myResultsRef.current.contains(event.target)
+      ) {
+        setShowMyResults(false);
+      }
+
+      if (
+        officialResultsRef.current &&
+        !officialResultsRef.current.contains(event.target)
+      ) {
+        setShowOfficialResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="rankings-page">
-      {/* Left Section - Editable Rankings */}
+      {/* Left Section - My Rankings */}
       <section className="rankings-section editable-rankings">
-        <h2>My Top 20</h2>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="myRankings">
-            {(provided) => (
-              <div
-                className="rankings-list"
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {myTopPlayers.map((player, index) => (
-                  <Draggable
+        <div className="section-header">
+          <h2>My Top 20</h2>
+          <div className="search-container" ref={myResultsRef}>
+            <input
+              type="text"
+              placeholder={`Search to replace #${myReplaceIndex + 1}...`}
+              value={mySearchTerm}
+              onChange={handleMySearch}
+              className="search-input"
+            />
+            {showMyResults && mySearchResults.length > 0 && (
+              <ul className="search-results">
+                {mySearchResults.map((player) => (
+                  <li
                     key={player.id}
-                    draggableId={player.id}
-                    index={index}
+                    onClick={() => handleSelectMyPlayer(player)}
                   >
-                    {(provided, snapshot) => (
-                      <div
-                        className={`ranking-item ${
-                          snapshot.isDragging ? "dragging" : ""
-                        }`}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <span className="ranking-number">{index + 1}</span>
-                        <span className="player-name">{player.name}</span>
-                        <span className="drag-indicator">⋮⋮</span>
-                      </div>
-                    )}
-                  </Draggable>
+                    {player.name}
+                  </li>
                 ))}
-                {provided.placeholder}
-              </div>
+              </ul>
             )}
-          </Droppable>
-        </DragDropContext>
+          </div>
+        </div>
+
+        <DndContext
+          sensors={myDragSensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleMyDragEnd}
+        >
+          <SortableContext
+            items={myTopPlayers.map((player) => player.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="rankings-list">
+              {myTopPlayers.map((player, index) => (
+                <SortableItem
+                  key={player.id}
+                  id={player.id}
+                  index={index}
+                  name={player.name}
+                />
+              ))}
+            </div>
+          </SortableContext>
+        </DndContext>
       </section>
 
       {/* Right Section - Official Rankings */}
       <section className="rankings-section official-rankings">
-        <h2>Official Top 20</h2>
-        <div className="rankings-list">
-          {officialTopPlayers.map((player, index) => (
-            <div key={player.id} className="ranking-item">
-              <span className="ranking-number">{index + 1}</span>
-              <span className="player-name">{player.name}</span>
-            </div>
-          ))}
+        <div className="section-header">
+          <h2>Official Top 20</h2>
+          <div className="search-container" ref={officialResultsRef}>
+            <input
+              type="text"
+              placeholder={`Search to replace #${officialReplaceIndex + 1}...`}
+              value={officialSearchTerm}
+              onChange={handleOfficialSearch}
+              className="search-input"
+            />
+            {showOfficialResults && officialSearchResults.length > 0 && (
+              <ul className="search-results">
+                {officialSearchResults.map((player) => (
+                  <li
+                    key={player.id}
+                    onClick={() => handleSelectOfficialPlayer(player)}
+                  >
+                    {player.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
+
+        <DndContext
+          sensors={officialDragSensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleOfficialDragEnd}
+        >
+          <SortableContext
+            items={officialTopPlayers.map((player) => player.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="rankings-list">
+              {officialTopPlayers.map((player, index) => (
+                <SortableItem
+                  key={player.id}
+                  id={player.id}
+                  index={index}
+                  name={player.name}
+                />
+              ))}
+            </div>
+          </SortableContext>
+        </DndContext>
       </section>
     </div>
   );
