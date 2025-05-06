@@ -1,0 +1,113 @@
+/* Rankings Page Layout */
+.rankings-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: var(
+    --font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+}
+
+/* Section Styling */
+.rankings-section {
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid var(--border-color, #af95fc);
+  display: flex;
+  flex-direction: column;
+}
+
+.rankings-section h2 {
+  font-size: 1.5rem;
+  color: white;
+  padding: 1.2rem;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color, #eaeaea);
+  background-color: transparent;
+  flex-shrink: 0;
+}
+
+/* Rankings List */
+.rankings-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+/* Hide scrollbars */
+.rankings-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.rankings-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ranking Item */
+.ranking-item {
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid var(--border-color, #eaeaea);
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.ranking-item:last-child {
+  border-bottom: none;
+}
+
+/* Draggable item styling */
+.ranking-item.dragging {
+  background-color: rgba(175, 149, 252, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.editable-rankings .ranking-item {
+  cursor: grab;
+}
+
+.editable-rankings .ranking-item:active {
+  cursor: grabbing;
+}
+
+/* Elements inside items */
+.ranking-number {
+  display: inline-block;
+  width: 2rem;
+  font-weight: bold;
+  color: var(--text-secondary, #70757a);
+}
+
+.player-name {
+  margin-right: auto;
+  font-weight: 500;
+  color: white;
+}
+
+.drag-indicator {
+  margin-left: auto;
+  color: var(--text-secondary, #70757a);
+  font-size: 1.2rem;
+  cursor: grab;
+  user-select: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rankings-page {
+    grid-template-columns: 1fr;
+  }
+}
