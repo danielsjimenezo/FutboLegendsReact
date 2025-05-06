@@ -54,7 +54,7 @@ function TablePlayerMatches({ playerId }) {
                         <td>{match.minutes_played}</td>
                     </tr>
                     <tr className="details-row">
-                    <td colspan="5">
+                    <td colSpan="5">
                         <div className="videos">
                         <h3>{match.team} vs {match.opponent}</h3>
                         <h3 id="videoItem">Video del Equipo</h3>
@@ -63,7 +63,7 @@ function TablePlayerMatches({ playerId }) {
                         <div className="video-container-team" >Cargando video...</div>
                         </div>
                     </td>
-                    <td colspan="5">
+                    <td colSpan="5">
                         <div className="videos">
                         <h3>{match.player} vs {match.opponent}</h3>
                         <h3 id="videoPlayer">Video del Jugador</h3>
