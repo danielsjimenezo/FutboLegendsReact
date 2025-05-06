@@ -65,3 +65,16 @@ export function getArrayFromLocalStorage(key, fallback = []) {
     return fallback
   }
 }
+
+export async function getPlayerData() {
+  const res = await fetch(`/Data/matchesPlayer.json`)
+  if (!res.ok) return
+  try {
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.log("Error loading player data")
+    console.error(error)
+    return
+  }
+}

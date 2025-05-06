@@ -10,6 +10,7 @@ import TeamDataTableToggle from "../misc/TeamDataTableToggle.jsx"
 import CompDataTable from "../tables/CompDataTable.jsx"
 import ProfileBadges from "../misc/ProfileBadges.jsx"
 import ShownBadgesFilter from "../layout/ShownBadgesFilter.jsx"
+import TablePlayerMatches from "../tables/PlayerMatches.jsx"
 
 function ProfilePage() {
   const [tableShown, setTableShown] = useState('team')
@@ -44,6 +45,7 @@ function ProfilePage() {
 
 
   return (
+    <div className="playerBadgeContainer">
     <section className="profile-container container">
         <div className="playerProfile">
           <h1>{player.Player}</h1>
@@ -87,11 +89,15 @@ function ProfilePage() {
         ): (
           <CompDataTable player={player} />
         )}
-
-
         <ProfileBadges player={player} />
+          
 
     </section>
+
+    <div className="MatchesTable">
+      <TablePlayerMatches playerId={player.Player} />
+    </div>
+  </div>
   )
 }
 
