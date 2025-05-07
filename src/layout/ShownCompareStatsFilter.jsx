@@ -1,12 +1,12 @@
 import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleShownBadge } from "../context/playerSlice.js";
 import { selectPlayerState } from "../context/playerSlice.js";
+import { toggleShownCompareStat } from "../context/playerSlice.js";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
-function ShownBadgesFilter({}) {
-  const { shownBadges } = useSelector(selectPlayerState);
+function ShownCompareStatsFilter({}) {
+  const { shownCompareStats } = useSelector(selectPlayerState);
   const dispatch = useDispatch();
 
   const [shown, setShown] = useState(false);
@@ -21,24 +21,33 @@ function ShownBadgesFilter({}) {
   };
 
   const handleChoose = (choice) => {
-    dispatch(toggleShownBadge(choice));
+    dispatch(toggleShownCompareStat(choice));
   };
 
   return (
-    <div id="shown-badges-filter" className="filter-wrapper" ref={wrapperRef}>
+    <div id="shown-column-filter" className="filter-wrapper" ref={wrapperRef}>
       <button className="filter-button" onClick={toggleShown}>
-        <img src="/images/Icons/hdots.svg" alt="3 dots menu" />
+        <span>STATS</span>
       </button>
       <div className={`filter-menu ${shown ? "shown" : ""}`}>
         {futbolDataTypes.map((type, i) => {
           const disabled =
-            !shownBadges.includes(type.id) && shownBadges.length >= 8;
+            !shownCompareStats.includes(type.id) &&
+            shownCompareStats.length >= 12;
           return (
-            <button key={type.label} onClick={() => handleChoose(type.id)}>
+            <button
+              key={type.label}
+              onClick={() => {
+                if (disabled) {
+                  return;
+                }
+                handleChoose(type.id);
+              }}
+            >
               {type.label}
               <input
                 type="checkbox"
-                checked={shownBadges.includes(type.id)}
+                checked={shownCompareStats.includes(type.id)}
                 disabled={disabled}
                 readOnly
               />
@@ -50,4 +59,4 @@ function ShownBadgesFilter({}) {
   );
 }
 
-export default ShownBadgesFilter;
+export default ShownCompareStatsFilter;

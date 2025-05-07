@@ -3,6 +3,7 @@ import PlayerSearch from "../misc/PlayerSearch.jsx";
 import { Link } from "react-router-dom";
 import DropdownFilter from "./DropdownFilter.jsx";
 import ShownColumnFilter from "./ShownColumnFilter.jsx";
+import ShownCompareStatsFilter from "./ShownCompareStatsFilter.jsx";
 import { useLocation } from "react-router-dom";
 import { getFlagUrl } from "../utilities/countries.js";
 
@@ -48,6 +49,7 @@ function Header() {
       </nav>
 
       <div id="filters">
+        {/* COUNTRY FILTER */}
         <DropdownFilter
           id="country-filter"
           icon={(value) => {
@@ -67,6 +69,7 @@ function Header() {
           }}
         />
 
+        {/* POSITIONS FILTER */}
         <DropdownFilter
           filterKey="positions"
           label={(value) => {
@@ -78,8 +81,10 @@ function Header() {
           }}
         />
 
-        {(location.pathname === "/" ||
-          location.pathname.startsWith("/compare")) && <ShownColumnFilter />}
+        {location.pathname === "/" && <ShownColumnFilter />}
+        {location.pathname.startsWith("/compare") && (
+          <ShownCompareStatsFilter />
+        )}
       </div>
     </header>
   );

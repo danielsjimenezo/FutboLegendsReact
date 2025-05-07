@@ -102,11 +102,23 @@
 
 .leagues-list li {
   padding: 0.85rem 1.2rem;
-  border-bottom: 1px solid var(--border-color, #eaeaea);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transition: background-color 0.2s ease;
   cursor: pointer;
   background-color: transparent;
   font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.league-badge {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
 }
 
 .leagues-list li:hover {
@@ -202,7 +214,6 @@
 }
 
 .match-card {
-  background-color: transparent;
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
@@ -234,7 +245,21 @@
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0 1rem;
-  color: var(--primary-color, #1a73e8);
+}
+
+/* Score when home team wins */
+.score-home-win {
+  color: var(--home-goal-color, #62b3ad); /* Green color for home team win */
+}
+
+/* Score when away team wins */
+.score-away-win {
+  color: var(--away-goal-color, #ff4f8b); /* Pink color for away team win */
+}
+
+/* Score when match is tied */
+.score-tie {
+  color: white; /* White color for ties */
 }
 
 .competition {
@@ -247,7 +272,7 @@
 .tabs {
   display: flex;
   background-color: transparent;
-  border-bottom: 1px solid var(--border-color, #eaeaea);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .tab {
@@ -284,12 +309,13 @@
 
 .player-stats-list li {
   padding: 0.85rem 1.2rem;
-  border-bottom: 1px solid var(--border-color, #eaeaea);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   font-size: 0.8rem;
+  font-weight: 100;
 }
 
 .player-stats-list li:before {
@@ -308,6 +334,37 @@
 .player-name {
   margin-right: auto;
   font-weight: 500;
+}
+
+.player-image {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin-right: 10px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.team-badge-small {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: rgba(25, 25, 35, 0.8);
 }
 
 .stat {
@@ -428,10 +485,37 @@
   flex-shrink: 0;
 }
 
+/* Apply consistent background color to all major sections */
+.leagues-section,
+.stats-section,
+.wins-section,
+.match-card {
+  background-color: rgba(25, 25, 35, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+/* Remove duplicate borders if they exist */
+.leagues-section,
+.stats-section,
+.wins-section {
+  overflow: hidden;
+}
+
+/* Ensure section headers have consistent styling */
+.leagues-section h2,
+.stats-section h2,
+.wins-section h2,
+.timeline-section h2 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* background-color: transparent; */
+}
+
 .leagues-list {
   list-style-position: inside;
   margin: 0;
   padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .tab-content,
@@ -452,7 +536,7 @@
 .wins-section h2 {
   padding: 1rem;
   margin: 0;
-  border-bottom: 1px solid var(--border-color, #eaeaea);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   background-color: transparent;
   font-size: 1rem;
   font-weight: 500;
@@ -468,11 +552,28 @@
 
 .team-stats-list li {
   padding: 0.85rem 1.2rem;
-  border-bottom: 1px solid var(--border-color, #eaeaea);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
+}
+
+.team-badge-wins {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
 }
 
 .team-stats-list li:before {
@@ -590,4 +691,127 @@
   margin-top: 0.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 0.5rem;
+}
+
+/* Goal scorer section styling */
+.goals-section {
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background-color: rgba(25, 25, 35, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.8rem; /* Set font size to 0.8rem as requested */
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+/* Home team goals - left aligned */
+.goal-item.home-goal {
+  justify-content: flex-start;
+  margin-right: auto;
+  padding-right: 20%;
+}
+
+/* Away team goals - right aligned */
+.goal-item.away-goal {
+  justify-content: flex-end;
+  margin-left: auto;
+  padding-left: 20%;
+}
+
+.goal-minute {
+  font-weight: 500;
+  color: var(--primary-color, #af95fc);
+  min-width: 1.5rem;
+}
+
+.goal-scorer {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goal-type {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Make the minute number smaller on away goals */
+.away-goal .goal-minute {
+  text-align: right;
+  min-width: 1.5rem;
+}
+
+/* Update the base goal minute styling */
+.goal-minute {
+  font-weight: 500;
+  min-width: 1.5rem;
+}
+
+/* Home team goals - green color */
+.home-goal .goal-minute {
+  color: var(--home-goal-color, #62b3ad); /* Green color for home team */
+}
+
+/* Away team goals - pink color */
+.away-goal .goal-minute {
+  color: var(--away-goal-color, #ff4f8b); /* Pink color for away team */
+  text-align: right;
+}
+
+/* Keep the rest of the styling the same */
+.goal-scorer {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goal-type {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.goal-scorer-image {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: white;
+  margin: 0 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(25, 25, 35, 0.4);
+}
+
+/* Home team goal layout */
+.home-goal {
+  display: flex;
+  align-items: center;
+}
+
+/* Away team goal layout */
+.away-goal {
+  display: flex;
+  align-items: center;
+}
+
+.goal-scorer {
+  margin: 0 2px;
 }

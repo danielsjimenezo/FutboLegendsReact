@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 import CompareBar from "./CompareBar.jsx";
 
 function toNumber(val) {
@@ -8,7 +9,7 @@ function toNumber(val) {
 }
 
 function CompareStats({ player1, player2 }) {
-  const { maxValues } = useSelector(selectPlayerState);
+  const { maxValues, shownCompareStats } = useSelector(selectPlayerState);
 
   if (!player1 || !player2) {
     return <h3 className="not-both-players">Select two players to compare.</h3>;
@@ -16,7 +17,20 @@ function CompareStats({ player1, player2 }) {
 
   return (
     <div id="compare-stats">
-      <CompareBar
+      {futbolDataTypes
+        .filter((type) => shownCompareStats.includes(type.id))
+        .map((type) => {
+          return (
+            <CompareBar
+              key={type.id}
+              label={type.labelLong}
+              val1={type.getPlayerValue(player1)}
+              val2={type.getPlayerValue(player2)}
+              max={maxValues[type.id] || 0}
+            />
+          );
+        })}
+      {/* <CompareBar
         label="Games"
         val1={toNumber(player1.GamesPlayed)}
         val2={toNumber(player2.GamesPlayed)}
@@ -70,7 +84,7 @@ function CompareStats({ player1, player2 }) {
         val1={toNumber(player1["Balon (3rd)"])}
         val2={toNumber(player2["Balon (3rd)"])}
         max={maxValues.Balon[2]}
-      />
+      /> */}
     </div>
   );
 }
