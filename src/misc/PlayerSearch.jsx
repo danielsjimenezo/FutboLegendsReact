@@ -1,10 +1,11 @@
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
 import { useState, useRef, useMemo } from "react";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 import { Link } from "react-router-dom";
 
 function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
-  const { players, playersLoadingState } = usePlayerContext();
+  const { players, playersLoadingState } = useSelector(selectPlayerState);
   const [query, setQuery] = useState("");
   const [searching, setSearching] = useState(alwaysOpen || false);
   const searchedPlayers = useMemo(() => {

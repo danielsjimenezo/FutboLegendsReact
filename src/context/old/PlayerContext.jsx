@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
-import { fetchData, getArrayFromLocalStorage } from "../utilities/utilities.js";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { fetchData, getArrayFromLocalStorage } from "../../utilities/utilities.js";
+import { futbolDataTypes } from "../../utilities/futbolDataTypes.jsx";
 
 const PER_PAGE = 15;
 

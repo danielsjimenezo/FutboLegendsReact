@@ -1,4 +1,6 @@
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
+import { changeLeftChart } from "../context/playerSlice.js";
 import PlayerTable from "../tables/PlayerTable.jsx";
 import HomePageChartSelector from "../charts/HomePageChartSelector.jsx";
 
@@ -14,8 +16,9 @@ const getDifferentChart = (chart1, chart2) => {
 };
 
 function HomePage() {
-  const { playerSort, secondChart, setPlayerSort, setSecondChart, actions } =
-    usePlayerContext();
+  const { playerSort, secondChart, setSecondChart } =
+    useSelector(selectPlayerState);
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -23,7 +26,7 @@ function HomePage() {
         <section className="charts-container">
           <HomePageChartSelector
             chartKey={playerSort}
-            setter={actions.changeLeftChart}
+            setter={chartId => dispatch(changeLeftChart(chartId))}
             id="home-page-chart-selector-left"
           />
           <HomePageChartSelector

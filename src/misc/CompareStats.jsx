@@ -1,4 +1,5 @@
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
 import CompareBar from "./CompareBar.jsx";
 
 function toNumber(val) {
@@ -7,7 +8,7 @@ function toNumber(val) {
 }
 
 function CompareStats({ player1, player2 }) {
-  const { maxValues } = usePlayerContext();
+  const { maxValues } = useSelector(selectPlayerState);
 
   if (!player1 || !player2) {
     return <h3 className="not-both-players">Select two players to compare.</h3>;

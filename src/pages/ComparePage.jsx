@@ -1,19 +1,21 @@
 import "./ComparePage.css";
 import { useParams } from "react-router-dom";
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
+
 import PlayerSearch from "../misc/PlayerSearch.jsx";
 import ComparePicture from "../misc/ComparePicture.jsx";
 import CompareStats from "../misc/CompareStats.jsx";
 
 function ComparePage() {
   const { id1, id2 } = useParams();
-  const { actions, players } = usePlayerContext();
+  const { findPlayerById, players } = useSelector(selectPlayerState);
 
   const player1 =
-    actions.findPlayerById(id1) ||
+    findPlayerById(id1) ||
     players.find((p) => p.Player === "Lionel Messi");
   const player2 =
-    actions.findPlayerById(id2) ||
+    findPlayerById(id2) ||
     players.find((p) => p.Player === "Cristiano Ronaldo");
 
   const getCompareUrl = (player, i) => {

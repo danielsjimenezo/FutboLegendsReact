@@ -1,10 +1,13 @@
 import { useState, useRef } from "react";
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleShownBadge } from "../context/playerSlice.js";
+import { selectPlayerState } from "../context/playerSlice.js";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 function ShownBadgesFilter({}) {
-  const { shownBadges, actions } = usePlayerContext();
+  const { shownBadges } = useSelector(selectPlayerState);
+  const dispatch = useDispatch()
 
   const [shown, setShown] = useState(false);
 
@@ -18,7 +21,7 @@ function ShownBadgesFilter({}) {
   };
 
   const handleChoose = (choice) => {
-    actions.toggleShownBadge(choice);
+    dispatch(toggleShownBadge(choice));
   };
 
   return (

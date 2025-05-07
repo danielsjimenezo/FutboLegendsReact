@@ -1,10 +1,13 @@
 import { useState, useRef } from "react";
-import { usePlayerContext } from "../context/PlayerContext.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
+import { toggleShownColumn } from "../context/playerSlice.js";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 function ShownColumnFilter({}) {
-  const { shownColumns, actions } = usePlayerContext();
+  const { shownColumns } = useSelector(selectPlayerState);
+  const dispatch = useDispatch()
 
   const [shown, setShown] = useState(false);
 
@@ -18,7 +21,7 @@ function ShownColumnFilter({}) {
   };
 
   const handleChoose = (choice) => {
-    actions.toggleShownColumn(choice);
+    dispatch(toggleShownColumn(choice));
   };
 
   return (

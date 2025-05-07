@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import FlagIcon from "../misc/FlagIcon.jsx";
-import { usePlayerContext } from "../context/PlayerContext.jsx";
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { useSelector } from "react-redux";
+import { selectPlayerState } from "../context/playerSlice.js";
+
 
 function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate();
 
   const profilePicSrc = `/images/Players/${player.Player}.jpg`;
   const playerHref = `/profile/${player.Player.replaceAll(" ", "_")}`;
-  const { shownColumns } = usePlayerContext();
+  const { shownColumns } = useSelector(selectPlayerState);
 
   const handleTrClick = () => {
     navigate(playerHref);

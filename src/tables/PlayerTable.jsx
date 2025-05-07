@@ -1,20 +1,10 @@
 import "./PlayerTable.css";
-import { usePlayerContext } from "../context/PlayerContext.jsx";
 import PlayerTableTH from "./PlayerTableTH.jsx";
 import PlayerTableRow from "./PlayerTableRow.jsx";
 import PlayerTablePaginationControls from "./PlayerTablePaginationControls.jsx";
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
-
-// const headings = [
-//   ['Games', 'games'],
-//   ['Goals', 'goals'],
-//   ['Assists', 'assists'],
-//   ['G+A', 'contributions'],
-//   ['G+A/game', 'efficiency'],
-//   ['Balón (1)', 'balon1'],
-//   ['Balón (2)', 'balon2'],
-//   ['Balón (3)', 'balon3']
-// ]
+import { selectPlayerState } from "../context/playerSlice.js";
+import { useSelector } from "react-redux";
 
 function PlayerTable() {
   const {
@@ -23,7 +13,7 @@ function PlayerTable() {
     playersPageNumber,
     PER_PAGE,
     homeTableColumnWidth,
-  } = usePlayerContext();
+  } = useSelector(selectPlayerState);
 
   // console.log("htcw:", homeTableColumnWidth)
 
