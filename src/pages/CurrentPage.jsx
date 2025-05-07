@@ -1,6 +1,33 @@
 import { useState } from "react";
 import "./CurrentPage.css";
 
+const formatPlayerNameForImage = (playerName) => {
+  // Remove spaces, dashes, apostrophes and special characters
+  return playerName.replace(/[\s'.-]/g, "");
+};
+
+const topScorers = [
+  { name: "Erling Haaland", stat: "24 goals" },
+  { name: "Harry Kane", stat: "22 goals" },
+  { name: "Kylian Mbappé", stat: "21 goals" },
+  { name: "Vinicius Jr", stat: "19 goals" },
+  { name: "Mohamed Salah", stat: "18 goals" },
+  { name: "Robert Lewandowski", stat: "17 goals" },
+  { name: "Cristiano Ronaldo", stat: "16 goals" },
+  { name: "Son Heung-min", stat: "15 goals" },
+];
+
+const topAssisters = [
+  { name: "Kevin De Bruyne", stat: "16 assists" },
+  { name: "Bruno Fernandes", stat: "14 assists" },
+  { name: "Bukayo Saka", stat: "12 assists" },
+  { name: "Lionel Messi", stat: "11 assists" },
+  { name: "Joshua Kimmich", stat: "10 assists" },
+  { name: "Trent Alexander-Arnold", stat: "9 assists" },
+  { name: "Martin Ødegaard", stat: "9 assists" },
+  { name: "Thomas Müller", stat: "8 assists" },
+];
+
 function CurrentPage() {
   const [activeTab, setActiveTab] = useState("scorers");
 
@@ -18,6 +45,7 @@ function CurrentPage() {
     awayScore,
     competition,
     date,
+    goals, // New array of goal information
   }) => {
     const homeImagePath = `/images/Teams/${formatTeamNameForImage(
       homeTeam
@@ -49,7 +77,15 @@ function CurrentPage() {
               )}
               <span>{homeTeam}</span>
             </span>
-            <span className="score">
+            <span
+              className={`score ${
+                parseInt(homeScore) > parseInt(awayScore)
+                  ? "score-home-win"
+                  : parseInt(homeScore) < parseInt(awayScore)
+                  ? "score-away-win"
+                  : "score-tie"
+              }`}
+            >
               {homeScore} - {awayScore}
             </span>
             <span className="team">
@@ -67,6 +103,63 @@ function CurrentPage() {
               )}
             </span>
           </div>
+
+          {/* New goals section */}
+          {goals && goals.length > 0 && (
+            <div className="goals-section">
+              {goals.map((goal, index) => (
+                <div
+                  key={index}
+                  className={`goal-item ${
+                    goal.team === homeTeam ? "home-goal" : "away-goal"
+                  }`}
+                >
+                  {goal.team === homeTeam ? (
+                    // Home team goals (left-aligned)
+                    <>
+                      <span className="goal-minute">{goal.minute}'</span>
+                      <div
+                        className="goal-scorer-image"
+                        style={{
+                          backgroundImage: `url('/images/Players/${goal.scorer}.png')`,
+                        }}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.1)";
+                          e.target.textContent = goal.scorer.charAt(0);
+                        }}
+                      ></div>
+                      <span className="goal-scorer">{goal.scorer}</span>
+                      {goal.penalty && <span className="goal-type">(P)</span>}
+                      {goal.ownGoal && <span className="goal-type">(OG)</span>}
+                    </>
+                  ) : (
+                    // Away team goals (right-aligned)
+                    <>
+                      {goal.penalty && <span className="goal-type">(P)</span>}
+                      {goal.ownGoal && <span className="goal-type">(OG)</span>}
+                      <span className="goal-scorer">{goal.scorer}</span>
+                      <div
+                        className="goal-scorer-image"
+                        style={{
+                          backgroundImage: `url('/images/Players/${goal.scorer}.jpg')`,
+                        }}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.1)";
+                          e.target.textContent = goal.scorer.charAt(0);
+                        }}
+                      ></div>
+                      <span className="goal-minute">{goal.minute}'</span>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="competition">{competition}</div>
         </div>
       </div>
@@ -80,16 +173,96 @@ function CurrentPage() {
         <section className="leagues-section">
           <h2>Top Leagues</h2>
           <ol className="leagues-list">
-            <li>Premier League</li>
-            <li>La Liga</li>
-            <li>Serie A</li>
-            <li>Bundesliga</li>
-            <li>Ligue 1</li>
-            <li>Primeira Liga</li>
-            <li>Eredivisie</li>
-            <li>Championship</li>
-            <li>MLS</li>
-            <li>Liga MX</li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/PremierLeague.png')`,
+                }}
+              ></div>
+              Premier League
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/LaLiga.png')`,
+                }}
+              ></div>
+              La Liga
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/SerieA.png')`,
+                }}
+              ></div>
+              Serie A
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/Bundesliga.png')`,
+                }}
+              ></div>
+              Bundesliga
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/Ligue1.png')`,
+                }}
+              ></div>
+              Ligue 1
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/PrimeiraLiga.png')`,
+                }}
+              ></div>
+              Primeira Liga
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/Eredivisie.png')`,
+                }}
+              ></div>
+              Eredivisie
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/Championship.png')`,
+                }}
+              ></div>
+              Championship
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/MLS.png')`,
+                }}
+              ></div>
+              MLS
+            </li>
+            <li>
+              <div
+                className="league-badge"
+                style={{
+                  backgroundImage: `url('/images/Competitions/LigaMX.png')`,
+                }}
+              ></div>
+              Liga MX
+            </li>
           </ol>
         </section>
 
@@ -97,7 +270,6 @@ function CurrentPage() {
         <section className="timeline-section">
           <h2>Recent Matches</h2>
           <div className="vertical-timeline">
-            {/* Example of using the MatchCard component */}
             <MatchCard
               homeTeam="Monaco"
               awayTeam="Marseille"
@@ -105,6 +277,10 @@ function CurrentPage() {
               awayScore="1"
               competition="Premier League"
               date="May 5, 2025"
+              goals={[
+                { scorer: "Robinho", team: "Monaco", minute: 37 },
+                { scorer: "Aubameyang", team: "Marseille", minute: 82 },
+              ]}
             />
 
             <MatchCard
@@ -114,6 +290,11 @@ function CurrentPage() {
               awayScore="1"
               competition="La Liga"
               date="May 4, 2025"
+              goals={[
+                { scorer: "Lewandowski", team: "Barcelona", minute: 24 },
+                { scorer: "Raphinha", team: "Barcelona", minute: 63 },
+                { scorer: "En-Nesyri", team: "Sevilla", minute: 75 },
+              ]}
             />
 
             <MatchCard
@@ -123,9 +304,17 @@ function CurrentPage() {
               awayScore="0"
               competition="Premier League"
               date="May 4, 2025"
+              goals={[
+                {
+                  scorer: "Salah",
+                  team: "Liverpool",
+                  minute: 12,
+                  penalty: true,
+                },
+                { scorer: "Diaz", team: "Liverpool", minute: 45 },
+                { scorer: "Nunez", team: "Liverpool", minute: 78 },
+              ]}
             />
-
-            {/* Add more match cards here following the same pattern */}
 
             <MatchCard
               homeTeam="PSG"
@@ -134,6 +323,11 @@ function CurrentPage() {
               awayScore="1"
               competition="MLS"
               date="April 28, 2025"
+              goals={[
+                { scorer: "Mbappé", team: "PSG", minute: 14 },
+                { scorer: "Dembélé", team: "PSG", minute: 56 },
+                { scorer: "Chiesa", team: "Juventus", minute: 68 },
+              ]}
             />
           </div>
         </section>
@@ -160,38 +354,31 @@ function CurrentPage() {
             {activeTab === "scorers" && (
               <div className="tab-content">
                 <ol className="player-stats-list">
-                  <li>
-                    <span className="player-name">Erling Haaland</span>
-                    <span className="stat">24 goals</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Harry Kane</span>
-                    <span className="stat">22 goals</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Kylian Mbappé</span>
-                    <span className="stat">21 goals</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Vinicius Jr</span>
-                    <span className="stat">19 goals</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Mohamed Salah</span>
-                    <span className="stat">18 goals</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Robert Lewandowski</span>
-                    <span className="stat">17 goals</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Cristiano Ronaldo</span>
-                    <span className="stat">16 goals</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Son Heung-min</span>
-                    <span className="stat">15 goals</span>
-                  </li>
+                  {topScorers.map((player, index) => (
+                    <li key={index}>
+                      <div className="player-info">
+                        <div
+                          className="player-image"
+                          style={{
+                            backgroundImage: `url('/images/Players/${formatPlayerNameForImage(
+                              player.name
+                            )}.png')`,
+                          }}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.style.backgroundColor =
+                              "rgba(255, 255, 255, 0.1)";
+                            e.target.textContent = player.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("");
+                          }}
+                        ></div>
+                        <span className="player-name">{player.name}</span>
+                      </div>
+                      <span className="stat">{player.stat}</span>
+                    </li>
+                  ))}
                 </ol>
               </div>
             )}
@@ -200,38 +387,30 @@ function CurrentPage() {
             {activeTab === "assisters" && (
               <div className="tab-content">
                 <ol className="player-stats-list">
-                  <li>
-                    <span className="player-name">Kevin De Bruyne</span>
-                    <span className="stat">16 assists</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Bruno Fernandes</span>
-                    <span className="stat">14 assists</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Bukayo Saka</span>
-                    <span className="stat">12 assists</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Lionel Messi</span>
-                    <span className="stat">11 assists</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Joshua Kimmich</span>
-                    <span className="stat">10 assists</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Trent Alexander-Arnold</span>
-                    <span className="stat">9 assists</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Martin Ødegaard</span>
-                    <span className="stat">9 assists</span>
-                  </li>
-                  <li>
-                    <span className="player-name">Thomas Müller</span>
-                    <span className="stat">8 assists</span>
-                  </li>
+                  {topAssisters.map((player, index) => (
+                    <li key={index}>
+                      <div className="player-info">
+                        <div
+                          className="player-image"
+                          style={{
+                            backgroundImage: `url('/images/Players/
+                              ${player.name}.jpg')`,
+                          }}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.style.backgroundColor =
+                              "rgba(255, 255, 255, 0.1)";
+                            e.target.textContent = player.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("");
+                          }}
+                        ></div>
+                        <span className="player-name">{player.name}</span>
+                      </div>
+                      <span className="stat">{player.stat}</span>
+                    </li>
+                  ))}
                 </ol>
               </div>
             )}
