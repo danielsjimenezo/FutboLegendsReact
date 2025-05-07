@@ -69,23 +69,25 @@
   flex-direction: column;
   justify-content: center;
   /* align-items: center; */
-  row-gap: 1.5rem;
+  row-gap: 1.35rem;
 
   width: 800px;
   max-width: 100%;
   margin: 3rem auto 0 auto;
+  font-size: 0.8rem;
 }
 
 .compare-bar {
   display: grid;
   grid-template-columns: 6fr 2fr 6fr;
-  gap: 1rem;
+  gap: 0.25rem;
   width: 100%;
 }
 
 .compare-bar-label {
   text-align: center;
   min-width: 150px;
+  font-size: 0.8rem;
 }
 
 .compare-bar-container {
@@ -95,7 +97,7 @@
 
 .compare-bar-container.left {
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 0.5rem;
 
   & > .compare-bar-fill {
     border-top-left-radius: 150px;
@@ -104,7 +106,7 @@
 }
 
 .compare-bar-container.right {
-  gap: 1rem;
+  gap: 0.5rem;
 
   & > .compare-bar-fill {
     border-top-right-radius: 150px;

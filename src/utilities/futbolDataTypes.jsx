@@ -41,7 +41,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return p.gamesPlayedRank;
     },
-    gradient: ["transparent", "#FF00FF"],
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "goals",
@@ -72,6 +72,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return p.assistsRank;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "contributions",
@@ -129,6 +130,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "balon2",
@@ -144,6 +146,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#AF95FC"],
   },
   {
     id: "balon3",
@@ -159,6 +162,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "WC Goals",
@@ -174,6 +178,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "WC Assists",
@@ -189,6 +194,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#AF95FC"],
   },
   {
     id: "WC FGoals",
@@ -204,6 +210,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "WC GBall",
@@ -219,6 +226,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "WC SBall",
@@ -234,6 +242,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#AF95FC"],
   },
   {
     id: "WC BBall",
@@ -249,6 +258,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "WC GBoot",
@@ -264,6 +274,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "WC SBoot",
@@ -279,6 +290,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#AF95FC"],
   },
   {
     id: "WC BBoot",
@@ -294,6 +306,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "UCL Goals",
@@ -309,6 +322,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "UCL Assists",
@@ -324,6 +338,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#AF95FC"],
   },
   {
     id: "UCL FGoals",
@@ -339,6 +354,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "FreeKicks",
@@ -354,6 +370,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "Penalties",
@@ -369,6 +386,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#AF95FC"],
   },
   {
     id: "OutsideBox",
@@ -384,6 +402,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "InsideBox",
@@ -399,6 +418,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
   {
     id: "LeftFoot",
@@ -414,6 +434,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#AF95FC"],
   },
   {
     id: "RightFoot",
@@ -429,6 +450,7 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#62b3ad"],
   },
   {
     id: "Headers",
@@ -444,5 +466,6 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    gradient: ["transparent", "#FF4F8B"],
   },
 ];
