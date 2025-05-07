@@ -7,13 +7,14 @@ import RankingsPage from "./pages/RankingsPage.jsx";
 import CurrentPage from "./pages/CurrentPage.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { loadPlayerData } from "./context/playerSlice.js";
+import { loadPlayerData, loadMaxValues } from "./context/playerSlice.js";
 
 function App() {
 
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(loadPlayerData())
+    dispatch(loadMaxValues())
   },[])
 
   return (

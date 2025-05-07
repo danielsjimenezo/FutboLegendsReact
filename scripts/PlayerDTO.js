@@ -4,6 +4,8 @@ export default function toPlayerDTO(player, players) {
     const dto = {...player}
     dto.GamesPlayed = toNumber(dto.GamesPlayed)
   
+    dto.GoalContributions = toNumber(dto.GoalContributions)
+    dto.Minutes = toNumber(dto.Minutes)
 
     appendTeamData(dto)
     appendCompData(dto)

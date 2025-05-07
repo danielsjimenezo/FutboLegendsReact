@@ -11,13 +11,10 @@
     "process-data": "node scripts/process-data.js"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@reduxjs/toolkit": "^2.7.0",
-=======
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
->>>>>>> 8d7199c06c4fbe6f139c9b4a3ab1b98552d0bdcc
     "chart.js": "^4.4.9",
     "chartjs-plugin-annotation": "^3.1.0",
     "react": "^19.0.0",

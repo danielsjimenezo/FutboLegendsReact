@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit"
 import { fetchData, getArrayFromLocalStorage } from "../utilities/utilities.js"
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx"
-import { getFilteredPlayers, getMaxValues } from "./storeHelpers.js"
+import { getFilteredPlayers } from "./storeHelpers.js"
 
 const initialColumns = [
     "games", "goals", "assists", "contributions", "efficiency"
@@ -17,6 +17,12 @@ export const loadPlayerData = createAsyncThunk('players/load', async () => {
     return data || []
 })
 
+export const loadMaxValues = createAsyncThunk('players/loadMaxValues', async () => {
+    const res = await fetch('/Data/maxValues.json')
+    const data = await res.json()
+    return data
+})
+
 const playerSlice = createSlice({
     name: 'players',
     initialState: {
@@ -28,7 +34,8 @@ const playerSlice = createSlice({
         countryFilter: 'all',
         positionFilter: 'all',
         shownColumns: getArrayFromLocalStorage('futbolegends::shownColumns', initialColumns),
-        shownBadges: getArrayFromLocalStorage('futbolegends::shownBadges', initialBadges)
+        shownBadges: getArrayFromLocalStorage('futbolegends::shownBadges', initialBadges),
+        maxValues: {}
     },
     reducers: {
         turnPage: (state, action) => {
@@ -95,6 +102,9 @@ const playerSlice = createSlice({
             .addCase(loadPlayerData.rejected, (state) => {
                 state.loadingState = 'error'
             })
+            .addCase(loadMaxValues.fulfilled, (state, action) => {
+                state.maxValues = action.payload
+            })
     }
 })
 
@@ -127,7 +137,6 @@ export const selectPlayerState = createSelector([baseSelector], (s) => {
     positions,
     displayedPlayers: filtered.slice(startIndex, endIndex),
     filteredPageCount: Math.ceil(filtered.length / PER_PAGE),
-    maxValues: getMaxValues(s.players),
     homeTableColumnWidth,
     PER_PAGE,
     findPlayerById(id) {
