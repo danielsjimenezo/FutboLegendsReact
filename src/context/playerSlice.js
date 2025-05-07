@@ -1,12 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit"
 import { fetchData, getArrayFromLocalStorage } from "../utilities/utilities.js"
 import { getFilteredPlayers } from "./storeHelpers.js"
-import {
-    createSlice,
-    createAsyncThunk,
-    createSelector,
-} from "@reduxjs/toolkit"
-
 
 const initialColumns = [
     "games",

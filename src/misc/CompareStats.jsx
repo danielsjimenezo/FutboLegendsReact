@@ -20,6 +20,7 @@ function CompareStats({ player1, player2 }) {
       {futbolDataTypes
         .filter((type) => shownCompareStats.includes(type.id))
         .map((type) => {
+          console.log(type.id, maxValues)
           return (
             <CompareBar
               key={type.id}
