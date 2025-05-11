@@ -1,0 +1,15 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    & thead th {
+        border-bottom: 1px solid white;
+    }
+
+    & .table-img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}

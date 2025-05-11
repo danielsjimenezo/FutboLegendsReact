@@ -6,11 +6,11 @@
  */
 
 /**
-  * @typedef ChartConfig
-  * @property {string} label
-  * @property {Gradient} [gradient]
-  * @property {(p: Player) => number} getPlayerValue
-  */
+ * @typedef ChartConfig
+ * @property {string} label
+ * @property {Gradient} [gradient]
+ * @property {(p: Player) => number} getPlayerValue
+ */
 
 /**
  * @typedef FutbolDataType
@@ -29,7 +29,7 @@
 export const futbolDataTypes = [
   {
     id: "games",
-    labelLong: "Games Played",
+    labelLong: "Games",
     label: "Games",
     labelShort: "Games",
     sortAlg: (p1, p2) => {
@@ -45,7 +45,7 @@ export const futbolDataTypes = [
   },
   {
     id: "goals",
-    labelLong: "Goals Scored",
+    labelLong: "Goals",
     label: "Goals",
     labelShort: "Goals",
     sortAlg: (p1, p2) => {
@@ -60,7 +60,7 @@ export const futbolDataTypes = [
   },
   {
     id: "assists",
-    labelLong: "Assists Made",
+    labelLong: "Assists",
     label: "Assists",
     labelShort: "Assists",
     sortAlg: (p1, p2) => {
@@ -76,7 +76,7 @@ export const futbolDataTypes = [
   },
   {
     id: "contributions",
-    labelLong: "Goal Contributions",
+    labelLong: "Contributions",
     label: "Goals + Assists",
     labelShort: "G + A",
     sortAlg: (p1, p2) => {
@@ -103,7 +103,7 @@ export const futbolDataTypes = [
   },
   {
     id: "efficiency",
-    labelLong: "Goal Efficiency",
+    labelLong: "Efficiency",
     label: "Goals + Assists / game",
     labelShort: "G + A / game",
     sortAlg: (p1, p2) => {
@@ -310,7 +310,7 @@ export const futbolDataTypes = [
   },
   {
     id: "UCL Goals",
-    labelLong: "UEFA Champions League Goals",
+    labelLong: "UCL Goals",
     label: "UCL Goals",
     labelShort: "UCL Goals",
     sortAlg: (p1, p2) => {
@@ -326,7 +326,7 @@ export const futbolDataTypes = [
   },
   {
     id: "UCL Assists",
-    labelLong: "UEFA Champions League Assists",
+    labelLong: "UCL Assists",
     label: "UCL Assists",
     labelShort: "UCL Assists",
     sortAlg: (p1, p2) => {

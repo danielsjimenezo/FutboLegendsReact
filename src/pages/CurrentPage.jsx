@@ -121,7 +121,7 @@ function CurrentPage() {
                       <div
                         className="goal-scorer-image"
                         style={{
-                          backgroundImage: `url('/images/Players/${goal.scorer}.png')`,
+                          backgroundImage: `url('/images/Players/${goal.scorer}.jpg')`,
                         }}
                         onError={(e) => {
                           e.target.onerror = null;
@@ -278,7 +278,7 @@ function CurrentPage() {
               competition="Premier League"
               date="May 5, 2025"
               goals={[
-                { scorer: "Robinho", team: "Monaco", minute: 37 },
+                { scorer: "Lionel Messi", team: "Monaco", minute: 37 },
                 { scorer: "Aubameyang", team: "Marseille", minute: 82 },
               ]}
             />
@@ -291,9 +291,9 @@ function CurrentPage() {
               competition="La Liga"
               date="May 4, 2025"
               goals={[
-                { scorer: "Lewandowski", team: "Barcelona", minute: 24 },
+                { scorer: "Robert Lewandowski", team: "Barcelona", minute: 24 },
                 { scorer: "Raphinha", team: "Barcelona", minute: 63 },
-                { scorer: "En-Nesyri", team: "Sevilla", minute: 75 },
+                { scorer: "Samir Nasri", team: "Sevilla", minute: 75 },
               ]}
             />
 
@@ -306,13 +306,13 @@ function CurrentPage() {
               date="May 4, 2025"
               goals={[
                 {
-                  scorer: "Salah",
+                  scorer: "Mohamed Salah",
                   team: "Liverpool",
                   minute: 12,
                   penalty: true,
                 },
-                { scorer: "Diaz", team: "Liverpool", minute: 45 },
-                { scorer: "Nunez", team: "Liverpool", minute: 78 },
+                { scorer: "Luis Diaz", team: "Liverpool", minute: 45 },
+                { scorer: "Darwin Nuñez", team: "Liverpool", minute: 78 },
               ]}
             />
 
@@ -324,9 +324,9 @@ function CurrentPage() {
               competition="MLS"
               date="April 28, 2025"
               goals={[
-                { scorer: "Mbappé", team: "PSG", minute: 14 },
-                { scorer: "Dembélé", team: "PSG", minute: 56 },
-                { scorer: "Chiesa", team: "Juventus", minute: 68 },
+                { scorer: "Kylian Mbappe", team: "PSG", minute: 14 },
+                { scorer: "Ousmane Dembele", team: "PSG", minute: 56 },
+                { scorer: "Alvaro Morata", team: "Juventus", minute: 68 },
               ]}
             />
           </div>
@@ -362,7 +362,7 @@ function CurrentPage() {
                           style={{
                             backgroundImage: `url('/images/Players/${formatPlayerNameForImage(
                               player.name
-                            )}.png')`,
+                            )}.jpg')`,
                           }}
                           onError={(e) => {
                             e.target.onerror = null;
