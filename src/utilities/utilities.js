@@ -1,5 +1,5 @@
 export const HOME_PAGE_CHART_ASPECT_RATIO = 1 / 0.55;
-export const GOAL_TYPE_CHART_ASPECT_RATIO = 1 / .75;
+export const GOAL_TYPE_CHART_ASPECT_RATIO = 1 / 0.75;
 
 export async function fetchData() {
   const res = await fetch("/Data/data.json");
@@ -47,21 +47,36 @@ export function createGradient(color1, color2, val, max) {
 
 export function getArrayFromLocalStorage(key, fallback = []) {
   try {
-    const ls = localStorage.getItem(key)
+    const ls = localStorage.getItem(key);
     if (!ls) {
-      console.log(`localStorage::${key} was unset`)
-      return fallback
+      console.log(`localStorage::${key} was unset`);
+      return fallback;
     }
 
-    const data = JSON.parse(ls)
+    const data = JSON.parse(ls);
     if (!Array.isArray(data)) {
-      console.log(`localStorage::${key} was unset`)
-      return fallback
+      console.log(`localStorage::${key} was unset`);
+      return fallback;
     }
 
-    return data
+    return data;
   } catch {
-    console.log(`localStorage::${key} was unset`)
-    return fallback
+    console.log(`localStorage::${key} was unset`);
+    return fallback;
   }
 }
+
+export const shortenName = (name) => {
+  const names = name.split(" ");
+
+  // player only has one name
+  if (names.length === 1) return name;
+
+  // player has 2 names but second is jr
+  if (names.length === 2 && names[names.length - 1].startsWith("Jr")) {
+    return name;
+  }
+
+  names[0] = names[0][0] + ".";
+  return names.join(" ");
+};

@@ -165,10 +165,6 @@ table tbody tr:hover {
   border-radius: 20px;
 }
 
-table tbody td:first-child {
-  text-align: right;
-}
-
 .picture {
   height: 30px;
   width: 30px;

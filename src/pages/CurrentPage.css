@@ -1,9 +1,13 @@
+.current-page-container {
+  padding-top: 30px;
+}
+
 .current-page {
   display: grid;
+  align-items: start;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+
   padding: 1rem;
   font-family: var(
     --font-family,
@@ -17,7 +21,7 @@
 
 /* Common section styling */
 .current-page section {
-  background-color: transparent;
+  background-color: rgba(25, 25, 35, 0.4);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -34,23 +38,13 @@
 
 /* Add this at the top of your CSS file */
 
-/* Container to constrain width to match header */
-.current-page-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0;
-}
-
 .current-page {
-  width: 100%;
   /* Use a combination of max-width and padding to control width */
-  max-width: 90%; /* Limit overall width */
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 2rem;
   /* Increase padding to match icon positions */
-  padding: 1rem 80px; /* Increase this value to match icon positions */
+
   font-family: var(
     --font-family,
     -apple-system,
@@ -91,6 +85,7 @@
 } */
 
 .leagues-section {
+  background-color: rgba(25, 25, 35, 0.4);
   border: 1px solid var(--border-color, #af95fc);
 }
 
@@ -132,7 +127,7 @@
 /* Center Section - Timeline */
 .timeline-section {
   position: relative;
-  border: 1px solid var(--border-color, #af95fc);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .vertical-timeline {
@@ -466,6 +461,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Remove conflicting rule from earlier in your CSS */
@@ -529,7 +525,7 @@
   background-color: transparent;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--border-color, #af95fc);
+  /* border: 1px solid var(--border-color, #af95fc); */
   font-size: 0.8rem;
 }
 
@@ -622,7 +618,7 @@
 }
 
 .stats-section {
-  border: 1px solid var(--border-color, #af95fc);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Fallback for missing badges */

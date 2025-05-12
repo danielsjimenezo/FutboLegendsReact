@@ -1,5 +1,4 @@
 function TeamDataTable({ player }) {
-
   return (
     <div className="playerTableStats">
       <section className="table-container">
@@ -10,8 +9,8 @@ function TeamDataTable({ player }) {
               <th>MP</th>
               <th>G</th>
               <th>A</th>
-              <th>G+A</th>
-              <th>G+A/MP</th>
+              <th>GC</th>
+              <th>GE</th>
             </tr>
           </thead>
           <tbody id="team-stats">

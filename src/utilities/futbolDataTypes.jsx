@@ -76,9 +76,9 @@ export const futbolDataTypes = [
   },
   {
     id: "contributions",
-    labelLong: "Contributions",
-    label: "Goals + Assists",
-    labelShort: "G + A",
+    labelLong: " Goal Contributions",
+    label: "Goals Contributions",
+    labelShort: "GC",
     sortAlg: (p1, p2) => {
       return p2.GoalContributions - p1.GoalContributions;
     },
@@ -103,9 +103,9 @@ export const futbolDataTypes = [
   },
   {
     id: "efficiency",
-    labelLong: "Efficiency",
-    label: "Goals + Assists / game",
-    labelShort: "G + A / game",
+    labelLong: "Goal Efficiency",
+    label: "Goal Efficiency",
+    labelShort: "GE",
     sortAlg: (p1, p2) => {
       return p2.Efficiency - p1.Efficiency;
     },

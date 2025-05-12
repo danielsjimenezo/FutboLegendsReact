@@ -1,4 +1,13 @@
 function CompDaataTable({ player }) {
+  // DUMMY DATA, REMOVE LATER
+  const comps = [
+    { name: "COMP", games: 1, goals: 1 },
+    { name: "COMP", games: 1, goals: 1 },
+    { name: "COMP", games: 1, goals: 1 },
+    { name: "COMP", games: 1, goals: 1 },
+    { name: "COMP", games: 1, goals: 1 },
+    { name: "COMP", games: 1, goals: 1 },
+  ];
 
   return (
     <div className="playerTableStats">
@@ -10,12 +19,12 @@ function CompDaataTable({ player }) {
               <th>MP</th>
               <th>G</th>
               <th>A</th>
-              <th>G+A</th>
-              <th>G+A/MP</th>
+              <th>GC</th>
+              <th>GE</th>
             </tr>
           </thead>
           <tbody id="team-stats">
-            {player.comps.map((comp) => {
+            {comps.map((comp) => {
               const compLogoSrc = `/images/Comps/${comp.name}.png`;
               const goalsAndAssistsDivGames =
                 (comp.goals + comp.assists) / comp.games;

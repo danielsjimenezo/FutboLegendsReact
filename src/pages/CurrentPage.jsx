@@ -1,31 +1,44 @@
 import { useState } from "react";
 import "./CurrentPage.css";
+import { shortenName } from "../utilities/utilities.js";
 
 const formatPlayerNameForImage = (playerName) => {
   // Remove spaces, dashes, apostrophes and special characters
-  return playerName.replace(/[\s'.-]/g, "");
+  // return playerName.replace(/[\s'.-]/g, "");
+  return playerName;
 };
 
 const topScorers = [
-  { name: "Erling Haaland", stat: "24 goals" },
-  { name: "Harry Kane", stat: "22 goals" },
-  { name: "Kylian Mbappé", stat: "21 goals" },
-  { name: "Vinicius Jr", stat: "19 goals" },
-  { name: "Mohamed Salah", stat: "18 goals" },
-  { name: "Robert Lewandowski", stat: "17 goals" },
-  { name: "Cristiano Ronaldo", stat: "16 goals" },
-  { name: "Son Heung-min", stat: "15 goals" },
+  { name: "Erling Haaland", stat: "24" },
+  { name: "Harry Kane", stat: "22" },
+  { name: "Kylian Mbappé", stat: "21" },
+  { name: "Vinicius Jr", stat: "19" },
+  { name: "Mohamed Salah", stat: "18" },
+  { name: "Robert Lewandowski", stat: "17" },
+  { name: "Cristiano Ronaldo", stat: "16" },
+  { name: "Son Heung-min", stat: "15" },
 ];
 
 const topAssisters = [
-  { name: "Kevin De Bruyne", stat: "16 assists" },
-  { name: "Bruno Fernandes", stat: "14 assists" },
-  { name: "Bukayo Saka", stat: "12 assists" },
-  { name: "Lionel Messi", stat: "11 assists" },
-  { name: "Joshua Kimmich", stat: "10 assists" },
-  { name: "Trent Alexander-Arnold", stat: "9 assists" },
-  { name: "Martin Ødegaard", stat: "9 assists" },
-  { name: "Thomas Müller", stat: "8 assists" },
+  { name: "Kevin De Bruyne", stat: "16" },
+  { name: "Bruno Fernandes", stat: "14" },
+  { name: "Bukayo Saka", stat: "12" },
+  { name: "Lionel Messi", stat: "11" },
+  { name: "Joshua Kimmich", stat: "10" },
+  { name: "Trent Alexander-Arnold", stat: "9" },
+  { name: "Martin Ødegaard", stat: "9" },
+  { name: "Thomas Müller", stat: "8" },
+];
+
+const topTeams = [
+  { name: "Real Madrid", stat: "25" },
+  { name: "Manchester City", stat: "23" },
+  { name: "Bayern Munich", stat: "22" },
+  { name: "PSG", stat: "21" },
+  { name: "Barcelona", stat: "20" },
+  { name: "Liverpool", stat: "19" },
+  { name: "Juventus", stat: "18" },
+  { name: "Arsenal", stat: "17" },
 ];
 
 function CurrentPage() {
@@ -167,7 +180,7 @@ function CurrentPage() {
   };
 
   return (
-    <div className="current-page-container">
+    <div className="current-page-container container">
       <div className="current-page">
         {/* Left Section - Top Leagues */}
         <section className="leagues-section">
@@ -374,7 +387,9 @@ function CurrentPage() {
                               .join("");
                           }}
                         ></div>
-                        <span className="player-name">{player.name}</span>
+                        <span className="player-name">
+                          {shortenName(player.name)}
+                        </span>
                       </div>
                       <span className="stat">{player.stat}</span>
                     </li>
@@ -393,8 +408,9 @@ function CurrentPage() {
                         <div
                           className="player-image"
                           style={{
-                            backgroundImage: `url('/images/Players/
-                              ${player.name}.jpg')`,
+                            backgroundImage: `url('/images/Players/${formatPlayerNameForImage(
+                              player.name
+                            )}.jpg')`,
                           }}
                           onError={(e) => {
                             e.target.onerror = null;
@@ -406,7 +422,9 @@ function CurrentPage() {
                               .join("");
                           }}
                         ></div>
-                        <span className="player-name">{player.name}</span>
+                        <span className="player-name">
+                          {shortenName(player.name)}
+                        </span>
                       </div>
                       <span className="stat">{player.stat}</span>
                     </li>
@@ -420,38 +438,18 @@ function CurrentPage() {
           <section className="wins-section">
             <h2>Most Wins</h2>
             <ol className="team-stats-list">
-              <li>
-                <span className="team-name">Manchester City</span>
-                <span className="stat">27 wins</span>
-              </li>
-              <li>
-                <span className="team-name">Real Madrid</span>
-                <span className="stat">25 wins</span>
-              </li>
-              <li>
-                <span className="team-name">Bayern Munich</span>
-                <span className="stat">24 wins</span>
-              </li>
-              <li>
-                <span className="team-name">Inter Milan</span>
-                <span className="stat">23 wins</span>
-              </li>
-              <li>
-                <span className="team-name">Arsenal</span>
-                <span className="stat">22 wins</span>
-              </li>
-              <li>
-                <span className="team-name">PSG</span>
-                <span className="stat">22 wins</span>
-              </li>
-              <li>
-                <span className="team-name">Barcelona</span>
-                <span className="stat">21 wins</span>
-              </li>
-              <li>
-                <span className="team-name">Bayer Leverkusen</span>
-                <span className="stat">21 wins</span>
-              </li>
+              {topTeams.map((team) => (
+                <li key={team.name}>
+                  <div
+                    className="player-image"
+                    style={{
+                      backgroundImage: `url("/images/Teams/${team.name}.png")`,
+                    }}
+                  ></div>
+                  <span className="team-name">{shortenName(team.name)}</span>
+                  <span className="stat">{team.stat}</span>
+                </li>
+              ))}
             </ol>
           </section>
         </div>

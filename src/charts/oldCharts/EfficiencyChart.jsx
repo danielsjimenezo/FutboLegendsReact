@@ -42,7 +42,7 @@ function EfficiencyChart({ readAllPlayers }) {
                 },
                 base: 0,
                 label:
-                  "G+A/Games" +
+                  "Efficiency" +
                   (readAllPlayers ? " (all players)" : " (this page)"),
               },
             ],
