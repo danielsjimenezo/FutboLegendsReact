@@ -35,9 +35,7 @@ function AssistsChart({ readAllPlayers }) {
                   bottomRight: 10,
                 },
                 base: 0,
-                label:
-                  "Assists" +
-                  (readAllPlayers ? " (all players)" : " (this page)"),
+                label: "Assists",
               },
             ],
           },

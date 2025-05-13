@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
 import Tooltip from "../misc/Tooltip.jsx";
 
-
 function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate();
 
@@ -40,9 +39,9 @@ function PlayerTableRow({ player, rank }) {
         </div>
       </td>
       <td>{player.Position}</td>
-      <td>
-        <Tooltip message={player.birthCountry} >
-          <FlagIcon countryName={player.birthCountry}/>
+      <td className="country">
+        <Tooltip message={player.birthCountry}>
+          <FlagIcon countryName={player.birthCountry} />
         </Tooltip>
       </td>
       {futbolDataTypes
