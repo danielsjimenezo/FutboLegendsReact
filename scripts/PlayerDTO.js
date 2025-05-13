@@ -123,16 +123,28 @@ function appendPlayerRankings(dto, players) {
   dto.assistsRank = calculateRank(dto, players, "Assists");
   dto.contributionsRank = calculateRank(dto, players, "GoalContributions");
   dto.contributionsPerGameRank = calculateRank(dto, players, "Efficiency");
+  dto.balon1Rank = calculateRank(dto, players, "Balon (1st)");
+  dto.balon2Rank = calculateRank(dto, players, "Balon (2nd)");
+  dto.balon3Rank = calculateRank(dto, players, "Balon (3rd)");
+
+  dto.gamesPlayedRankNative = calculateRank(dto, players, "GamesPlayed", true);
+  dto.goalsRankNative = calculateRank(dto, players, "Goals", true);
+  dto.assistsRankNative = calculateRank(dto, players, "Assists", true);
+  dto.contributionsRankNative = calculateRank(dto, players, "GoalContributions", true);
+  dto.contributionsPerGameRankNative = calculateRank(dto, players, "Efficiency", true);
+  dto.balon1RankNative = calculateRank(dto, players, "Balon (1st)", true);
+  dto.balon2RankNative = calculateRank(dto, players, "Balon (2nd)", true);
+  dto.balon3RankNative = calculateRank(dto, players, "Balon (3rd)", true);
 }
 
-function calculateRank(dto, players, key, birthCountry) {
+function calculateRank(dto, players, key, useBirthCountry) {
   let rankings = [...players].sort((a, b) => {
     // Number("1,001") -> NaN
     return toNumber(b[key]) - toNumber(a[key]);
   });
 
-  if (birthCountry !== undefined) {
-    rankings = rankings.filter((p) => p.birthCountry === birthCountry);
+  if (useBirthCountry) {
+    rankings = rankings.filter((p) => p.birthCountry === dto.birthCountry);
   }
 
   const index = rankings.findIndex((p) => p.Player === dto.Player);

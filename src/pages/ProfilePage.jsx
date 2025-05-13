@@ -96,10 +96,17 @@ function ProfilePage() {
             setTeamTableShown(option.value);
           }}
         />
-        <h3 id="leaderboard-heading">
-          Leaderboard
-          <ShownBadgesFilter />
-        </h3>
+        <div id="leaderboard-heading">
+          <h3>Leaderboard</h3>
+          <div className="controls">
+            <Toggle
+              option1={{ img: "/images/Icons/global_icon.png", value: "all" }}
+              option2={{ img: `/images/Flags/${player.birthCountry}.png`, value: player.birthCountry }}
+              onClick={(e, option) => {}}
+            />
+            <ShownBadgesFilter />
+          </div>
+        </div>
         {teamTableShown === "team" ? (
           <TeamDataTable player={player} />
         ) : (

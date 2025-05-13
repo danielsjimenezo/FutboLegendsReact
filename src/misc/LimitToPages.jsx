@@ -23,7 +23,8 @@ function LimitToPages({ children, pages }) {
         }
         break;
       case "compare":
-        if (location.pathname.startsWith("/compare")) {
+      case "profile":
+        if (location.pathname.startsWith(`/${page}`)) {
           shouldShow = true;
           break;
         }

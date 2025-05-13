@@ -81,7 +81,7 @@
 #paginationButtons {
   margin-top: 2rem;
   display: grid;
-  grid-template-columns: 1fr 250px 1fr;
+  grid-template-columns: 1fr 100px 1fr;
   align-items: center;
   background-color: transparent;
   margin-bottom: 2rem;
@@ -115,9 +115,12 @@
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
+#main-table .country {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #main-table .country img {
   display: block;
 }
->>>>>>> 240c36437ad020f34b6b69c8dd85189385908582

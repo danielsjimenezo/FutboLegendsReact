@@ -97,6 +97,7 @@ function Header() {
           <ShownCompareStatsFilter />
         </LimitToPages>
       </div>
+      {/* end of filters */}
     </header>
   );
 }

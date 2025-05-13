@@ -21,6 +21,7 @@
  * @property {(p1: Player, p2: Player) => number} sortAlg
  * @property {(p: Player) => number} getPlayerValue
  * @property {(p: Player) => number} getPlayerRank
+ * @property {(p: Player) => number} getPlayerRankNative
  * @property {Gradient} [gradient] OPTIONAL
  * @property {ChartConfig[]} [multiData] OPTIONAL
  */
@@ -40,6 +41,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return p.gamesPlayedRank;
+    },
+    getPlayerRankNative: (p) => {
+      return p.gamesPlayedRankNative
     },
     gradient: ["transparent", "#FF4F8B"],
   },

@@ -14,7 +14,9 @@ function Toggle({ option1, option2, onClick }) {
                     }} 
                     className={selected.value === option1.value ? 'active' : ''}
                 >
-                    {option1.label}
+                    {option1.label || (
+                        <img src={option1.img} />
+                    )}
                 </button>
                 <button 
                     onClick={(e) => {
@@ -23,7 +25,9 @@ function Toggle({ option1, option2, onClick }) {
                     }} 
                     className={selected.value === option2.value ? 'active' : ''}
                 >
-                    {option2.label}
+                    {option2.label || (
+                        <img src={option2.img} />
+                    )}
                 </button>
             </div>
         </div>
