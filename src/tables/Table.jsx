@@ -2,7 +2,7 @@ import "./Table.css";
 import TableTd from "./TableTd.jsx";
 import { useState } from "react";
 
-function Table({ headings, items, _key, hide = [] }) {
+function Table({ headings, items, _key, hide = [], expandables }) {
   const [page, setPage] = useState(0);
 
   const start = page * 10;
@@ -22,10 +22,12 @@ function Table({ headings, items, _key, hide = [] }) {
           </tr>
         </thead>
         <tbody>
-          {shownItems.map((item) => {
+          {shownItems.map((item, i) => {
             const entries = Object.entries(item).filter(
               ([k, v]) => !hide.includes(k)
             );
+            // Table row can be "expandable" if "expandables prop is provided"
+            const expandable = expandables?.[i]
             return (
               <tr key={item[_key]}>
                 {entries.map(([k, v]) => {

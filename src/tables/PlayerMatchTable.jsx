@@ -21,14 +21,24 @@ const fakeRow = {
     dc: 12
 }
 
+const fakeExpandable = [
+    {title: "Expandable content title", src: "https://picsum.photos/seed/futbol/500/300"},
+    {title: "Expandable content title", src: "https://picsum.photos/seed/futbol/500/300"},
+]
+
 const fakeRows = []
-for (let i = 0; i < 50; i++) fakeRows.push({...fakeRow, number: Math.floor(Math.random()*1000)})
+const fakeExpandables = []
+for (let i = 0; i < 50; i++) {
+    fakeRows.push({...fakeRow, number: Math.floor(Math.random()*1000)})
+    fakeExpandables.push(fakeExpandable)
+}
 
 function PlayerMatchTable() {
     return (
         <Table
             headings={Object.keys(fakeRow)}
             items={fakeRows}
+            expandables={fakeExpandables}
             _key={"number"}
         />
     )

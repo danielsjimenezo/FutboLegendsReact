@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "./layout/Header.jsx";
+import Footer from "./layout/Footer.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ComparePage from "./pages/ComparePage.jsx";
@@ -34,6 +35,9 @@ function App() {
 
           <Route path="/rankings" element={<RankingsPage />} />
         </Routes>
+        <div className="footer-container">
+          <Footer />
+        </div>
       </main>
     </>
   );

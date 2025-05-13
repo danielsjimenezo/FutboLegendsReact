@@ -1,8 +1,8 @@
 import "./ProfilePage.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectPlayerState } from "../context/playerSlice.js";
+import { useSelector, useDispatch } from "react-redux";
+import { selectPlayerState, toggleLeaderboardCountry } from "../context/playerSlice.js";
 import GoalTypeChart1 from "../charts/GoalTypeChart1.jsx";
 import GoalTypeChart2 from "../charts/GoalTypeChart2.jsx";
 import TeamDataTable from "../tables/TeamDataTable.jsx";
@@ -19,7 +19,8 @@ function ProfilePage() {
   const [teamTableShown, setTeamTableShown] = useState("team");
   const [matchTableShown, setMatchTableShown] = useState("match");
   const [statsTableShown, setStatsTableShown] = useState("playoffs");
-  const { players, playersLoadingState } = useSelector(selectPlayerState);
+  const { players, playersLoadingState, leaderboardCountry } = useSelector(selectPlayerState);
+  const dispatch = useDispatch()
   const { id } = useParams();
   const player = players.find((p) => p.Player === id.replaceAll("_", " "));
 
@@ -96,17 +97,22 @@ function ProfilePage() {
             setTeamTableShown(option.value);
           }}
         />
+
         <div id="leaderboard-heading">
           <h3>Leaderboard</h3>
           <div className="controls">
             <Toggle
               option1={{ img: "/images/Icons/global_icon.png", value: "all" }}
-              option2={{ img: `/images/Flags/${player.birthCountry}.png`, value: player.birthCountry }}
-              onClick={(e, option) => {}}
+              option2={{ img: `/images/Flags/${player.birthCountry}.png`, value: "native" }}
+              defaultValue={leaderboardCountry}
+              onClick={(e, option) => {
+                dispatch(toggleLeaderboardCountry())
+              }}
             />
             <ShownBadgesFilter />
           </div>
         </div>
+
         {teamTableShown === "team" ? (
           <TeamDataTable player={player} />
         ) : (
@@ -119,6 +125,7 @@ function ProfilePage() {
           option1={{ label: "Matches", value: "match" }}
           option2={{ label: "Goals", value: "goal" }}
           onClick={(e, option) => setMatchTableShown(option.value)}
+          style={{ marginBottom: "1rem" }}
         />
         {matchTableShown === "match" ? (
           <PlayerMatchTable />
@@ -129,6 +136,7 @@ function ProfilePage() {
           option1={{ label: "Stats in playoffs", value: "playoffs" }}
           option2={{ label: "Stats against top teams", value: "teams" }}
           onClick={(e, option) => setStatsTableShown(option.value)}
+          style={{ marginBottom: "1rem" }}
         />
         {statsTableShown === "playoffs" ? (
           <StatsPlayoffsTable />

@@ -74,6 +74,7 @@ const playerSlice = createSlice({
       initialCompareStats
     ),
     maxValues: {},
+    leaderboardCountry: "all"
   },
   reducers: {
     turnPage: (state, action) => {
@@ -158,6 +159,9 @@ const playerSlice = createSlice({
     setPlayerSort: (state, action) => {
       state.playerSort = action.payload;
     },
+    toggleLeaderboardCountry: (state) => {
+      state.leaderboardCountry = state.leaderboardCountry === 'all' ? 'native' : 'all'
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -186,6 +190,7 @@ export const {
   changeLeftChart,
   setSecondChart,
   setPlayerSort,
+  toggleLeaderboardCountry
 } = playerSlice.actions;
 
 export const baseSelector = (state) => state.players;

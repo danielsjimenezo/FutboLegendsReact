@@ -61,6 +61,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return p.goalsRank;
     },
+    getPlayerRankNative: (p) => {
+      return p.goalsRankNative;
+    },
   },
   {
     id: "assists",
@@ -75,6 +78,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return p.assistsRank;
+    },
+    getPlayerRankNative: (p) => {
+      return p.assistsRankNative
     },
     gradient: ["transparent", "#62b3ad"],
   },
@@ -91,6 +97,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return p.contributionsRank;
+    },
+    getPlayerRankNative: (p) => {
+      return p.contributionsRankNative
     },
     multiData: [
       {
@@ -119,6 +128,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return p.contributionsPerGameRank;
     },
+    getPlayerRankNative: (p) => {
+      return p.contributionsPerGameRankNative
+    },
   },
   {
     id: "balon1",
@@ -132,7 +144,10 @@ export const futbolDataTypes = [
       return p["Balon (1st)"];
     },
     getPlayerRank: (p) => {
-      return 0;
+      return p.balon1Rank
+    },
+    getPlayerRankNative: (p) => {
+      return p.balon1RankNative
     },
     gradient: ["transparent", "#FF4F8B"],
   },
@@ -148,7 +163,10 @@ export const futbolDataTypes = [
       return p["Balon (2nd)"];
     },
     getPlayerRank: (p) => {
-      return 0;
+      return p.balon2Rank
+    },
+    getPlayerRankNative: (p) => {
+      return p.balon2RankNative
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -164,7 +182,10 @@ export const futbolDataTypes = [
       return p["Balon (3rd)"];
     },
     getPlayerRank: (p) => {
-      return 0;
+      return p.balon3Rank
+    },
+    getPlayerRankNative: (p) => {
+      return p.balon3RankNative
     },
     gradient: ["transparent", "#62b3ad"],
   },
@@ -182,6 +203,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#FF4F8B"],
   },
   {
@@ -197,6 +221,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -214,6 +241,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#62b3ad"],
   },
   {
@@ -229,6 +259,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#FF4F8B"],
   },
@@ -246,6 +279,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#AF95FC"],
   },
   {
@@ -261,6 +297,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#62b3ad"],
   },
@@ -278,6 +317,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#FF4F8B"],
   },
   {
@@ -293,6 +335,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -310,6 +355,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#62b3ad"],
   },
   {
@@ -325,6 +373,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#FF4F8B"],
   },
@@ -342,6 +393,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#AF95FC"],
   },
   {
@@ -357,6 +411,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#62b3ad"],
   },
@@ -374,6 +431,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#FF4F8B"],
   },
   {
@@ -389,6 +449,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -406,6 +469,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#62b3ad"],
   },
   {
@@ -421,6 +487,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#FF4F8B"],
   },
@@ -438,6 +507,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#AF95FC"],
   },
   {
@@ -454,6 +526,9 @@ export const futbolDataTypes = [
     getPlayerRank: (p) => {
       return 0;
     },
+    getPlayerRankNative: (p) => {
+      return 0
+    },
     gradient: ["transparent", "#62b3ad"],
   },
   {
@@ -469,6 +544,9 @@ export const futbolDataTypes = [
     },
     getPlayerRank: (p) => {
       return 0;
+    },
+    getPlayerRankNative: (p) => {
+      return 0
     },
     gradient: ["transparent", "#FF4F8B"],
   },

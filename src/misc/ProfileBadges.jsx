@@ -4,8 +4,8 @@ import { selectPlayerState } from "../context/playerSlice.js";
 import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 function ProfileBadges({ player }) {
-  const { shownBadges } = useSelector(selectPlayerState);
-
+  const { shownBadges, leaderboardCountry } = useSelector(selectPlayerState);
+  console.log("leaderboardCountry", leaderboardCountry)
 
   return (
     <div className="profileStats">
@@ -16,12 +16,14 @@ function ProfileBadges({ player }) {
       {futbolDataTypes
         .filter((type) => shownBadges.includes(type.id))
         .map((type) => {
+          const rank = leaderboardCountry === 'all' ? type.getPlayerRank(player) : type.getPlayerRankNative(player)
+
           return (
             <PlayerBadge
               key={type.id}
               title={type.label}
               value={type.getPlayerValue(player)}
-              rank={type.getPlayerRank(player)}
+              rank={rank}
             />
           );
         })}
