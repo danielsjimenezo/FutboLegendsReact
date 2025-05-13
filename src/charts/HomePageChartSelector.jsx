@@ -18,10 +18,7 @@ function HomePageChartSelector({
 
   return (
     <div className="homepage-chart">
-      <p>
-        {selectedType.labelLong}{" "}
-        {readAllPlayers ? "(all players)" : "(this page)"}
-      </p>
+      <p>{selectedType.labelLong} </p>
       {/* <SelectedChartComponent readAllPlayers={readAllPlayers} /> */}
       <FutbolChart readAllPlayers={readAllPlayers} futbolType={selectedType} />
       <HomePageChartSelectorMenu chartKey={chartKey} setter={setter} id={id} />
