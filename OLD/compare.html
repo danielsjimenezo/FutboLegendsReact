@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+
+    <script src="./Javascript/Pages/compare.js" type="module" defer></script>
+
+    <link rel="stylesheet" href="./Style/style.css" />
+    <link rel="stylesheet" href="Style/compare.css" />
+
+    <title>Futbol Legends</title>
+    <link rel="shortcut icon" href="./Images/soccer.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="container"></header>
+    <section class="content-container-compare">
+      <div id="compare-picture-section">
+        <div class="compare-picture" id="compare-picture1"></div>
+        <div class="compare-picture" id="compare-picture2"></div>
+      </div>
+      <div id="compare-search">
+        <div class="search-container">
+          <input
+            type="text"
+            class="compare-search"
+            id="compare-search1"
+            placeholder="Search player 1..."
+          />
+          <section
+            id="compare-search-results1"
+            class="compare-search-results search-dropdown"
+          ></section>
+        </div>
+
+        <div class="search-container">
+          <input
+            type="text"
+            class="compare-search"
+            id="compare-search2"
+            placeholder="Search player 2..."
+          />
+          <section
+            id="compare-search-results2"
+            class="compare-search-results search-dropdown"
+          ></section>
+        </div>
+      </div>
+      <div id="compare-stats">
+
+      </div>
+    </section>
+  </body>
+</html>

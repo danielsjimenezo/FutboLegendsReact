@@ -1,0 +1,63 @@
+<div id="searchFunc">
+  <img
+    src="Images/Icons/search.png"
+    alt=""
+    class="topFilters"
+    id="searchButton"
+  />
+  <input
+    class="hidden"
+    type="text"
+    id="searchInput"
+    placeholder="Search players..."
+  />
+  <section id="searchResults"></section>
+</div>
+<div id="nav">
+  <button class="topButtons" id="recordButtonn">
+    <a href="./index.html">Record Book</a>
+  </button>
+  <button class="topButtons" id="compareButtonn">
+    <a href="./compare.html">Compare</a>
+  </button>
+</div>
+
+<div id="filters">
+  <div id="globe-filter-menu-wrapper">
+    <button id="globe-filter">
+      <img src="Images/Icons/global_icon.png" alt="" class="topFilters" />
+    </button>
+    <div id="globe-filter-menu" class="filter-menu hidden search-dropdown">
+      <button>World</button>
+    </div>
+  </div>
+  <div id="filter-menu-wrapper">
+    <button id="filter-button">
+      <img src="Images/Icons/funnel.png" alt="" class="topFilters" />
+    </button>
+    <div id="filter-menu" class="filter-menu hidden search-dropdown">
+      <button>All</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #searchInput {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  #searchInput:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  ::placeholder {
+    color: white;
+  }
+</style>

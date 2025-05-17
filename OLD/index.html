@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+    <script src="Javascript/Pages/index.js" type="module" defer></script>
+
+    <link rel="stylesheet" href="Style/style.css" />
+
+    <title>Futbol Legends</title>
+    <link rel="shortcut icon" href="./images/soccernew.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="container"></header>
+    <!-- <section id="filters" class="container">
+      <select id="position-filter">
+        <option value="all">All</option>
+      </select>
+    </section> -->
+
+    <section class="content-container container">
+      <section class="charts-container">
+        <div class="mainChart" id="contributionsChart">
+          <p>Goals + Assists</p>
+          <!-- <canvas id="contributions"></canvas> -->
+        </div>
+        <div class="mainChart" id="efficiencyChart">
+          <p>Goals + Assists per Game</p>
+          <!-- <canvas id="efficiency"></canvas> -->
+        </div>
+        <div class="mainChart hidden" id="goalsChart">
+          <p>Top Goalscorers</p>
+          <!-- <canvas id="efficiency"></canvas> -->
+        </div>
+        <div class="mainChart hidden" id="assistsChart">
+          <p>Top Assisters</p>
+          <!-- <canvas id="efficiency"></canvas> -->
+        </div>
+      </section>
+
+      <div id="moreButton">
+        <button id="show-more-btn">More charts</button>
+      </div>
+
+      <section class="table-container">
+        <table id="table">
+          <thead>
+            <tr class="header-row">
+              <th></th>
+              <th class="left">Name</th>
+              <th>Position</th>
+              <th>Country</th>
+              <th>Games</th>
+              <th>Goals</th>
+              <th>Assists</th>
+              <th>Contributions</th>
+              <th>Efficiency</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="paginationButtons">
+          <button class="tableBtns prev" id="prev">Previous</button>
+          <button class="tableBtns next" id="next">Next</button>
+        </div>
+      </section>
+    </section>
+
+    <!-- filter form-->
+    <div id="filterForm" style="display: none">
+      <label for="positionFilter">Position:</label>
+      <input type="text" id="positionFilter" name="positionFilter" />
+      <button id="applyFilterButton">Apply Filter</button>
+    </div>
+  </body>
+</html>
