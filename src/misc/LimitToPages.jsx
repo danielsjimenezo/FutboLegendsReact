@@ -12,7 +12,7 @@ function LimitToPages({ children, pages }) {
   const location = useLocation();
   let shouldShow = false;
 
-  console.log({ pages, location });
+  // console.log({ pages, location });
 
   for (const page of pages) {
     switch (page) {

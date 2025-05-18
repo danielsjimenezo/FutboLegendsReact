@@ -1,48 +1,13 @@
 import { useState } from "react";
 import "./CurrentPage.css";
-import { shortenName } from "../utilities/utilities.js";
+import { shortenName } from "../../utilities/utilities.js";
+import { Link } from "react-router-dom";
+import { topScorers, topAssisters, topTeams, leagues } from "../../utilities/dummy-data.js";
+import TopPlayersList from "../../misc/TopPlayersList.jsx"
 
-const formatPlayerNameForImage = (playerName) => {
-  // Remove spaces, dashes, apostrophes and special characters
-  // return playerName.replace(/[\s'.-]/g, "");
-  return playerName;
-};
 
-const topScorers = [
-  { name: "Erling Haaland", stat: "24" },
-  { name: "Harry Kane", stat: "22" },
-  { name: "Kylian Mbappé", stat: "21" },
-  { name: "Vinicius Jr", stat: "19" },
-  { name: "Mohamed Salah", stat: "18" },
-  { name: "Robert Lewandowski", stat: "17" },
-  { name: "Cristiano Ronaldo", stat: "16" },
-  { name: "Son Heung-min", stat: "15" },
-];
-
-const topAssisters = [
-  { name: "Kevin De Bruyne", stat: "16" },
-  { name: "Bruno Fernandes", stat: "14" },
-  { name: "Bukayo Saka", stat: "12" },
-  { name: "Lionel Messi", stat: "11" },
-  { name: "Joshua Kimmich", stat: "10" },
-  { name: "Trent Alexander-Arnold", stat: "9" },
-  { name: "Martin Ødegaard", stat: "9" },
-  { name: "Thomas Müller", stat: "8" },
-];
-
-const topTeams = [
-  { name: "Real Madrid", stat: "25" },
-  { name: "Manchester City", stat: "23" },
-  { name: "Bayern Munich", stat: "22" },
-  { name: "PSG", stat: "21" },
-  { name: "Barcelona", stat: "20" },
-  { name: "Liverpool", stat: "19" },
-  { name: "Juventus", stat: "18" },
-  { name: "Arsenal", stat: "17" },
-];
 
 function CurrentPage() {
-  const [activeTab, setActiveTab] = useState("scorers");
 
   // Helper function to format team name for image filename
   const formatTeamNameForImage = (teamName) => {
@@ -185,97 +150,15 @@ function CurrentPage() {
         {/* Left Section - Top Leagues */}
         <section className="leagues-section">
           <h2>Top Leagues</h2>
-          <ol className="leagues-list">
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/PremierLeague.png')`,
-                }}
-              ></div>
-              Premier League
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/LaLiga.png')`,
-                }}
-              ></div>
-              La Liga
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/SerieA.png')`,
-                }}
-              ></div>
-              Serie A
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/Bundesliga.png')`,
-                }}
-              ></div>
-              Bundesliga
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/Ligue1.png')`,
-                }}
-              ></div>
-              Ligue 1
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/PrimeiraLiga.png')`,
-                }}
-              ></div>
-              Primeira Liga
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/Eredivisie.png')`,
-                }}
-              ></div>
-              Eredivisie
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/Championship.png')`,
-                }}
-              ></div>
-              Championship
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/MLS.png')`,
-                }}
-              ></div>
-              MLS
-            </li>
-            <li>
-              <div
-                className="league-badge"
-                style={{
-                  backgroundImage: `url('/images/Competitions/LigaMX.png')`,
-                }}
-              ></div>
-              Liga MX
-            </li>
+          <ol className="leagues-list list">
+            {leagues.map(league => (
+              <li className="league" key={league.id}>
+                <Link to={`/league/${league.id}`}>
+                  <img src={league.img} />
+                  <p>{league.name}</p>
+                </Link>
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -348,91 +231,7 @@ function CurrentPage() {
         {/* Right Column Container */}
         <div className="right-column">
           {/* Stats Section with height limit */}
-          <section className="stats-section">
-            <div className="tabs">
-              <button
-                className={`tab ${activeTab === "scorers" ? "active" : ""}`}
-                onClick={() => setActiveTab("scorers")}
-              >
-                Top Scorers
-              </button>
-              <button
-                className={`tab ${activeTab === "assisters" ? "active" : ""}`}
-                onClick={() => setActiveTab("assisters")}
-              >
-                Top Assisters
-              </button>
-            </div>
-
-            {activeTab === "scorers" && (
-              <div className="tab-content">
-                <ol className="player-stats-list">
-                  {topScorers.map((player, index) => (
-                    <li key={index}>
-                      <div className="player-info">
-                        <div
-                          className="player-image"
-                          style={{
-                            backgroundImage: `url('/images/Players/${formatPlayerNameForImage(
-                              player.name
-                            )}.jpg')`,
-                          }}
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.style.backgroundColor =
-                              "rgba(255, 255, 255, 0.1)";
-                            e.target.textContent = player.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("");
-                          }}
-                        ></div>
-                        <span className="player-name">
-                          {shortenName(player.name)}
-                        </span>
-                      </div>
-                      <span className="stat">{player.stat}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            )}
-
-            {/* Top Assisters Tab */}
-            {activeTab === "assisters" && (
-              <div className="tab-content">
-                <ol className="player-stats-list">
-                  {topAssisters.map((player, index) => (
-                    <li key={index}>
-                      <div className="player-info">
-                        <div
-                          className="player-image"
-                          style={{
-                            backgroundImage: `url('/images/Players/${formatPlayerNameForImage(
-                              player.name
-                            )}.jpg')`,
-                          }}
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.style.backgroundColor =
-                              "rgba(255, 255, 255, 0.1)";
-                            e.target.textContent = player.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("");
-                          }}
-                        ></div>
-                        <span className="player-name">
-                          {shortenName(player.name)}
-                        </span>
-                      </div>
-                      <span className="stat">{player.stat}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            )}
-          </section>
+          <TopPlayersList scorers={topScorers} assisters={topAssisters} />
 
           {/* Most Wins section */}
           <section className="wins-section">

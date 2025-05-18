@@ -1,0 +1,53 @@
+.league-page {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    margin: 30px auto;
+    padding: 1rem;
+}
+
+.league-page h3 {
+    margin: 0;
+    padding: 1rem;
+}
+
+.league-page section {
+    background-color: var(--lighten);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+}
+
+.league-page .tabs {
+    & button {
+        background: transparent;
+        border: 0;
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-bottom: 5px solid transparent;
+
+        &.active {
+            border-bottom-color: white;
+        }
+    }
+}
+
+.league-page .players { /* ol */
+    padding: 0;
+    list-style: none;
+
+}
+
+.league-page .player {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 0.8rem;
+
+    & img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}

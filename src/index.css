@@ -8,6 +8,8 @@
   --green: #62b3ad;
   --pink: #ff4f8b;
   --purple: #af95fc;
+  --lighten: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.3);
 }
 
 html,
@@ -265,4 +267,32 @@ table tbody tr:hover {
 .nowrap,
 .nowrap button {
   white-space: nowrap;
+}
+
+.list {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  overflow-y: auto;
+}
+
+.list li {
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.list li:hover {
+  background-color: transparent;
+}
+
+.list li:last-child {
+  border-bottom: none;
 }

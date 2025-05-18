@@ -21,7 +21,7 @@
 
 /* Common section styling */
 .current-page section {
-  background-color: rgba(25, 25, 35, 0.4);
+  background-color: var(--lighten);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -85,7 +85,7 @@
 } */
 
 .leagues-section {
-  background-color: rgba(25, 25, 35, 0.4);
+  background-color: var(--lighten);
   border: 1px solid var(--border-color, #af95fc);
 }
 
@@ -95,33 +95,20 @@
   padding: 0;
 }
 
-.leagues-list li {
-  padding: 0.85rem 1.2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background-color 0.2s ease;
-  cursor: pointer;
-  background-color: transparent;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
 
-.league-badge {
-  width: 30px;
-  height: 30px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  flex-shrink: 0;
-}
 
-.leagues-list li:hover {
-  background-color: transparent;
-}
+.league {
+  & a {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+  }
 
-.leagues-list li:last-child {
-  border-bottom: none;
+  & img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /* Center Section - Timeline */
@@ -264,7 +251,7 @@
 }
 
 /* Right Section - Tabs */
-.tabs {
+.current-page .tabs {
   display: flex;
   background-color: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -486,7 +473,7 @@
 .stats-section,
 .wins-section,
 .match-card {
-  background-color: rgba(25, 25, 35, 0.4);
+  background-color: var(--lighten);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
 }
@@ -507,12 +494,6 @@
   /* background-color: transparent; */
 }
 
-.leagues-list {
-  list-style-position: inside;
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
 
 .tab-content,
 .team-stats-list {
@@ -634,7 +615,7 @@
 
 /* Update match card with white border */
 .match-card {
-  background-color: rgba(25, 25, 35, 0.4);
+  background-color: var(--lighten);
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
@@ -793,7 +774,7 @@
   color: white;
   margin: 0 4px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background-color: rgba(25, 25, 35, 0.4);
+  background-color: var(--lighten);
 }
 
 /* Home team goal layout */

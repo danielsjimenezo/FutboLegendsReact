@@ -225,6 +225,13 @@ export const selectPlayerState = createSelector([baseSelector], (s) => {
         (p) => id.toString().replaceAll("_", " ") === p.Player
       );
     },
+    getRandomPlayers(amt) {
+      const result = []
+      for (let i = 0; i < amt; i++) {
+        result.push(s.players[Math.floor(Math.random()*s.players.length)])
+      }
+      return result.filter(Boolean)
+    }
   };
 });
 
