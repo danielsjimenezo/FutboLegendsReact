@@ -1,33 +1,34 @@
 import Table from './Table.jsx'
 
 const fakeRow = {
-    number: 981,
-    date: `04/21/25`,
-    team: {
+    "#": 981,
+    Date: `04/21/25`,
+    Team: {
         type: 'img',
         src: '/images/Teams/Bayern Munich.png'
     },
-    opp: {
+    "Opp.": {
         type: 'img',
         src: '/images/Teams/Colombia.png'
     },
-    comp: "UCL",
-    min: "25'",
-    type: "Penalty",
-    body: 'Right',
-    stakes: 'Qtr Final',
-    assister: 'M. Ozil'
+    "Comp.": "UCL",
+    Min: "25'",
+    Type: "Penalty",
+    Body: 'Right',
+    Stakes: 'Qtr Final',
+    Assist: 'M. Ozil'
 }
 
 const fakeRows = []
-for (let i = 0; i < 50; i++) fakeRows.push({...fakeRow, number: Math.floor(Math.random()*1000)})
+for (let i = 0; i < 50; i++) fakeRows.push({...fakeRow, "#": Math.floor(Math.random()*1000)})
 
 function PlayerGoalTable() {
     return (
         <Table
             headings={Object.keys(fakeRow)}
             items={fakeRows}
-            _key={"number"}
+            _key={"#"}
+            id="player-goal-table"
         />
     )
 }

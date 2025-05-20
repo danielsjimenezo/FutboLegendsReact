@@ -28,11 +28,11 @@ function TeamDataTable({ player }) {
                       className="team-logo"
                     />
                   </td>
-                  <td>{team.games}</td>
-                  <td>{team.goals}</td>
-                  <td>{team.assists}</td>
-                  <td>{team.goals + team.assists}</td>
-                  <td>{goalsAndAssistsDivGames.toFixed(2)}</td>
+                  <td>{team.games.toLocaleString()}</td>
+                  <td>{team.goals.toLocaleString()}</td>
+                  <td>{team.assists.toLocaleString()}</td>
+                  <td>{(team.goals + team.assists).toLocaleString()}</td>
+                  <td>{(goalsAndAssistsDivGames.toFixed(2)).toLocaleString()}</td>
                 </tr>
               );
             })}
@@ -40,11 +40,11 @@ function TeamDataTable({ player }) {
           <tfoot>
             <tr className="totalsRowProfile">
               <th>TOTALS</th>
-              <td>{player.teamTotals.games}</td>
-              <td>{player.teamTotals.goals}</td>
-              <td>{player.teamTotals.assists}</td>
-              <td>{player.teamTotals.contributions}</td>
-              <td>{(player.teamTotals.efficiency || 0).toFixed(2)}</td>
+              <td>{player.teamTotals.games.toLocaleString()}</td>
+              <td>{player.teamTotals.goals.toLocaleString()}</td>
+              <td>{player.teamTotals.assists.toLocaleString()}</td>
+              <td>{player.teamTotals.contributions.toLocaleString()}</td>
+              <td>{((player.teamTotals.efficiency || 0).toFixed(2)).toLocaleString()}</td>
             </tr>
           </tfoot>
         </table>

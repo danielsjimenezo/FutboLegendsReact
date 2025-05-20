@@ -5,7 +5,7 @@ import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 function ProfileBadges({ player }) {
   const { shownBadges, leaderboardCountry } = useSelector(selectPlayerState);
-  console.log("leaderboardCountry", leaderboardCountry)
+  // console.log("leaderboardCountry", leaderboardCountry)
 
   return (
     <div className="profileStats">

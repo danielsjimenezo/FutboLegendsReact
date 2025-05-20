@@ -25,6 +25,7 @@ function StatsPlayoffsTable() {
       items={fakeRows}
       _key={"id"}
       hide={["id"]}
+      id="stats-playoffs-table"
     />
   );
 }

@@ -1,8 +1,9 @@
 import "./Table.css";
+import TableRow from "./TableRow.jsx";
 import TableTd from "./TableTd.jsx";
 import { useState } from "react";
 
-function Table({ headings, items, _key, hide = [], expandables }) {
+function Table({ headings, items, _key, hide = [], expandables, id = "" }) {
   const [page, setPage] = useState(0);
 
   const start = page * 10;
@@ -13,7 +14,7 @@ function Table({ headings, items, _key, hide = [], expandables }) {
 
   return (
     <>
-      <table className="table">
+      <table className="table" id={id}>
         <thead>
           <tr>
             {headings.map((h) => {
@@ -29,28 +30,31 @@ function Table({ headings, items, _key, hide = [], expandables }) {
             // Table row can be "expandable" if "expandables prop is provided"
             const expandable = expandables?.[i]
             return (
-              <tr key={item[_key]}>
-                {entries.map(([k, v]) => {
-                  const key = Math.random();
-                  return <TableTd key={key} k={k} v={v} />;
-                })}
-              </tr>
+              <TableRow 
+                key={Math.random()} 
+                entries={entries} 
+                expandable={expandable}
+              />
             );
           })}
         </tbody>
       </table>
       <div className="pagination">
         <div>
-          {page > 0 && <button onClick={() => setPage(page - 1)}>Prev</button>}
+          {page > 0 && <button onClick={() => setPage(page - 1)}>
+            <img src="/images/Icons/rtri.svg" alt="" />
+          </button>}
         </div>
-        <div>
+        {/* <div>
           <p>
             Page {page + 1} of {totalPages}
           </p>
-        </div>
+        </div> */}
         <div>
           {page < totalPages - 1 && (
-            <button onClick={() => setPage(page + 1)}>Next</button>
+            <button onClick={() => setPage(page + 1)}>
+              <img src="/images/Icons/rtri.svg" alt="" />
+            </button>
           )}
         </div>
       </div>

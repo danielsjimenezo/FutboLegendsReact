@@ -15,22 +15,34 @@ const fakeRow = {
     Result: "W",
     Goals: 2,
     Assists: 1,
-    SoT: 4,
-    cc: 7,
-    touches: 92,
-    pc: 45,
-    dc: 12
+    Shots: 4,
+    Chances: 7,
+    Dribbles: 92,
+    Takeons: 45,
+    Passes: 122
 }
 
-const fakeExpandable = [
-    {title: "Expandable content title", src: "https://picsum.photos/seed/futbol/500/300"},
-    {title: "Expandable content title", src: "https://picsum.photos/seed/futbol/500/300"},
-]
+
+const fakeExpandable = {
+    type: 'videos',
+    items: [
+        {
+            title: 'Lionel Messi Career Highlights',
+            channel: 'The Highlight Factory',
+            embedCode: `<iframe width="560" height="315" src="https://www.youtube.com/embed/Ht1wQJTpNAA?si=EZgG-cl9qwZxhfgX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+        },
+        {
+            title: 'Lionel Messi - 100 Magical Dribbling Skills',
+            channel: 'Fad3nHD',
+            embedCode: `<iframe width="560" height="315" src="https://www.youtube.com/embed/nA8wHQvHPJU?si=HUUL4FN4aZIYO2W-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+        }
+    ]
+}
 
 const fakeRows = []
 const fakeExpandables = []
 for (let i = 0; i < 50; i++) {
-    fakeRows.push({...fakeRow, number: Math.floor(Math.random()*1000)})
+    fakeRows.push({...fakeRow, "#": Math.floor(Math.random()*1000)})
     fakeExpandables.push(fakeExpandable)
 }
 
@@ -41,6 +53,7 @@ function PlayerMatchTable() {
             items={fakeRows}
             expandables={fakeExpandables}
             _key={"number"}
+            id="player-match-table"
         />
     )
 }

@@ -354,3 +354,8 @@
   }
 }
 
+#player-match-table {
+  & tbody tr > td:first-child {
+    padding-left: 1rem;
+  }
+}

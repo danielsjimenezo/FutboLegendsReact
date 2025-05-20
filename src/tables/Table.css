@@ -20,4 +20,24 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+
+  & > div {
+
+    & button {
+      background-color: transparent;
+      border: 0;
+    }
+
+    & img {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:first-child img {
+      transform: rotate(180deg);
+    }
+  }
 }
+

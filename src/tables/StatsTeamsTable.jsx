@@ -28,6 +28,7 @@ function StatsTeams() {
       items={fakeRows}
       _key={"id"}
       hide={["id"]}
+      id="stats-teams-table"
     />
   );
 }

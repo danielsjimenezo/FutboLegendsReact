@@ -32,7 +32,7 @@ function FooterSocialMediaLinks() {
     <nav className="social-media-links">
       <p>Follow us</p>
       {links.map(link => (
-        <a href={link.href} key={link.href} style={{
+        <a href={link.href} key={link.icon} style={{
           transform: `scale(${link.scale || 1})`
         }}>
           <img src={link.icon} alt={link.alt} />
