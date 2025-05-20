@@ -1,20 +1,21 @@
 import Table from './Table.jsx'
 
 const fakeRow = {
-    number: 981,
-    date: `04/21/25`,
-    team: {
+    "#": 981,
+    Date: `04/21/25`,
+    Team: {
         type: 'img',
         src: '/images/Teams/Bayern Munich.png'
     },
-    opp: {
+    "Opp.": {
         type: 'img',
         src: '/images/Teams/Colombia.png'
     },
-    score: "3 - 1",
-    goals: 2,
-    assists: 1,
-    sot: 4,
+    Score: "3 - 1",
+    Result: "W",
+    Goals: 2,
+    Assists: 1,
+    SoT: 4,
     cc: 7,
     touches: 92,
     pc: 45,

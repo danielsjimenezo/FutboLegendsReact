@@ -7,8 +7,9 @@ header {
   justify-content: space-between;
   align-items: center; */
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  padding: 1rem 0 30px 1rem;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  padding: 1rem 0 30px 0;
   width: 100vw;
 }
 
@@ -79,10 +80,11 @@ header .user {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 
   & > .input-wrapper {
     position: relative;
+    width: 100%;
 
     & > img {
       position: absolute;
@@ -94,6 +96,10 @@ header .user {
 
     &:has(img) input {
       padding-left: 3rem !important;
+    }
+
+    & input {
+      width: 100%;
     }
   }
 }
@@ -136,6 +142,7 @@ header .user {
   height: 30px;
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover;
 }
 
 .player-result-info {

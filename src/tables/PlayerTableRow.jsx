@@ -48,7 +48,7 @@ function PlayerTableRow({ player, rank }) {
       {futbolDataTypes
         .filter((type) => shownColumns.includes(type.id))
         .map((type) => {
-          return <td key={type.id}>{type.getPlayerValue(player)}</td>;
+          return <td className="number" key={type.id}>{type.getPlayerValue(player).toLocaleString()}</td>;
         })}
     </tr>
   );

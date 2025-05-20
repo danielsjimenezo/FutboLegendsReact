@@ -12,6 +12,7 @@
 #main-table .rank {
   padding-right: 1rem;
   padding-left: 1rem;
+  width: 50px;
 }
 
 #main-table thead {
@@ -23,6 +24,7 @@
 
 #main-table tbody tr {
   border-radius: 10rem;
+  cursor: pointer;
 }
 
 #main-table tr th {
@@ -72,11 +74,11 @@
 }
 
 .picture.active {
-  border: 3px solid var(--green);
+  border: 2px solid var(--green);
 }
 
 .picture.inactive {
-  border: 3px solid var(--pink);
+  border: 2px solid var(--pink);
 }
 
 #paginationButtons {

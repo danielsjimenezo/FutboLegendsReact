@@ -31,8 +31,12 @@ const initialCompareStats = [
   "contributions",
   "efficiency",
   "balon1",
-  "balon2",
-  "balon3",
+  "WC Goals",
+  "WC Assists",
+  "UCL Goals",
+  "UCL Assists",
+  "FreeKicks",
+  "Penalties"
 ];
 
 const PER_PAGE = 15;

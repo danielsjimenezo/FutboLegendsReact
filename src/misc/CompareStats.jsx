@@ -27,7 +27,7 @@ function CompareStats({ player1, player2 }) {
               label={type.labelLong}
               val1={type.getPlayerValue(player1)}
               val2={type.getPlayerValue(player2)}
-              max={maxValues[type.id] || 0}
+              max={type.dataCeiling || maxValues[type.id] || 0}
             />
           );
         })}

@@ -37,16 +37,20 @@ function ComparePage() {
       <div id="compare-picture-section">
         <ComparePicture player={player1} />
         <ComparePicture player={player2} />
-        <PlayerSearch
-          alwaysOpen={true}
-          url={(player) => getCompareUrl(player, 0)}
-          searchIcon={true}
-        />
-        <PlayerSearch
-          alwaysOpen={true}
-          url={(player) => getCompareUrl(player, 1)}
-          searchIcon={true}
-        />
+        <div className="compare-search-container">
+          <PlayerSearch
+            alwaysOpen={true}
+            url={(player) => getCompareUrl(player, 0)}
+            searchIcon={true}
+          />
+        </div>
+        <div className="compare-search-container">
+          <PlayerSearch
+            alwaysOpen={true}
+            url={(player) => getCompareUrl(player, 1)}
+            searchIcon={true}
+          />
+        </div>
       </div>
       <CompareStats player1={player1} player2={player2} />
     </section>

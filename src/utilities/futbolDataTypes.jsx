@@ -26,6 +26,7 @@ import { graphColors } from "./utilities.js";
  * @property {(p: Player) => number} getPlayerRankNative
  * @property {Gradient} [gradient] OPTIONAL
  * @property {ChartConfig[]} [multiData] OPTIONAL
+ * @property {number} [dataCeiling]
  */
 
 /** @type {FutbolDataType[]} */
@@ -35,6 +36,7 @@ export const futbolDataTypes = [
     labelLong: "Games",
     label: "Games",
     labelShort: "Games",
+    dataCeiling: 1400,
     sortAlg: (p1, p2) => {
       return p2.GamesPlayed - p1.GamesPlayed;
     },
@@ -54,6 +56,7 @@ export const futbolDataTypes = [
     labelLong: "Goals",
     label: "Goals",
     labelShort: "Goals",
+    dataCeiling: 1400,
     sortAlg: (p1, p2) => {
       return p2.Goals - p1.Goals;
     },
@@ -72,6 +75,7 @@ export const futbolDataTypes = [
     labelLong: "Assists",
     label: "Assists",
     labelShort: "Assists",
+    dataCeiling: 1400,
     sortAlg: (p1, p2) => {
       return p2.Assists - p1.Assists;
     },
@@ -91,6 +95,7 @@ export const futbolDataTypes = [
     labelLong: " Goal Contributions",
     label: "Goals Contributions",
     labelShort: "GC",
+    dataCeiling: 1400,
     sortAlg: (p1, p2) => {
       return p2.GoalContributions - p1.GoalContributions;
     },
@@ -121,6 +126,7 @@ export const futbolDataTypes = [
     labelLong: "Goal Efficiency",
     label: "Goal Efficiency",
     labelShort: "GE",
+    dataCeiling: 3,
     sortAlg: (p1, p2) => {
       return p2.Efficiency - p1.Efficiency;
     },
@@ -139,6 +145,7 @@ export const futbolDataTypes = [
     labelLong: "Balón d'or (1st)",
     label: "Balón (1st)",
     labelShort: "Balón (1st)",
+    dataCeiling: 10,
     sortAlg: (p1, p2) => {
       return p2["Balon (1st)"] - p1["Balon (1st)"];
     },
@@ -158,6 +165,7 @@ export const futbolDataTypes = [
     labelLong: "Balón d'or (2nd)",
     label: "Balón (2nd)",
     labelShort: "Balón (2nd)",
+    dataCeiling: 10,
     sortAlg: (p1, p2) => {
       return p2["Balon (2nd)"] - p1["Balon (2nd)"];
     },
@@ -177,6 +185,7 @@ export const futbolDataTypes = [
     labelLong: "Balón d'or (3rd",
     label: "Balón (3rd)",
     labelShort: "Balón (3rd)",
+    dataCeiling: 10,
     sortAlg: (p1, p2) => {
       return p2["Balon (3rd)"] - p1["Balon (3rd)"];
     },
@@ -196,6 +205,7 @@ export const futbolDataTypes = [
     labelLong: "World Cup Goals",
     label: "WC Goals",
     labelShort: "WC Goals",
+    dataCeiling: 20,
     sortAlg: (p1, p2) => {
       return p2["WC Goals"] - p1["WC Goals"];
     },
@@ -215,6 +225,7 @@ export const futbolDataTypes = [
     labelLong: "World Cup Assists",
     label: "WC Assists",
     labelShort: "WC Assists",
+    dataCeiling: 15,
     sortAlg: (p1, p2) => {
       return p2["WC Assists"] - p1["WC Assists"];
     },
@@ -367,6 +378,7 @@ export const futbolDataTypes = [
     labelLong: "UCL Goals",
     label: "UCL Goals",
     labelShort: "UCL Goals",
+    dataCeiling: 160,
     sortAlg: (p1, p2) => {
       return p2["UCL Goals"] - p1["UCL Goals"];
     },
@@ -386,6 +398,7 @@ export const futbolDataTypes = [
     labelLong: "UCL Assists",
     label: "UCL Assists",
     labelShort: "UCL Assists",
+    dataCeiling: 160,
     sortAlg: (p1, p2) => {
       return p2["UCL Assists"] - p1["UCL Assists"];
     },
@@ -424,6 +437,7 @@ export const futbolDataTypes = [
     labelLong: "FreeKicks",
     label: "FreeKicks",
     labelShort: "FKs",
+    dataCeiling: 200,
     sortAlg: (p1, p2) => {
       return p2["FreeKicks"] - p1["FreeKicks"];
     },
@@ -443,6 +457,7 @@ export const futbolDataTypes = [
     labelLong: "Penalties",
     label: "Penalties",
     labelShort: "PKs",
+    dataCeiling: 200,
     sortAlg: (p1, p2) => {
       return p2["Penalties"] - p1["Penalties"];
     },

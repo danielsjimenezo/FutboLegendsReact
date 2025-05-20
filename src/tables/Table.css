@@ -1,6 +1,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-size: .8rem;
 
   & thead th {
     border-bottom: 1px solid white;

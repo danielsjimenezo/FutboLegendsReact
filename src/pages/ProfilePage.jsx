@@ -57,7 +57,7 @@ function ProfilePage() {
             <img
               src={`/images/Players/${player.Player}.jpg`}
               alt={`Photo of ${player.Player}`}
-              className="playerPics"
+              className={`playerPics ${player.Active === "TRUE" ? 'active' : 'inactive'}`}
             />
           </div>
           <div className="playerDesc">

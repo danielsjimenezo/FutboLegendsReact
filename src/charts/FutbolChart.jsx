@@ -1,7 +1,7 @@
 import Chart from "./Chart.jsx";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
-import { graphColors } from "../utilities/utilities.js";
+import { graphColors, shortenName } from "../utilities/utilities.js";
 const graphColorsArr = Object.values(graphColors);
 import {
   HOME_PAGE_CHART_ASPECT_RATIO,
@@ -25,7 +25,7 @@ function FutbolChart({ futbolType, readAllPlayers }) {
 
   const sorted = playerArr.toSorted(futbolType.sortAlg).slice(0, PER_PAGE);
 
-  const names = sorted.map((p) => p.Player);
+  const names = sorted.map((p) => shortenName(p.Player));
 
   let datasets;
   const options = {
@@ -45,11 +45,11 @@ function FutbolChart({ futbolType, readAllPlayers }) {
     },
     scales: {
       x: {
-        beginAtZero: true,
+        // beginAtZero: true,
         ticks: { color: "white" },
       },
       y: {
-        beginAtZero: true,
+        // beginAtZero: true,
         ticks: { color: "white" },
       },
     },
@@ -63,7 +63,7 @@ function FutbolChart({ futbolType, readAllPlayers }) {
     // Create datasets
     for (let i = 0; i < futbolType.multiData.length; i++) {
       const { label, gradient, getPlayerValue } = futbolType.multiData[i];
-
+      
       datasets.push({
         ...defaultDataSet(),
         backgroundColor: createGradient(...gradient),
@@ -72,12 +72,14 @@ function FutbolChart({ futbolType, readAllPlayers }) {
       });
     }
     // Tweak options
-    delete options.scales.x.beginAtZero;
-    delete options.scales.y.beginAtZero;
+    // delete options.scales.x.beginAtZero;
+    // delete options.scales.y.beginAtZero;
     options.scales.x.stacked = true;
     options.scales.y.stacked = true;
   } else {
     // Single data (most charts use this)
+    const data = sorted.map(futbolType.getPlayerValue)
+    // options.scales.x.min = Math.floor(Math.min(...data) * 0.85)
     datasets = [
       {
         ...defaultDataSet(),
@@ -88,7 +90,7 @@ function FutbolChart({ futbolType, readAllPlayers }) {
           "transparent",
           graphColorsArr[readAllPlayers ? 0 : 2]
         ),
-        data: sorted.map(futbolType.getPlayerValue),
+        data: data,
         label: futbolType.labelShort,
       },
     ];

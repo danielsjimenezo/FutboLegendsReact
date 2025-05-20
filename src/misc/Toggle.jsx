@@ -5,8 +5,8 @@ function Toggle({ option1, option2, onClick, defaultValue = option1.value, style
     const [selected, setSelected] = useState(defaultValue)
 
     return (
-        <div id="team-table-toggle-container" style={style}>
-            <div id="team-table-toggle">
+        <div className="toggle-container" style={style}>
+            <div className="toggle">
                 <button 
                     onClick={(e) => {
                         setSelected(option1.value)
