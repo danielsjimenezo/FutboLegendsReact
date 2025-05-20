@@ -11,6 +11,7 @@
 
 #main-table .rank {
   padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 #main-table thead {
@@ -43,7 +44,7 @@
   translate: -50% 0;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    /* background-color: rgba(255, 255, 255, 0.1); */
   }
 
   & img {
@@ -111,7 +112,7 @@
 }
 
 .tableBtns:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
   cursor: pointer;
 }
 

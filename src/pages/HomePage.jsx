@@ -3,16 +3,10 @@ import { selectPlayerState } from "../context/playerSlice.js";
 import { changeLeftChart, setSecondChart } from "../context/playerSlice.js";
 import PlayerTable from "../tables/PlayerTable.jsx";
 import HomePageChartSelector from "../charts/HomePageChartSelector.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
 
 const getDifferentChart = (chart1, chart2) => {
-  const charts = ["goals", "assists", "contributions", "efficiency"];
-  let i = 0;
-  let chart = charts[i];
-  while (chart === chart1 || chart === chart2) {
-    i++;
-    chart = charts[i];
-  }
-  return chart;
+  return futbolDataTypes.find((t) => t.id !== chart1 && t.id !== chart2).id;
 };
 
 function HomePage() {
@@ -30,7 +24,9 @@ function HomePage() {
           />
           <HomePageChartSelector
             chartKey={
-              secondChart === playerSort ? getDifferentChart() : secondChart
+              secondChart === playerSort
+                ? getDifferentChart(playerSort, secondChart)
+                : secondChart
             }
             setter={(chartId) => dispatch(setSecondChart(chartId))}
             readAllPlayers={true}

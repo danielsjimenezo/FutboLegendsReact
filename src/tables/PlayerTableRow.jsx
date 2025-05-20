@@ -18,6 +18,7 @@ function PlayerTableRow({ player, rank }) {
 
   return (
     <tr
+      className="trPillHover"
       onClick={handleTrClick}
       onKeyUp={(e) => {
         if (e.key === "Enter") handleTrClick();

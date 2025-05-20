@@ -1,5 +1,7 @@
 // @ts-check
 
+import { graphColors } from "./utilities.js";
+
 /**
  * @typedef {Record<string, any>} Player
  * @typedef {["transparent", string, number?, number?, number?, number?]} Gradient
@@ -43,9 +45,9 @@ export const futbolDataTypes = [
       return p.gamesPlayedRank;
     },
     getPlayerRankNative: (p) => {
-      return p.gamesPlayedRankNative
+      return p.gamesPlayedRankNative;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "goals",
@@ -80,9 +82,9 @@ export const futbolDataTypes = [
       return p.assistsRank;
     },
     getPlayerRankNative: (p) => {
-      return p.assistsRankNative
+      return p.assistsRankNative;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "contributions",
@@ -99,12 +101,12 @@ export const futbolDataTypes = [
       return p.contributionsRank;
     },
     getPlayerRankNative: (p) => {
-      return p.contributionsRankNative
+      return p.contributionsRankNative;
     },
     multiData: [
       {
         label: "Goals",
-        gradient: ["transparent", "#FF4F8B"],
+        gradient: ["transparent", graphColors.pink],
         getPlayerValue: (p) => p.Goals,
       },
       {
@@ -129,7 +131,7 @@ export const futbolDataTypes = [
       return p.contributionsPerGameRank;
     },
     getPlayerRankNative: (p) => {
-      return p.contributionsPerGameRankNative
+      return p.contributionsPerGameRankNative;
     },
   },
   {
@@ -144,12 +146,12 @@ export const futbolDataTypes = [
       return p["Balon (1st)"];
     },
     getPlayerRank: (p) => {
-      return p.balon1Rank
+      return p.balon1Rank;
     },
     getPlayerRankNative: (p) => {
-      return p.balon1RankNative
+      return p.balon1RankNative;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "balon2",
@@ -163,10 +165,10 @@ export const futbolDataTypes = [
       return p["Balon (2nd)"];
     },
     getPlayerRank: (p) => {
-      return p.balon2Rank
+      return p.balon2Rank;
     },
     getPlayerRankNative: (p) => {
-      return p.balon2RankNative
+      return p.balon2RankNative;
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -182,12 +184,12 @@ export const futbolDataTypes = [
       return p["Balon (3rd)"];
     },
     getPlayerRank: (p) => {
-      return p.balon3Rank
+      return p.balon3Rank;
     },
     getPlayerRankNative: (p) => {
-      return p.balon3RankNative
+      return p.balon3RankNative;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "WC Goals",
@@ -204,9 +206,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "WC Assists",
@@ -223,7 +225,7 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -242,9 +244,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "WC GBall",
@@ -261,9 +263,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "WC SBall",
@@ -280,7 +282,7 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -299,9 +301,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "WC GBoot",
@@ -318,9 +320,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "WC SBoot",
@@ -337,7 +339,7 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -356,9 +358,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "UCL Goals",
@@ -375,9 +377,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "UCL Assists",
@@ -394,7 +396,7 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -413,9 +415,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "FreeKicks",
@@ -432,9 +434,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "Penalties",
@@ -451,7 +453,7 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -470,9 +472,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "InsideBox",
@@ -489,9 +491,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
   {
     id: "LeftFoot",
@@ -508,7 +510,7 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
     gradient: ["transparent", "#AF95FC"],
   },
@@ -527,9 +529,9 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#62b3ad"],
+    gradient: ["transparent", graphColors.green],
   },
   {
     id: "Headers",
@@ -546,8 +548,8 @@ export const futbolDataTypes = [
       return 0;
     },
     getPlayerRankNative: (p) => {
-      return 0
+      return 0;
     },
-    gradient: ["transparent", "#FF4F8B"],
+    gradient: ["transparent", graphColors.pink],
   },
 ];

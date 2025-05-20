@@ -2,13 +2,15 @@ import { useState } from "react";
 import "./CurrentPage.css";
 import { shortenName } from "../../utilities/utilities.js";
 import { Link } from "react-router-dom";
-import { topScorers, topAssisters, topTeams, leagues } from "../../utilities/dummy-data.js";
-import TopPlayersList from "../../misc/TopPlayersList.jsx"
-
-
+import {
+  topScorers,
+  topAssisters,
+  topTeams,
+  leagues,
+} from "../../utilities/dummy-data.js";
+import TopPlayersList from "../../misc/TopPlayersList.jsx";
 
 function CurrentPage() {
-
   // Helper function to format team name for image filename
   const formatTeamNameForImage = (teamName) => {
     // Remove spaces and special characters
@@ -151,7 +153,7 @@ function CurrentPage() {
         <section className="leagues-section">
           <h2>Top Leagues</h2>
           <ol className="leagues-list list">
-            {leagues.map(league => (
+            {leagues.map((league) => (
               <li className="league" key={league.id}>
                 <Link to={`/league/${league.id}`}>
                   <img src={league.img} />

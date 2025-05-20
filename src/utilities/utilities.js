@@ -80,3 +80,9 @@ export const shortenName = (name) => {
   names[0] = names[0][0] + ".";
   return names.join(" ");
 };
+
+export const graphColors = {
+  pink: "#FF4F8B",
+  green: "#62b3ad",
+  purple: "#AF95FC",
+};

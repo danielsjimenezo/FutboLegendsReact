@@ -1,7 +1,8 @@
 import Chart from "./Chart.jsx";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
-
+import { graphColors } from "../utilities/utilities.js";
+const graphColorsArr = Object.values(graphColors);
 import {
   HOME_PAGE_CHART_ASPECT_RATIO,
   createGradient,
@@ -18,7 +19,8 @@ const defaultDataSet = () => {
 };
 
 function FutbolChart({ futbolType, readAllPlayers }) {
-  const { displayedPlayers, players, PER_PAGE } = useSelector(selectPlayerState);
+  const { displayedPlayers, players, PER_PAGE } =
+    useSelector(selectPlayerState);
   const playerArr = readAllPlayers ? players : displayedPlayers;
 
   const sorted = playerArr.toSorted(futbolType.sortAlg).slice(0, PER_PAGE);
@@ -57,9 +59,11 @@ function FutbolChart({ futbolType, readAllPlayers }) {
   if (futbolType.multiData) {
     // Multiple data, like in the contributions chart
     datasets = [];
+
     // Create datasets
     for (let i = 0; i < futbolType.multiData.length; i++) {
       const { label, gradient, getPlayerValue } = futbolType.multiData[i];
+
       datasets.push({
         ...defaultDataSet(),
         backgroundColor: createGradient(...gradient),
@@ -77,9 +81,13 @@ function FutbolChart({ futbolType, readAllPlayers }) {
     datasets = [
       {
         ...defaultDataSet(),
-        backgroundColor: futbolType.gradient
-          ? createGradient(...futbolType.gradient)
-          : createGradient("transparent", "#AF95FC"),
+        // backgroundColor: futbolType.gradient
+        //   ? createGradient(...futbolType.gradient)
+        //   : createGradient("transparent", "#AF95FC"),
+        backgroundColor: createGradient(
+          "transparent",
+          graphColorsArr[readAllPlayers ? 0 : 2]
+        ),
         data: sorted.map(futbolType.getPlayerValue),
         label: futbolType.labelShort,
       },
