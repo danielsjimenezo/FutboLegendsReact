@@ -14,6 +14,7 @@ const initialColumns = [
   "contributions",
   "efficiency",
 ];
+
 const initialBadges = [
   "games",
   "goals",
@@ -24,6 +25,7 @@ const initialBadges = [
   "balon2",
   "balon3",
 ];
+
 const initialCompareStats = [
   "games",
   "goals",
@@ -31,12 +33,12 @@ const initialCompareStats = [
   "contributions",
   "efficiency",
   "balon1",
-  "WC Goals",
-  "WC Assists",
-  "UCL Goals",
-  "UCL Assists",
-  "FreeKicks",
-  "Penalties"
+  "wcGoals",
+  "wcAssists",
+  "uclGoals",
+  "uclAssists",
+  "freekicks",
+  "penalties"
 ];
 
 const PER_PAGE = 15;
@@ -65,20 +67,24 @@ const playerSlice = createSlice({
     secondChart: "goals",
     countryFilter: "all",
     positionFilter: "all",
-    shownColumns: getArrayFromLocalStorage(
-      "futbolegends::shownColumns",
-      initialColumns
-    ),
-    shownBadges: getArrayFromLocalStorage(
-      "futbolegends::shownBadges",
-      initialBadges
-    ),
-    shownCompareStats: getArrayFromLocalStorage(
-      "futbolegends::shownCompareStats",
-      initialCompareStats
-    ),
+    // shownColumns: getArrayFromLocalStorage(
+    //   "futbolegends::shownColumns",
+    //   initialColumns
+    // ),
+    shownColumns: initialColumns,
+    // shownBadges: getArrayFromLocalStorage(
+    //   "futbolegends::shownBadges",
+    //   initialBadges
+    // ),
+    shownBadges: initialBadges,
+    // shownCompareStats: getArrayFromLocalStorage(
+    //   "futbolegends::shownCompareStats",
+    //   initialCompareStats
+    // ),
+    shownCompareStats: initialCompareStats,
     maxValues: {},
-    leaderboardCountry: "all"
+    leaderboardCountry: "all",
+    leaderboardPosition: "all"
   },
   reducers: {
     turnPage: (state, action) => {
@@ -101,10 +107,10 @@ const playerSlice = createSlice({
       const i = state.shownColumns.indexOf(col);
       if (i === -1) state.shownColumns.push(col);
       else state.shownColumns.splice(i, 1);
-      localStorage.setItem(
-        "futbolegends::shownColumns",
-        JSON.stringify(state.shownColumns)
-      );
+      // localStorage.setItem(
+      //   "futbolegends::shownColumns",
+      //   JSON.stringify(state.shownColumns)
+      // );
     },
     toggleShownBadge: (state, action) => {
       const badge = action.payload;
@@ -115,10 +121,10 @@ const playerSlice = createSlice({
       } else {
         state.shownBadges.splice(i, 1);
       }
-      localStorage.setItem(
-        "futbolegends::shownBadges",
-        JSON.stringify(state.shownBadges)
-      );
+      // localStorage.setItem(
+      //   "futbolegends::shownBadges",
+      //   JSON.stringify(state.shownBadges)
+      // );
     },
     toggleShownCompareStat: (state, action) => {
       const stat = action.payload;
@@ -129,10 +135,10 @@ const playerSlice = createSlice({
       } else {
         state.shownCompareStats.splice(i, 1);
       }
-      localStorage.setItem(
-        "futbolegends::shownCompareStats",
-        JSON.stringify(state.shownCompareStats)
-      );
+      // localStorage.setItem(
+      //   "futbolegends::shownCompareStats",
+      //   JSON.stringify(state.shownCompareStats)
+      // );
     },
     changeLeftChart: (state, action) => {
       const chartId = action.payload;
@@ -152,10 +158,10 @@ const playerSlice = createSlice({
         state.shownColumns.push(chartId);
       }
       state.playerSort = chartId;
-      localStorage.setItem(
-        "futbolegends::shownColumns",
-        JSON.stringify(state.shownColumns)
-      );
+      // localStorage.setItem(
+      //   "futbolegends::shownColumns",
+      //   JSON.stringify(state.shownColumns)
+      // );
     },
     setSecondChart: (state, action) => {
       state.secondChart = action.payload;
@@ -165,6 +171,9 @@ const playerSlice = createSlice({
     },
     toggleLeaderboardCountry: (state) => {
       state.leaderboardCountry = state.leaderboardCountry === 'all' ? 'native' : 'all'
+    },
+    setLeaderboardPosition: (state, action) => {
+      state.leaderboardPosition = action.payload || "all"
     }
   },
   extraReducers: (builder) => {
@@ -194,7 +203,8 @@ export const {
   changeLeftChart,
   setSecondChart,
   setPlayerSort,
-  toggleLeaderboardCountry
+  toggleLeaderboardCountry,
+  setLeaderboardPosition
 } = playerSlice.actions;
 
 export const baseSelector = (state) => state.players;
@@ -211,7 +221,7 @@ export const selectPlayerState = createSelector([baseSelector], (s) => {
   const countries = [...new Set(s.players.map((p) => p.birthCountry))]
     .filter(Boolean)
     .sort();
-  const positions = [...new Set(s.players.map((p) => p.Position))]
+  const positions = [...new Set(s.players.map((p) => p.position))]
     .filter(Boolean)
     .sort();
 

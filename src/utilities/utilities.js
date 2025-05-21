@@ -66,7 +66,7 @@ export function getArrayFromLocalStorage(key, fallback = []) {
   }
 }
 
-export const shortenName = (name) => {
+export const shortenName = (name = "") => {
   const names = name.split(" ");
 
   // player only has one name

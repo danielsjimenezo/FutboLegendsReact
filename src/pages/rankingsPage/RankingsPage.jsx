@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import {
-  DndContext,
-  closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -9,52 +7,17 @@ import {
 } from "@dnd-kit/core";
 import {
   arrayMove,
-  SortableContext,
   sortableKeyboardCoordinates,
   useSortable,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import "./RankingsPage.css";
-import { selectPlayerState } from "../context/playerSlice.js";
+import { selectPlayerState } from "../../context/playerSlice.js";
 import { useSelector } from "react-redux";
-import { shortenName } from "../utilities/utilities.js";
+import { shortenName } from "../../utilities/utilities.js";
 
-// Sortable Item Component
-function SortableItem({ id, index, name }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id });
+import MyTop20 from "./MyTop20.jsx";
 
-  const style = transform
-    ? {
-        transform: CSS.Transform.toString(transform),
-        transition,
-      }
-    : {};
-
-  return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      className={`ranking-item ${isDragging ? "dragging" : ""}`}
-      {...attributes}
-      {...listeners}
-    >
-      <span className="ranking-number">{index + 1}</span>
-      <div className="ranking-photo">
-        <img src={`/images/Players/${name}.jpg`} alt={""} />
-      </div>
-      <span className="player-name">{shortenName(name)}</span>
-      <span className="drag-indicator">⋮⋮</span>
-    </div>
-  );
-}
 
 function RankingsPage() {
   // All available players database (expanded for search)
@@ -95,12 +58,7 @@ function RankingsPage() {
   // Sample player data for official rankings
   const officialDefaultPlayers = allPlayers.slice(0, 20);
 
-  // Initialize MY RANKINGS states
-  const [myTopPlayers, setMyTopPlayers] = useState([...officialDefaultPlayers]);
-  const [mySearchTerm, setMySearchTerm] = useState("");
-  const [mySearchResults, setMySearchResults] = useState([]);
-  const [myReplaceIndex, setMyReplaceIndex] = useState(0);
-  const [showMyResults, setShowMyResults] = useState(false);
+
 
   // Initialize OFFICIAL RANKINGS states (completely separate)
   const [officialTopPlayers, setOfficialTopPlayers] = useState([
@@ -112,36 +70,16 @@ function RankingsPage() {
   const [showOfficialResults, setShowOfficialResults] = useState(false);
 
   // Separate refs for each section
-  const myResultsRef = useRef(null);
   const officialResultsRef = useRef(null);
 
-  // Set up sensors for drag detection - separate for each section
-  const myDragSensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
-  );
+
 
   const officialDragSensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
-  // MY RANKINGS search functionality
-  const handleMySearch = (e) => {
-    const term = e.target.value;
-    setMySearchTerm(term);
 
-    if (term.length >= 2) {
-      const results = players.filter((player) =>
-        player.name.toLowerCase().includes(term.toLowerCase())
-      );
-      setMySearchResults(results);
-      setShowMyResults(true);
-    } else {
-      setMySearchResults([]);
-      setShowMyResults(false);
-    }
-  };
 
   // OFFICIAL RANKINGS search functionality
   const handleOfficialSearch = (e) => {
@@ -160,34 +98,6 @@ function RankingsPage() {
     }
   };
 
-  // Handle selection from MY search results
-  const handleSelectMyPlayer = (player) => {
-    // Replace player at current index
-    const newPlayers = [...myTopPlayers];
-
-    // Check if already exists, and if it does, move instead
-    console.log({ newPlayers, player });
-    const existingIndex = newPlayers.findIndex(
-      (p) => p.name === player.name
-    );
-    if (existingIndex !== -1) {
-      // Move player
-      newPlayers.splice(existingIndex, 1);
-      newPlayers.splice(myReplaceIndex, 0, player);
-      setMyTopPlayers(newPlayers);
-    } else {
-      // Add player
-      newPlayers[myReplaceIndex] = player;
-      setMyTopPlayers(newPlayers);
-    }
-
-    setMySearchTerm("");
-    setMySearchResults([]);
-    setShowMyResults(false);
-
-    // Increment index for next selection, cycle back to 0 if at end
-    setMyReplaceIndex((prevIndex) => (prevIndex + 1) % 20);
-  };
 
   // Handle selection from OFFICIAL search results
   const handleSelectOfficialPlayer = (player) => {
@@ -217,18 +127,7 @@ function RankingsPage() {
     setOfficialReplaceIndex((prevIndex) => (prevIndex + 1) % 20);
   };
 
-  // Handle drag end for MY RANKINGS
-  const handleMyDragEnd = (event) => {
-    const { active, over } = event;
 
-    if (active && over && active.id !== over.id) {
-      setMyTopPlayers((items) => {
-        const oldIndex = items.findIndex((item) => item.name === active.id);
-        const newIndex = items.findIndex((item) => item.name === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
 
   // Handle drag end for OFFICIAL RANKINGS
   const handleOfficialDragEnd = (event) => {
@@ -247,13 +146,6 @@ function RankingsPage() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        myResultsRef.current &&
-        !myResultsRef.current.contains(event.target)
-      ) {
-        setShowMyResults(false);
-      }
-
-      if (
         officialResultsRef.current &&
         !officialResultsRef.current.contains(event.target)
       ) {
@@ -268,54 +160,7 @@ function RankingsPage() {
   return (
     <div className="rankings-page container">
       {/* Left Section - My Rankings */}
-      <section className="rankings-section editable-rankings">
-        <div className="section-header">
-          <h2>My Top 20</h2>
-          <div className="search-container" ref={myResultsRef}>
-            <input
-              type="text"
-              placeholder={`Search to replace #${myReplaceIndex + 1}...`}
-              value={mySearchTerm}
-              onChange={handleMySearch}
-              className="search-input"
-            />
-            {showMyResults && mySearchResults.length > 0 && (
-              <ul className="search-results">
-                {mySearchResults.map((player) => (
-                  <li
-                    key={player.name}
-                    onClick={() => handleSelectMyPlayer(player)}
-                  >
-                    {player.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-
-        <DndContext
-          sensors={myDragSensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleMyDragEnd}
-        >
-          <SortableContext
-            items={myTopPlayers.map((player) => player.name)}
-            strategy={verticalListSortingStrategy}
-          >
-            <div className="rankings-list">
-              {myTopPlayers.map((player, index) => (
-                <SortableItem
-                  key={player.name}
-                  id={player.name}
-                  index={index}
-                  name={player.name}
-                />
-              ))}
-            </div>
-          </SortableContext>
-        </DndContext>
-      </section>
+      <MyTop20 />
 
       {/* Right Section - Official Rankings */}
       <section className="rankings-section official-rankings">

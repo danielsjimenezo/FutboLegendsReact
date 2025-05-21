@@ -5,7 +5,7 @@ function ComparePicture({ player }) {
         <img
           src={`/images/Players/${player.name}.jpg`}
           alt={`Photo of ${player.name}`}
-          className={`${player.Active === 'TRUE' ? 'active' : 'inactive'}`}
+          className={`${player.active ? 'active' : 'inactive'}`}
         />
       ) : (
         <p className="none-selected">Select a player</p>

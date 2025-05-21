@@ -39,7 +39,7 @@ function PlayerTableRow({ player, rank }) {
           <p>{player.name}</p>
         </div>
       </td>
-      <td>{player.Position}</td>
+      <td>{player.position}</td>
       <td className="country">
         <Tooltip message={player.birthCountry}>
           <FlagIcon countryName={player.birthCountry} />

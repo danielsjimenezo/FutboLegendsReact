@@ -4,7 +4,7 @@ import Footer from "./layout/Footer.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ComparePage from "./pages/ComparePage.jsx";
-import RankingsPage from "./pages/RankingsPage.jsx";
+import RankingsPage from "./pages/rankingsPage/RankingsPage.jsx";
 import CurrentPage from "./pages/currentPage/CurrentPage.jsx";
 import LeaguePage from "./pages/leaguePage/LeaguePage.jsx";
 import { useEffect } from "react";

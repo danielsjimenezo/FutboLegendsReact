@@ -31,6 +31,7 @@ function ShownBadgesFilter({}) {
       </button>
       <div className={`filter-menu ${shown ? "shown" : ""}`}>
         {futbolDataTypes.map((type, i) => {
+          // console.log({shownBadges})
           const disabled =
             !shownBadges.includes(type.id) && shownBadges.length >= 8;
           return (

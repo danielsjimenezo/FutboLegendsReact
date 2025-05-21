@@ -351,8 +351,12 @@
 
   & .controls {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 0.5rem;
+
+    & .toggle button {
+      height: 100%;
+    }
   }
 
   & button {
@@ -362,6 +366,10 @@
     & img {
       width: 25px;
     }
+  }
+
+  & .shown-badges-filter {
+    align-self: center;
   }
 }
 

@@ -5,7 +5,7 @@ import findRankings from './rankings.js'
 import cleanup from './cleanup.js'
 
 const INPUT = './public/Data/input.json'
-const OUTPUT = './public/Data/output.json'
+const OUTPUT = './public/Data/test.json'
 
 const players = JSON.parse(fs.readFileSync(INPUT))
 const write = arr => fs.writeFileSync(OUTPUT, JSON.stringify(arr, null, 2))

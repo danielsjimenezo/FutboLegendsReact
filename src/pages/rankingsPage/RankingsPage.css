@@ -383,3 +383,13 @@
     margin-right: 1rem;
   }
 }
+
+.not-chosen {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.not-chosen img {
+  width: 30px;
+}

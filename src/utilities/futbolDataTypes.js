@@ -1,5 +1,9 @@
 // @ts-check
 
+/*
+
+*/
+
 import { graphColors } from "./utilities.js";
 
 /**

@@ -2,7 +2,7 @@ import "./ProfilePage.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectPlayerState, toggleLeaderboardCountry } from "../context/playerSlice.js";
+import { selectPlayerState, toggleLeaderboardCountry, setLeaderboardPosition } from "../context/playerSlice.js";
 import GoalTypeChart1 from "../charts/GoalTypeChart1.jsx";
 import GoalTypeChart2 from "../charts/GoalTypeChart2.jsx";
 import TeamDataTable from "../tables/TeamDataTable.jsx";
@@ -101,6 +101,14 @@ function ProfilePage() {
         <div id="leaderboard-heading">
           <h3>Leaderboard</h3>
           <div className="controls">
+            <Toggle
+              option1={{ label: "ALL", value: "all" }}
+              option2={{ label: player.position, value: player.position }}
+              defaultValue="all"
+              onClick={(e, option) => {
+                dispatch(setLeaderboardPosition(option.value))
+              }}
+            />
             <Toggle
               option1={{ img: "/images/Icons/global_icon.png", value: "all" }}
               option2={{ img: `/images/Flags/${player.birthCountry}.png`, value: "native" }}
