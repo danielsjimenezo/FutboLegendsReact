@@ -25,7 +25,7 @@ function FutbolChart({ futbolType, readAllPlayers }) {
 
   const sorted = playerArr.toSorted(futbolType.sortAlg).slice(0, PER_PAGE);
 
-  const names = sorted.map((p) => shortenName(p.Player));
+  const names = sorted.map((p) => shortenName(p.name));
 
   let datasets;
   const options = {
@@ -62,12 +62,12 @@ function FutbolChart({ futbolType, readAllPlayers }) {
 
     // Create datasets
     for (let i = 0; i < futbolType.multiData.length; i++) {
-      const { label, gradient, getPlayerValue } = futbolType.multiData[i];
+      const { label, gradient, id } = futbolType.multiData[i];
       
       datasets.push({
         ...defaultDataSet(),
         backgroundColor: createGradient(...gradient),
-        data: sorted.map(getPlayerValue),
+        data: sorted.map(p => p[id]),
         label,
       });
     }
@@ -78,7 +78,7 @@ function FutbolChart({ futbolType, readAllPlayers }) {
     options.scales.y.stacked = true;
   } else {
     // Single data (most charts use this)
-    const data = sorted.map(futbolType.getPlayerValue)
+    const data = sorted.map(p => p[futbolType.id])
     // options.scales.x.min = Math.floor(Math.min(...data) * 0.85)
     datasets = [
       {

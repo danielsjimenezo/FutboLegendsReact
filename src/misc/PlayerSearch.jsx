@@ -11,7 +11,7 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
   const searchedPlayers = useMemo(() => {
     if (query.length < 3) return [];
     return players.filter((p) =>
-      p.Player.toLowerCase().includes(query.toLowerCase())
+      p.name.toLowerCase().includes(query.toLowerCase())
     );
   }, [query]);
 
@@ -73,11 +73,11 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
       )}
       <section id="searchResults">
         {searchedPlayers.map((player) => {
-          const playerHref = "/profile/" + player.Player.replaceAll(" ", "_");
-          const imgSrc = `/images/Players/${player.Player}.jpg`;
+          const playerHref = "/profile/" + player.name.replaceAll(" ", "_");
+          const imgSrc = `/images/Players/${player.name}.jpg`;
 
           return (
-            <div className="player-result" key={player.Player}>
+            <div className="player-result" key={player.name}>
               <Link
                 className="searchResultBox"
                 to={url ? url(player) : playerHref}
@@ -85,11 +85,11 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
               >
                 <img
                   src={imgSrc}
-                  alt={player.Player}
+                  alt={player.name}
                   className="player-result-img"
                 />
                 <div className="player-result-info">
-                  <p>{player.Player}</p>
+                  <p>{player.name}</p>
                 </div>
               </Link>
             </div>

@@ -14,13 +14,12 @@ function TableRow({ entries, expandable }) {
     }
 
     const handleCloseAll = () => {
-        console.log('CLOSE ALL EVENT')
         setExpandableShown(false)
     }
 
-    useEffect(() => {
-        document.addEventListener('closeallexpandables', handleCloseAll)
-    }, [])
+
+    document.addEventListener('closeallexpandables', handleCloseAll)
+
 
     useEffect(() => {
         return () => {

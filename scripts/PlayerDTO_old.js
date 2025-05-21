@@ -1,3 +1,5 @@
+
+
 ////////// Main function
 
 export default function toPlayerDTO(player, players) {
@@ -147,7 +149,7 @@ function calculateRank(dto, players, key, useBirthCountry) {
     rankings = rankings.filter((p) => p.birthCountry === dto.birthCountry);
   }
 
-  const index = rankings.findIndex((p) => p.Player === dto.Player);
+  const index = rankings.findIndex((p) => p.name === dto.name);
 
   return index + 1;
 }

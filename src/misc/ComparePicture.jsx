@@ -3,8 +3,8 @@ function ComparePicture({ player }) {
     <div className="compare-picture">
       {player ? (
         <img
-          src={`/images/Players/${player.Player}.jpg`}
-          alt={`Photo of ${player.Player}`}
+          src={`/images/Players/${player.name}.jpg`}
+          alt={`Photo of ${player.name}`}
           className={`${player.Active === 'TRUE' ? 'active' : 'inactive'}`}
         />
       ) : (

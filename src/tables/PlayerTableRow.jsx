@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import FlagIcon from "../misc/FlagIcon.jsx";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
 import Tooltip from "../misc/Tooltip.jsx";
@@ -8,8 +8,8 @@ import Tooltip from "../misc/Tooltip.jsx";
 function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate();
 
-  const profilePicSrc = `/images/Players/${player.Player}.jpg`;
-  const playerHref = `/profile/${player.Player.replaceAll(" ", "_")}`;
+  const profilePicSrc = `/images/Players/${player.name}.jpg`;
+  const playerHref = `/profile/${player.name.replaceAll(" ", "_")}`;
   const { shownColumns } = useSelector(selectPlayerState);
 
   const handleTrClick = () => {
@@ -30,13 +30,13 @@ function PlayerTableRow({ player, rank }) {
         <div className="name-td">
           <img
             src={profilePicSrc}
-            alt={`Photo of ${player.Player}`}
+            alt={`Photo of ${player.name}`}
             className={`picture ${
-              player.Active === "TRUE" ? "active" : "inactive"
+              player.active ? "active" : "inactive"
             }`}
             loading="lazy"
           />
-          <p>{player.Player}</p>
+          <p>{player.name}</p>
         </div>
       </td>
       <td>{player.Position}</td>
@@ -48,7 +48,7 @@ function PlayerTableRow({ player, rank }) {
       {futbolDataTypes
         .filter((type) => shownColumns.includes(type.id))
         .map((type) => {
-          return <td className="number" key={type.id}>{type.getPlayerValue(player).toLocaleString()}</td>;
+          return <td className="number" key={type.id}>{player[type.id].toLocaleString()}</td>;
         })}
     </tr>
   );

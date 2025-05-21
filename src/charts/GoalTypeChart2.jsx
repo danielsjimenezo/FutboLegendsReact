@@ -3,9 +3,9 @@ import { GOAL_TYPE_CHART_ASPECT_RATIO } from "../utilities/utilities.js"
 
 function GoalTypeChart2({ player, id }) {
     const goalTypeData = [
-        player.LeftFoot,
-        player.RightFoot,
-        player.Headers,
+        player.leftFoot,
+        player.rightFoot,
+        player.headers,
         // player.Other,
     ]
 

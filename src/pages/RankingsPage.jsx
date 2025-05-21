@@ -59,36 +59,36 @@ function SortableItem({ id, index, name }) {
 function RankingsPage() {
   // All available players database (expanded for search)
   const allPlayers = [
-    { id: "p1", Player: "Lionel Messi" },
-    { id: "p2", Player: "Cristiano Ronaldo" },
-    { id: "p3", Player: "Kylian Mbappé" },
-    { id: "p4", Player: "Erling Haaland" },
-    { id: "p5", Player: "Kevin De Bruyne" },
-    { id: "p6", Player: "Mohamed Salah" },
-    { id: "p7", Player: "Robert Lewandowski" },
-    { id: "p8", Player: "Neymar Jr" },
-    { id: "p9", Player: "Virgil van Dijk" },
-    { id: "p10", Player: "Luka Modric" },
-    { id: "p11", Player: "Harry Kane" },
-    { id: "p12", Player: "Thibaut Courtois" },
-    { id: "p13", Player: "Joshua Kimmich" },
-    { id: "p14", Player: "Karim Benzema" },
-    { id: "p15", Player: "Rodri" },
-    { id: "p16", Player: "Trent Alexander-Arnold" },
-    { id: "p17", Player: "Vinicius Jr" },
-    { id: "p18", Player: "Phil Foden" },
-    { id: "p19", Player: "Jude Bellingham" },
-    { id: "p20", Player: "N'Golo Kanté" },
-    { id: "p21", Player: "Federico Valverde" },
-    { id: "p22", Player: "Jamal Musiala" },
-    { id: "p23", Player: "Bukayo Saka" },
-    { id: "p24", Player: "Bruno Fernandes" },
-    { id: "p25", Player: "Bernardo Silva" },
-    { id: "p26", Player: "Rúben Dias" },
-    { id: "p27", Player: "João Cancelo" },
-    { id: "p28", Player: "Pedri" },
-    { id: "p29", Player: "Gavi" },
-    { id: "p30", Player: "Alisson Becker" },
+    { id: "p1", name: "Lionel Messi" },
+    { id: "p2", name: "Cristiano Ronaldo" },
+    { id: "p3", name: "Kylian Mbappé" },
+    { id: "p4", name: "Erling Haaland" },
+    { id: "p5", name: "Kevin De Bruyne" },
+    { id: "p6", name: "Mohamed Salah" },
+    { id: "p7", name: "Robert Lewandowski" },
+    { id: "p8", name: "Neymar Jr" },
+    { id: "p9", name: "Virgil van Dijk" },
+    { id: "p10", name: "Luka Modric" },
+    { id: "p11", name: "Harry Kane" },
+    { id: "p12", name: "Thibaut Courtois" },
+    { id: "p13", name: "Joshua Kimmich" },
+    { id: "p14", name: "Karim Benzema" },
+    { id: "p15", name: "Rodri" },
+    { id: "p16", name: "Trent Alexander-Arnold" },
+    { id: "p17", name: "Vinicius Jr" },
+    { id: "p18", name: "Phil Foden" },
+    { id: "p19", name: "Jude Bellingham" },
+    { id: "p20", name: "N'Golo Kanté" },
+    { id: "p21", name: "Federico Valverde" },
+    { id: "p22", name: "Jamal Musiala" },
+    { id: "p23", name: "Bukayo Saka" },
+    { id: "p24", name: "Bruno Fernandes" },
+    { id: "p25", name: "Bernardo Silva" },
+    { id: "p26", name: "Rúben Dias" },
+    { id: "p27", name: "João Cancelo" },
+    { id: "p28", name: "Pedri" },
+    { id: "p29", name: "Gavi" },
+    { id: "p30", name: "Alisson Becker" },
   ];
 
   const { players } = useSelector(selectPlayerState);
@@ -133,7 +133,7 @@ function RankingsPage() {
 
     if (term.length >= 2) {
       const results = players.filter((player) =>
-        player.Player.toLowerCase().includes(term.toLowerCase())
+        player.name.toLowerCase().includes(term.toLowerCase())
       );
       setMySearchResults(results);
       setShowMyResults(true);
@@ -150,7 +150,7 @@ function RankingsPage() {
 
     if (term.length >= 2) {
       const results = players.filter((player) =>
-        player.Player.toLowerCase().includes(term.toLowerCase())
+        player.name.toLowerCase().includes(term.toLowerCase())
       );
       setOfficialSearchResults(results);
       setShowOfficialResults(true);
@@ -168,7 +168,7 @@ function RankingsPage() {
     // Check if already exists, and if it does, move instead
     console.log({ newPlayers, player });
     const existingIndex = newPlayers.findIndex(
-      (p) => p.Player === player.Player
+      (p) => p.name === player.name
     );
     if (existingIndex !== -1) {
       // Move player
@@ -195,7 +195,7 @@ function RankingsPage() {
     const newPlayers = [...officialTopPlayers];
     // Check if already exists, and if it does, move instead
     const existingIndex = newPlayers.findIndex(
-      (p) => p.Player === player.Player
+      (p) => p.name === player.name
     );
     if (existingIndex !== -1) {
       // Move player
@@ -223,8 +223,8 @@ function RankingsPage() {
 
     if (active && over && active.id !== over.id) {
       setMyTopPlayers((items) => {
-        const oldIndex = items.findIndex((item) => item.Player === active.id);
-        const newIndex = items.findIndex((item) => item.Player === over.id);
+        const oldIndex = items.findIndex((item) => item.name === active.id);
+        const newIndex = items.findIndex((item) => item.name === over.id);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
@@ -236,8 +236,8 @@ function RankingsPage() {
 
     if (active && over && active.id !== over.id) {
       setOfficialTopPlayers((items) => {
-        const oldIndex = items.findIndex((item) => item.Player === active.id);
-        const newIndex = items.findIndex((item) => item.Player === over.id);
+        const oldIndex = items.findIndex((item) => item.name === active.id);
+        const newIndex = items.findIndex((item) => item.name === over.id);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
@@ -283,10 +283,10 @@ function RankingsPage() {
               <ul className="search-results">
                 {mySearchResults.map((player) => (
                   <li
-                    key={player.Player}
+                    key={player.name}
                     onClick={() => handleSelectMyPlayer(player)}
                   >
-                    {player.Player}
+                    {player.name}
                   </li>
                 ))}
               </ul>
@@ -300,16 +300,16 @@ function RankingsPage() {
           onDragEnd={handleMyDragEnd}
         >
           <SortableContext
-            items={myTopPlayers.map((player) => player.Player)}
+            items={myTopPlayers.map((player) => player.name)}
             strategy={verticalListSortingStrategy}
           >
             <div className="rankings-list">
               {myTopPlayers.map((player, index) => (
                 <SortableItem
-                  key={player.Player}
-                  id={player.Player}
+                  key={player.name}
+                  id={player.name}
                   index={index}
-                  name={player.Player}
+                  name={player.name}
                 />
               ))}
             </div>
@@ -333,10 +333,10 @@ function RankingsPage() {
               <ul className="search-results">
                 {officialSearchResults.map((player) => (
                   <li
-                    key={player.Player}
+                    key={player.name}
                     onClick={() => handleSelectOfficialPlayer(player)}
                   >
-                    {player.Player}
+                    {player.name}
                   </li>
                 ))}
               </ul>
@@ -350,16 +350,16 @@ function RankingsPage() {
           onDragEnd={handleOfficialDragEnd}
         >
           <SortableContext
-            items={officialTopPlayers.map((player) => player.Player)}
+            items={officialTopPlayers.map((player) => player.name)}
             strategy={verticalListSortingStrategy}
           >
             <div className="rankings-list">
               {officialTopPlayers.map((player, index) => (
                 <SortableItem
-                  key={player.Player}
-                  id={player.Player}
+                  key={player.name}
+                  id={player.name}
                   index={index}
-                  name={player.Player}
+                  name={player.name}
                 />
               ))}
             </div>
@@ -367,12 +367,12 @@ function RankingsPage() {
         </DndContext> */}
         <div className="rankings-list">
           {officialTopPlayers.map((player, index) => (
-            <div style={{}} className={`ranking-item`} key={player.Player}>
+            <div style={{}} className={`ranking-item`} key={player.name}>
               <span className="ranking-number">{index + 1}</span>
               <div className="ranking-photo">
-                <img src={`/images/Players/${player.Player}.jpg`} alt={""} />
+                <img src={`/images/Players/${player.name}.jpg`} alt={""} />
               </div>
-              <span className="player-name">{shortenName(player.Player)}</span>
+              <span className="player-name">{shortenName(player.name)}</span>
             </div>
           ))}
         </div>

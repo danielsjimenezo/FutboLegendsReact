@@ -216,7 +216,7 @@ function renderCharts(data) {
   const contributionsChartt = new Chart("contributions", {
     type: "bar",
     data: {
-      labels: playersByGoalsAndAssists.map((p) => p.Player),
+      labels: playersByGoalsAndAssists.map((p) => p.name),
       datasets: [
         {
           // backgroundColor: "#FF4F8B",
@@ -270,7 +270,7 @@ function renderCharts(data) {
   const efficiencyChartt = new Chart("efficiency", {
     type: "bar",
     data: {
-      labels: playersByEfficiency.map((p) => p.Player),
+      labels: playersByEfficiency.map((p) => p.name),
       datasets: [
         {
           backgroundColor: createGradient("transparent", "#2BC1B7"),
@@ -308,7 +308,7 @@ function renderCharts(data) {
   const goalsChartt = new Chart("goals", {
     type: "bar",
     data: {
-      labels: playersByGoals.map((p) => p.Player),
+      labels: playersByGoals.map((p) => p.name),
       datasets: [
         {
           backgroundColor: createGradient("transparent", "#FF4F8B"),
@@ -346,7 +346,7 @@ function renderCharts(data) {
   const assistsChartt = new Chart("assists", {
     type: "bar",
     data: {
-      labels: playersByAssists.map((p) => p.Player),
+      labels: playersByAssists.map((p) => p.name),
       datasets: [
         {
           backgroundColor: createGradient("transparent", "#AF95FC"),
@@ -384,7 +384,7 @@ function renderCharts(data) {
 
 // Function to create table row
 function createTableRow(player, i) {
-  const profilePicSrc = `./images/Players/${player.Player}.jpg`;
+  const profilePicSrc = `./images/Players/${player.name}.jpg`;
   const flagSrc = `./images/Flags/${player.birthCountry}.png`;
   const rank = i + 1 + tablePage * PER_PAGE;
 
@@ -396,12 +396,12 @@ function createTableRow(player, i) {
       <td>
         <div class="name-td">
           <img src="${profilePicSrc}" alt="Photo of ${
-    player.Player
+    player.name
   }" class="picture ${
-    player.Active === "TRUE" ? "active" : "inactive"
+    player.active ? "active" : "inactive"
   }" loading="lazy">
-          <a href="/profile.html?name=${player.Player.replaceAll(" ", "_")}">
-            ${player.Player}
+          <a href="/profile.html?name=${player.name.replaceAll(" ", "_")}">
+            ${player.name}
           </a>
         </div>
       </td>

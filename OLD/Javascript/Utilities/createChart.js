@@ -20,7 +20,7 @@ function createChart(canvasId, data, key, start = 0, end = 20) {
   filtered.sort((a, b) => b[key] - a[key]);
 
   // get labels
-  const labels = filtered.map((p) => p.Player);
+  const labels = filtered.map((p) => p.name);
 
   // get dataset
   const dataset = filtered.map((p) => p[key]);

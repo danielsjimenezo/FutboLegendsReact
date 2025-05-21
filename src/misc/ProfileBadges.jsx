@@ -1,7 +1,7 @@
 import PlayerBadge from "./PlayerBadge.jsx";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 
 function ProfileBadges({ player }) {
   const { shownBadges, leaderboardCountry } = useSelector(selectPlayerState);
@@ -16,13 +16,13 @@ function ProfileBadges({ player }) {
       {futbolDataTypes
         .filter((type) => shownBadges.includes(type.id))
         .map((type) => {
-          const rank = leaderboardCountry === 'all' ? type.getPlayerRank(player) : type.getPlayerRankNative(player)
+          const rank = leaderboardCountry === 'all' ? player.rankings.world[type.id] : player.rankings.country[type.id]
 
           return (
             <PlayerBadge
               key={type.id}
               title={type.label}
-              value={type.getPlayerValue(player)}
+              value={player[type.id]}
               rank={rank}
             />
           );

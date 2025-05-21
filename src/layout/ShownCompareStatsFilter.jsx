@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
 import { toggleShownCompareStat } from "../context/playerSlice.js";
 import useClickOutside from "../utilities/useClickOutside.jsx";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 
 function ShownCompareStatsFilter({}) {
   const { shownCompareStats } = useSelector(selectPlayerState);

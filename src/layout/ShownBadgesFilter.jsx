@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleShownBadge } from "../context/playerSlice.js";
 import { selectPlayerState } from "../context/playerSlice.js";
 import useClickOutside from "../utilities/useClickOutside.jsx";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 
 function ShownBadgesFilter({}) {
   const { shownBadges } = useSelector(selectPlayerState);

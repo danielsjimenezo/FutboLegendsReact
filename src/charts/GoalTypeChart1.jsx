@@ -3,13 +3,13 @@ import { GOAL_TYPE_CHART_ASPECT_RATIO } from "../utilities/utilities.js"
 
 function GoalTypeChart1({ player, id }) {
     const goalTypeData = [
-        player.FreeKicks,
-        player.Penalties,
-        player.OutsideBox,
-        player.InsideBox,
-        player.CornerKicks,
-        player.Acrobatics,
-        player.Volleys,
+        player.freekicks,
+        player.penalties,
+        player.outsideBox,
+        player.insideBox,
+        player.cornerKicks,
+        player.acrobatics,
+        player.volleys,
         // player.Backheels
     ]
 

@@ -13,16 +13,16 @@ function ComparePage() {
 
   const player1 =
     findPlayerById(id1) ||
-    players.find((p) => p.Player === "Lionel Messi");
+    players.find((p) => p.name === "Lionel Messi");
   const player2 =
     findPlayerById(id2) ||
-    players.find((p) => p.Player === "Cristiano Ronaldo");
+    players.find((p) => p.name === "Cristiano Ronaldo");
 
   const getCompareUrl = (player, i) => {
     // i is 0 or 1
-    const newPlayerId = player?.Player?.replaceAll(" ", "_") || "none";
-    const player1Id = player1?.Player?.replaceAll(" ", "_") || "none";
-    const player2Id = player2?.Player?.replaceAll(" ", "_") || "none";
+    const newPlayerId = player?.name?.replaceAll(" ", "_") || "none";
+    const player1Id = player1?.name?.replaceAll(" ", "_") || "none";
+    const player2Id = player2?.name?.replaceAll(" ", "_") || "none";
 
     switch (i) {
       case 0:

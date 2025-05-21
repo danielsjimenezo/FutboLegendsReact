@@ -14,7 +14,7 @@ function HomePageChart({ key, label, readAllPlayers = false }) {
     return b[key] - a[key];
   });
 
-  const names = sorted.map((p) => p.Player);
+  const names = sorted.map((p) => p.name);
   const data = sorted.map((p) => p[key]);
 
   return (

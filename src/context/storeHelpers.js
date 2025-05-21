@@ -1,4 +1,4 @@
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 
 export function getFilteredPlayers(state) {
   let result = [...state.players];
@@ -9,7 +9,7 @@ export function getFilteredPlayers(state) {
     result = result.filter((p) => p.Position === state.positionFilter);
   }
   const type = futbolDataTypes.find((t) => t.id === state.playerSort);
-  return result.sort((a, b) => type.sortAlg(a, b));
+  return result.sort((a, b) => b[type.id] - a[type.id]);
 }
 
 

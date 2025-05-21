@@ -266,6 +266,16 @@
   translate: -50% 25%;
   color: #001327;
   font-weight: 500;
+
+  & span {
+    font-size: .8rem;
+    text-shadow: 
+      1px 1px 0px white,
+      -1px 1px 0px white,
+      1px -1px 0px white,
+      -1px -1px 0px white;
+  }
+
 }
 
 .badgeRank img {
@@ -275,6 +285,7 @@
   translate: -50% -40%;
   z-index: -1;
   height: 100%;
+  transform: scale(1.2);
 }
 
 

@@ -1,6 +1,6 @@
 import HomePageChartSelectorMenu from "./HomePageChartSelectorMenu.jsx";
 import "./HomePageChartSelector.css";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 import FutbolChart from "./FutbolChart.jsx";
 
 function HomePageChartSelector({

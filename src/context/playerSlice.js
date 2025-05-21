@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { fetchData, getArrayFromLocalStorage } from "../utilities/utilities.js";
 import { getFilteredPlayers } from "./storeHelpers.js";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 
 const initialColumns = [
   "games",
@@ -226,7 +226,7 @@ export const selectPlayerState = createSelector([baseSelector], (s) => {
     findPlayerById(id) {
       if (!id) return;
       return s.players.find(
-        (p) => id.toString().replaceAll("_", " ") === p.Player
+        (p) => id.toString().replaceAll("_", " ") === p.name
       );
     },
     getRandomPlayers(amt) {

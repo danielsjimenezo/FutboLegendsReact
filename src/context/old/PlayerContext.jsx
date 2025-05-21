@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { fetchData, getArrayFromLocalStorage } from "../../utilities/utilities.js";
-import { futbolDataTypes } from "../../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../../utilities/futbolDataTypes.js";
 
 const PER_PAGE = 15;
 
@@ -165,7 +165,7 @@ export const PlayerContextProvider = ({ children }) => {
     findPlayerById(id) {
       if (!id) return;
       return players.find(
-        (p) => id.toString().replaceAll("_", " ") === p.Player
+        (p) => id.toString().replaceAll("_", " ") === p.name
       );
     },
     toggleShownColumn(sort) {

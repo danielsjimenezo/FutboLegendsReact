@@ -22,7 +22,7 @@ function ProfilePage() {
   const { players, playersLoadingState, leaderboardCountry } = useSelector(selectPlayerState);
   const dispatch = useDispatch()
   const { id } = useParams();
-  const player = players.find((p) => p.Player === id.replaceAll("_", " "));
+  const player = players.find((p) => p.name === id.replaceAll("_", " "));
 
   if (playersLoadingState === "loading") {
     return (
@@ -52,12 +52,12 @@ function ProfilePage() {
     <>
       <section className="profile-container container">
         <div className="playerProfile">
-          <h1>{player.Player}</h1>
+          <h1>{player.name}</h1>
           <div className="playerPic">
             <img
-              src={`/images/Players/${player.Player}.jpg`}
-              alt={`Photo of ${player.Player}`}
-              className={`playerPics ${player.Active === "TRUE" ? 'active' : 'inactive'}`}
+              src={`/images/Players/${player.name}.jpg`}
+              alt={`Photo of ${player.name}`}
+              className={`playerPics ${player.active ? 'active' : 'inactive'}`}
             />
           </div>
           <div className="playerDesc">
