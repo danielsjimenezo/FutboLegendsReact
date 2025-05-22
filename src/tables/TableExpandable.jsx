@@ -30,9 +30,14 @@ import YoutubeEmbed from "../misc/YoutubeEmbed.jsx";
  * @property {VideosExpandableItem[]} items
  */
 
+/**
+ * @typedef MoreRowsExpandable
+ * @property {"moreRows"} type
+ * @property {any[][]} items
+ */
 
 /**
- * @typedef {PhotosExpandable | VideosExpandable } Expandable
+ * @typedef {PhotosExpandable | VideosExpandable | MoreRowsExpandable } Expandable
  */
 
 /**
@@ -82,6 +87,16 @@ function TableExpandable({ expandable }) {
                     ))}
                 </div>
             )}
+
+            {expandable.type === 'moreRows' && expandable.items.map(row => (
+                <tr key={Math.random()}>
+                    {row.map(item => (
+                        <td key={Math.random()}>
+                            {item}
+                        </td>
+                    ))}
+                </tr>
+            ))}
 
 
         </>

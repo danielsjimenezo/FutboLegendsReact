@@ -41,22 +41,9 @@ function TableRow({ entries, expandable }) {
                     return <TableTd key={key} k={k} v={v} />;
                 })}
             </tr>
-            {(expandable && (expandable.type !== 'moreRows') && expandableShown) && (
-                <tr>
-                    <td colSpan={10000}>
-                        <TableExpandable expandable={expandable} />
-                    </td>
-                </tr>
+            {(expandable && expandableShown) && (
+                <TableExpandable expandable={expandable} />
             )}
-            {(expandable && (expandable.type === 'moreRows') && expandableShown) && expandable.items.map(row => (
-                <tr key={Math.random()}>
-                    {row.map(item => (
-                        <td key={Math.random()}>
-                            {item}
-                        </td>
-                    ))}
-                </tr>
-            ))}
         </>
     )
 }
