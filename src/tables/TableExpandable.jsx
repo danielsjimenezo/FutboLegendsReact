@@ -53,39 +53,47 @@ function TableExpandable({ expandable }) {
     return (
         <>
             {expandable.type === 'photos' && (
-                <div className="photos-expandable expandable" style={{
-                    display: 'grid',
-                    gridTemplateColumns: `repeat(${expandable.items.length}, 1fr)`
-                }}>
-                    {expandable.items.map(item => (
-                        <div key={Math.random()} className="photos-expandable-item">
-                            <h4>{item.title}</h4>
-                            <img src={item.src} alt="" />
+                <tr>
+                    <td colSpan={100}>
+                        <div className="photos-expandable expandable" style={{
+                            display: 'grid',
+                            gridTemplateColumns: `repeat(${expandable.items.length}, 1fr)`
+                        }}>
+                            {expandable.items.map(item => (
+                                <div key={Math.random()} className="photos-expandable-item">
+                                    <h4>{item.title}</h4>
+                                    <img src={item.src} alt="" />
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </td>
+                </tr>
             )}
 
             {expandable.type === 'videos' && (
-                <div className="videos-expandable expandable" style={{
-                    display: 'grid',
-                    gridTemplateColumns: `repeat(${expandable.items.length}, 1fr)`,
-                    gap: '2rem'
-                }}>
-                    {expandable.items.map(item => (
-                        <div key={Math.random()} className="videos-expandable-item">
-                            <div className="heading" style={{
-                                display: 'grid',
-                                gridTemplateColumns: '1fr 150px',
-                                alignItems: 'baseline'
-                            }}>
-                                <h4 style={{ textAlign: 'left'}}>{item.title}</h4>
-                                <p style={{ textAlign: 'right' }}>{item.channel}</p>
-                            </div>
-                            <YoutubeEmbed embedCode={item.embedCode} />
+                <tr>
+                    <td colSpan={100}>
+                        <div className="videos-expandable expandable" style={{
+                            display: 'grid',
+                            gridTemplateColumns: `repeat(${expandable.items.length}, 1fr)`,
+                            gap: '2rem'
+                        }}>
+                            {expandable.items.map(item => (
+                                <div key={Math.random()} className="videos-expandable-item">
+                                    <div className="heading" style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: '1fr 150px',
+                                        alignItems: 'baseline'
+                                    }}>
+                                        <h4 style={{ textAlign: 'left'}}>{item.title}</h4>
+                                        <p style={{ textAlign: 'right' }}>{item.channel}</p>
+                                    </div>
+                                    <YoutubeEmbed embedCode={item.embedCode} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </td>
+                </tr>
             )}
 
             {expandable.type === 'moreRows' && expandable.items.map(row => (
