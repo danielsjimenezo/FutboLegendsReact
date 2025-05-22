@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { getArrayFromLocalStorage } from "../../utilities/utilities.js"
 import SortableItem from "./SortableItem.jsx"
 import {
     DndContext,
@@ -11,19 +12,32 @@ import {
 import {
     SortableContext,
     verticalListSortingStrategy,
-    sortableKeyboardCoordinates
+    sortableKeyboardCoordinates,
+    arrayMove
 } from "@dnd-kit/sortable"
+import { useSelector } from "react-redux"
+import { selectPlayerState } from "../../context/playerSlice.js"
 
-let defaultPlayers = []
-for (let i = 0; i < 20; i++) defaultPlayers.push({
-    id: Math.random()
-})
 
 function getMyTopPlayers() {
-    return defaultPlayers
+    let players =  getArrayFromLocalStorage('futboLegends-myTopPlayers', [])
+    if (players.length < 20) {
+        let remaining = 20 - players.length
+        console.log({length: players.length, remaining})
+        for (let i = 0; i < remaining; i++) {
+            players.push({
+                id: Math.random()
+            })
+        }
+    } else if (players.length > 20) {
+        players = players.slice(0, 20)
+    }
+    return players
 }
 
 function MyTop20() {
+
+    const { players } = useSelector(selectPlayerState)
 
     // Initialize MY RANKINGS states
     const [myTopPlayers, setMyTopPlayers] = useState(getMyTopPlayers())
@@ -48,6 +62,11 @@ function MyTop20() {
         document.addEventListener("mousedown", handleClickOutside)
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [])
+
+    // Auto save myTopPlayers
+    useEffect(()=>{
+        localStorage.setItem('futboLegends-myTopPlayers', JSON.stringify(myTopPlayers))
+    }, [myTopPlayers])
 
     // Set up sensors for drag detection - separate for each section
     const myDragSensors = useSensors(
@@ -164,6 +183,7 @@ function MyTop20() {
                             />
                         ) : (
                             <div key={player.id} className="ranking-item not-chosen">
+                                <span className="ranking-number">{index + 1}</span>
                                 <img src="/images/Icons/person.png" alt="person" />
                                 <span>Not chosen</span>
                             </div>

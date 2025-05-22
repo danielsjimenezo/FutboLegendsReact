@@ -64,7 +64,7 @@ function RankingsPage() {
   const [officialTopPlayers, setOfficialTopPlayers] = useState([
     ...officialDefaultPlayers,
   ]);
-  const [officialSearchTerm, setOfficialSearchTerm] = useState("");
+
   const [officialSearchResults, setOfficialSearchResults] = useState([]);
   const [officialReplaceIndex, setOfficialReplaceIndex] = useState(0);
   const [showOfficialResults, setShowOfficialResults] = useState(false);
@@ -74,29 +74,9 @@ function RankingsPage() {
 
 
 
-  const officialDragSensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
-  );
 
 
 
-  // OFFICIAL RANKINGS search functionality
-  const handleOfficialSearch = (e) => {
-    const term = e.target.value;
-    setOfficialSearchTerm(term);
-
-    if (term.length >= 2) {
-      const results = players.filter((player) =>
-        player.name.toLowerCase().includes(term.toLowerCase())
-      );
-      setOfficialSearchResults(results);
-      setShowOfficialResults(true);
-    } else {
-      setOfficialSearchResults([]);
-      setShowOfficialResults(false);
-    }
-  };
 
 
   // Handle selection from OFFICIAL search results
@@ -129,18 +109,7 @@ function RankingsPage() {
 
 
 
-  // Handle drag end for OFFICIAL RANKINGS
-  const handleOfficialDragEnd = (event) => {
-    const { active, over } = event;
 
-    if (active && over && active.id !== over.id) {
-      setOfficialTopPlayers((items) => {
-        const oldIndex = items.findIndex((item) => item.name === active.id);
-        const newIndex = items.findIndex((item) => item.name === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
 
   // Close search results when clicking outside
   useEffect(() => {
@@ -162,18 +131,15 @@ function RankingsPage() {
       {/* Left Section - My Rankings */}
       <MyTop20 />
 
+      {/* Middle line */}
+      <div className="line"></div>
+
       {/* Right Section - Official Rankings */}
       <section className="rankings-section official-rankings">
         <div className="section-header">
           <h2>Official Top 20</h2>
           <div className="search-container" ref={officialResultsRef}>
-            {/* <input
-              type="text"
-              placeholder={`Search to replace #${officialReplaceIndex + 1}...`}
-              value={officialSearchTerm}
-              onChange={handleOfficialSearch}
-              className="search-input"
-            /> */}
+
             {showOfficialResults && officialSearchResults.length > 0 && (
               <ul className="search-results">
                 {officialSearchResults.map((player) => (
@@ -189,27 +155,7 @@ function RankingsPage() {
           </div>
         </div>
 
-        {/* <DndContext
-          sensors={officialDragSensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleOfficialDragEnd}
-        >
-          <SortableContext
-            items={officialTopPlayers.map((player) => player.name)}
-            strategy={verticalListSortingStrategy}
-          >
-            <div className="rankings-list">
-              {officialTopPlayers.map((player, index) => (
-                <SortableItem
-                  key={player.name}
-                  id={player.name}
-                  index={index}
-                  name={player.name}
-                />
-              ))}
-            </div>
-          </SortableContext>
-        </DndContext> */}
+
         <div className="rankings-list">
           {officialTopPlayers.map((player, index) => (
             <div style={{}} className={`ranking-item`} key={player.name}>

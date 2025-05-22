@@ -49,19 +49,19 @@ export function getArrayFromLocalStorage(key, fallback = []) {
   try {
     const ls = localStorage.getItem(key);
     if (!ls) {
-      console.log(`localStorage::${key} was unset`);
+      // console.log(`localStorage::${key} was unset`);
       return fallback;
     }
 
     const data = JSON.parse(ls);
     if (!Array.isArray(data)) {
-      console.log(`localStorage::${key} was unset`);
+      // console.log(`localStorage::${key} was unset`);
       return fallback;
     }
 
     return data;
   } catch {
-    console.log(`localStorage::${key} was unset`);
+    // console.log(`localStorage::${key} was unset`);
     return fallback;
   }
 }
@@ -73,11 +73,12 @@ export const shortenName = (name = "") => {
   if (names.length === 1) return name;
 
   // player has 2 names but second is jr
-  if (names.length === 2 && names[names.length - 1].startsWith("Jr")) {
+  if (names.length === 2 && names[1].startsWith("Jr")) {
     return name;
   }
 
   names[0] = names[0][0] + ".";
+
   return names.join(" ");
 };
 

@@ -4,6 +4,7 @@ import React from "react";
 
 import YoutubeEmbed from "../misc/YoutubeEmbed.jsx";
 
+
 /**
  * @typedef PhotosExpandableItem
  * @property {string} title
@@ -29,8 +30,9 @@ import YoutubeEmbed from "../misc/YoutubeEmbed.jsx";
  * @property {VideosExpandableItem[]} items
  */
 
+
 /**
- * @typedef {PhotosExpandable | VideosExpandable} Expandable
+ * @typedef {PhotosExpandable | VideosExpandable } Expandable
  */
 
 /**
@@ -80,6 +82,8 @@ function TableExpandable({ expandable }) {
                     ))}
                 </div>
             )}
+
+
         </>
     )
 }

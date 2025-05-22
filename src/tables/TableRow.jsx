@@ -10,6 +10,7 @@ function TableRow({ entries, expandable }) {
     const handleClick = () => {
         if (!expandable) return;
         document.dispatchEvent(closeAllExpandablesEvent)
+        console.log(expandable)
         setExpandableShown(!expandableShown)
     }
 
@@ -40,13 +41,22 @@ function TableRow({ entries, expandable }) {
                     return <TableTd key={key} k={k} v={v} />;
                 })}
             </tr>
-            {(expandable && expandableShown) && (
+            {(expandable && (expandable.type !== 'moreRows') && expandableShown) && (
                 <tr>
                     <td colSpan={10000}>
                         <TableExpandable expandable={expandable} />
                     </td>
                 </tr>
             )}
+            {(expandable && (expandable.type === 'moreRows') && expandableShown) && expandable.items.map(row => (
+                <tr key={Math.random()}>
+                    {row.map(item => (
+                        <td key={Math.random()}>
+                            {item}
+                        </td>
+                    ))}
+                </tr>
+            ))}
         </>
     )
 }

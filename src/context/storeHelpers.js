@@ -6,7 +6,7 @@ export function getFilteredPlayers(state) {
     result = result.filter((p) => p.birthCountry === state.countryFilter);
   }
   if (state.positionFilter !== "all") {
-    result = result.filter((p) => p.Position === state.positionFilter);
+    result = result.filter((p) => p.position === state.positionFilter);
   }
   const type = futbolDataTypes.find((t) => t.id === state.playerSort);
   return result.sort((a, b) => b[type.id] - a[type.id]);
