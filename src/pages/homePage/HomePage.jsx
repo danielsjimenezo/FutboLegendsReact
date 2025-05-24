@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectPlayerState } from "../context/playerSlice.js";
-import { changeLeftChart, setSecondChart } from "../context/playerSlice.js";
-import PlayerTable from "../tables/PlayerTable.jsx";
-import HomePageChartSelector from "../charts/HomePageChartSelector.jsx";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
+import { selectPlayerState } from "@/context/playerSlice.js";
+import { changeLeftChart, setSecondChart } from "@/context/playerSlice.js";
+import PlayerTable from "@/tables/PlayerTable.jsx";
+import HomePageChartSelector from "@/charts/HomePageChartSelector.jsx";
+import { futbolDataTypes } from "@/utilities/futbolDataTypes.js";
 
 const getDifferentChart = (chart1, chart2) => {
   return futbolDataTypes.find((t) => t.id !== chart1 && t.id !== chart2).id;

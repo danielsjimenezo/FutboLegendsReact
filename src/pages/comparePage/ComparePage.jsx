@@ -1,11 +1,11 @@
 import "./ComparePage.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectPlayerState } from "../context/playerSlice.js";
+import { selectPlayerState } from "@/context/playerSlice.js";
 
-import PlayerSearch from "../misc/PlayerSearch.jsx";
-import ComparePicture from "../misc/ComparePicture.jsx";
-import CompareStats from "../misc/CompareStats.jsx";
+import PlayerSearch from "@/misc/PlayerSearch.jsx";
+import ComparePicture from "./ComparePicture.jsx";
+import CompareStats from "./CompareStats.jsx";
 
 function ComparePage() {
   const { id1, id2 } = useParams();

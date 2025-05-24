@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { selectPlayerState } from "../context/playerSlice.js";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
+import { selectPlayerState } from "@/context/playerSlice.js";
+import { futbolDataTypes } from "@/utilities/futbolDataTypes.js";
 import CompareBar from "./CompareBar.jsx";
 
 function toNumber(val) {

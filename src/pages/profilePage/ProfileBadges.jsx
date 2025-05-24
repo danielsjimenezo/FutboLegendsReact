@@ -1,7 +1,7 @@
 import PlayerBadge from "./PlayerBadge.jsx";
 import { useSelector } from "react-redux";
-import { selectPlayerState } from "../context/playerSlice.js";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
+import { selectPlayerState } from "../../context/playerSlice.js";
+import { futbolDataTypes } from "../../utilities/futbolDataTypes.js";
 
 function ProfileBadges({ player }) {
   const { shownBadges, leaderboardCountry, leaderboardPosition } = useSelector(selectPlayerState);

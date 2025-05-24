@@ -30,6 +30,30 @@ header .user {
   border-radius: 50%;
 }
 
+#nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav button {
+  padding: 10px 20px;
+  border-radius: 100px;
+  color: white;
+  font-family: Poppins;
+  font-weight: normal;
+}
+
+header .topButtons {
+  background-color: transparent;
+  border: 0;
+}
+
+header .topButtons:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
 #searchInput {
   background-color: transparent;
   border: 1px solid white;
