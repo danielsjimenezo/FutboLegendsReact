@@ -1,16 +1,21 @@
+import { Link } from "react-router-dom";
+
 function ComparePicture({ player }) {
   return (
-    <div className="compare-picture">
+    <Link
+      className="compare-picture"
+      to={`/profile/${player.name.replaceAll(" ", "_")}`}
+    >
       {player ? (
         <img
           src={`/images/Players/${player.name}.jpg`}
           alt={`Photo of ${player.name}`}
-          className={`${player.active ? 'active' : 'inactive'}`}
+          className={`${player.active ? "active" : "inactive"}`}
         />
       ) : (
         <p className="none-selected">Select a player</p>
       )}
-    </div>
+    </Link>
   );
 }
 

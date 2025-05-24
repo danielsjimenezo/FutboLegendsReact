@@ -25,13 +25,14 @@ function CompareStats({ player1, player2 }) {
             <CompareBar
               key={type.id}
               label={type.labelLong}
+              player1={player1}
+              player2={player2}
               val1={player1[type.id]}
               val2={player2[type.id]}
               max={type.dataCeiling || maxValues[type.id] || 0}
             />
           );
         })}
-
     </div>
   );
 }

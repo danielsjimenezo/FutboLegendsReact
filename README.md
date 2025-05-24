@@ -11,3 +11,9 @@ public/Data/data.json is where the front end reads from currently.
 ## IMPORTANT NOTE TO FUTURE DEVELOPERS
 
 In src/utilities/futbolDataTypes.js, there is an array of objects, where each object represents of "data type" pertaining to some numerical value related to the player-- e.g. goals, assists, etc... These ids must be the same as the keys of the players on the incoming data. Case sensitive.
+
+# Start the postgres server:
+
+```bash
+brew services start postgresql@17
+```
