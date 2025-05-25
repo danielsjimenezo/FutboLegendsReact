@@ -97,6 +97,7 @@
   column-gap: 1rem;
   justify-content: center;
   margin-top: 1.6rem;
+  width: 103%;
 }
 
 .statsBadgeContainer {
@@ -138,39 +139,7 @@
   transform: translate(-50%, -50%);
 }
 
-.toggle-container {
-  display: flex;
-  justify-content: flex-end;
-}
 
-.toggle {
-  background-color: #68599647;
-  padding: 0.25rem;
-  border-radius: 5rem;
-  display: flex;
-  align-items: center;
-
-  & button {
-    border: 0;
-    background-color: transparent;
-    color: white;
-    cursor: pointer;
-    font-size: 0.7rem;
-
-    &.active {
-      background-color: #2bc1b76e !important;
-      border-radius: 5rem;
-      padding: 0.25rem 0.5rem;
-    }
-
-    & img {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      display: block;
-    }
-  }
-}
 
 
 .badgeRank {
@@ -255,7 +224,7 @@
   position: relative;
   top: 10px;
   font-weight: normal;
-  margin: -15px 0 -15px 40px;
+  margin: -15px 0px -15px 40px;
 
   display: flex;
   justify-content: space-between;

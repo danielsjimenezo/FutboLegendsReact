@@ -42,7 +42,7 @@ export const futbolDataTypes = [
     label: "Games",
     labelShort: "Games",
     dataCeiling: 1400,
-    gradient: ["transparent", graphColors.pink],
+    gradient: ["transparent", "yellow"],
   },
   {
     id: "goals",
@@ -50,6 +50,7 @@ export const futbolDataTypes = [
     label: "Goals",
     labelShort: "Goals",
     dataCeiling: 1400,
+    gradient: ["transparent", graphColors.green]
   },
   {
     id: "assists",

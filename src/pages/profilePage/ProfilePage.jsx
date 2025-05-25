@@ -115,7 +115,7 @@ function ProfilePage() {
               }}
             />
             <Toggle
-              option1={{ img: "/images/Icons/global_icon.png", value: "all" }}
+              option1={{ img: "/images/Icons/global_icon.png", value: "all", style: { transform: "scale(1.1)"} }}
               option2={{
                 img: `/images/Flags/${player.birthCountry}.png`,
                 value: "native",

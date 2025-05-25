@@ -15,7 +15,7 @@ function ProfileBadges({ player }) {
             </h3> */}
       {futbolDataTypes
         .filter((type) => shownBadges.includes(type.id))
-        .map((type) => {
+        .map((type, i) => {
           let rank
           if (leaderboardCountry === 'all') {
             if (leaderboardPosition === 'all') {
@@ -31,12 +31,23 @@ function ProfileBadges({ player }) {
             }
           }
 
+          // First three
+          let colors = ['#af95fc', '#685996']
+
+          // Last three
+          if (i > 4) {
+            colors = ['#2BC1B7', '#145B56']
+          } else if (i > 2) { // Middle two
+            colors = ['#ff4f8b', 'rgba(255, 79, 139, 0.5)']
+          }
+
           return (
             <PlayerBadge
               key={type.id}
               title={type.label}
               value={player[type.id]}
               rank={rank}
+              colors={colors}
             />
           );
         })}

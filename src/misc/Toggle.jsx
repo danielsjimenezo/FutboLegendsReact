@@ -1,3 +1,4 @@
+import "./Toggle.css"
 import { useState } from "react";
 
 function Toggle({ option1, option2, onClick, defaultValue = option1.value, style = {} }) {
@@ -15,7 +16,7 @@ function Toggle({ option1, option2, onClick, defaultValue = option1.value, style
                     className={selected === option1.value ? 'active' : ''}
                 >
                     {option1.label || (
-                        <img src={option1.img} />
+                        <img src={option1.img} style={option1.style || {}} />
                     )}
                 </button>
                 <button 
@@ -26,7 +27,7 @@ function Toggle({ option1, option2, onClick, defaultValue = option1.value, style
                     className={selected === option2.value ? 'active' : ''}
                 >
                     {option2.label || (
-                        <img src={option2.img} />
+                        <img src={option2.img} style={option2.style || {}} />
                     )}
                 </button>
             </div>
