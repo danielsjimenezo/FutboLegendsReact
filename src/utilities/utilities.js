@@ -86,4 +86,13 @@ export const graphColors = {
   pink: "#FF4F8B",
   green: "#62b3ad",
   purple: "#AF95FC",
+  pinkRGBA(a) {
+    return `rgba(255, 79, 139, ${a})`
+  },
+  purpleRGBA(a) {
+    return `rgba(175, 149, 252, ${a})`
+  },
+  greenRGBA(a) {
+    return `rgba(98, 179, 173, ${a})`
+  },
 };

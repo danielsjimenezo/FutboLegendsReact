@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const closeAllExpandablesEvent = new CustomEvent('closeallexpandables')
 
-function TableRow({ entries, expandable }) {
+function TableRow({ entries, expandable, columnWidths = [] }) {
     const [expandableShown, setExpandableShown] = useState(false)
 
     const handleClick = () => {
@@ -36,9 +36,9 @@ function TableRow({ entries, expandable }) {
                 role="button"
                 tabIndex={-1}
             >
-                {entries.map(([k, v]) => {
+                {entries.map(([k, v], i) => {
                     const key = Math.random();
-                    return <TableTd key={key} k={k} v={v} />;
+                    return <TableTd key={key} k={k} v={v} width={columnWidths[i] || 'auto'} />;
                 })}
             </tr>
             {(expandable && expandableShown) && (

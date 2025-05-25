@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
 import { graphColors, shortenName } from "../utilities/utilities.js";
 import { useNavigate } from "react-router-dom";
-const graphColorsArr = Object.values(graphColors);
+
 import {
   HOME_PAGE_CHART_ASPECT_RATIO,
   createGradient,
@@ -103,8 +103,12 @@ function FutbolChart({ futbolType, readAllPlayers }) {
         //   ? createGradient(...futbolType.gradient)
         //   : createGradient("transparent", "#AF95FC"),
         backgroundColor: createGradient(
-          "transparent",
-          graphColorsArr[readAllPlayers ? 0 : 2]
+          graphColors[`${readAllPlayers ? "pink" : "purple"}RGBA`](0.5),
+          graphColors[readAllPlayers ? "pink" : "purple"], 
+          0,
+          300,
+          0,
+          0
         ),
         data: data,
         label: futbolType.labelShort,

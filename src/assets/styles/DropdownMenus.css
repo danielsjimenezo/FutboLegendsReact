@@ -12,7 +12,7 @@
   justify-content: center;
   gap: .3rem;
 
-  font-size: 10px;
+  font-size: 11px;
   border: 1.5px solid var(--purple);
   /* min-width: 80px; */
   color: white;
@@ -26,6 +26,14 @@
     border-radius: 50%;
     object-fit: cover;
   }
+}
+
+#country-filter .filter-button {
+  padding: .25rem;
+}
+
+#country-filter .filter-button span {
+  display: none;
 }
 
 .filter-menu {

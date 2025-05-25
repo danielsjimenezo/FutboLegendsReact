@@ -8,7 +8,7 @@ import { graphColors } from "./utilities.js";
 
 /**
  * @typedef {Record<string, any>} Player
- * @typedef {["transparent", string, number?, number?, number?, number?]} Gradient
+ * @typedef {[string, string, number?, number?, number?, number?]} Gradient
  */
 
 /**
@@ -70,12 +70,12 @@ export const futbolDataTypes = [
       {
         id: "goals",
         label: "Goals",
-        gradient: ["transparent", graphColors.pink],
+        gradient: ["transparent", graphColors.pink, 0, 200, 0, 0],
       },
       {
         id: "assists",
         label: "Assists",
-        gradient: ["transparent", graphColors.purple],
+        gradient: ["transparent", graphColors.purple, 0, 200, 0, 0],
       },
     ],
   },

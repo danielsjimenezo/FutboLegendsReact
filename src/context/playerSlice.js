@@ -225,10 +225,16 @@ export const selectPlayerState = createSelector([baseSelector], (s) => {
     .filter(Boolean)
     .sort();
 
+  const years = []
+  for (let i = 2025; i > 1970; i--) {
+    years.push(i)
+  }
+
   return {
     ...s,
     countries,
     positions,
+    years,
     displayedPlayers: filtered.slice(startIndex, endIndex),
     filteredPageCount: Math.ceil(filtered.length / PER_PAGE),
     homeTableColumnWidth,

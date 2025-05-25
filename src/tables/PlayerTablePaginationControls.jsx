@@ -24,7 +24,7 @@ function PlayerTablePaginationControls() {
                 )}
             </div>
             <div className="paginationState">
-                Page {playersPageNumber} of {filteredPageCount}
+                {playersPageNumber} of {filteredPageCount}
             </div>
             <div>
                 {playersPageNumber < filteredPageCount && (

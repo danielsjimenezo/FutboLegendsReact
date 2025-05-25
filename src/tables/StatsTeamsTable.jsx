@@ -29,6 +29,18 @@ function StatsTeams() {
       _key={"id"}
       hide={["id"]}
       id="stats-teams-table"
+      columnWidths={[
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+      ]}
     />
   );
 }

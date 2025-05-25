@@ -3,7 +3,7 @@ import TableRow from "./TableRow.jsx";
 import TableTd from "./TableTd.jsx";
 import { useState } from "react";
 
-function Table({ headings, items, _key, hide = [], expandables, id = "" }) {
+function Table({ headings, items, _key, hide = [], expandables, id = "", columnWidths = [] }) {
   const [page, setPage] = useState(0);
 
   const start = page * 10;
@@ -17,8 +17,10 @@ function Table({ headings, items, _key, hide = [], expandables, id = "" }) {
       <table className="table" id={id}>
         <thead>
           <tr>
-            {headings.map((h) => {
-              return <th key={h}>{h}</th>;
+            {headings.map((h, i) => {
+              return <th key={h} style={{
+                width: columnWidths[i] || 'auto'
+              }}>{h}</th>;
             })}
           </tr>
         </thead>
@@ -34,6 +36,7 @@ function Table({ headings, items, _key, hide = [], expandables, id = "" }) {
                 key={Math.random()} 
                 entries={entries} 
                 expandable={expandable}
+                columnWidths={columnWidths}
               />
             );
           })}

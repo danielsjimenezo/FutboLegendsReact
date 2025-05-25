@@ -14,16 +14,12 @@ import Toggle from "../../misc/Toggle.jsx"
 import CompDataTable from "../../tables/CompDataTable.jsx"
 import ProfileBadges from "./ProfileBadges.jsx"
 import ShownBadgesFilter from "../../layout/ShownBadgesFilter.jsx"
-import PlayerMatchTable from "../../tables/PlayerMatchTable.jsx"
-import PlayerGoalTable from "../../tables/PlayerGoalTable.jsx"
-import StatsPlayoffsTable from "../../tables/StatsPlayoffsTable.jsx"
-import StatsTeamsTable from "../../tables/StatsTeamsTable.jsx"
-import BelowImageTable from "./BelowImageTable.jsx"
+import ProfilePageTables from "./ProfilePageTables.jsx"
+
 
 function ProfilePage() {
   const [teamTableShown, setTeamTableShown] = useState("team")
-  const [matchTableShown, setMatchTableShown] = useState("match")
-  const [statsTableShown, setStatsTableShown] = useState("playoffs")
+
   const { players, playersLoadingState, leaderboardCountry } =
     useSelector(selectPlayerState)
   const dispatch = useDispatch()
@@ -135,30 +131,7 @@ function ProfilePage() {
         )}
         <ProfileBadges player={player} />
       </section>
-      <section className="container">
-        <Toggle
-          option1={{ label: "Matches", value: "match" }}
-          option2={{ label: "Goals", value: "goal" }}
-          onClick={(e, option) => setMatchTableShown(option.value)}
-          style={{ marginBottom: "1rem" }}
-        />
-        {matchTableShown === "match" ? (
-          <PlayerMatchTable />
-        ) : (
-          <PlayerGoalTable />
-        )}
-        <Toggle
-          option1={{ label: "Stats in playoffs", value: "playoffs" }}
-          option2={{ label: "Stats against top teams", value: "teams" }}
-          onClick={(e, option) => setStatsTableShown(option.value)}
-          style={{ marginBottom: "1rem" }}
-        />
-        {statsTableShown === "playoffs" ? (
-          <StatsPlayoffsTable />
-        ) : (
-          <StatsTeamsTable />
-        )}
-      </section>
+      <ProfilePageTables  player={player}/>
 
       <br />
       <br />

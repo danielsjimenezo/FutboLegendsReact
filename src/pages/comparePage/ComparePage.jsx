@@ -18,6 +18,7 @@ function ComparePage() {
     findPlayerById(id2) ||
     players.find((p) => p.name === "Cristiano Ronaldo");
 
+
   const getCompareUrl = (player, i) => {
     // i is 0 or 1
     const newPlayerId = player?.name?.replaceAll(" ", "_") || "none";
@@ -31,6 +32,10 @@ function ComparePage() {
         return `/compare/${player1Id}/${newPlayerId}`;
     }
   };
+
+  if (!player1 || !player2) return (
+    <p>Loading...</p>
+  )
 
   return (
     <section className="content-container-compare">
@@ -51,6 +56,7 @@ function ComparePage() {
             searchIcon={true}
           />
         </div>
+        <h2 className="vs">VS</h2>
       </div>
       <CompareStats player1={player1} player2={player2} />
     </section>

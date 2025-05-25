@@ -59,8 +59,26 @@ items.forEach((item, i) => {
     type: 'moreRows',
     items: []
   }
-  for (let j = 0; j < 10; j++) {
-    const row = [...Object.values(item)]
+  const comps = [
+    'Champions League',
+    'World Cup',
+    'Copa America',
+    'Europa League',
+    'Domestic Cup',
+    'Domestic Super Cup',
+    'Club World Cup',
+    'Nations League',
+    'Olympics',
+    'Confederation Cup'
+  ]
+  for (let j = 0; j < comps.length; j++) {
+    const values = Object.values(item)
+    const row = [
+      values[0], 
+      comps[j],
+      // { type: "img", src: `/images/Competitions/${comps[j]}.png` }, 
+      ...values.slice(2)
+    ]
     expandable.items.push(row)
   }
   expandables.push(expandable)
@@ -77,6 +95,18 @@ function StatsPlayoffsTable() {
       hide={["id"]}
       id="stats-playoffs-table"
       expandables={expandables}
+      columnWidths={[
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+          '10%',
+      ]}
     />
   );
 }

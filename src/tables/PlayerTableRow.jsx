@@ -4,6 +4,7 @@ import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
 import Tooltip from "../misc/Tooltip.jsx";
+import { shortenName } from "../utilities/utilities.js";
 
 function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function PlayerTableRow({ player, rank }) {
             }`}
             loading="lazy"
           />
-          <p>{player.name}</p>
+          <p>{shortenName(player.name)}</p>
         </div>
       </td>
       <td>{player.position}</td>

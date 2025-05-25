@@ -4,7 +4,7 @@ import { selectPlayerState, changeFilter } from "../context/playerSlice.js";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 
 function DropdownFilter({ id, icon, filterKey, label = () => {} }) {
-  const { countries, positions } = useSelector(selectPlayerState);
+  const { countries, positions, years } = useSelector(selectPlayerState);
 
   const dispatch = useDispatch();
 
@@ -21,7 +21,9 @@ function DropdownFilter({ id, icon, filterKey, label = () => {} }) {
       ? countries
       : filterKey === "positions"
       ? positions
-      : positions
+      : filterKey === 'years'
+      ? years
+      : []
   ).map((str) => {
     return {
       text: str,

@@ -1,26 +1,21 @@
 import Table from './Table.jsx'
 
 const fakeRow = {
-    "#": 981,
-    Date: `04/21/25`,
+    Year: "2020",
     Team: {
-        type: 'img',
-        src: '/images/Teams/Bayern Munich.png'
+        type: "img",
+        src: "/images/Teams/Bayern Munich.png"
     },
-    "Opp.": {
-        type: 'img',
-        src: '/images/Teams/Colombia.png'
-    },
-    "Comp.": "UCL",
-    Min: "25'",
-    Type: "Penalty",
-    Body: 'Right',
-    Stakes: 'Qtr Final',
-    Assist: 'M. Ozil'
+    Games: 1,
+    Wins: 1,
+    Goals: 1,
+    Assists: 1,
+    Contributions: 1,
+    Efficiency: 1,
+    "Team ": 1,
+    "Individual": 1
 }
 
-const fakeRows = []
-for (let i = 0; i < 50; i++) fakeRows.push({...fakeRow, "#": Math.floor(Math.random()*1000)})
 
 const fakeExpandable = {
     type: 'videos',
@@ -38,21 +33,23 @@ const fakeExpandable = {
     ]
 }
 
-
+const fakeRows = []
 const fakeExpandables = []
 for (let i = 0; i < 50; i++) {
-    fakeRows.push({...fakeRow, "#": Math.floor(Math.random()*1000)})
+    fakeRows.push({...fakeRow})
     fakeExpandables.push(fakeExpandable)
 }
 
-function PlayerGoalTable() {
+
+function YearTable() {
     return (
         <Table
-            headings={Object.keys(fakeRow)}
+            headings={Object.keys(fakeRow).filter((h) => h !== "id")}
             items={fakeRows}
             expandables={fakeExpandables}
-            _key={"#"}
-            id="player-goal-table"
+            _key={"id"}
+            hide={["id"]}
+            id="stats-teams-table"
             columnWidths={[
                 '10%',
                 '10%',
@@ -69,4 +66,4 @@ function PlayerGoalTable() {
     )
 }
 
-export default PlayerGoalTable;
+export default YearTable;

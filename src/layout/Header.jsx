@@ -39,7 +39,7 @@ function Header() {
           }`}
         >
           <button className="topButtons" id="recordButtonn">
-            <span>All-time</span>
+            <span>Leaderboard</span>
           </button>
         </Link>
         <Link
@@ -84,12 +84,23 @@ function Header() {
             }}
           />
 
+
+          {/* YEAR FILTER */}
+          <DropdownFilter
+            id="year-filter"
+            filterKey="years"
+            label={value => {
+              return value.text === 'all' ? 'ALL-TIME' : value.text
+            }}
+          />
+
+
           {/* POSITIONS FILTER */}
           <DropdownFilter
             filterKey="positions"
             label={(value) => {
               if (value.text == "all") {
-                return "POSITIONS";
+                return "ALL";
               } else {
                 return value.text.toUpperCase();
               }

@@ -8,13 +8,15 @@
 #compare-picture-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 6rem;
+  position: relative;
 
-  margin: 3rem auto 3rem auto;
+  margin: 3rem auto 1.5rem auto;
   width: 600px;
   max-width: 100%;
 
   & > .compare-picture {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   & > .compare-picture > img {
@@ -34,6 +36,14 @@
   & > * {
     display: flex;
     justify-content: center;
+  }
+
+  & .vs {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
   }
 }
 

@@ -2,6 +2,7 @@ import PlayerBadge from "./PlayerBadge.jsx";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../../context/playerSlice.js";
 import { futbolDataTypes } from "../../utilities/futbolDataTypes.js";
+import { graphColors } from "../../utilities/utilities.js";
 
 function ProfileBadges({ player }) {
   const { shownBadges, leaderboardCountry, leaderboardPosition } = useSelector(selectPlayerState);
@@ -31,14 +32,12 @@ function ProfileBadges({ player }) {
             }
           }
 
-          // First three
-          let colors = ['#af95fc', '#685996']
+          // First four
+          let colors = [graphColors.purpleRGBA(0.4), graphColors.purple]
 
-          // Last three
-          if (i > 4) {
-            colors = ['#2BC1B7', '#145B56']
-          } else if (i > 2) { // Middle two
-            colors = ['#ff4f8b', 'rgba(255, 79, 139, 0.5)']
+          // Last four
+          if (i > 3) {
+            colors = [graphColors.greenRGBA(0.4), graphColors.green]
           }
 
           return (

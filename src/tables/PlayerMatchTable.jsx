@@ -12,14 +12,14 @@ const fakeRow = {
         src: '/images/Teams/Colombia.png'
     },
     Score: "3 - 1",
-    Result: "W",
+    // Result: "W",
     Goals: 2,
     Assists: 1,
     Shots: 4,
     Chances: 7,
     Dribbles: 92,
-    Takeons: 45,
-    Passes: 122
+    // Takeons: 45,
+    // Passes: 122
 }
 
 
@@ -54,6 +54,18 @@ function PlayerMatchTable() {
             expandables={fakeExpandables}
             _key={"number"}
             id="player-match-table"
+            columnWidths={[
+                '10%',
+                '10%',
+                '10%',
+                '10%',
+                '10%',
+                '10%',
+                '10%',
+                '10%',
+                '10%',
+                '10%',
+            ]}
         />
     )
 }

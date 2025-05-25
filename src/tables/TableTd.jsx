@@ -1,9 +1,11 @@
-function TableTd({ k, v }) {
+function TableTd({ k, v, width }) {
     if (typeof v === 'object') {
         switch (v.type) {
             case 'img':
                 return (
-                    <td>
+                    <td style={{
+                        width: width
+                    }}>
                         <img src={v.src} alt={v.alt} className="table-img" />
                     </td>
                 )
@@ -13,7 +15,7 @@ function TableTd({ k, v }) {
     }
 
     return (
-        <td>{v}</td>
+        <td style={{ width }}>{v}</td>
     )
 }
 
