@@ -29,7 +29,15 @@ function Header() {
             <span>Current</span>
           </button>
         </Link>
-        <Link to="/" className={`${(location.pathname === "/" || location.pathname.startsWith('/profile')) ? "active" : ""}`}>
+        <Link
+          to="/"
+          className={`${
+            location.pathname === "/" ||
+            location.pathname.startsWith("/profile")
+              ? "active"
+              : ""
+          }`}
+        >
           <button className="topButtons" id="recordButtonn">
             <span>All-time</span>
           </button>

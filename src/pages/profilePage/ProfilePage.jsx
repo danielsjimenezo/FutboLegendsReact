@@ -2,7 +2,11 @@ import "./ProfilePage.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectPlayerState, toggleLeaderboardCountry, setLeaderboardPosition } from "../../context/playerSlice.js";
+import {
+  selectPlayerState,
+  toggleLeaderboardCountry,
+  setLeaderboardPosition,
+} from "../../context/playerSlice.js";
 import GoalTypeChart1 from "../../charts/GoalTypeChart1.jsx";
 import GoalTypeChart2 from "../../charts/GoalTypeChart2.jsx";
 import TeamDataTable from "../../tables/TeamDataTable.jsx";
@@ -14,13 +18,15 @@ import PlayerMatchTable from "../../tables/PlayerMatchTable.jsx";
 import PlayerGoalTable from "../../tables/PlayerGoalTable.jsx";
 import StatsPlayoffsTable from "../../tables/StatsPlayoffsTable.jsx";
 import StatsTeamsTable from "../../tables/StatsTeamsTable.jsx";
+import BelowImageTable from "./BelowImageTable.jsx";
 
 function ProfilePage() {
   const [teamTableShown, setTeamTableShown] = useState("team");
   const [matchTableShown, setMatchTableShown] = useState("match");
   const [statsTableShown, setStatsTableShown] = useState("playoffs");
-  const { players, playersLoadingState, leaderboardCountry } = useSelector(selectPlayerState);
-  const dispatch = useDispatch()
+  const { players, playersLoadingState, leaderboardCountry } =
+    useSelector(selectPlayerState);
+  const dispatch = useDispatch();
   const { id } = useParams();
   const player = players.find((p) => p.name === id.replaceAll("_", " "));
 
@@ -57,7 +63,7 @@ function ProfilePage() {
             <img
               src={`/images/Players/${player.name}.jpg`}
               alt={`Photo of ${player.name}`}
-              className={`playerPics ${player.active ? 'active' : 'inactive'}`}
+              className={`playerPics ${player.active ? "active" : "inactive"}`}
             />
           </div>
           <div className="playerDesc">
@@ -97,7 +103,6 @@ function ProfilePage() {
             setTeamTableShown(option.value);
           }}
         />
-
         <div id="leaderboard-heading">
           <h3>Leaderboard</h3>
           <div className="controls">
@@ -106,23 +111,52 @@ function ProfilePage() {
               option2={{ label: player.position, value: player.position }}
               defaultValue="all"
               onClick={(e, option) => {
-                dispatch(setLeaderboardPosition(option.value))
+                dispatch(setLeaderboardPosition(option.value));
               }}
             />
             <Toggle
               option1={{ img: "/images/Icons/global_icon.png", value: "all" }}
-              option2={{ img: `/images/Flags/${player.birthCountry}.png`, value: "native" }}
+              option2={{
+                img: `/images/Flags/${player.birthCountry}.png`,
+                value: "native",
+              }}
               defaultValue={leaderboardCountry}
               onClick={(e, option) => {
-                dispatch(toggleLeaderboardCountry())
+                dispatch(toggleLeaderboardCountry());
               }}
             />
             <ShownBadgesFilter />
           </div>
         </div>
-
         {teamTableShown === "team" ? (
-          <TeamDataTable player={player} />
+          // <TeamDataTable player={player} />
+          <BelowImageTable
+            headings={["Team", "MP", "G", "A", "GC", "GE"]}
+            rows={player.teams.map((team) => ({
+              key: team.name,
+              items: [
+                {
+                  type: "logo",
+                  name: team.name,
+                  img: `/images/Teams/${team.name}.png`,
+                },
+                { value: team.games },
+                { value: team.goals },
+                { value: team.assists },
+                { value: team.goals + team.assists },
+                {
+                  value: ((team.goals + team.assists) / team.games).toFixed(2),
+                },
+              ],
+            }))}
+            totals={[
+              player.teamTotals.games,
+              player.teamTotals.goals,
+              player.teamTotals.assists,
+              player.teamTotals.contributions,
+              (player.teamTotals.efficiency || 0).toFixed(2),
+            ]}
+          />
         ) : (
           <CompDataTable player={player} />
         )}

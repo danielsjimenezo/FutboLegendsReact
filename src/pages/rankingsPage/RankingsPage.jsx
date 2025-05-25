@@ -15,9 +15,7 @@ import "./RankingsPage.css";
 import { selectPlayerState } from "../../context/playerSlice.js";
 import { useSelector } from "react-redux";
 import { shortenName } from "../../utilities/utilities.js";
-
 import MyTop20 from "./MyTop20.jsx";
-
 
 function RankingsPage() {
   // All available players database (expanded for search)
@@ -58,8 +56,6 @@ function RankingsPage() {
   // Sample player data for official rankings
   const officialDefaultPlayers = allPlayers.slice(0, 20);
 
-
-
   // Initialize OFFICIAL RANKINGS states (completely separate)
   const [officialTopPlayers, setOfficialTopPlayers] = useState([
     ...officialDefaultPlayers,
@@ -72,21 +68,12 @@ function RankingsPage() {
   // Separate refs for each section
   const officialResultsRef = useRef(null);
 
-
-
-
-
-
-
-
   // Handle selection from OFFICIAL search results
   const handleSelectOfficialPlayer = (player) => {
     // Replace player at current index
     const newPlayers = [...officialTopPlayers];
     // Check if already exists, and if it does, move instead
-    const existingIndex = newPlayers.findIndex(
-      (p) => p.name === player.name
-    );
+    const existingIndex = newPlayers.findIndex((p) => p.name === player.name);
     if (existingIndex !== -1) {
       // Move player
       newPlayers.splice(existingIndex, 1);
@@ -107,10 +94,6 @@ function RankingsPage() {
     setOfficialReplaceIndex((prevIndex) => (prevIndex + 1) % 20);
   };
 
-
-
-
-
   // Close search results when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -127,6 +110,7 @@ function RankingsPage() {
   }, []);
 
   return (
+    // if authenticated, return
     <div className="rankings-page container">
       {/* Left Section - My Rankings */}
       <MyTop20 />
@@ -139,7 +123,6 @@ function RankingsPage() {
         <div className="section-header">
           <h2>Official Top 20</h2>
           <div className="search-container" ref={officialResultsRef}>
-
             {showOfficialResults && officialSearchResults.length > 0 && (
               <ul className="search-results">
                 {officialSearchResults.map((player) => (
@@ -154,7 +137,6 @@ function RankingsPage() {
             )}
           </div>
         </div>
-
 
         <div className="rankings-list">
           {officialTopPlayers.map((player, index) => (
