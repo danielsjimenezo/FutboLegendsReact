@@ -69,12 +69,12 @@ export const futbolDataTypes = [
       {
         id: "goals",
         label: "Goals",
-        gradient: ["transparent", graphColors.pink],
+        gradient: ["transparent", graphColors.pink]
       },
       {
         id: "assists",
         label: "Assists",
-        gradient: ["transparent", "#AF95FC", 200, 0, 300, 0],
+        gradient: ["transparent", "#AF95FC", 200, 0, 300, 0]
       },
     ],
   },
@@ -108,13 +108,6 @@ export const futbolDataTypes = [
     labelShort: "Balón (3rd)",
     dataCeiling: 10,
     gradient: ["transparent", graphColors.green],
-  },
-  {
-    id: "balonTop3",
-    labelLong: "Balón d'Or (top 3)",
-    label: "Balón d'Or (top 3)",
-    labelShort: "Balón d'Or (top 3)",
-    dataCeiling: 20,
   },
   {
     id: "wcGoals",
