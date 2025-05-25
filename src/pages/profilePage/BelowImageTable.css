@@ -1,0 +1,71 @@
+.team-data-table-container {
+  max-height: 280px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.team-data-table {
+  min-height: 100%;
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+
+  & tbody {
+    overflow-y: auto;
+  }
+
+  & tr {
+    border-radius: 40px;
+    cursor: default;
+  }
+
+  & tbody tr:hover {
+    background: none;
+  }
+}
+
+.team-data-foot {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.team-logo-td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.team-data-table, .team-data-foot {
+    & td, th {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.team-logo {
+  width: 40px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  position: relative;
+  top: 3px;
+}
+
+.totalsRowProfile {
+  background-color: rgb(43, 193, 183, 0.14);
+  color: var(--green);
+}
+
+.totalsRowProfile th {
+  border-radius: 20px 0 0 20px;
+  padding-left: 0rem;
+}
+
+.totalsRowProfile td:last-child {
+  border-radius: 0 20px 20px 0;
+}

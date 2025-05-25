@@ -28,15 +28,13 @@ export function onClickOutside(element, callback) {
   clickOutsideListeners.set(element, true);
 }
 
-export function createGradient(
-  color1,
-  color2,
-  x1 = 0,
-  x2 = 300,
-  y1 = 0,
-  y2 = 0
-) {
+export function createGradient(color1, color2, x1 = 0, x2 = 300, y1 = 0, y2 = 0) {
   return (ctx) => {
+    // const x1 = 0;
+    // let x2 = 300;
+    // let y1 = 0;
+    // let y2 = 0;
+
     const canvas = ctx.chart.ctx;
     const gradient = canvas.createLinearGradient(x1, y1, x2, y2);
 

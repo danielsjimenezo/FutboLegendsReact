@@ -74,7 +74,7 @@ export const futbolDataTypes = [
       {
         id: "assists",
         label: "Assists",
-        gradient: ["transparent", graphColors.purple, 0, 0, 500, 0],
+        gradient: ["transparent", graphColors.purple],
       },
     ],
   },

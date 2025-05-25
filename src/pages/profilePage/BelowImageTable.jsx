@@ -1,27 +1,7 @@
-import { useRef, useEffect } from "react";
+import './BelowImageTable.css'
 
-function BelowImageTable({ headings, rows, totals }) {
-  const bodyRef = useRef(null);
-  const footerRef = useRef(null);
+function BelowImageTable({ headings, rows, totals, gtc }) {
 
-  async function alignFooterAndBody() {
-    const bodyTds = bodyRef.current.querySelectorAll(
-      ":scope > tr:first-child td"
-    );
-    const widths = [...bodyTds].map((td) => td.offsetWidth);
-    const footerCells = footerRef.current.querySelectorAll(
-      ":scope > tr:first-child > *"
-    );
-    [...footerCells].forEach((cell, i) => {
-      cell.style.width = `${widths[i]}px`;
-    });
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      alignFooterAndBody();
-    }, 500);
-  }, []);
 
   return (
     <div className="playerTableStats">
@@ -29,15 +9,21 @@ function BelowImageTable({ headings, rows, totals }) {
         <div className="team-data-table-container">
           <table className="team-data-table">
             <thead>
-              <tr className="header-roww">
+              <tr className="header-roww"  style={{
+                  display: 'grid',
+                  gridTemplateColumns: gtc
+                }}>
                 {headings.map((h) => (
-                  <th>{h}</th>
+                  <th key={h}>{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody id="team-stats" ref={bodyRef}>
+            <tbody id="team-stats">
               {rows.map((row) => (
-                <tr key={row.key}>
+                <tr key={row.key} style={{
+                  display: 'grid',
+                  gridTemplateColumns: gtc
+                }}>
                   {row.items.map((item, i) => (
                     <td
                       key={`${headings[i]}|${item.value}}`}
@@ -63,11 +49,14 @@ function BelowImageTable({ headings, rows, totals }) {
           </table>
         </div>
         <table className="team-data-foot">
-          <tfoot ref={footerRef}>
-            <tr className="totalsRowProfile">
+          <tfoot>
+            <tr className="totalsRowProfile" style={{
+              display: 'grid',
+              gridTemplateColumns: gtc
+            }}>
               <th>TOTALS</th>
               {totals.map((total) => (
-                <td>{total.toLocaleString()}</td>
+                <td key={Math.random()}>{total.toLocaleString()}</td>
               ))}
             </tr>
           </tfoot>

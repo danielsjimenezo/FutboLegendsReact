@@ -1,41 +1,41 @@
-import "./ProfilePage.css";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import "./ProfilePage.css"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
 import {
   selectPlayerState,
   toggleLeaderboardCountry,
   setLeaderboardPosition,
-} from "../../context/playerSlice.js";
-import GoalTypeChart1 from "../../charts/GoalTypeChart1.jsx";
-import GoalTypeChart2 from "../../charts/GoalTypeChart2.jsx";
-import TeamDataTable from "../../tables/TeamDataTable.jsx";
-import Toggle from "../../misc/Toggle.jsx";
-import CompDataTable from "../../tables/CompDataTable.jsx";
-import ProfileBadges from "./ProfileBadges.jsx";
-import ShownBadgesFilter from "../../layout/ShownBadgesFilter.jsx";
-import PlayerMatchTable from "../../tables/PlayerMatchTable.jsx";
-import PlayerGoalTable from "../../tables/PlayerGoalTable.jsx";
-import StatsPlayoffsTable from "../../tables/StatsPlayoffsTable.jsx";
-import StatsTeamsTable from "../../tables/StatsTeamsTable.jsx";
-import BelowImageTable from "./BelowImageTable.jsx";
+} from "../../context/playerSlice.js"
+import GoalTypeChart1 from "../../charts/GoalTypeChart1.jsx"
+import GoalTypeChart2 from "../../charts/GoalTypeChart2.jsx"
+import TeamDataTable from "./TeamDataTable.jsx"
+import Toggle from "../../misc/Toggle.jsx"
+import CompDataTable from "../../tables/CompDataTable.jsx"
+import ProfileBadges from "./ProfileBadges.jsx"
+import ShownBadgesFilter from "../../layout/ShownBadgesFilter.jsx"
+import PlayerMatchTable from "../../tables/PlayerMatchTable.jsx"
+import PlayerGoalTable from "../../tables/PlayerGoalTable.jsx"
+import StatsPlayoffsTable from "../../tables/StatsPlayoffsTable.jsx"
+import StatsTeamsTable from "../../tables/StatsTeamsTable.jsx"
+import BelowImageTable from "./BelowImageTable.jsx"
 
 function ProfilePage() {
-  const [teamTableShown, setTeamTableShown] = useState("team");
-  const [matchTableShown, setMatchTableShown] = useState("match");
-  const [statsTableShown, setStatsTableShown] = useState("playoffs");
+  const [teamTableShown, setTeamTableShown] = useState("team")
+  const [matchTableShown, setMatchTableShown] = useState("match")
+  const [statsTableShown, setStatsTableShown] = useState("playoffs")
   const { players, playersLoadingState, leaderboardCountry } =
-    useSelector(selectPlayerState);
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const player = players.find((p) => p.name === id.replaceAll("_", " "));
+    useSelector(selectPlayerState)
+  const dispatch = useDispatch()
+  const { id } = useParams()
+  const player = players.find((p) => p.name === id.replaceAll("_", " "))
 
   if (playersLoadingState === "loading") {
     return (
       <>
         <p>Loading player data...</p>
       </>
-    );
+    )
   }
 
   if (playersLoadingState === "error") {
@@ -43,7 +43,7 @@ function ProfilePage() {
       <>
         <p>Something went wrong.</p>
       </>
-    );
+    )
   }
 
   if (!player) {
@@ -51,7 +51,7 @@ function ProfilePage() {
       <>
         <p>Player not found</p>
       </>
-    );
+    )
   }
 
   return (
@@ -100,7 +100,7 @@ function ProfilePage() {
             value: "comp",
           }}
           onClick={(e, option) => {
-            setTeamTableShown(option.value);
+            setTeamTableShown(option.value)
           }}
         />
         <div id="leaderboard-heading">
@@ -111,7 +111,7 @@ function ProfilePage() {
               option2={{ label: player.position, value: player.position }}
               defaultValue="all"
               onClick={(e, option) => {
-                dispatch(setLeaderboardPosition(option.value));
+                dispatch(setLeaderboardPosition(option.value))
               }}
             />
             <Toggle
@@ -122,41 +122,14 @@ function ProfilePage() {
               }}
               defaultValue={leaderboardCountry}
               onClick={(e, option) => {
-                dispatch(toggleLeaderboardCountry());
+                dispatch(toggleLeaderboardCountry())
               }}
             />
             <ShownBadgesFilter />
           </div>
         </div>
         {teamTableShown === "team" ? (
-          // <TeamDataTable player={player} />
-          <BelowImageTable
-            headings={["Team", "MP", "G", "A", "GC", "GE"]}
-            rows={player.teams.map((team) => ({
-              key: team.name,
-              items: [
-                {
-                  type: "logo",
-                  name: team.name,
-                  img: `/images/Teams/${team.name}.png`,
-                },
-                { value: team.games },
-                { value: team.goals },
-                { value: team.assists },
-                { value: team.goals + team.assists },
-                {
-                  value: ((team.goals + team.assists) / team.games).toFixed(2),
-                },
-              ],
-            }))}
-            totals={[
-              player.teamTotals.games,
-              player.teamTotals.goals,
-              player.teamTotals.assists,
-              player.teamTotals.contributions,
-              (player.teamTotals.efficiency || 0).toFixed(2),
-            ]}
-          />
+          <TeamDataTable player={player} />
         ) : (
           <CompDataTable player={player} />
         )}
@@ -194,7 +167,7 @@ function ProfilePage() {
       <br />
       <br />
     </>
-  );
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage
