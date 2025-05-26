@@ -8,12 +8,14 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
   const { players, playersLoadingState } = useSelector(selectPlayerState);
   const [query, setQuery] = useState("");
   const [searching, setSearching] = useState(alwaysOpen || false);
+  const [isFocused, setIsFocused] = useState(false);
   const searchedPlayers = useMemo(() => {
-    if (query.length < 3) return [];
+    if (!searching || !isFocused) return [];
+    if (query.length === 0) return players;
     return players.filter((p) =>
       p.name.toLowerCase().includes(query.toLowerCase())
     );
-  }, [query]);
+  }, [query, searching, players, isFocused]);
 
   // element references
   const searchInputRef = useRef(null);
@@ -22,6 +24,7 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
   useClickOutside(searchContainerRef, () => {
     setQuery("");
     setSearching(alwaysOpen || false);
+    setIsFocused(false);
   });
 
   if (playersLoadingState === "loading") {
@@ -38,8 +41,20 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
 
   const handleSearchButton = () => {
     setSearching(true);
+    setIsFocused(true);
     setTimeout(() => {
       searchInputRef.current.focus();
+    }, 200);
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    // Delay hiding suggestions to allow for clicking on them
+    setTimeout(() => {
+      setIsFocused(false);
     }, 200);
   };
 
@@ -59,6 +74,8 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
             id="searchInput"
             placeholder="Search players..."
             onInput={handleInput}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
             ref={searchInputRef}
           />
         </div>
@@ -71,31 +88,37 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
           onClick={handleSearchButton}
         />
       )}
-      <section id="searchResults">
-        {searchedPlayers.map((player) => {
-          const playerHref = "/profile/" + player.name.replaceAll(" ", "_");
-          const imgSrc = `/images/Players/${player.name}.jpg`;
+      {searching && isFocused && (
+        <section id="searchResults">
+          {searchedPlayers.map((player) => {
+            const playerHref = "/profile/" + player.name.replaceAll(" ", "_");
+            const imgSrc = `/images/Players/${player.name}.jpg`;
 
-          return (
-            <div className="player-result" key={player.name}>
-              <Link
-                className="searchResultBox"
-                to={url ? url(player) : playerHref}
-                onClick={() => setQuery("")}
-              >
-                <img
-                  src={imgSrc}
-                  alt={player.name}
-                  className="player-result-img"
-                />
-                <div className="player-result-info">
-                  <p>{player.name}</p>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
-      </section>
+            return (
+              <div className="player-result" key={player.name}>
+                <Link
+                  className="searchResultBox"
+                  to={url ? url(player) : playerHref}
+                  onClick={() => {
+                    setQuery("");
+                    setSearching(alwaysOpen || false);
+                    setIsFocused(false);
+                  }}
+                >
+                  <img
+                    src={imgSrc}
+                    alt={player.name}
+                    className="player-result-img"
+                  />
+                  <div className="player-result-info">
+                    <p>{player.name}</p>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
+        </section>
+      )}
     </div>
   );
 }

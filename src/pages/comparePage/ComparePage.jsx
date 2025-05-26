@@ -12,12 +12,9 @@ function ComparePage() {
   const { findPlayerById, players } = useSelector(selectPlayerState);
 
   const player1 =
-    findPlayerById(id1) ||
-    players.find((p) => p.name === "Lionel Messi");
+    findPlayerById(id1) || players.find((p) => p.name === "Lionel Messi");
   const player2 =
-    findPlayerById(id2) ||
-    players.find((p) => p.name === "Cristiano Ronaldo");
-
+    findPlayerById(id2) || players.find((p) => p.name === "Cristiano Ronaldo");
 
   const getCompareUrl = (player, i) => {
     // i is 0 or 1
@@ -33,9 +30,7 @@ function ComparePage() {
     }
   };
 
-  if (!player1 || !player2) return (
-    <p>Loading...</p>
-  )
+  if (!player1 || !player2) return <p>Loading...</p>;
 
   return (
     <section className="content-container-compare">

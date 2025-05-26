@@ -1,5 +1,4 @@
 .content-container-compare {
-
   width: 1100px;
   margin: auto;
   max-width: 100%;
@@ -119,6 +118,8 @@
 
 .compare-bar-container.right {
   gap: 0.5rem;
+  justify-content: flex-start;
+  flex-direction: row;
 
   & > .compare-bar-fill {
     border-top-right-radius: 150px;
