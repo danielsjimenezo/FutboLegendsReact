@@ -111,3 +111,33 @@
   border-top: none;
   padding-top: 0.5rem;
 }
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.league-page > div:first-child {
+  animation: slideInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.league-page > div:last-child {
+  animation: slideInRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}

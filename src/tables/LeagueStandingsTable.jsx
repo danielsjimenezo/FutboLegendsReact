@@ -222,19 +222,7 @@ const premierLeagueTeams = [
 ];
 
 function LeagueStandingsTable() {
-  const headings = [
-    "Rank",
-    "Team",
-    "Pts.",
-    "G",
-    "W",
-    "L",
-    "D",
-    "Gls.",
-    "GC",
-    "GD",
-    "CS",
-  ];
+  const headings = ["Rank", "Team", "Pts.", "G", "W", "L", "D", "Gls.", "GD"];
 
   const items = premierLeagueTeams.map((team, index) => ({
     "#": index + 1,
@@ -252,9 +240,7 @@ function LeagueStandingsTable() {
       Math.floor(team.points / 3) -
       Math.floor((team.played - team.points / 3) / 2), // Remaining games as draws
     "Gls.": team.goalsFor,
-    GC: team.goalsAgainst,
     GD: team.goalDifference,
-    CS: Math.floor(team.goalsAgainst / 2), // Rough estimate of clean sheets
   }));
 
   const columnWidths = [
@@ -266,9 +252,7 @@ function LeagueStandingsTable() {
     "7%", // L
     "7%", // D
     "7%", // Gls.
-    "7%", // GC
     "7%", // GD
-    "7%", // CS
   ];
 
   return (
