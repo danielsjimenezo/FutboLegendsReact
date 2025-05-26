@@ -34,6 +34,7 @@
   margin: 0;
   border-bottom: 1px solid var(--border-color, #eaeaea);
   background-color: transparent;
+  font-weight: normal;
 }
 
 /* Add this at the top of your CSS file */
@@ -95,7 +96,14 @@
   padding: 0;
 }
 
-
+.leagues-section .leagues-list li {
+  height: 55.74px; /* Set explicit height */
+  padding: 0.85rem 1.2rem; /* Maintain internal padding for content spacing */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
 .league {
   & a {
@@ -106,20 +114,59 @@
   }
 
   & img {
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: 28px; /* Adjust height to fit within the cell padding */
+    object-fit: contain;
   }
 }
 
 /* Center Section - Timeline */
 .timeline-section {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: none;
+  z-index: 1; /* Ensure timeline section has a stacking context */
+}
+
+.date-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative; /* Ensure relative positioning for absolute children */
+  z-index: 2; /* Give date filter a higher z-index than match cards */
+}
+
+.date-nav-arrow {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.date-nav-arrow:disabled {
+  color: grey;
+  cursor: not-allowed;
+}
+
+.current-date {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 1rem;
 }
 
 .vertical-timeline {
   position: relative;
   padding: 1rem 0;
+  background: none;
 }
 
 .vertical-timeline::before {
@@ -136,31 +183,11 @@
   display: none;
 }
 
-/* Adjust the timeline item to have less left padding */
+/* Adjust the timeline item to have less top margin */
 .timeline-item {
   position: relative;
-  margin: 3rem 0 2rem 0; /* Increased top margin to make room for date */
-  padding: 0 1rem; /* Remove left padding since date is on top now */
-}
-
-/* Reposition the date to be on top and centered */
-.timeline-date {
-  position: absolute;
-  top: -1.5rem; /* Position above the card */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center alignment */
-  background-color: var(--primary-color, #af95fc);
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-align: center;
-  width: auto; /* Allow width to adjust to content */
-  min-width: 5rem; /* Minimum width */
-  white-space: nowrap; /* Prevent text wrapping */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  z-index: 2; /* Ensure it's above the card */
+  margin: 1rem 0;
+  padding: 0 1rem;
 }
 
 /* Ensure no text wrapping in team names */
@@ -172,19 +199,12 @@
 
 /* First timeline item needs extra top margin */
 .vertical-timeline .timeline-item:first-child {
-  margin-top: 2.5rem;
+  margin-top: 0;
 }
 
 /* Add a small connecting line from date to card */
 .timeline-date::after {
-  content: "";
-  position: absolute;
-  bottom: -0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 0.5rem;
-  background-color: var(--primary-color, #af95fc);
+  display: none;
 }
 
 /* Adjust for mobile */
@@ -195,16 +215,30 @@
   }
 }
 
+/* Match Card Animation */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .match-card {
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: none;
+  box-shadow: none;
+  border: none;
+  animation: fadeInSlideUp 0.5s ease-out forwards; /* Apply the animation */
 }
 
 .match-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
 .teams {
@@ -248,6 +282,10 @@
   color: var(--text-secondary, #70757a);
   font-size: 0.85rem;
   font-weight: 500;
+  text-align: center;
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.5rem;
 }
 
 /* Right Section - Tabs */
@@ -279,7 +317,7 @@
 }
 
 .tab-content {
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 .player-stats-list {
@@ -298,6 +336,13 @@
   position: relative;
   font-size: 0.8rem;
   font-weight: 100;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.player-stats-list li:first-child {
+  padding: 0.85rem 1.2rem;
+  margin-top: 0;
 }
 
 .player-stats-list li:before {
@@ -313,9 +358,14 @@
   border-bottom: none;
 }
 
+.player-stats-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .player-name {
   margin-right: auto;
   font-weight: 500;
+  font-size: 0.8rem;
 }
 
 .player-image {
@@ -350,8 +400,9 @@
 }
 
 .stat {
-  font-weight: bold;
+  font-weight: normal;
   color: white;
+  font-size: 0.8rem;
 }
 
 /* Responsive adjustments */
@@ -494,7 +545,6 @@
   /* background-color: transparent; */
 }
 
-
 .tab-content,
 .team-stats-list {
   flex: 1;
@@ -537,14 +587,12 @@
 }
 
 .team-badge-wins {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-size: contain;
+  width: 28px;
+  height: 28px;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin-right: 10px;
-  flex-shrink: 0;
+  margin-right: 0.75rem;
 }
 
 .team-info {
@@ -618,7 +666,7 @@
   background-color: var(--lighten);
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid rgba(255, 255, 255, 0.2); /* Add white border */
 }
@@ -650,24 +698,11 @@
 .team-badge {
   width: 24px;
   height: 24px;
-  border-radius: 50%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  border: 1px solid rgba(255, 255, 255, 0.3);
   flex-shrink: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Center the competition name with border */
-.competition {
-  color: var(--text-secondary, #70757a);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-align: center; /* Center the text */
-  margin-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 0.5rem;
+  background-color: transparent;
 }
 
 /* Goal scorer section styling */
@@ -676,10 +711,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background-color: rgba(25, 25, 35, 0.2);
+  background: none;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 0.8rem; /* Set font size to 0.8rem as requested */
+  border-bottom: none;
+  font-size: 0.8rem;
 }
 
 .goal-item {
@@ -762,7 +797,7 @@
 .goal-scorer-image {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: 0;
   background-size: cover;
   background-position: center;
   flex-shrink: 0;
@@ -773,8 +808,8 @@
   font-weight: bold;
   color: white;
   margin: 0 4px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background-color: var(--lighten);
+  border: none;
+  background-color: transparent;
 }
 
 /* Home team goal layout */
@@ -791,4 +826,109 @@
 
 .goal-scorer {
   margin: 0 2px;
+}
+
+/* Update the Most Wins section to use team-badge-wins instead of player-image */
+.wins-section .player-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.leagues-section h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+}
+
+.react-datepicker-popper {
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 1000 !important;
+}
+
+.react-datepicker {
+  font-family: var(
+    --font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  background-color: var(--lighten) !important;
+  color: white !important;
+}
+
+.react-datepicker__header {
+  padding: 10px;
+  background-color: var(--lighten) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: white !important;
+}
+
+.react-datepicker__navigation {
+  top: 10px;
+  line-height: 1.7;
+  border: none !important;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: white !important;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: white !important;
+}
+
+.react-datepicker__day {
+  color: white !important;
+  border-radius: 4px !important;
+  transition: background-color 0.2s ease;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: var(--primary-color, #af95fc) !important;
+  color: white !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+.react-datepicker__day--outside-month {
+  color: var(--text-secondary, #70757a) !important;
+}
+
+.react-datepicker__triangle {
+  border-bottom-color: var(--lighten) !important;
+}
+
+.react-datepicker__input-container {
+  display: none !important;
 }
