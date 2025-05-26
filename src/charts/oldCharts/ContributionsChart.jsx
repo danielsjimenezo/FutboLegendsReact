@@ -38,8 +38,7 @@ function ContributionsChart({ readAllPlayers }) {
                   bottomRight: 10,
                 },
                 base: 1,
-                label:
-                  "Goals",
+                label: "Goals",
               },
               {
                 // backgroundColor: "#AF95FC",
@@ -66,12 +65,12 @@ function ContributionsChart({ readAllPlayers }) {
               },
               tooltip: {
                 mode: "index",
-                intersect: true
+                intersect: true,
               },
             },
             interaction: {
               mode: "index",
-              intersect: true
+              intersect: true,
             },
             scales: {
               y: {

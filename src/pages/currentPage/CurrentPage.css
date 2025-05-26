@@ -932,3 +932,33 @@
 .react-datepicker__input-container {
   display: none !important;
 }
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.leagues-section.animate-left {
+  animation: fadeInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.right-column.animate-right {
+  animation: fadeInRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}

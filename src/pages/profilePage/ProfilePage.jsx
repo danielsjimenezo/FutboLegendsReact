@@ -1,37 +1,36 @@
-import "./ProfilePage.css"
-import { useState } from "react"
-import { useParams } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
+import "./ProfilePage.css";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   selectPlayerState,
   toggleLeaderboardCountry,
   setLeaderboardPosition,
-} from "../../context/playerSlice.js"
-import GoalTypeChart1 from "../../charts/GoalTypeChart1.jsx"
-import GoalTypeChart2 from "../../charts/GoalTypeChart2.jsx"
-import TeamDataTable from "./TeamDataTable.jsx"
-import Toggle from "../../misc/Toggle.jsx"
-import CompDataTable from "../../tables/CompDataTable.jsx"
-import ProfileBadges from "./ProfileBadges.jsx"
-import ShownBadgesFilter from "../../layout/ShownBadgesFilter.jsx"
-import ProfilePageTables from "./ProfilePageTables.jsx"
-
+} from "../../context/playerSlice.js";
+import GoalTypeChart1 from "../../charts/GoalTypeChart1.jsx";
+import GoalTypeChart2 from "../../charts/GoalTypeChart2.jsx";
+import TeamDataTable from "./TeamDataTable.jsx";
+import Toggle from "../../misc/Toggle.jsx";
+import CompDataTable from "../../tables/CompDataTable.jsx";
+import ProfileBadges from "./ProfileBadges.jsx";
+import ShownBadgesFilter from "../../layout/ShownBadgesFilter.jsx";
+import ProfilePageTables from "./ProfilePageTables.jsx";
 
 function ProfilePage() {
-  const [teamTableShown, setTeamTableShown] = useState("team")
+  const [teamTableShown, setTeamTableShown] = useState("team");
 
   const { players, playersLoadingState, leaderboardCountry } =
-    useSelector(selectPlayerState)
-  const dispatch = useDispatch()
-  const { id } = useParams()
-  const player = players.find((p) => p.name === id.replaceAll("_", " "))
+    useSelector(selectPlayerState);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const player = players.find((p) => p.name === id.replaceAll("_", " "));
 
   if (playersLoadingState === "loading") {
     return (
       <>
         <p>Loading player data...</p>
       </>
-    )
+    );
   }
 
   if (playersLoadingState === "error") {
@@ -39,7 +38,7 @@ function ProfilePage() {
       <>
         <p>Something went wrong.</p>
       </>
-    )
+    );
   }
 
   if (!player) {
@@ -47,7 +46,7 @@ function ProfilePage() {
       <>
         <p>Player not found</p>
       </>
-    )
+    );
   }
 
   return (
@@ -102,7 +101,7 @@ function ProfilePage() {
             value: "comp",
           }}
           onClick={(e, option) => {
-            setTeamTableShown(option.value)
+            setTeamTableShown(option.value);
           }}
         />
         <div id="leaderboard-heading">
@@ -113,18 +112,22 @@ function ProfilePage() {
               option2={{ label: player.position, value: player.position }}
               defaultValue="all"
               onClick={(e, option) => {
-                dispatch(setLeaderboardPosition(option.value))
+                dispatch(setLeaderboardPosition(option.value));
               }}
             />
             <Toggle
-              option1={{ img: "/images/Icons/global_icon.png", value: "all", style: { transform: "scale(1.1)"} }}
+              option1={{
+                img: "/images/Icons/global_icon.png",
+                value: "all",
+                style: { transform: "scale(1.1)" },
+              }}
               option2={{
                 img: `/images/Flags/${player.birthCountry}.png`,
                 value: "native",
               }}
               defaultValue={leaderboardCountry}
               onClick={(e, option) => {
-                dispatch(toggleLeaderboardCountry())
+                dispatch(toggleLeaderboardCountry());
               }}
             />
             <ShownBadgesFilter />
@@ -137,7 +140,7 @@ function ProfilePage() {
         )}
         <ProfileBadges player={player} />
       </section>
-      <ProfilePageTables  player={player}/>
+      <ProfilePageTables player={player} />
 
       <br />
       <br />
@@ -146,7 +149,7 @@ function ProfilePage() {
       <br />
       <br />
     </>
-  )
+  );
 }
 
-export default ProfilePage
+export default ProfilePage;

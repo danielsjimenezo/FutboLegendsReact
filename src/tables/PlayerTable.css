@@ -25,6 +25,52 @@
 #main-table tbody tr {
   border-radius: 10rem;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add delay to each row */
+#main-table tbody tr:nth-child(1) {
+  animation-delay: 0.1s;
+}
+#main-table tbody tr:nth-child(2) {
+  animation-delay: 0.2s;
+}
+#main-table tbody tr:nth-child(3) {
+  animation-delay: 0.3s;
+}
+#main-table tbody tr:nth-child(4) {
+  animation-delay: 0.4s;
+}
+#main-table tbody tr:nth-child(5) {
+  animation-delay: 0.5s;
+}
+#main-table tbody tr:nth-child(6) {
+  animation-delay: 0.6s;
+}
+#main-table tbody tr:nth-child(7) {
+  animation-delay: 0.7s;
+}
+#main-table tbody tr:nth-child(8) {
+  animation-delay: 0.8s;
+}
+#main-table tbody tr:nth-child(9) {
+  animation-delay: 0.9s;
+}
+#main-table tbody tr:nth-child(10) {
+  animation-delay: 1s;
 }
 
 #main-table tr th {

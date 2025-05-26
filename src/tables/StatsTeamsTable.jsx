@@ -1,13 +1,13 @@
 import Table from "./Table.jsx";
 
 const teams = [
-  `Manchester United`,
-  `Real Madrid`,
+  `M. United`,
+  `R. Madrid`,
   `Barcelona`,
-  `Manchester City`,
+  `M. City`,
   `Chelsea`,
   `Arsenal`,
-  `Atletico Madrid`,
+  `A. Madrid`,
   `Sevilla`,
   `Liverpool`,
   `Tottenham`,
@@ -15,31 +15,31 @@ const teams = [
   `Marseille`,
   `Monaco`,
   `Lyon`,
-  `Bayern Munich`,
-  `Borussia Dortmund`,
-  `Bayer Leverkussen`,
+  `Bayern`,
+  `B. Dortmund`,
+  `B. Leverkusen`,
   `Juventus`,
-  `AC Milan`,
-  `Inter Milan`,
- `Napoli`, 
- `AS Roma`,
- `Ajax`,
- `Spain`,
- `France`,
- `Italy`,
- `Germany`,
- `England`,
- `Portugal`,
- `Netherlands`,
- `Brazil`,
- `Argentina`,
- `Uruguay`,
- `Colombia`,
-]
+  `A. Milan`,
+  `I. Milan`,
+  `Napoli`,
+  `A. Roma`,
+  `Ajax`,
+  `Spain`,
+  `France`,
+  `Italy`,
+  `Germany`,
+  `England`,
+  `Portugal`,
+  `Netherlands`,
+  `Brazil`,
+  `Argentina`,
+  `Uruguay`,
+  `Colombia`,
+];
 
 const fakeRow = {
   id: 0,
-  team: `Bayern Munich`,
+  team: `Bayern`,
   badge: {
     type: "img",
     src: "/images/Teams/Bayern Munich.png",
@@ -56,7 +56,11 @@ const fakeRow = {
 
 const fakeRows = [];
 for (let i = 0; i < 35; i++)
-  fakeRows.push({ ...fakeRow, id: Math.floor(Math.random() * 1000), team: teams[i] });
+  fakeRows.push({
+    ...fakeRow,
+    id: Math.floor(Math.random() * 1000),
+    team: teams[i],
+  });
 
 function StatsTeams() {
   return (
@@ -68,18 +72,18 @@ function StatsTeams() {
       id="stats-teams-table"
       perPage={35}
       columnWidths={[
-          '10%',
-          '10%',
-          '10%',
-          '10%',
-          '10%',
-          '10%',
-          '10%',
-          '10%',
-          '10%',
-          '10%',
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
       ]}
-      cellPaddingY='5.75px'
+      cellPaddingY="5.75px"
     />
   );
 }

@@ -3,18 +3,18 @@ import TableRow from "./TableRow.jsx";
 import TableTd from "./TableTd.jsx";
 import { useState } from "react";
 
-function Table({ 
-  headings, 
-  items, 
-  _key, 
-  hide = [], 
-  expandables, 
-  id = "", 
-  columnWidths = [], 
-  totals, 
+function Table({
+  headings,
+  items,
+  _key,
+  hide = [],
+  expandables,
+  id = "",
+  columnWidths = [],
+  totals,
   perPage = 10,
   cellPaddingY = "10px",
-  cellHeight = 'auto'
+  cellHeight = "auto",
 }) {
   const [page, setPage] = useState(0);
 
@@ -30,9 +30,16 @@ function Table({
         <thead>
           <tr>
             {headings.map((h, i) => {
-              return <th key={h} style={{
-                width: columnWidths[i] || 'auto'
-              }}>{h}</th>;
+              return (
+                <th
+                  key={h}
+                  style={{
+                    width: columnWidths[i] || "auto",
+                  }}
+                >
+                  {h}
+                </th>
+              );
             })}
           </tr>
         </thead>
@@ -42,11 +49,11 @@ function Table({
               ([k, v]) => !hide.includes(k)
             );
             // Table row can be "expandable" if "expandables prop is provided"
-            const expandable = expandables?.[i]
+            const expandable = expandables?.[i];
             return (
-              <TableRow 
-                key={Math.random()} 
-                entries={entries} 
+              <TableRow
+                key={Math.random()}
+                entries={entries}
                 expandable={expandable}
                 columnWidths={columnWidths}
                 cellPaddingY={cellPaddingY}
@@ -58,12 +65,17 @@ function Table({
         {totals && (
           <tfoot>
             <tr className="totals-row">
-              {totals.map(v => (
-                <td key={Math.random()} style={{
-                  paddingTop: cellPaddingY,
-                  paddingBottom: cellPaddingY,
-                  height: cellHeight
-                }}>{v}</td>
+              {totals.map((v) => (
+                <td
+                  key={Math.random()}
+                  style={{
+                    paddingTop: cellPaddingY,
+                    paddingBottom: cellPaddingY,
+                    height: cellHeight,
+                  }}
+                >
+                  {v}
+                </td>
               ))}
             </tr>
           </tfoot>
@@ -71,9 +83,11 @@ function Table({
       </table>
       <div className="pagination">
         <div>
-          {page > 0 && <button onClick={() => setPage(page - 1)}>
-            <img src="/images/Icons/rtri.svg" alt="" />
-          </button>}
+          {page > 0 && (
+            <button onClick={() => setPage(page - 1)}>
+              <img src="/images/Icons/rtri.svg" alt="" />
+            </button>
+          )}
         </div>
         {/* <div>
           <p>

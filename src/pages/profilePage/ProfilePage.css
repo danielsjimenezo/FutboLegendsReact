@@ -56,12 +56,22 @@
   }
 }
 
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .playerDesc {
   font-size: 12px;
-  /* align-self: flex-start; */
   position: relative;
   text-align: center;
-  /* left: -50px; */
+  animation: fadeInSlideUp 0.5s ease-out forwards;
 }
 
 .descr {
@@ -70,6 +80,7 @@
 
 .playerTableStats {
   align-self: stretch;
+  animation: fadeInSlideUp 0.5s ease-out forwards;
 
   & .table-container {
     height: 100%;
@@ -100,8 +111,20 @@
   width: 103%;
 }
 
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .statsBadgeContainer {
   text-align: center;
+  animation: slideInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .statsBadgeTitle {
@@ -138,9 +161,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-
-
 
 .badgeRank {
   position: absolute;

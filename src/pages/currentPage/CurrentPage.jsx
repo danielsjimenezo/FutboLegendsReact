@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./CurrentPage.css";
 import { shortenName } from "../../utilities/utilities.js";
 import { Link } from "react-router-dom";
@@ -18,6 +18,8 @@ import "react-datepicker/dist/react-datepicker.css";
 function CurrentPage() {
   const [currentDate, setCurrentDate] = useState(new Date()); // Initialize with today's date
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false); // State for dropdown visibility
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
 
   const formatDisplayDate = (date) => {
     const today = new Date();
@@ -53,11 +55,16 @@ function CurrentPage() {
     }
   };
 
+  useEffect(() => {
+    if (leftRef.current) leftRef.current.classList.add("animate-left");
+    if (rightRef.current) rightRef.current.classList.add("animate-right");
+  }, []);
+
   return (
     <div className="current-page-container container">
       <div className="current-page">
         {/* Left Section - Top Leagues */}
-        <section className="leagues-section">
+        <section className="leagues-section" ref={leftRef}>
           <h2>Top Competitions</h2>
           <ol className="leagues-list list">
             {leagues.map((league) => (
@@ -175,7 +182,7 @@ function CurrentPage() {
         </section>
 
         {/* Right Column Container */}
-        <div className="right-column">
+        <div className="right-column" ref={rightRef}>
           {/* Stats Section with height limit */}
           <TopPlayersList
             data1={topScorers}
