@@ -125,7 +125,7 @@ const MatchCard = ({
           </div>
         )}
 
-        <div className="competition">{competition}</div>
+        {competition && <div className="competition">{competition}</div>}
       </div>
     </div>
   );

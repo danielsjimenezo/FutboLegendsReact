@@ -23,7 +23,12 @@ function Header() {
       <nav id="nav">
         <Link
           to="/current"
-          className={`${location.pathname === "/current" ? "active" : ""}`}
+          className={`${
+            location.pathname === "/current" ||
+            location.pathname.startsWith("/league/")
+              ? "active"
+              : ""
+          }`}
         >
           <button className="topButtons" id="currentButton">
             <span>Current</span>
@@ -84,16 +89,14 @@ function Header() {
             }}
           />
 
-
           {/* YEAR FILTER */}
           <DropdownFilter
             id="year-filter"
             filterKey="years"
-            label={value => {
-              return value.text === 'all' ? 'ALL-TIME' : value.text
+            label={(value) => {
+              return value.text === "all" ? "ALL-TIME" : value.text;
             }}
           />
-
 
           {/* POSITIONS FILTER */}
           <DropdownFilter
