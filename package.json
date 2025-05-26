@@ -23,6 +23,8 @@
     "chart.js": "^4.4.9",
     "chartjs-plugin-annotation": "^3.1.0",
     "date-fns": "^4.1.0",
+    "dotenv": "^16.5.0",
+    "google-api-javascript-client": "^0.1.0",
     "react": "^19.0.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.0.0",

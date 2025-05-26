@@ -87,6 +87,10 @@ function Header() {
                 return value.text.toUpperCase().slice(0, 3);
               }
             }}
+            menuStyle={{
+              minWidth: "unset",
+              width: "150px"
+            }}
           />
 
           {/* YEAR FILTER */}
@@ -95,6 +99,10 @@ function Header() {
             filterKey="years"
             label={(value) => {
               return value.text === "all" ? "ALL-TIME" : value.text;
+            }}
+            menuStyle={{
+              width: "100px",
+              minWidth: "unset"
             }}
           />
 
@@ -107,6 +115,10 @@ function Header() {
               } else {
                 return value.text.toUpperCase();
               }
+            }}
+            menuStyle={{
+              minWidth: "unset",
+              width: "100px"
             }}
           />
         </LimitToPages>

@@ -35,9 +35,7 @@
   }
 }
 
-.table th:first-child {
-  padding-left: 18px;
-}
+
 
 .pagination {
   display: flex;
@@ -65,5 +63,23 @@
 }
 
 .compare-bar-value {
+  white-space: nowrap;
+}
+
+.totals-row {
+  color: var(--green);
+
+  & > td {
+    background-color: rgb(43, 193, 183, 0.14);
+    &:first-child {
+      border-radius: 5rem 0 0 5rem;
+    }
+    &:last-child {
+      border-radius: 0 5rem 5rem 0;
+    }
+  }
+}
+
+.comp-tooltip {
   white-space: nowrap;
 }

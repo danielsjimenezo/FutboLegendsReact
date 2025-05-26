@@ -35,6 +35,12 @@ function getMyTopPlayers() {
     return players
 }
 
+function getReplaceIndex(topPlayers) {
+    const nonEmptyPlayers = topPlayers.filter(p => p.name)
+    const index = nonEmptyPlayers.length
+    return index > 19 ? 19 : index;
+}
+
 function MyTop20() {
 
     const { players } = useSelector(selectPlayerState)
@@ -43,7 +49,7 @@ function MyTop20() {
     const [myTopPlayers, setMyTopPlayers] = useState(getMyTopPlayers())
     const [mySearchTerm, setMySearchTerm] = useState("")
     const [mySearchResults, setMySearchResults] = useState([])
-    const [myReplaceIndex, setMyReplaceIndex] = useState(0)
+    const [myReplaceIndex, setMyReplaceIndex] = useState(getReplaceIndex(myTopPlayers))
     const [showMyResults, setShowMyResults] = useState(false)
 
     const myResultsRef = useRef(null)

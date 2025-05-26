@@ -15,6 +15,8 @@ import RankingsPage from "./pages/rankingsPage/RankingsPage.jsx";
 import CurrentPage from "./pages/currentPage/CurrentPage.jsx";
 import LeaguePage from "./pages/leaguePage/LeaguePage.jsx";
 
+import YoutubeTest from "./test/YoutubeTest.jsx";
+
 function App() {
 
   const dispatch = useDispatch()
@@ -28,6 +30,7 @@ function App() {
       <div className="header-container">
         <Header />
       </div>
+      {/* <YoutubeTest /> */}
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />

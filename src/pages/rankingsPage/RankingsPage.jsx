@@ -121,7 +121,7 @@ function RankingsPage() {
       {/* Right Section - Official Rankings */}
       <section className="rankings-section official-rankings">
         <div className="section-header">
-          <h2>Official Top 20</h2>
+          <h2>Community Top 20</h2>
           <div className="search-container" ref={officialResultsRef}>
             {showOfficialResults && officialSearchResults.length > 0 && (
               <ul className="search-results">

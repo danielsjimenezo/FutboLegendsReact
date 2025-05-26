@@ -3,12 +3,24 @@ import TableRow from "./TableRow.jsx";
 import TableTd from "./TableTd.jsx";
 import { useState } from "react";
 
-function Table({ headings, items, _key, hide = [], expandables, id = "", columnWidths = [] }) {
+function Table({ 
+  headings, 
+  items, 
+  _key, 
+  hide = [], 
+  expandables, 
+  id = "", 
+  columnWidths = [], 
+  totals, 
+  perPage = 10,
+  cellPaddingY = "10px",
+  cellHeight = 'auto'
+}) {
   const [page, setPage] = useState(0);
 
-  const start = page * 10;
-  const end = (page + 1) * 10;
-  const totalPages = Math.ceil(items.length / 10);
+  const start = page * perPage;
+  const end = (page + 1) * perPage;
+  const totalPages = Math.ceil(items.length / perPage);
 
   const shownItems = items.slice(start, end);
 
@@ -37,10 +49,25 @@ function Table({ headings, items, _key, hide = [], expandables, id = "", columnW
                 entries={entries} 
                 expandable={expandable}
                 columnWidths={columnWidths}
+                cellPaddingY={cellPaddingY}
+                cellHeight={cellHeight}
               />
             );
           })}
         </tbody>
+        {totals && (
+          <tfoot>
+            <tr className="totals-row">
+              {totals.map(v => (
+                <td key={Math.random()} style={{
+                  paddingTop: cellPaddingY,
+                  paddingBottom: cellPaddingY,
+                  height: cellHeight
+                }}>{v}</td>
+              ))}
+            </tr>
+          </tfoot>
+        )}
       </table>
       <div className="pagination">
         <div>

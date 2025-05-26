@@ -4,6 +4,7 @@ import { numberKeys } from "./util.js";
 import deriveData from "./derivedData.js";
 import findRankings from "./rankings.js";
 import cleanup from "./cleanup.js";
+import processPosition from "./positions.js";
 
 const INPUT = "./public/Data/input.json";
 const OUTPUT = "./public/Data/output.json";
@@ -28,6 +29,7 @@ players.forEach((player, i) => {
   const newPlayer = { ...player };
   fixNumbers(newPlayer);
   deriveData(newPlayer);
+  processPosition(newPlayer)
   newPlayers.push(newPlayer);
   usedNames.push(player.name);
 });

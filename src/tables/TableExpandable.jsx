@@ -4,6 +4,7 @@ import React from "react";
 
 import YoutubeEmbed from "../misc/YoutubeEmbed.jsx";
 
+import Tooltip from "../misc/Tooltip.jsx";
 
 /**
  * @typedef PhotosExpandableItem
@@ -43,18 +44,24 @@ import YoutubeEmbed from "../misc/YoutubeEmbed.jsx";
 /**
  * @typedef ExpandableProps
  * @property {Expandable} expandable
+ * @property {string} [cellPaddingY]
+ * @property {string} [cellHeight]
  */
 
 /**
  * @param {ExpandableProps} param0 
  * @returns 
  */
-function TableExpandable({ expandable }) {
+function TableExpandable({ expandable, cellPaddingY = '10px', cellHeight = '10px' }) {
     return (
         <>
             {expandable.type === 'photos' && (
                 <tr>
-                    <td colSpan={100}>
+                    <td colSpan={100} style={{
+                        height: cellHeight,
+                        paddingTop: cellPaddingY,
+                        paddingBottom: cellPaddingY
+                    }}>
                         <div className="photos-expandable expandable" style={{
                             display: 'grid',
                             gridTemplateColumns: `repeat(${expandable.items.length}, 1fr)`
@@ -72,7 +79,11 @@ function TableExpandable({ expandable }) {
 
             {expandable.type === 'videos' && (
                 <tr>
-                    <td colSpan={100}>
+                    <td colSpan={100} style={{
+                        height: cellHeight,
+                        paddingTop: cellPaddingY,
+                        paddingBottom: cellPaddingY
+                    }}>
                         <div className="videos-expandable expandable" style={{
                             display: 'grid',
                             gridTemplateColumns: `repeat(${expandable.items.length}, 1fr)`,
@@ -98,8 +109,26 @@ function TableExpandable({ expandable }) {
 
             {expandable.type === 'moreRows' && expandable.items.map(row => (
                 <tr key={Math.random()}>
-                    {row.map(item => (
-                        <td key={Math.random()}>
+                    {row.map(item => item.type === 'img' ? (
+                        <td key={Math.random()} style={{
+                            height: cellHeight,
+                            paddingTop: cellPaddingY,
+                            paddingBottom: cellPaddingY
+                        }}>
+                            <Tooltip message={item.alt} tooltipClassName="comp-tooltip">
+                                <img style={{
+                                    width: '30px',
+                                    height: '30px',
+                                    objectFit: 'cover'
+                                }} src={item.src} alt={item.alt} />
+                            </Tooltip>
+                        </td>
+                    ):(
+                        <td key={Math.random()} style={{
+                            height: cellHeight,
+                            paddingTop: cellPaddingY,
+                            paddingBottom: cellPaddingY
+                        }}>
                             {item}
                         </td>
                     ))}

@@ -75,8 +75,8 @@ items.forEach((item, i) => {
     const values = Object.values(item)
     const row = [
       values[0], 
-      comps[j],
-      // { type: "img", src: `/images/Competitions/${comps[j]}.png` }, 
+      // comps[j],
+      { type: "img", src: `/images/Competitions/${comps[j]}.png`, alt: comps[j] }, 
       ...values.slice(2)
     ]
     expandable.items.push(row)
@@ -84,7 +84,7 @@ items.forEach((item, i) => {
   expandables.push(expandable)
 })
 
-console.log(expandables)
+// console.log(expandables)
 
 function StatsPlayoffsTable() {
   return (
@@ -107,6 +107,19 @@ function StatsPlayoffsTable() {
           '10%',
           '10%',
       ]}
+      totals={[
+        'All Playoffs',
+        'All',
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]}
+      cellHeight="50px"
     />
   );
 }

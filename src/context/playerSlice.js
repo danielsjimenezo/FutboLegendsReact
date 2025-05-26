@@ -227,7 +227,9 @@ export const selectPlayerState = createSelector([baseSelector], (s) => {
 
   const years = []
   for (let i = 2025; i > 1970; i--) {
-    years.push(i)
+    const yearA = i.toString().slice(2)
+    const yearB = (i-1).toString().slice(2)
+    years.push(`${yearB}/${yearA}`)
   }
 
   return {

@@ -15,7 +15,7 @@
   }
 
   & tr {
-    border-radius: 40px;
+    border-radius: 6rem;
     cursor: default;
   }
 
@@ -27,7 +27,7 @@
 .team-data-foot {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 12px;
+  border-radius: 5rem;
   overflow: hidden;
 }
 
@@ -62,10 +62,10 @@
 }
 
 .totalsRowProfile th {
-  border-radius: 20px 0 0 20px;
-  padding-left: 0rem;
+  border-radius: 5rem 0 0 5rem;
+  padding-left: .5rem;
 }
 
 .totalsRowProfile td:last-child {
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 5rem 5rem 0;
 }

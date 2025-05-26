@@ -63,12 +63,18 @@ function ProfilePage() {
             />
           </div>
           <div className="playerDesc">
-            <span className="descr">Position(s):</span>
-            {player.Position}
-            <br />
-            <span className="descr">Date of Birth:</span>
-            <br />
-            <span className="descr">Height:</span>
+            <div>
+              <span className="descr">Position(s): &nbsp;</span>
+              {player.positionLong}
+            </div>
+            <div>
+              <span className="descr">Date of Birth: &nbsp;</span>
+              {player.dob || "unknown"}
+            </div>
+            <div>
+              <span className="descr">Height: &nbsp;</span>
+              {player.height || "unknown"}
+            </div>
           </div>
         </div>
         <div className="profileCharts">

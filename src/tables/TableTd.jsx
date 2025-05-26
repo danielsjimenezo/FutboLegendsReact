@@ -1,4 +1,4 @@
-function TableTd({ k, v, width }) {
+function TableTd({ k, v, width, cellPaddingY = "10px", cellHeight = "auto" }) {
   if (typeof v === "object") {
     switch (v.type) {
       case "img":
@@ -6,6 +6,9 @@ function TableTd({ k, v, width }) {
           <td
             style={{
               width: width,
+              paddingTop: cellPaddingY,
+              paddingBottom: cellPaddingY,
+              height: cellHeight
             }}
           >
             <img src={v.src} alt={v.alt} className="table-img" />
@@ -13,7 +16,12 @@ function TableTd({ k, v, width }) {
         );
       case "team":
         return (
-          <td style={{ width }}>
+          <td style={{
+              width: width,
+              paddingTop: cellPaddingY,
+              paddingBottom: cellPaddingY,
+              height: cellHeight
+            }}>
             <span
               style={{
                 display: "flex",
@@ -34,7 +42,12 @@ function TableTd({ k, v, width }) {
     }
   }
 
-  return <td style={{ width }}>{v}</td>;
+  return <td style={{
+              width: width,
+              paddingTop: cellPaddingY,
+              paddingBottom: cellPaddingY,
+              height: cellHeight
+            }}>{v}</td>;
 }
 
 export default TableTd;

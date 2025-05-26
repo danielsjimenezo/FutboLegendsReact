@@ -62,6 +62,7 @@ function YearTable() {
                 '10%',
                 '10%',
             ]}
+            cellPaddingY='7.5px'
         />
     )
 }

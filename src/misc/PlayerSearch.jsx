@@ -11,7 +11,7 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
   const [isFocused, setIsFocused] = useState(false);
   const searchedPlayers = useMemo(() => {
     if (!searching || !isFocused) return [];
-    if (query.length === 0) return players;
+    if (query.length < 3) return players.slice(0, 10);
     return players.filter((p) =>
       p.name.toLowerCase().includes(query.toLowerCase())
     );
