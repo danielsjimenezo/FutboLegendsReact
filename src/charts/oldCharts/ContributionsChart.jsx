@@ -17,7 +17,7 @@ function ContributionsChart({ readAllPlayers }) {
     })
     .slice(0, PER_PAGE);
 
-  const names = sorted.map((p) => p.Player);
+  const names = sorted.map((p) => p.name);
   const goalData = sorted.map((p) => p.Goals);
   const assistData = sorted.map((p) => p.Assists || null);
 
@@ -38,8 +38,7 @@ function ContributionsChart({ readAllPlayers }) {
                   bottomRight: 10,
                 },
                 base: 1,
-                label:
-                  "Goals",
+                label: "Goals",
               },
               {
                 // backgroundColor: "#AF95FC",
@@ -66,12 +65,12 @@ function ContributionsChart({ readAllPlayers }) {
               },
               tooltip: {
                 mode: "index",
-                intersect: true
+                intersect: true,
               },
             },
             interaction: {
               mode: "index",
-              intersect: true
+              intersect: true,
             },
             scales: {
               y: {

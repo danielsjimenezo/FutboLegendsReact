@@ -389,6 +389,13 @@ img {
   width: 15rem;
   object-fit: cover;
   border-radius: 5%;
+
+  &.active {
+    border: 3px solid var(--green);
+  }
+  &.inactive {
+    border: 3px solid var(--pink);
+  }
 }
 
 .playerDesc {
@@ -549,11 +556,6 @@ img {
   flex-direction: column;
 }
 
-.content-container-compare {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2rem;
-}
 
 .badgeRank {
   position: absolute;

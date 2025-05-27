@@ -11,17 +11,25 @@
     "process-data": "node scripts/process-data.js"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.31.7",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@hookform/resolvers": "^5.0.1",
     "@reduxjs/toolkit": "^2.7.0",
     "chart.js": "^4.4.9",
     "chartjs-plugin-annotation": "^3.1.0",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.5.0",
     "futbolegends": "file:",
+    "google-api-javascript-client": "^0.1.0",
     "react": "^19.0.0",
+    "react-datepicker": "^8.4.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.4",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.5.1"
+    "react-router-dom": "^7.5.1",
+    "zod": "^3.25.30"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

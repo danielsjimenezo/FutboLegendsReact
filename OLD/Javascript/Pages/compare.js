@@ -61,7 +61,7 @@ async function search(i) {
   const data = await fetchData();
   getMaxValues(data);
   const results = data.filter((player) =>
-    player.Player.toLowerCase().includes(query)
+    player.name.toLowerCase().includes(query)
   );
   displaySearchResults(results, i);
 }
@@ -80,9 +80,9 @@ function displaySearchResults(results, i) {
     const button = document.createElement("button");
     button.classList.add("searchResultBox");
     button.innerHTML = `
-            <img src="./images/Players/${player.Player}.jpg" alt="${player.Player}" class="player-result-img">
+            <img src="./images/Players/${player.name}.jpg" alt="${player.name}" class="player-result-img">
             <div class="player-result-info">
-              <p>${player.Player}</p>
+              <p>${player.name}</p>
             </div>
         `;
     button.addEventListener("click", () => {
@@ -98,7 +98,7 @@ function renderPlayerData(i, player) {
   //  [undefined, {}]
   const comparePicture = comparePictures[i];
   comparePicture.innerHTML = `
-    <img src="/images/Players/${player.Player}.jpg">
+    <img src="/images/Players/${player.name}.jpg">
   `;
 
   if (players[0] && players[1]) renderCompareBars();
@@ -188,10 +188,10 @@ async function loadDefaults() {
   getMaxValues(allPlayers);
   renderPlayerData(
     0,
-    allPlayers.find((p) => p.Player === "Cristiano Ronaldo")
+    allPlayers.find((p) => p.name === "Cristiano Ronaldo")
   );
   renderPlayerData(
     1,
-    allPlayers.find((p) => p.Player === "Lionel Messi")
+    allPlayers.find((p) => p.name === "Lionel Messi")
   );
 }

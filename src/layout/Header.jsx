@@ -23,15 +23,28 @@ function Header() {
       <nav id="nav">
         <Link
           to="/current"
-          className={`${location.pathname === "/current" ? "active" : ""}`}
+          className={`${
+            location.pathname === "/current" ||
+            location.pathname.startsWith("/league/")
+              ? "active"
+              : ""
+          }`}
         >
           <button className="topButtons" id="currentButton">
             <span>Current</span>
           </button>
         </Link>
-        <Link to="/" className={`${location.pathname === "/" || location.pathname.startsWith("/profile/") ? "active" : ""}`}>
+        <Link
+          to="/"
+          className={`${
+            location.pathname === "/" ||
+            location.pathname.startsWith("/profile")
+              ? "active"
+              : ""
+          }`}
+        >
           <button className="topButtons" id="recordButtonn">
-            <span>All-time</span>
+            <span>Leaderboard</span>
           </button>
         </Link>
         <Link
@@ -74,6 +87,23 @@ function Header() {
                 return value.text.toUpperCase().slice(0, 3);
               }
             }}
+            menuStyle={{
+              minWidth: "unset",
+              width: "150px",
+            }}
+          />
+
+          {/* YEAR FILTER */}
+          <DropdownFilter
+            id="year-filter"
+            filterKey="years"
+            label={(value) => {
+              return value.text === "all" ? "ALL-TIME" : value.text;
+            }}
+            menuStyle={{
+              width: "100px",
+              minWidth: "unset",
+            }}
           />
 
           {/* POSITIONS FILTER */}
@@ -81,10 +111,14 @@ function Header() {
             filterKey="positions"
             label={(value) => {
               if (value.text == "all") {
-                return "POSITIONS";
+                return "ALL";
               } else {
                 return value.text.toUpperCase();
               }
+            }}
+            menuStyle={{
+              minWidth: "unset",
+              width: "100px",
             }}
           />
         </LimitToPages>

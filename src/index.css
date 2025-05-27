@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   scrollbar-color: rgba(255, 255, 255, 0.2) var(--dark-blue);
+  /* scrollbar-gutter: stable; */
 }
 
 :root {
@@ -8,10 +9,17 @@
   --green: #62b3ad;
   --pink: #ff4f8b;
   --purple: #af95fc;
+  --lighten: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.3);
+}
+
+html, body, #root {
+  width: 100vw;
 }
 
 html,
 body {
+  margin: 0;
   min-height: 100dvh;
   overflow-y: hidden;
 }
@@ -31,7 +39,15 @@ body {
 }
 
 main {
+  flex-grow: 1;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  & > *:not(.footer-container) {
+    flex-grow: 1;
+  }
 }
 
 body,
@@ -47,6 +63,11 @@ button {
   cursor: pointer;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .container {
   width: 1100px;
   margin-left: auto;
@@ -54,47 +75,14 @@ button {
   max-width: 100%;
 }
 
-#nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-header nav button {
-  padding: 10px 20px;
-  border-radius: 100px;
-  color: white;
-  font-family: Poppins;
-  font-weight: normal;
-}
-
-/* 
-    Selector hierarchy
-      tagname -> #id -> .class
- */
-
-header .topButtons {
-  background-color: transparent;
-  border: 0;
-}
-
-header .topButtons:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-}
-
-/* Search icon */
 .searchFunc > img {
-  width: 30px;
+  width: 25px;
   position: absolute;
   left: 0;
   cursor: pointer;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-}
 
 .topButtons.selected {
   background-color: rgba(255, 255, 255, 0.1);
@@ -106,7 +94,7 @@ a {
   justify-content: center;
 
   width: 1100px;
-  margin: 3rem auto 4rem auto;
+  margin: 2rem auto 3rem auto;
   max-width: 100%;
 }
 
@@ -119,7 +107,7 @@ a {
 }
 
 .homepage-chart p {
-  padding-left: 130px;
+  padding-left: 100px;
 }
 
 .extra-pt {
@@ -134,12 +122,12 @@ a {
 }
 
 .header-row {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-roww {
   font-size: 12px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 th {
@@ -157,12 +145,6 @@ td {
   padding-bottom: 10px;
   text-align: center;
   font-weight: 300;
-}
-
-table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  border-radius: 20px;
 }
 
 .picture {
@@ -250,11 +232,6 @@ table tbody tr:hover {
   border: 1px solid white;
 }
 
-.content-container-compare {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2rem;
-}
 
 @media (max-width: 1000px) {
   .charts-container {
@@ -265,4 +242,52 @@ table tbody tr:hover {
 .nowrap,
 .nowrap button {
   white-space: nowrap;
+}
+
+.list {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  overflow-y: auto;
+}
+
+.list li {
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.list li:hover {
+  background-color: transparent;
+}
+
+.list li:last-child {
+  border-bottom: none;
+}
+
+.trPillHover {
+  cursor: pointer;
+
+  &:hover > td {
+    background-color: rgba(255, 255, 255, 0.1);
+
+    &:first-child {
+      border-radius: 10rem 0 0 10rem;
+    }
+
+    &:last-child {
+      border-radius: 0 10rem 10rem 0;
+    }
+  }
+}
+
+.number {
+  letter-spacing: 0.5px;
 }

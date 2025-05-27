@@ -1,0 +1,988 @@
+.current-page-container {
+  padding-top: 30px;
+}
+
+.current-page {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+
+  padding: 1rem;
+  font-family: var(
+    --font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+}
+
+/* Common section styling */
+.current-page section {
+  background-color: var(--lighten);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.current-page h2 {
+  font-size: 1.5rem;
+  color: white;
+  padding: 1.2rem;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color, #eaeaea);
+  background-color: transparent;
+  font-weight: normal;
+}
+
+/* Add this at the top of your CSS file */
+
+.current-page {
+  /* Use a combination of max-width and padding to control width */
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+  /* Increase padding to match icon positions */
+
+  font-family: var(
+    --font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+  margin: 0;
+}
+
+/* Remove duplicate declarations */
+@media (max-width: 768px) {
+  .current-page {
+    padding: 1rem 20px; /* Smaller padding on mobile */
+    grid-template-columns: 1fr;
+    max-width: 95%; /* Allow slightly wider content on mobile */
+  }
+
+  .current-page-container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .current-page {
+    grid-template-columns: 1fr;
+  }
+
+  .current-page-container {
+    padding: 0 0.5rem;
+  }
+}
+
+/* Left Section - Leagues */
+/* .leagues-section {
+  height: fit-content;
+} */
+
+.leagues-section {
+  background-color: var(--lighten);
+  border: 1px solid var(--border-color, #af95fc);
+}
+
+.leagues-section .leagues-list {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
+
+.leagues-section .leagues-list li {
+  height: 55.74px; /* Set explicit height */
+  padding: 0.85rem 1.2rem; /* Maintain internal padding for content spacing */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.league {
+  & a {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  & img {
+    width: auto;
+    height: 28px; /* Adjust height to fit within the cell padding */
+    object-fit: contain;
+  }
+}
+
+.leagues-section .league:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Added hover effect to league list items */
+}
+
+/* Keep the existing rule as it might be needed */
+.leagues-section .leagues-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Existing rule */
+}
+
+/* Center Section - Timeline */
+.timeline-section {
+  position: relative;
+  background: none;
+  z-index: 1; /* Ensure timeline section has a stacking context */
+}
+
+.date-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative; /* Ensure relative positioning for absolute children */
+  z-index: 2; /* Give date filter a higher z-index than match cards */
+}
+
+.date-nav-arrow {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.date-nav-arrow:disabled {
+  color: grey;
+  cursor: not-allowed;
+}
+
+.current-date {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 1rem;
+}
+
+.vertical-timeline {
+  position: relative;
+  padding: 1rem 0;
+  background: none;
+}
+
+.vertical-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7rem;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: transparent;
+}
+
+.vertical-timeline::before {
+  display: none;
+}
+
+/* Adjust the timeline item to have less top margin */
+.timeline-item {
+  position: relative;
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+/* Ensure no text wrapping in team names */
+.team span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* First timeline item needs extra top margin */
+.vertical-timeline .timeline-item:first-child {
+  margin-top: 0;
+}
+
+/* Add a small connecting line from date to card */
+.timeline-date::after {
+  display: none;
+}
+
+/* Adjust for mobile */
+@media (max-width: 600px) {
+  .timeline-item {
+    padding: 0 0.5rem;
+    margin: 3rem 0.5rem 1.5rem 0.5rem;
+  }
+}
+
+/* Match Card Animation */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.match-card {
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: none;
+  box-shadow: none;
+  border: none;
+  animation: fadeInSlideUp 0.5s ease-out forwards; /* Apply the animation */
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+}
+
+.teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.team {
+  font-weight: 500;
+  flex: 1;
+}
+
+.team:last-child {
+  text-align: right;
+}
+
+.score {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+}
+
+/* Score when home team wins */
+.score-home-win {
+  color: var(--home-goal-color, #62b3ad); /* Green color for home team win */
+}
+
+/* Score when away team wins */
+.score-away-win {
+  color: var(--away-goal-color, #ff4f8b); /* Pink color for away team win */
+}
+
+/* Score when match is tied */
+.score-tie {
+  color: white; /* White color for ties */
+}
+
+.competition {
+  color: var(--text-secondary, #70757a);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.5rem;
+}
+
+/* Right Section - Tabs */
+.current-page .tabs {
+  display: flex;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-secondary, #70757a);
+  transition: color 0.2s ease, background-color 0.2s ease;
+  outline: none;
+}
+
+.tab.active {
+  color: white;
+  background-color: transparent;
+}
+
+.tab:hover:not(.active) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tab-content {
+  padding: 0;
+}
+
+.player-stats-list {
+  list-style-position: inside;
+  counter-reset: player-counter;
+  margin: 0;
+  padding: 0;
+}
+
+.player-stats-list li {
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  font-size: 0.8rem;
+  font-weight: 100;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.player-stats-list li:first-child {
+  padding: 0.85rem 1.2rem;
+  margin-top: 0;
+}
+
+.player-stats-list li:before {
+  counter-increment: player-counter;
+  content: counter(player-counter) ".";
+  display: inline-block;
+  width: 2rem;
+  font-weight: bold;
+  color: var(--text-secondary, #70757a);
+}
+
+.player-stats-list li:last-child {
+  border-bottom: none;
+}
+
+.player-stats-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.player-name {
+  margin-right: auto;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.player-image {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin-right: 10px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.team-badge-small {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: rgba(25, 25, 35, 0.8);
+}
+
+.stat {
+  font-weight: normal;
+  color: white;
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .current-page {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .vertical-timeline::before {
+    left: 6rem;
+  }
+
+  .timeline-date {
+    left: 0.5rem;
+  }
+
+  .timeline-item {
+    padding-left: 7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .vertical-timeline::before {
+    display: none;
+  }
+
+  .timeline-date {
+    position: static;
+    transform: none;
+    margin-bottom: 0.75rem;
+    width: auto;
+    display: inline-block;
+  }
+
+  .timeline-item {
+    padding: 0 1rem;
+    margin: 1.5rem 0;
+  }
+}
+
+/* Equal height sections */
+.leagues-section,
+.stats-section,
+.wins-section {
+  height: calc(
+    (100vh - 180px) / 2
+  ); /* Split view height, adjust 180px based on your header/footer/gap */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.leagues-section h2,
+.stats-section .tabs,
+.wins-section h2 {
+  flex-shrink: 0; /* Prevent headers and tabs from shrinking */
+}
+
+.leagues-list,
+.tab-content,
+.team-stats-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Right column layout */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+}
+
+/* Responsive adjustment */
+@media (max-width: 1024px) {
+  .leagues-section,
+  .stats-section,
+  .wins-section {
+    height: auto;
+    max-height: 400px; /* Set reasonable height on mobile */
+  }
+}
+
+/* Remove leagues from height constraints */
+.leagues-section {
+  height: auto; /* Allow content to determine height */
+}
+
+/* Keep right column sections with equal height */
+.stats-section,
+.wins-section {
+  height: calc((100vh - 180px) / 2); /* Split view height */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Remove conflicting rule from earlier in your CSS */
+/* Delete or comment out this line that was defined earlier */
+/* .leagues-section {
+    height: fit-content;
+  } */
+
+.leagues-section {
+  height: auto; /* Allow content to determine height */
+}
+
+/* Keep the other styles the same */
+.leagues-section h2,
+.stats-section .tabs,
+.wins-section h2 {
+  flex-shrink: 0;
+}
+
+/* Apply consistent background color to all major sections */
+.leagues-section,
+.stats-section,
+.wins-section,
+.match-card {
+  background-color: var(--lighten);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+/* Remove duplicate borders if they exist */
+.leagues-section,
+.stats-section,
+.wins-section {
+  overflow: hidden;
+}
+
+/* Ensure section headers have consistent styling */
+.leagues-section h2,
+.stats-section h2,
+.wins-section h2,
+.timeline-section h2 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* background-color: transparent; */
+}
+
+.tab-content,
+.team-stats-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Make wins section match the stats section styling */
+.wins-section {
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* border: 1px solid var(--border-color, #af95fc); */
+  font-size: 0.8rem;
+}
+
+.wins-section h2 {
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Make team list match player list */
+.team-stats-list {
+  list-style-position: inside;
+  counter-reset: team-counter;
+  margin: 0;
+  padding: 0;
+}
+
+.team-stats-list li {
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.team-badge-wins {
+  width: 28px;
+  height: 28px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 0.75rem;
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.team-stats-list li:before {
+  counter-increment: team-counter;
+  content: counter(team-counter) ".";
+  display: inline-block;
+  width: 2rem;
+  font-weight: bold;
+  color: var(--text-secondary, #70757a);
+}
+
+.team-stats-list li:last-child {
+  border-bottom: none;
+}
+
+.team-name {
+  margin-right: auto;
+  font-weight: 500;
+}
+
+/* Consistent styling for both sections */
+/* .stats-section,
+.wins-section {
+  height: calc((100vh - 180px) / 2);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+} */
+
+.stats-section,
+.wins-section,
+.tab-content,
+.player-stats-list,
+.team-stats-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* WebKit browsers (Chrome, Safari, newer Edge) */
+.stats-section::-webkit-scrollbar,
+.wins-section::-webkit-scrollbar,
+.tab-content::-webkit-scrollbar,
+.player-stats-list::-webkit-scrollbar,
+.team-stats-list::-webkit-scrollbar {
+  display: none;
+}
+
+.stats-section {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Fallback for missing badges */
+.team-badge-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Update match card with white border */
+.match-card {
+  background-color: var(--lighten);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Add white border */
+}
+
+/* Update teams container */
+.teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+/* Update team styling to include badge */
+.team {
+  font-weight: 500;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Right align second team with badge on right */
+.team:last-child {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+/* Add team badge styling */
+.team-badge {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+  background-color: transparent;
+}
+
+/* Goal scorer section styling */
+.goals-section {
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: none;
+  font-size: 0.8rem;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+/* Home team goals - left aligned */
+.goal-item.home-goal {
+  justify-content: flex-start;
+  margin-right: auto;
+  padding-right: 20%;
+}
+
+/* Away team goals - right aligned */
+.goal-item.away-goal {
+  justify-content: flex-end;
+  margin-left: auto;
+  padding-left: 20%;
+}
+
+.goal-minute {
+  font-weight: 500;
+  color: var(--primary-color, #af95fc);
+  min-width: 1.5rem;
+}
+
+.goal-scorer {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goal-type {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Make the minute number smaller on away goals */
+.away-goal .goal-minute {
+  text-align: right;
+  min-width: 1.5rem;
+}
+
+/* Update the base goal minute styling */
+.goal-minute {
+  font-weight: 500;
+  min-width: 1.5rem;
+}
+
+/* Home team goals - green color */
+.home-goal .goal-minute {
+  color: var(--home-goal-color, #62b3ad); /* Green color for home team */
+}
+
+/* Away team goals - pink color */
+.away-goal .goal-minute {
+  color: var(--away-goal-color, #ff4f8b); /* Pink color for away team */
+  text-align: right;
+}
+
+/* Keep the rest of the styling the same */
+.goal-scorer {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goal-type {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.goal-scorer-image {
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: white;
+  margin: 0 4px;
+  border: none;
+  background-color: transparent;
+}
+
+/* Home team goal layout */
+.home-goal {
+  display: flex;
+  align-items: center;
+}
+
+/* Away team goal layout */
+.away-goal {
+  display: flex;
+  align-items: center;
+}
+
+.goal-scorer {
+  margin: 0 2px;
+}
+
+/* Update the Most Wins section to use team-badge-wins instead of player-image */
+.wins-section .player-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.leagues-section h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+}
+
+.react-datepicker-popper {
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 1000 !important;
+}
+
+.react-datepicker {
+  font-family: var(
+    --font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  background-color: var(--lighten) !important;
+  color: white !important;
+}
+
+.react-datepicker__header {
+  padding: 10px;
+  background-color: var(--lighten) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: white !important;
+}
+
+.react-datepicker__navigation {
+  top: 10px;
+  line-height: 1.7;
+  border: none !important;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: white !important;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: white !important;
+}
+
+.react-datepicker__day {
+  color: white !important;
+  border-radius: 4px !important;
+  transition: background-color 0.2s ease;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: var(--primary-color, #af95fc) !important;
+  color: white !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+.react-datepicker__day--outside-month {
+  color: var(--text-secondary, #70757a) !important;
+}
+
+.react-datepicker__triangle {
+  border-bottom-color: var(--lighten) !important;
+}
+
+.react-datepicker__input-container {
+  display: none !important;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.leagues-section.animate-left {
+  animation: fadeInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.right-column.animate-right {
+  animation: fadeInRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.team-stats-list li:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Added hover effect to team stats list items */
+  cursor: pointer; /* Change cursor on hover */
+}

@@ -16,7 +16,7 @@ function Balon1Chart({ readAllPlayers }) {
     })
     .slice(0, PER_PAGE);
 
-  const names = sorted.map((p) => p.Player);
+  const names = sorted.map((p) => p.name);
   const balonData = sorted.map((p) => p["Balon (1st)"]);
 
   return (

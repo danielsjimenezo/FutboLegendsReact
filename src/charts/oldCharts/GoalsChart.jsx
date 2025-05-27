@@ -16,7 +16,7 @@ function GoalsChart({ readAllPlayers }) {
     })
     .slice(0, PER_PAGE);
 
-  const names = sorted.map((p) => p.Player);
+  const names = sorted.map((p) => p.name);
   const goalData = sorted.map((p) => p.Goals);
 
   return (

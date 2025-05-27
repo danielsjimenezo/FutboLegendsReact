@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectPlayerState, changeFilter } from "../context/playerSlice.js";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 
-function DropdownFilter({ id, icon, filterKey, label = () => {} }) {
-  const { countries, positions } = useSelector(selectPlayerState);
+function DropdownFilter({ id, icon, filterKey, label = () => {}, menuStyle = {} }) {
+  const { countries, positions, years } = useSelector(selectPlayerState);
 
   const dispatch = useDispatch();
 
@@ -21,7 +21,9 @@ function DropdownFilter({ id, icon, filterKey, label = () => {} }) {
       ? countries
       : filterKey === "positions"
       ? positions
-      : positions
+      : filterKey === 'years'
+      ? years
+      : []
   ).map((str) => {
     return {
       text: str,
@@ -49,7 +51,7 @@ function DropdownFilter({ id, icon, filterKey, label = () => {} }) {
         {icon && <img src={icon(menuItems[selected])} />}
         <span>{label(menuItems[selected] || { text: "all" })}</span>
       </button>
-      <div className={`filter-menu ${shown ? "shown" : ""}`}>
+      <div className={`filter-menu ${shown ? "shown" : ""}`} style={menuStyle}>
         <button
           className={`${selected === -1 ? "selected" : ""}`}
           onClick={() => handleChoose({ text: "all" }, -1)}

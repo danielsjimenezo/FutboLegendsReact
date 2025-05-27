@@ -1,0 +1,143 @@
+.league-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+  margin: 30px auto;
+  padding: 1rem;
+}
+
+.league-page h2 {
+  font-size: 1.5rem;
+  color: white;
+  padding: 1.2rem;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color, #eaeaea);
+  background-color: transparent;
+  font-weight: normal;
+}
+
+.team-of-the-week h2 {
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  height: 51.441px;
+  display: flex;
+  align-items: center;
+}
+
+.league-page section {
+  background-color: var(--lighten);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+}
+
+.league-page .tabs {
+  display: flex;
+  background-color: transparent;
+  height: 51.44px;
+
+  & button {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    color: var(--text-secondary, #70757a);
+    font-weight: 500;
+    padding: 1rem;
+    border-bottom: 5px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    outline: none;
+
+    &.active {
+      color: white;
+      border-bottom-color: transparent;
+    }
+
+    &:hover:not(.active) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+/* Add border-bottom only for right section tabs */
+.right .tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.league-page .players {
+  padding: 0;
+  list-style: none;
+}
+
+.league-page .player {
+  height: 55.74px;
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+
+  & img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    margin-right: 0.25rem;
+  }
+}
+
+.player-number {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  min-width: 1.5rem;
+  margin-right: 0;
+}
+
+.league-page .player:last-child {
+  border-bottom: none;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.competition {
+  color: var(--text-secondary, #70757a);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0.75rem;
+  border-top: none;
+  padding-top: 0.5rem;
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.league-page > div:first-child {
+  animation: slideInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.league-page > div:last-child {
+  animation: slideInRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}

@@ -16,7 +16,7 @@ function AssistsChart({ readAllPlayers }) {
     })
     .slice(0, PER_PAGE);
 
-  const names = sorted.map((p) => p.Player);
+  const names = sorted.map((p) => p.name);
   const assistData = sorted.map((p) => p.Assists || null);
 
   return (

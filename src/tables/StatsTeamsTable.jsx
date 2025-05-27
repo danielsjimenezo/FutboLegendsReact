@@ -1,8 +1,45 @@
 import Table from "./Table.jsx";
 
+const teams = [
+  `M. United`,
+  `R. Madrid`,
+  `Barcelona`,
+  `M. City`,
+  `Chelsea`,
+  `Arsenal`,
+  `A. Madrid`,
+  `Sevilla`,
+  `Liverpool`,
+  `Tottenham`,
+  `PSG`,
+  `Marseille`,
+  `Monaco`,
+  `Lyon`,
+  `Bayern`,
+  `B. Dortmund`,
+  `B. Leverkusen`,
+  `Juventus`,
+  `A. Milan`,
+  `I. Milan`,
+  `Napoli`,
+  `A. Roma`,
+  `Ajax`,
+  `Spain`,
+  `France`,
+  `Italy`,
+  `Germany`,
+  `England`,
+  `Portugal`,
+  `Netherlands`,
+  `Brazil`,
+  `Argentina`,
+  `Uruguay`,
+  `Colombia`,
+];
+
 const fakeRow = {
   id: 0,
-  team: `Bayern Munich`,
+  team: `Bayern`,
   badge: {
     type: "img",
     src: "/images/Teams/Bayern Munich.png",
@@ -18,8 +55,12 @@ const fakeRow = {
 };
 
 const fakeRows = [];
-for (let i = 0; i < 50; i++)
-  fakeRows.push({ ...fakeRow, id: Math.floor(Math.random() * 1000) });
+for (let i = 0; i < 35; i++)
+  fakeRows.push({
+    ...fakeRow,
+    id: Math.floor(Math.random() * 1000),
+    team: teams[i],
+  });
 
 function StatsTeams() {
   return (
@@ -28,6 +69,21 @@ function StatsTeams() {
       items={fakeRows}
       _key={"id"}
       hide={["id"]}
+      id="stats-teams-table"
+      perPage={35}
+      columnWidths={[
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+        "10%",
+      ]}
+      cellPaddingY="5.75px"
     />
   );
 }

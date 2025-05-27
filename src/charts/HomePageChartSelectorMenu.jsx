@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import useClickOutside from "../utilities/useClickOutside.jsx";
 import { useSelector } from "react-redux";
 import { selectPlayerState } from "../context/playerSlice.js";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 
 function HomePageChartSelectorMenu({ LABELS, setter, id }) {
   const [menuShown, setMenuShown] = useState(false);

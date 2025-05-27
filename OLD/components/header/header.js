@@ -30,7 +30,7 @@ async function search() {
   const query = searchInputEl.value.toLowerCase();
   const data = await fetchData();
   const results = data.filter((player) =>
-    player.Player.toLowerCase().includes(query)
+    player.name.toLowerCase().includes(query)
   );
 
   displaySearchResults(results);
@@ -47,12 +47,12 @@ function displaySearchResults(results) {
   results.forEach((player) => {
     const playerEl = document.createElement("div");
     playerEl.classList.add("player-result");
-    const playerHref = player.Player.replaceAll(" ", "_");
+    const playerHref = player.name.replaceAll(" ", "_");
     playerEl.innerHTML = `
         <a class="searchResultBox" href="/profile.html?name=${playerHref}">
-          <img src="./images/Players/${player.Player}.jpg" alt="${player.Player}" class="player-result-img">
+          <img src="./images/Players/${player.name}.jpg" alt="${player.name}" class="player-result-img">
           <div class="player-result-info">
-            <p>${player.Player}</p>
+            <p>${player.name}</p>
           </div>
         </a>
       `;

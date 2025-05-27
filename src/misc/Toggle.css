@@ -1,0 +1,43 @@
+.toggle-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggle {
+  background-color: #68599647;
+  padding: 0.25rem;
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+
+  & button {
+    border: 0;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 0.7rem;
+
+    &.active {
+      background-color: #2bc1b76e !important;
+      border-radius: 5rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    &:has(img) {
+        padding: .1rem .5rem;
+    }
+
+    & img {
+      height: 25px !important;
+      width: 25px !important;
+      object-fit: cover;
+      /* aspect-ratio: 1; */
+      border-radius: 50%;
+      display: block;
+    }
+  }
+
+  &:has(img) {
+    padding: 0;
+  }
+}

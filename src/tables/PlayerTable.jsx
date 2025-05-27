@@ -2,7 +2,7 @@ import "./PlayerTable.css";
 import PlayerTableTH from "./PlayerTableTH.jsx";
 import PlayerTableRow from "./PlayerTableRow.jsx";
 import PlayerTablePaginationControls from "./PlayerTablePaginationControls.jsx";
-import { futbolDataTypes } from "../utilities/futbolDataTypes.jsx";
+import { futbolDataTypes } from "../utilities/futbolDataTypes.js";
 import { selectPlayerState } from "../context/playerSlice.js";
 import { useSelector } from "react-redux";
 
@@ -53,7 +53,7 @@ function PlayerTable() {
               const rank = i + 1 + (playersPageNumber - 1) * PER_PAGE;
               return (
                 <PlayerTableRow
-                  key={player.Player}
+                  key={player.name}
                   player={player}
                   rank={rank}
                 />

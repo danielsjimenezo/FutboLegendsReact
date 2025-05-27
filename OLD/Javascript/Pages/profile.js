@@ -60,7 +60,7 @@ function calculateRank(data, player, key, birthCountry) {
     rankings = rankings.filter((p) => p.birthCountry === birthCountry);
   }
 
-  const index = rankings.findIndex((p) => p.Player === player.Player);
+  const index = rankings.findIndex((p) => p.name === player.name);
 
   return index + 1;
 }
@@ -111,7 +111,7 @@ async function loadProfile() {
   });
 
   player = data.find((p) => {
-    return p.Player === name.replaceAll("_", " ");
+    return p.name === name.replaceAll("_", " ");
   });
 
   if (player) {
@@ -152,7 +152,7 @@ function renderPlayerInfo(player) {
     <span class="descr">Height: </span> 
   `;
   playerPicEl.innerHTML = `
-    <img src="./images/Players/${player.Player}.jpg" alt="" class=playerPics>
+    <img src="./images/Players/${player.name}.jpg" alt="" class=playerPics>
   `;
 }
 
