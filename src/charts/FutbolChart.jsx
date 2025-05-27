@@ -21,12 +21,10 @@ const defaultDataSet = () => {
 
 function FutbolChart({ futbolType, readAllPlayers }) {
   const navigate = useNavigate();
-  console.log(futbolType);
-
+  
   const { displayedPlayers, players, PER_PAGE } =
     useSelector(selectPlayerState);
   const playerArr = readAllPlayers ? players : displayedPlayers;
-  console.log(playerArr);
 
   const sorted = playerArr
     .toSorted((a, b) => b[futbolType.id] - a[futbolType.id])
