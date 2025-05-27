@@ -80,13 +80,11 @@
 /* Ranking Item */
 .ranking-item {
   padding: 0.75rem 1rem;
-  /* border-bottom: 1px solid var(--border-color, #eaeaea); */
   display: flex;
   align-items: center;
   background-color: transparent;
   transition: background-color 0.2s ease;
-  opacity: 0;
-  animation: slideInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 1;
 }
 
 /* Remove bottom border from last items in each column */
@@ -101,6 +99,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   opacity: 0.8;
   z-index: 1;
+  animation: none;
 }
 
 /* Updated styling for draggable items */
@@ -238,6 +237,9 @@
   padding: 0.5rem;
   width: 150px;
   transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeInDown 0.5s ease forwards;
+  animation-delay: 0.4s;
 }
 
 .search-icon {
@@ -499,4 +501,23 @@
 }
 .ranking-item:nth-child(20) {
   animation-delay: 2s;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-header h2 {
+  border-bottom: none;
+  font-weight: normal;
+  opacity: 0;
+  animation: fadeInDown 0.5s ease forwards;
+  animation-delay: 0.2s;
 }

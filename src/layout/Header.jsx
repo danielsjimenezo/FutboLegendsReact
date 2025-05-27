@@ -89,7 +89,7 @@ function Header() {
             }}
             menuStyle={{
               minWidth: "unset",
-              width: "150px"
+              width: "150px",
             }}
           />
 
@@ -102,7 +102,7 @@ function Header() {
             }}
             menuStyle={{
               width: "100px",
-              minWidth: "unset"
+              minWidth: "unset",
             }}
           />
 
@@ -118,7 +118,7 @@ function Header() {
             }}
             menuStyle={{
               minWidth: "unset",
-              width: "100px"
+              width: "100px",
             }}
           />
         </LimitToPages>
