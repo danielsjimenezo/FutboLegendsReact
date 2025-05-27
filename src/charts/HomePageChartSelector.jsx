@@ -11,10 +11,11 @@ function HomePageChartSelector({
 }) {
   const selectedType = futbolDataTypes.find((t) => t.id === chartKey);
   // const SelectedChartComponent = selectedType?.chart;
-
+  
   // if (!SelectedChartComponent) {
   //   return <p>Chart "{chartKey}" missing</p>;
   // }
+  
 
   return (
     <div className="homepage-chart">

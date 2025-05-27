@@ -12,7 +12,9 @@ const getDifferentChart = (chart1, chart2) => {
 function HomePage() {
   const { playerSort, secondChart } = useSelector(selectPlayerState);
   const dispatch = useDispatch();
-
+  console.log(`1. ${playerSort}`)
+  console.log(`2. ${secondChart}`)
+  
   return (
     <>
       <section className="content-container container">
