@@ -39,10 +39,14 @@
 
   & .vs {
     position: absolute;
-    left: 50%;
+    left: 0;
+    right: 0;
     top: 25%;
-    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
     font-size: 2rem;
+    text-align: center;
   }
 }
 

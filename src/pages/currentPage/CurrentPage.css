@@ -120,6 +120,20 @@
   }
 }
 
+.leagues-section .league:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Added hover effect to league list items */
+}
+
+/* Keep the existing rule as it might be needed */
+.leagues-section .leagues-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Existing rule */
+}
+
 /* Center Section - Timeline */
 .timeline-section {
   position: relative;
@@ -961,4 +975,14 @@
 
 .right-column.animate-right {
   animation: fadeInRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.team-stats-list li:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Added hover effect to team stats list items */
+  cursor: pointer; /* Change cursor on hover */
 }
