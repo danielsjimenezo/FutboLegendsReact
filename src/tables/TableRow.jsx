@@ -10,7 +10,7 @@ function TableRow({ entries, expandable, columnWidths = [], cellPaddingY = "10px
     const handleClick = () => {
         if (!expandable) return;
         document.dispatchEvent(closeAllExpandablesEvent)
-        console.log(expandable)
+        // console.log(expandable)
         setExpandableShown(!expandableShown)
     }
 

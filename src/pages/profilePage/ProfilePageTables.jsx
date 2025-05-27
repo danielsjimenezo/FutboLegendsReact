@@ -21,7 +21,7 @@ function ProfilePageTables({ player }) {
         onClick={(e, option) => setTimeTableShown(option.value)}
         style={{ marginBottom: "1rem" }}
       />
-      {timeTableShown === "season" ? <SeasonTable /> : <YearTable />}
+      {timeTableShown === "season" ? <SeasonTable player={player} /> : <YearTable />}
 
       {/* MATCH/GOALS */}
       <Toggle

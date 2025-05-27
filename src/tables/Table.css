@@ -81,3 +81,14 @@
 .comp-tooltip {
   white-space: nowrap;
 }
+
+.no-hover-effect {
+  border-radius: 0 !important;
+  &:hover {
+    background-color: transparent !important;
+    & td {
+      border-radius: 0 !important;
+    }
+  }
+
+}

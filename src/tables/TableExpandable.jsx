@@ -3,8 +3,10 @@
 import React from "react";
 
 import YoutubeEmbed from "../misc/YoutubeEmbed.jsx";
+import YTAPIExpandableVideo from "./YTAPIExpandableVideo.jsx";
 
 import Tooltip from "../misc/Tooltip.jsx";
+import { tr } from "date-fns/locale"
 
 /**
  * @typedef PhotosExpandableItem
@@ -31,6 +33,18 @@ import Tooltip from "../misc/Tooltip.jsx";
  * @property {VideosExpandableItem[]} items
  */
 
+
+/**
+ * @typedef {() => any} FurtherSearchAlgorithm
+ */
+
+/**
+ * @typedef YTAPIExpandable
+ * @property {"YTAPI"} type
+ * @property {string} query // 2023-2024 Lionel Messi goals
+ * @property {FurtherSearchAlgorithm[]} [algorithms]
+ */
+
 /**
  * @typedef MoreRowsExpandable
  * @property {"moreRows"} type
@@ -38,7 +52,7 @@ import Tooltip from "../misc/Tooltip.jsx";
  */
 
 /**
- * @typedef {PhotosExpandable | VideosExpandable | MoreRowsExpandable } Expandable
+ * @typedef {PhotosExpandable | VideosExpandable | MoreRowsExpandable | YTAPIExpandable } Expandable
  */
 
 /**
@@ -135,6 +149,16 @@ function TableExpandable({ expandable, cellPaddingY = '10px', cellHeight = '10px
                 </tr>
             ))}
 
+            {expandable.type === 'YTAPI' && (
+                <tr>
+                    <td className="no-hover-effect" colSpan={100} style={{
+                        overflowX: "scroll"
+                    }}>
+                        <YTAPIExpandableVideo key={expandable.query} query={expandable.query} 
+                        algorithms={expandable.algorithms} />
+                    </td>
+                </tr>
+            )}
 
         </>
     )

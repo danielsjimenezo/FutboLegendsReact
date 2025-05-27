@@ -96,3 +96,19 @@ export const graphColors = {
     return `rgba(98, 179, 173, ${a})`
   },
 };
+
+export function generateYouTubeEmbedCode(videoId, width = 560, height = 315) {
+  if (!videoId) {
+    throw new Error("A valid YouTube video ID is required.");
+  }
+
+  return `
+    <iframe width="${width}" height="${height}" 
+        src="https://www.youtube.com/embed/${videoId}" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+    </iframe>
+  `;
+}
