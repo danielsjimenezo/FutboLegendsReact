@@ -7,6 +7,7 @@ import ShownCompareStatsFilter from "./ShownCompareStatsFilter.jsx";
 import { useLocation } from "react-router-dom";
 import { getFlagUrl } from "../utilities/countries.js";
 import LimitToPages from "../misc/LimitToPages.jsx";
+import { UserButton } from "@clerk/clerk-react";
 
 function Header() {
   const location = useLocation();
@@ -16,7 +17,20 @@ function Header() {
     <header className="container">
       <div className="left">
         <div className="user">
-          <p>G</p>
+          {/* <p>G</p> */}
+          <UserButton
+            showName
+            appearance={{
+              elements: {
+                rootBox: "clerk-user-button-root",
+                userButtonTrigger: "clerk-user-button-trigger",
+                userButtonBox: "clerk-user-button-box",
+                userButtonOuterIdentifier: "clerk-user-button-identifier",
+                popoverBox: "clerk-user-button-popover",
+                userButtonOuterIdentifier: "clerk-user-name"
+              },
+            }}
+          />
         </div>
         <PlayerSearch />
       </div>

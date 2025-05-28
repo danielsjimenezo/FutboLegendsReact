@@ -21,6 +21,7 @@ header .left {
 
 header .user {
   background-color: rgba(255, 255, 255, 0.1);
+  color: white;
   width: 40px;
   height: 40px;
   font-size: 24px;
@@ -28,6 +29,7 @@ header .user {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  margin-right: 50%;
 }
 
 #nav {
@@ -174,4 +176,44 @@ header #nav a:not(.active) .topButtons:hover {
 .player-result-info {
   display: flex;
   flex-direction: column;
+}
+
+/* import { UserButton } from "@clerk/clerk-react" */
+
+.clerk-user-button-root {
+  width: 100%;
+}
+
+.clerk-user-button-trigger {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+}
+
+.clerk-user-button-trigger:hover {
+  background-color: var(--sidebar-accent);
+}
+
+.clerk-user-button-box {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  box-shadow: none;
+}
+
+.clerk-user-button-identifier {
+  padding-left: 0;
+}
+
+.clerk-user-button-popover {
+  pointer-events: auto;
+}
+
+.clerk-user-name {
+  color: #ffffff; /* Por ejemplo: azul Tailwind-800 */
+  font-weight: 500; /* Opcional */
 }
