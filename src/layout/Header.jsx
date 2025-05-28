@@ -36,10 +36,10 @@ function Header() {
       </div>
       <nav id="nav">
         <Link
-          to="/current"
+          to="/dashboard/current"
           className={`${
-            location.pathname === "/current" ||
-            location.pathname.startsWith("/league/")
+            location.pathname === "/dashboard/current" ||
+            location.pathname.startsWith("/dashboard/league/")
               ? "active"
               : ""
           }`}
@@ -49,10 +49,10 @@ function Header() {
           </button>
         </Link>
         <Link
-          to="/"
+          to="/dashboard"
           className={`${
-            location.pathname === "/" ||
-            location.pathname.startsWith("/profile")
+            location.pathname === "/dashboard" ||
+            location.pathname.startsWith("/dashboard/profile")
               ? "active"
               : ""
           }`}
@@ -62,9 +62,9 @@ function Header() {
           </button>
         </Link>
         <Link
-          to="/compare"
+          to="/dashboard/compare"
           className={`${
-            location.pathname.startsWith("/compare") ? "active" : ""
+            location.pathname.startsWith("/dashboard/compare") ? "active" : ""
           }`}
         >
           <button className="topButtons" id="compareButtonn">
@@ -72,8 +72,8 @@ function Header() {
           </button>
         </Link>
         <Link
-          to="/rankings"
-          className={`${location.pathname === "/rankings" ? "active" : ""}`}
+          to="/dashboard/rankings"
+          className={`${location.pathname === "/dashboard/rankings" ? "active" : ""}`}
         >
           <button className="topButtons" id="compareButtonn">
             <span>Rankings</span>

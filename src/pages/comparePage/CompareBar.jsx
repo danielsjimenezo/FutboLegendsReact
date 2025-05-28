@@ -70,7 +70,7 @@ function CompareBar({ player1, player2, label, val1, val2, max }) {
     <div className="compare-bar">
       <Link
         className="compare-bar-container left"
-        to={`/profile/${player1.name.replaceAll(" ", "_")}`}
+        to={`/dashboard/profile/${player1.name.replaceAll(" ", "_")}`}
       >
         <div className="compare-bar-value" ref={valRef1}>
           {val1.toLocaleString()}
@@ -82,7 +82,7 @@ function CompareBar({ player1, player2, label, val1, val2, max }) {
 
       <Link
         className="compare-bar-container right"
-        to={`/profile/${player2.name.replaceAll(" ", "_")}`}
+        to={`/dashboard/dashboard/profile/${player2.name.replaceAll(" ", "_")}`}
       >
         <div className="compare-bar-fill" style={style2}></div>
         <div className="compare-bar-value" ref={valRef2}>

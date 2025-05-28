@@ -54,7 +54,7 @@ export default function Login() {
   useEffect(() => {
     if (userLoaded && isSignedIn) {
       console.log(userLoaded, isSignedIn);
-      navigate("/dashboard/home");
+      navigate("/dashboard");
     }
   }, [isSignedIn, userLoaded, navigate]);
 
@@ -67,7 +67,7 @@ export default function Login() {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: "/sso-callback", // puede ser temporal
-        redirectUrlComplete: "/dashboard/home", // ✅ este es el final
+        redirectUrlComplete: "/dashboard", // ✅ este es el final
       });
       console.log(isSignedIn, "autenticado");
     } catch (err) {
@@ -175,7 +175,7 @@ export default function Login() {
       <div className="mt-4 text-center">
         <p className="mb-2 text-gray-600">O </p>
         <ClerkLoaded>
-    <SignInButton mode="redirect" redirectUrl="/dashboard/home" strategy="oauth_google">
+    <SignInButton mode="redirect" redirectUrl="/dashboard" strategy="oauth_google">
       <div type="button" className="google-login-button">
         <img
           src="https://www.svgrepo.com/show/475656/google-color.svg"

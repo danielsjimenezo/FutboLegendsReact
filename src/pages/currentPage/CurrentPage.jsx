@@ -69,7 +69,7 @@ function CurrentPage() {
           <ol className="leagues-list list">
             {leagues.map((league) => (
               <li className="league" key={league.id}>
-                <Link to={`/league/${league.id}`}>
+                <Link to={`/dashboard/league/${league.id}`}>
                   <img src={league.img} />
                   <p>{league.name}</p>
                 </Link>

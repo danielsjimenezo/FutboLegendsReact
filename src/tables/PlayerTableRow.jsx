@@ -10,7 +10,7 @@ function PlayerTableRow({ player, rank }) {
   const navigate = useNavigate();
 
   const profilePicSrc = `/images/Players/${player.name}.jpg`;
-  const playerHref = `/profile/${player.name.replaceAll(" ", "_")}`;
+  const playerHref = `/dashboard/profile/${player.name.replaceAll(" ", "_")}`;
   const { shownColumns } = useSelector(selectPlayerState);
 
   const handleTrClick = () => {

@@ -4,7 +4,7 @@ function ComparePicture({ player }) {
   return (
     <Link
       className="compare-picture"
-      to={`/profile/${player.name.replaceAll(" ", "_")}`}
+      to={`/dashboard/profile/${player.name.replaceAll(" ", "_")}`}
     >
       {player ? (
         <img
