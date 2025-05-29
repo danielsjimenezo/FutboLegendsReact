@@ -24,6 +24,8 @@ function Table({
 
   const shownItems = items.slice(start, end);
 
+  console.log(items, 'items')
+
   return (
     <>
       <table className="table" id={id}>

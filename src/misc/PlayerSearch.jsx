@@ -91,7 +91,7 @@ function PlayerSearch({ alwaysOpen = false, url, searchIcon = false }) {
       {searching && isFocused && (
         <section id="searchResults">
           {searchedPlayers.map((player) => {
-            const playerHref = "/profile/" + player.name.replaceAll(" ", "_");
+            const playerHref = "/dashboard/profile/" + player.name.replaceAll(" ", "_");
             const imgSrc = `/images/Players/${player.name}.jpg`;
 
             return (

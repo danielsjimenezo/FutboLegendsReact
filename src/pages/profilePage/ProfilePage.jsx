@@ -15,20 +15,18 @@ import CompDataTable from "../../tables/CompDataTable.jsx";
 import ProfileBadges from "./ProfileBadges.jsx";
 import ShownBadgesFilter from "../../layout/ShownBadgesFilter.jsx";
 import ProfilePageTables from "./ProfilePageTables.jsx";
-import { fetchLeagues } from "../../lib/footballApi.js";
 
 function ProfilePage() {
   const [teamTableShown, setTeamTableShown] = useState("team");
 
- // Declaramos el estado local 'leagues', que es un arreglo donde almacenaremos los datos de las ligas.
-  const [leagues, setLeagues] = useState([]);
-
+ 
   const { players, playersLoadingState, leaderboardCountry } =
     useSelector(selectPlayerState);
   const dispatch = useDispatch();
   const { id } = useParams();
   const player = players.find((p) => p.name === id.replaceAll("_", " "));
 
+  console.log(id.replaceAll("_", " "), 'id')
   if (playersLoadingState === "loading") {
     return (
       <>
@@ -53,18 +51,6 @@ function ProfilePage() {
     );
   }
 
-
-  useEffect(() => {
-    // Función asincrónica interna que llama a la API
-    const loadLeagues = async () => {
-      const data = await fetchLeagues(); // Esperamos la respuesta de la API de ligas.
-      setLeagues(data); // Guardamos los datos en el estado
-    };
-
-    loadLeagues(); // Ejecutamos la función para cargar los datos
-  }, []); // Solo se ejecuta al montar el componente
-
-console.log(leagues, 'leagues')
 
   return (
     <>

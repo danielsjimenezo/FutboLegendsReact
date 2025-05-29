@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import Table from "./Table.jsx";
+import { fetchIdPlayers, fetchStatistics } from "../lib/footballApi.js";
+import { useMatchPlayers } from "../hooks/useMatchPlayers.js";
 
 const fakeRow = {
   Season: "2020/2021",
@@ -32,24 +35,75 @@ const fakeRow = {
 //   ],
 // };
 
-
 function SeasonTable({ player }) {
+  // Declaramos el estado local 'leagues', que es un arreglo donde almacenaremos los datos de las ligas.
+  const [idPlayer, setIdPlayer] = useState([]);
+  const [playerStatistics, setPlayerStatistics] = useState([]);
+
+// hook para mapear a su coincidencia real en el array que arroja el idPlayer, versus la nacionalidad y el nombre del jugador que se extrae del useParams del profile consultado
+  const { getMatchingPlayers } = useMatchPlayers();
 
   const fakeRows = [];
   const fakeExpandables = [];
-  const startYear = new Date().getFullYear()
+  const startYear = new Date().getFullYear();
   for (let i = 0; i < 30; i++) {
-    fakeRows.push({ 
+    fakeRows.push({
       ...fakeRow,
-      Season: `${startYear-i-1}/${startYear-i}`
+      Season: `${startYear - i - 1}/${startYear - i}`,
     });
-    const year1 = startYear-i-1
-    const year2 = startYear-i
+    const year1 = startYear - i - 1;
+    const year2 = startYear - i;
     fakeExpandables.push({
       type: "YTAPI",
       query: `${player.name} all goals and assists ${year1}-${year2} season`,
     });
   }
+
+  console.log(player, "player.name");
+
+  // endpoint con un jugador {nombre}
+  // get ( "https://v3.football.api-sports.io/players?team=85&search=cavani" ) ;
+  // get ( "https://v3.football.api-sports.io/players?league=61&search=cavani" ) ;
+  // get ( "https://v3.football.api-sports.io/players?team=85&search=cavani&season=2018" ) ;
+  // logica con use params
+  // la respuesta se pasa como items
+
+  useEffect(() => {
+    // Función asincrónica interna que llama a la API
+    const loadIdPlayer = async () => {
+      const nameParts = player.name.trim().split(" ");
+const namePlayer = nameParts.length > 1
+  ? nameParts[1].toLowerCase()
+  : nameParts[0].toLowerCase(); // fallback al nombre único si no hay apellido
+
+      const data = await fetchIdPlayers(namePlayer); // Esperamos la respuesta de la API de ligas.
+      console.log(data, 'data')
+
+      setIdPlayer(data); // Guardamos los datos en el estado
+      // setIdPlayer(data);
+    };
+
+    loadIdPlayer(); // Ejecutamos la función para cargar los datos
+  }, [player]);
+
+  useEffect(() => {
+  const loadStatistics = async () => {
+    const matchingPlayers = getMatchingPlayers(player, idPlayer);
+
+    console.log(matchingPlayers, "matchingPlayers");
+
+    if (matchingPlayers.length > 0) {
+      const data = await fetchStatistics(matchingPlayers[0].player.id);
+      setPlayerStatistics(data);
+    } else {
+      console.warn("No matching players found.");
+    }
+  };
+
+  if (idPlayer.length > 0) loadStatistics();
+}, [idPlayer, player]);
+
+  console.log(idPlayer, playerStatistics, "players");
 
   return (
     <Table

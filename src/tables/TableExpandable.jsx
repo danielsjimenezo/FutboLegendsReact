@@ -67,6 +67,8 @@ import { tr } from "date-fns/locale"
  * @returns 
  */
 function TableExpandable({ expandable, cellPaddingY = '10px', cellHeight = '10px' }) {
+
+    console.log(expandable, 'expandable')
     return (
         <>
             {expandable.type === 'photos' && (

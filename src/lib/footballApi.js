@@ -29,12 +29,43 @@ const fetchFromApi = async (endpoint, params = {}) => {
 
 // 🔸 Specific helpers
 export const fetchLeagues = () => fetchFromApi('/leagues');
+export const fetchSeasons= () => fetchFromApi('/leagues/seasons');
+// export const fetchIdPlayers = (name) => fetchFromApi(`/players?team=85&search=neymar&season=2021`);
+
+export const fetchIdPlayers = (name) => fetchFromApi(`/players/profiles?search=${name}`);
+export const fetchStatistics = (idPlayer) => fetchFromApi(`/players?id=${idPlayer}&season=2015`);
+
+// export const fetchPlayers = (firstnamePlayer) => fetchFromApi(`/players?search=${firstnamePlayer}&season=${2021}`);
+
 
 export const fetchTeams = (leagueId, season) =>
   fetchFromApi('/teams', { league: leagueId, season });
 
-export const fetchPlayers = (teamId, season) =>
-  fetchFromApi('/players', { team: teamId, season });
+
+
+// Free plans do not have access to this season, try from 2021 to 2023
+//"team": "The League or Team field is required with the Search field.",
+        // "league": "The League or Team field is required with the Search field."
+// export const fetchPlayers = (firstnamePlayer, season, lastName) => {
+// [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027]
+//   return Promise.all([
+//     fetch(`${baseUrl}/players?search=${firstnamePlayer}&season=${season}`, { headers }),
+//     fetch(`${baseUrl}/players?league=61&search=${lastName}`, { headers }),
+//     fetch(`/players${baseUrl}/players?team=${teamId}&search=${lastName}&season=${season}`, { headers })
+//   ])
+//     .then(responses => Promise.all(responses.map(res => res.json())))
+//     .then(([byTeam, byLeague, byTeamAndSeason]) => {
+//       return {
+//         byTeam,
+//         byLeague,
+//         byTeamAndSeason
+//       };
+//     })
+//     .catch(error => {
+//       console.error("Error fetching players:", error);
+//       throw error;
+//     });
+// };
 
 export const fetchFixtures = (filters = {}) =>
   fetchFromApi('/fixtures', filters);
