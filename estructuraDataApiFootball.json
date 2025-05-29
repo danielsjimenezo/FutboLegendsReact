@@ -1,0 +1,285 @@
+{
+get: "players/seasons"
+parameters: {
+player: "154"
+}
+errors: [
+]
+results: 23
+paging: {
+current: 1
+total: 1
+}
+response: [
+0: 2004
+1: 2005
+2: 2006
+3: 2007
+4: 2008
+5: 2009
+6: 2010
+7: 2011
+8: 2012
+9: 2013
+10: 2014
+11: 2015
+12: 2016
+13: 2017
+14: 2018
+15: 2019
+16: 2020
+17: 2021
+18: 2022
+19: 2023
+20: 2024
+21: 2025
+22: 2026
+]
+}
+
+// objeto de estadisticas
+[
+    {
+        "player": {
+            "id": 154,
+            "name": "L. Messi",
+            "firstname": "Lionel Andrés",
+            "lastname": "Messi Cuccittini",
+            "age": 38,
+            "birth": {
+                "date": "1987-06-24",
+                "place": "Rosario",
+                "country": "Argentina"
+            },
+            "nationality": "Argentina",
+            "height": "170 cm",
+            "weight": "67 kg",
+            "injured": false,
+            "photo": "https://media.api-sports.io/football/players/154.png"
+        },
+        "statistics": [
+            {
+                "team": {
+                    "id": 529,
+                    "name": "Barcelona",
+                    "logo": "https://media.api-sports.io/football/teams/529.png"
+                },
+                "league": {
+                    "id": null,
+                    "name": "La Liga",
+                    "country": null,
+                    "logo": null,
+                    "flag": null,
+                    "season": 2004
+                },
+                "games": {
+                    "appearences": 7,
+                    "lineups": 0,
+                    "minutes": 76,
+                    "number": null,
+                    "position": "Attacker",
+                    "rating": null,
+                    "captain": false
+                },
+                "substitutes": {
+                    "in": 7,
+                    "out": 0,
+                    "bench": 16
+                },
+                "shots": {
+                    "total": null,
+                    "on": null
+                },
+                "goals": {
+                    "total": 1,
+                    "conceded": null,
+                    "assists": null,
+                    "saves": null
+                },
+                "passes": {
+                    "total": null,
+                    "key": null,
+                    "accuracy": null
+                },
+                "tackles": {
+                    "total": null,
+                    "blocks": null,
+                    "interceptions": null
+                },
+                "duels": {
+                    "total": null,
+                    "won": null
+                },
+                "dribbles": {
+                    "attempts": null,
+                    "success": null,
+                    "past": null
+                },
+                "fouls": {
+                    "drawn": null,
+                    "committed": null
+                },
+                "cards": {
+                    "yellow": 0,
+                    "yellowred": 0,
+                    "red": 0
+                },
+                "penalty": {
+                    "won": null,
+                    "commited": null,
+                    "scored": null,
+                    "missed": null,
+                    "saved": null
+                }
+            },
+            {
+                "team": {
+                    "id": 529,
+                    "name": "Barcelona",
+                    "logo": "https://media.api-sports.io/football/teams/529.png"
+                },
+                "league": {
+                    "id": null,
+                    "name": "Copa del Rey",
+                    "country": null,
+                    "logo": null,
+                    "flag": null,
+                    "season": 2004
+                },
+                "games": {
+                    "appearences": 1,
+                    "lineups": 1,
+                    "minutes": null,
+                    "number": null,
+                    "position": "Attacker",
+                    "rating": null,
+                    "captain": false
+                },
+                "substitutes": {
+                    "in": 0,
+                    "out": 1,
+                    "bench": 0
+                },
+                "shots": {
+                    "total": null,
+                    "on": null
+                },
+                "goals": {
+                    "total": 0,
+                    "conceded": null,
+                    "assists": null,
+                    "saves": null
+                },
+                "passes": {
+                    "total": null,
+                    "key": null,
+                    "accuracy": null
+                },
+                "tackles": {
+                    "total": null,
+                    "blocks": null,
+                    "interceptions": null
+                },
+                "duels": {
+                    "total": null,
+                    "won": null
+                },
+                "dribbles": {
+                    "attempts": null,
+                    "success": null,
+                    "past": null
+                },
+                "fouls": {
+                    "drawn": null,
+                    "committed": null
+                },
+                "cards": {
+                    "yellow": 0,
+                    "yellowred": 0,
+                    "red": 0
+                },
+                "penalty": {
+                    "won": null,
+                    "commited": null,
+                    "scored": null,
+                    "missed": null,
+                    "saved": null
+                }
+            },
+            {
+                "team": {
+                    "id": 529,
+                    "name": "Barcelona",
+                    "logo": "https://media.api-sports.io/football/teams/529.png"
+                },
+                "league": {
+                    "id": null,
+                    "name": "UEFA Champions League",
+                    "country": null,
+                    "logo": null,
+                    "flag": null,
+                    "season": 2004
+                },
+                "games": {
+                    "appearences": 1,
+                    "lineups": 1,
+                    "minutes": 90,
+                    "number": null,
+                    "position": "Attacker",
+                    "rating": null,
+                    "captain": false
+                },
+                "substitutes": {
+                    "in": 0,
+                    "out": 0,
+                    "bench": 0
+                },
+                "shots": {
+                    "total": null,
+                    "on": null
+                },
+                "goals": {
+                    "total": 0,
+                    "conceded": null,
+                    "assists": null,
+                    "saves": null
+                },
+                "passes": {
+                    "total": null,
+                    "key": null,
+                    "accuracy": null
+                },
+                "tackles": {
+                    "total": null,
+                    "blocks": null,
+                    "interceptions": null
+                },
+                "duels": {
+                    "total": null,
+                    "won": null
+                },
+                "dribbles": {
+                    "attempts": null,
+                    "success": null,
+                    "past": null
+                },
+                "fouls": {
+                    "drawn": null,
+                    "committed": null
+                },
+                "cards": {
+                    "yellow": 0,
+                    "yellowred": 0,
+                    "red": 0
+                },
+                "penalty": {
+                    "won": null,
+                    "commited": null,
+                    "scored": null,
+                    "missed": null,
+                    "saved": null
+                }
+            }
+        ]
+    }
+]

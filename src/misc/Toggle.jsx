@@ -5,6 +5,7 @@ function Toggle({ option1, option2, onClick, defaultValue = option1.value, style
 
     const [selected, setSelected] = useState(defaultValue)
 
+    console.log(selected, 'selected')
     return (
         <div className="toggle-container" style={style}>
             <div className="toggle">

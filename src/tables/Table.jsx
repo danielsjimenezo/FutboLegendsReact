@@ -24,7 +24,7 @@ function Table({
 
   const shownItems = items.slice(start, end);
 
-  console.log(items, 'items')
+  // console.log(items, 'items')
 
   return (
     <>

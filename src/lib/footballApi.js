@@ -32,8 +32,13 @@ export const fetchLeagues = () => fetchFromApi('/leagues');
 export const fetchSeasons= () => fetchFromApi('/leagues/seasons');
 // export const fetchIdPlayers = (name) => fetchFromApi(`/players?team=85&search=neymar&season=2021`);
 
+// se puede optimizar con la base de datos en mongoDB
 export const fetchIdPlayers = (name) => fetchFromApi(`/players/profiles?search=${name}`);
-export const fetchStatistics = (idPlayer) => fetchFromApi(`/players?id=${idPlayer}&season=2015`);
+// pendiente hacer comparacion con el endpoint de ligas y temporadas para validar como traer la temporada textual ya que solo se calcula el año
+// export const fetchSeasonsPlayer = (lastname) => fetchFromApi(`/players/seasons?player=messi`);
+export const fetchSeasonsPlayer = (idPlayer) => fetchFromApi(`/players/seasons?player=${idPlayer}`);
+
+export const fetchStatistics = (idPlayer, year) => fetchFromApi(`/players?id=${idPlayer}&season=${year}`);
 
 // export const fetchPlayers = (firstnamePlayer) => fetchFromApi(`/players?search=${firstnamePlayer}&season=${2021}`);
 
