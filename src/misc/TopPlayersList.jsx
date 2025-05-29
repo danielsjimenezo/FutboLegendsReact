@@ -12,6 +12,7 @@ function TopPlayersList({ data1, data2, label1, label2, imageFolder }) {
 
   const currentData = activeTab === "tab1" ? data1 : data2;
 
+
   return (
     <section className="stats-section">
       <div className="tabs">
@@ -38,21 +39,21 @@ function TopPlayersList({ data1, data2, label1, label2, imageFolder }) {
                   className="player-image"
                   style={{
                     backgroundImage: `url('/images/${imageFolder}/${formatPlayerNameForImage(
-                      player.name
+                      player.player.name
                     )}.jpg')`,
                   }}
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-                    e.target.textContent = player.name
+                    e.target.textContent = player.player.name
                       .split(" ")
                       .map((n) => n[0])
                       .join("");
                   }}
                 ></div>
-                <span className="player-name">{shortenName(player.name)}</span>
+                <span className="player-name">{shortenName(player.player.name)}</span>
               </div>
-              <span className="stat">{player.stat}</span>
+              <span className="stat">{activeTab === "tab1" ? player.statistics[0]?.goals?.total : player.statistics[0]?.goals.assists}</span>
             </li>
           ))}
         </ol>

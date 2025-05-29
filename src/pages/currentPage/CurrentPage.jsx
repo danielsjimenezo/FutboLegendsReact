@@ -4,22 +4,63 @@ import { shortenName } from "../../utilities/utilities.js";
 import { Link } from "react-router-dom";
 import {
   topScorers,
-  topAssisters,
   topTeams,
-  leagues,
   tacklesWon,
   cleanSheets,
 } from "../../utilities/dummy-data.js";
 import TopPlayersList from "../../misc/TopPlayersList.jsx";
-import MatchCard from "./MatchCard.jsx";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TodayFixtures from "./fixtures.jsx";
+import { getLeagues, getTopScorers, getTopAssists } from "../../misc/footballAPI.jsx";
 
 function CurrentPage() {
   const [currentDate, setCurrentDate] = useState(new Date()); // Initialize with today's date
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false); // State for dropdown visibility
   const leftRef = useRef(null);
   const rightRef = useRef(null);
+  const [leagues, setLeagues] = useState([]);
+  const [topScorers, setTopScorers] = useState([]);
+  const [topAssists, setTopAssists] = useState([]);
+ 
+
+  useEffect(() => {
+    const fetchLeagues = async () => {
+      try {
+        const leaguesData = await getLeagues(); 
+        setLeagues(leaguesData);
+      } catch (error) {
+        console.error("Error fetching leagues:", error);
+      }
+    };
+    fetchLeagues();
+  }, []);
+
+  useEffect(() => {
+    const fetchTopScorers = async () => {
+      try {
+        const topScorersData = await getTopScorers(leagues.map(league => league.id), "2024");
+        setTopScorers(topScorersData);
+      } catch (error) {
+        console.error("Error fetching top scorers:", error);
+      }
+      console.log("topScorers");
+    };
+    fetchTopScorers();
+  }, [leagues]);
+
+  useEffect(() => {
+    const fetchTopAssists = async () => {
+      try {
+        const topAssistsData = await getTopAssists(leagues.map(league => league.id), "2024");
+        setTopAssists(topAssistsData);
+      } catch (error) {
+        console.error("Error fetching top assists:", error);
+      }
+      console.log("topAssists");
+    };
+    fetchTopAssists();  
+  }, [leagues]);
 
   const formatDisplayDate = (date) => {
     const today = new Date();
@@ -46,6 +87,7 @@ function CurrentPage() {
 
   const handleNextDay = () => {
     const today = new Date();
+    console.log(currentDate);
     if (currentDate.toDateString() !== today.toDateString()) {
       setCurrentDate((prevDate) => {
         const newDate = new Date(prevDate);
@@ -70,7 +112,7 @@ function CurrentPage() {
             {leagues.map((league) => (
               <li className="league" key={league.id}>
                 <Link to={`/league/${league.id}`}>
-                  <img src={league.img} />
+                  <img src={league.logo} />
                   <p>{league.name}</p>
                 </Link>
               </li>
@@ -123,61 +165,7 @@ function CurrentPage() {
             )}
           </div>
           <div className="vertical-timeline">
-            <MatchCard
-              homeTeam="Monaco"
-              awayTeam="Marseille"
-              homeScore="1"
-              awayScore="1"
-              competition="Premier League"
-              goals={[
-                { scorer: "Lionel Messi", team: "Monaco", minute: 37 },
-                { scorer: "Aubameyang", team: "Marseille", minute: 82 },
-              ]}
-            />
-
-            <MatchCard
-              homeTeam="Barcelona"
-              awayTeam="Sevilla"
-              homeScore="2"
-              awayScore="1"
-              competition="La Liga"
-              goals={[
-                { scorer: "Robert Lewandowski", team: "Barcelona", minute: 24 },
-                { scorer: "Luis Suarez", team: "Barcelona", minute: 63 },
-                { scorer: "Neymar", team: "Sevilla", minute: 75 },
-              ]}
-            />
-
-            <MatchCard
-              homeTeam="Liverpool"
-              awayTeam="Lyon"
-              homeScore="3"
-              awayScore="0"
-              competition="Premier League"
-              goals={[
-                {
-                  scorer: "Mohamed Salah",
-                  team: "Liverpool",
-                  minute: 12,
-                  penalty: true,
-                },
-                { scorer: "Kylian Mbappe", team: "Liverpool", minute: 45 },
-                { scorer: "Andres Iniesta", team: "Liverpool", minute: 78 },
-              ]}
-            />
-
-            <MatchCard
-              homeTeam="PSG"
-              awayTeam="Juventus"
-              homeScore="2"
-              awayScore="1"
-              competition="MLS"
-              goals={[
-                { scorer: "Kylian Mbappe", team: "PSG", minute: 14 },
-                { scorer: "Ousmane Dembele", team: "PSG", minute: 56 },
-                { scorer: "Alvaro Morata", team: "Juventus", minute: 68 },
-              ]}
-            />
+            <TodayFixtures date={currentDate} />
           </div>
         </section>
 
@@ -186,7 +174,7 @@ function CurrentPage() {
           {/* Stats Section with height limit */}
           <TopPlayersList
             data1={topScorers}
-            data2={topAssisters}
+            data2={topAssists}
             label1="Top Scorers"
             label2="Top Assisters"
             imageFolder="Players"
@@ -194,8 +182,8 @@ function CurrentPage() {
 
           {/* New Stats Section */}
           <TopPlayersList
-            data1={tacklesWon}
-            data2={cleanSheets}
+            data1={topScorers}
+            data2={topAssists}
             label1="Tackles Won"
             label2="Clean Sheets"
             imageFolder="Players"

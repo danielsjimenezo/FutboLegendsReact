@@ -22,7 +22,7 @@ const items = [
     G: 1,
     A: 4,
     GC: 7, 
-    "GC/MP": 92,
+    "GC/MP": 92, 
     CC: 45,
     DC: 12
   },

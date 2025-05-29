@@ -262,61 +262,7 @@ function LeaguePage() {
                 )}
               </div>
               <div className="vertical-timeline">
-                <MatchCard
-                  homeTeam="Monaco"
-                  awayTeam="Marseille"
-                  homeScore="1"
-                  awayScore="1"
-                  goals={[
-                    { scorer: "Lionel Messi", team: "Monaco", minute: 37 },
-                    { scorer: "Aubameyang", team: "Marseille", minute: 82 },
-                  ]}
-                />
-
-                <MatchCard
-                  homeTeam="Barcelona"
-                  awayTeam="Sevilla"
-                  homeScore="2"
-                  awayScore="1"
-                  goals={[
-                    {
-                      scorer: "Robert Lewandowski",
-                      team: "Barcelona",
-                      minute: 24,
-                    },
-                    { scorer: "Luis Suarez", team: "Barcelona", minute: 63 },
-                    { scorer: "Neymar", team: "Sevilla", minute: 75 },
-                  ]}
-                />
-
-                <MatchCard
-                  homeTeam="Liverpool"
-                  awayTeam="Lyon"
-                  homeScore="3"
-                  awayScore="0"
-                  goals={[
-                    {
-                      scorer: "Mohamed Salah",
-                      team: "Liverpool",
-                      minute: 12,
-                      penalty: true,
-                    },
-                    { scorer: "Kylian Mbappe", team: "Liverpool", minute: 45 },
-                    { scorer: "Andres Iniesta", team: "Liverpool", minute: 78 },
-                  ]}
-                />
-
-                <MatchCard
-                  homeTeam="PSG"
-                  awayTeam="Juventus"
-                  homeScore="2"
-                  awayScore="1"
-                  goals={[
-                    { scorer: "Kylian Mbappe", team: "PSG", minute: 14 },
-                    { scorer: "Ousmane Dembele", team: "PSG", minute: 56 },
-                    { scorer: "Alvaro Morata", team: "Juventus", minute: 68 },
-                  ]}
-                />
+                <TodayFixtures date={currentDate} leagueId={leagueId} />
               </div>
             </section>
           )}

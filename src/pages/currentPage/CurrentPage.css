@@ -88,12 +88,16 @@
 .leagues-section {
   background-color: var(--lighten);
   border: 1px solid var(--border-color, #af95fc);
+  height: calc((100vh) / 2);
+  overflow-y: hidden;
 }
 
 .leagues-section .leagues-list {
   list-style-position: inside;
   margin: 0;
   padding: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .leagues-section .leagues-list li {
@@ -971,6 +975,9 @@
 
 .leagues-section.animate-left {
   animation: fadeInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  overflow-y: hidden;
+  height: calc((100vh));
+  scrollbar-width: none;
 }
 
 .right-column.animate-right {
