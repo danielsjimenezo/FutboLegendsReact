@@ -24,7 +24,7 @@ function Table({
 
   const shownItems = items.slice(start, end);
 
-  // console.log(items, 'items')
+  console.log(items, shownItems, 'items')
 
   return (
     <>
@@ -52,6 +52,8 @@ function Table({
             );
             // Table row can be "expandable" if "expandables prop is provided"
             const expandable = expandables?.[i];
+
+            // console.log(entries,expandable, 'data')
             return (
               <TableRow
                 key={Math.random()}

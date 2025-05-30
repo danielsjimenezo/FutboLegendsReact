@@ -36,7 +36,20 @@ response: [
 22: 2026
 ]
 }
-
+const fakeRow = {
+  Team: {
+    type: "img",
+    src: "/images/Teams/Bayern Munich.png",
+  },
+  Games: 1,
+  Wins: 1,
+  Goals: 1,
+  Assists: 1,
+  Contributions: 1,
+  Efficiency: 1,
+  "Team ": 1,
+  Individual: 1,
+};
 // objeto de estadisticas
 [
     {

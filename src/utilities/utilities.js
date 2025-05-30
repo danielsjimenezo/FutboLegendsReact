@@ -14,6 +14,19 @@ export async function fetchData() {
   }
 }
 
+export async function fetchDataApiFootball() {
+  const res = await fetch("/Data/estructuraDataApiFootball.json");
+  if (!res.ok) return;
+  try {
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log("Error loading players");
+    console.error(error);
+    return;
+  }
+}
+
 const clickOutsideListeners = new Map(); // keys are elements
 
 export function onClickOutside(element, callback) {
